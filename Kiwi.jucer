@@ -4,195 +4,190 @@
               bundleIdentifier="com.cicm.Kiwi" includeBinaryInAppConfig="1"
               jucerVersion="3.1.0" companyName="cicm">
   <MAINGROUP id="gZ4R04" name="Kiwi">
-    <GROUP id="{AF8529CD-B1F2-D241-52D4-79F22497EE7E}" name="KiwiCore">
-      <FILE id="UhqtsK" name="Kiwi.h" compile="0" resource="0" file="ThirdParty/KiwiCore/Kiwi.h"/>
-      <GROUP id="{15970452-1B25-0898-3A0E-4B13BE7A968F}" name="KiwiDsp">
-        <FILE id="YEcP3p" name="Dsp.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Dsp.h"/>
-        <FILE id="lQJx0G" name="Defs.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Defs.h"/>
-        <FILE id="gnpXM4" name="Signal.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Signal.cpp"/>
-        <FILE id="biXW3z" name="Signal.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Signal.h"/>
-        <FILE id="vzDa0b" name="Process.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Process.cpp"/>
-        <FILE id="xrGuUV" name="Process.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Process.h"/>
-        <FILE id="B4VIym" name="Connection.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Connection.cpp"/>
-        <FILE id="R0vy6W" name="Connection.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Connection.h"/>
-        <FILE id="XJH0Vh" name="Node.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Node.cpp"/>
-        <FILE id="FQBsoJ" name="Node.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Node.h"/>
-        <FILE id="a1WtNR" name="Context.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Context.cpp"/>
-        <FILE id="uHWMhu" name="Context.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Context.h"/>
-        <GROUP id="{821D467D-EF5E-05C1-D21D-43779BD84A81}" name="Modules">
-          <FILE id="WM0gGA" name="Filter.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Modules/Filter.cpp"/>
-          <FILE id="HaBfnN" name="Filter.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Modules/Filter.h"/>
-          <FILE id="rygNbb" name="Generator.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Modules/Generator.cpp"/>
-          <FILE id="v0ISW9" name="Generator.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Modules/Generator.h"/>
-          <FILE id="UI2CCb" name="Math.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Modules/Math.cpp"/>
-          <FILE id="kub13k" name="Math.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiDsp/Modules/Math.h"/>
+    <GROUP id="{E67ADCB5-DB9C-84EC-7241-38760FEE2E8A}" name="KiwiCore">
+      <FILE id="sgH0R1" name="Kiwi.h" compile="0" resource="0" file="KiwiCore/Kiwi.h"/>
+      <GROUP id="{38D1343D-8B6A-0FCE-D0B7-0453BCB997DE}" name="KiwiBase">
+        <FILE id="jPVf7H" name="Core.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Core.h"/>
+        <FILE id="Z06V8p" name="Defs.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Defs.h"/>
+        <FILE id="R77DmB" name="Tools.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Tools.h"/>
+        <FILE id="sDJwsT" name="Clock.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Clock.cpp"/>
+        <FILE id="SQMzn1" name="Clock.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Clock.h"/>
+        <FILE id="MAFBYV" name="Console.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Console.cpp"/>
+        <FILE id="sUxFpa" name="Console.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Console.h"/>
+        <FILE id="aujZhG" name="Tag.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Tag.cpp"/>
+        <FILE id="kyhMp4" name="Tag.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Tag.h"/>
+        <FILE id="SgFQ2K" name="Beacon.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Beacon.cpp"/>
+        <FILE id="zJYGZo" name="Beacon.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Beacon.h"/>
+        <FILE id="lUGqhA" name="Element.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Element.cpp"/>
+        <FILE id="kyMYfY" name="Element.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Element.h"/>
+        <FILE id="hvCmhW" name="Dico.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Dico.cpp"/>
+        <FILE id="fIlxwu" name="Dico.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Dico.h"/>
+        <FILE id="pZuy3s" name="Attribute.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Attribute.cpp"/>
+        <FILE id="OmZT9X" name="Attribute.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Attribute.h"/>
+        <FILE id="FsIGsX" name="AttributeLink.cpp" compile="1" resource="0"
+              file="KiwiCore/KiwiBase/AttributeLink.cpp"/>
+        <FILE id="iZ0Lch" name="AttributeLink.h" compile="0" resource="0" file="KiwiCore/KiwiBase/AttributeLink.h"/>
+        <FILE id="xRBH7N" name="AttributeBox.cpp" compile="1" resource="0"
+              file="KiwiCore/KiwiBase/AttributeBox.cpp"/>
+        <FILE id="ctmnDA" name="AttributeBox.h" compile="0" resource="0" file="KiwiCore/KiwiBase/AttributeBox.h"/>
+        <FILE id="RPOpDG" name="AttributePage.cpp" compile="1" resource="0"
+              file="KiwiCore/KiwiBase/AttributePage.cpp"/>
+        <FILE id="W3bGmv" name="AttributePage.h" compile="0" resource="0" file="KiwiCore/KiwiBase/AttributePage.h"/>
+        <FILE id="vQpkmp" name="Iolets.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Iolets.cpp"/>
+        <FILE id="ngcarz" name="Iolets.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Iolets.h"/>
+        <FILE id="ytHkIG" name="Link.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Link.cpp"/>
+        <FILE id="etPqGb" name="Link.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Link.h"/>
+        <FILE id="p3giuv" name="Box.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Box.cpp"/>
+        <FILE id="Wa4YnU" name="Box.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Box.h"/>
+        <FILE id="T989Fr" name="PageUtils.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/PageUtils.cpp"/>
+        <FILE id="Y6HRbl" name="PageUtils.h" compile="0" resource="0" file="KiwiCore/KiwiBase/PageUtils.h"/>
+        <FILE id="zbdGRh" name="Page.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Page.cpp"/>
+        <FILE id="vDxknU" name="Page.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Page.h"/>
+        <FILE id="ohjQyO" name="Instance.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Instance.cpp"/>
+        <FILE id="HzdEjf" name="Instance.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Instance.h"/>
+      </GROUP>
+      <GROUP id="{E12EE68D-6731-D470-5E0C-CB1FE762A784}" name="KiwiBoxes">
+        <FILE id="GPgXqb" name="Arithmetic.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/Arithmetic.cpp"/>
+        <FILE id="Rs8wev" name="Arithmetic.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/Arithmetic.h"/>
+        <FILE id="jhRZ6T" name="ArithmeticTilde.cpp" compile="1" resource="0"
+              file="KiwiCore/KiwiBoxes/ArithmeticTilde.cpp"/>
+        <FILE id="yxiQl4" name="ArithmeticTilde.h" compile="0" resource="0"
+              file="KiwiCore/KiwiBoxes/ArithmeticTilde.h"/>
+        <FILE id="QCtdZG" name="DspGenerator.cpp" compile="1" resource="0"
+              file="KiwiCore/KiwiBoxes/DspGenerator.cpp"/>
+        <FILE id="llNKfs" name="DspGenerator.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/DspGenerator.h"/>
+        <FILE id="sobFev" name="DspMisc.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/DspMisc.cpp"/>
+        <FILE id="qRA54v" name="DspMisc.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/DspMisc.h"/>
+        <FILE id="mPbCom" name="Gui.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/Gui.cpp"/>
+        <FILE id="Ox3yDr" name="Gui.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/Gui.h"/>
+        <FILE id="uh7Ye5" name="NewBox.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/NewBox.cpp"/>
+        <FILE id="HpmjPl" name="NewBox.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/NewBox.h"/>
+        <FILE id="xfQ5LV" name="Time.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/Time.cpp"/>
+        <FILE id="uzFU2H" name="Time.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/Time.h"/>
+        <FILE id="AYcvw2" name="Wireless.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/Wireless.cpp"/>
+        <FILE id="r941sP" name="Wireless.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/Wireless.h"/>
+      </GROUP>
+      <GROUP id="{AEF63660-BDF8-934C-B622-D22FF06C9BAA}" name="KiwiDsp">
+        <FILE id="jUYMyC" name="Connection.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Connection.cpp"/>
+        <FILE id="VZB9vb" name="Connection.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Connection.h"/>
+        <FILE id="wGQ4bN" name="Context.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Context.cpp"/>
+        <FILE id="lv3xab" name="Context.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context.h"/>
+        <FILE id="wXP4vH" name="Defs.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Defs.h"/>
+        <FILE id="HYKV6L" name="Dsp.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Dsp.h"/>
+        <GROUP id="{CF558A6A-D650-F64F-C4E9-D41683DF4346}" name="Modules">
+          <FILE id="o99rG4" name="Filter.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/Filter.cpp"/>
+          <FILE id="Nu2rRU" name="Filter.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Filter.h"/>
+          <FILE id="oSdNzU" name="Generator.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/Generator.cpp"/>
+          <FILE id="Zu2se0" name="Generator.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Generator.h"/>
+          <FILE id="jBYH0I" name="Math.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/Math.cpp"/>
+          <FILE id="X12pfv" name="Math.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Math.h"/>
         </GROUP>
+        <FILE id="ZYtZMn" name="Node.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Node.cpp"/>
+        <FILE id="w13GLN" name="Node.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Node.h"/>
+        <FILE id="CqI7NN" name="Process.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Process.cpp"/>
+        <FILE id="iFlk70" name="Process.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Process.h"/>
+        <FILE id="R14CLm" name="Signal.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Signal.cpp"/>
+        <FILE id="uiWaIS" name="Signal.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Signal.h"/>
       </GROUP>
-      <GROUP id="{0B9F348E-D1A3-2DD1-8646-67B93F41B26B}" name="KiwiGui">
-        <FILE id="fdVO1Q" name="Gui.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Gui.h"/>
-        <FILE id="vOQV0Z" name="Defs.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Defs.h"/>
-        <FILE id="MCeCY6" name="Point.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Point.cpp"/>
-        <FILE id="c5xZ1m" name="Point.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Point.h"/>
-        <FILE id="pUFD9g" name="Rectangle.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Rectangle.cpp"/>
-        <FILE id="fdEKYe" name="Rectangle.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Rectangle.h"/>
-        <FILE id="RCXRy9" name="Path.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Path.cpp"/>
-        <FILE id="LD8YYK" name="Path.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Path.h"/>
-        <FILE id="Be5YLe" name="Color.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Color.cpp"/>
-        <FILE id="Iw2sDg" name="Color.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Color.h"/>
-        <FILE id="bGHayU" name="Font.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Font.cpp"/>
-        <FILE id="htraze" name="Font.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Font.h"/>
-        <FILE id="j9sAxR" name="Font.mm" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Font.mm"/>
-        <FILE id="KVrw7p" name="Text.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Text.cpp"/>
-        <FILE id="mmFp4v" name="Text.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Text.h"/>
-        <FILE id="WsGL8U" name="Doodle.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Doodle.cpp"/>
-        <FILE id="a7ykv6" name="Doodle.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Doodle.h"/>
-        <FILE id="WO1Tty" name="Event.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Event.cpp"/>
-        <FILE id="T4B8I1" name="Event.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiGui/Event.h"/>
-      </GROUP>
-      <GROUP id="{253D7897-3E2A-61F2-7E17-EBE37FD5D8C5}" name="KiwiBase">
-        <FILE id="VtfHye" name="Core.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Core.h"/>
-        <FILE id="rGc8YS" name="Defs.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Defs.h"/>
-        <FILE id="vOFflt" name="Tools.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Tools.h"/>
-        <FILE id="NOCgDo" name="Clock.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Clock.cpp"/>
-        <FILE id="GfZhRX" name="Clock.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Clock.h"/>
-        <FILE id="wlFMlb" name="Console.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Console.cpp"/>
-        <FILE id="ZHBF2Z" name="Console.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Console.h"/>
-        <FILE id="vHzlaU" name="Tag.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Tag.cpp"/>
-        <FILE id="CbI75L" name="Tag.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Tag.h"/>
-        <FILE id="B4njc4" name="Beacon.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Beacon.cpp"/>
-        <FILE id="wtcOcj" name="Beacon.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Beacon.h"/>
-        <FILE id="qdwHqd" name="Element.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Element.cpp"/>
-        <FILE id="tTMgqi" name="Element.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Element.h"/>
-        <FILE id="Swxdsf" name="Dico.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Dico.cpp"/>
-        <FILE id="p2k75v" name="Dico.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Dico.h"/>
-        <FILE id="WVEPTC" name="Attribute.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Attribute.cpp"/>
-        <FILE id="BzazHu" name="Attribute.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Attribute.h"/>
-        <FILE id="TQ2TO0" name="AttributeLink.cpp" compile="1" resource="0"
-              file="ThirdParty/KiwiCore/KiwiBase/AttributeLink.cpp"/>
-        <FILE id="JBSS2s" name="AttributeLink.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/AttributeLink.h"/>
-        <FILE id="P1FWlb" name="AttributeBox.cpp" compile="1" resource="0"
-              file="ThirdParty/KiwiCore/KiwiBase/AttributeBox.cpp"/>
-        <FILE id="a5rrdx" name="AttributeBox.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/AttributeBox.h"/>
-        <FILE id="qxwDZn" name="AttributePage.cpp" compile="1" resource="0"
-              file="ThirdParty/KiwiCore/KiwiBase/AttributePage.cpp"/>
-        <FILE id="mLKLBO" name="AttributePage.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/AttributePage.h"/>
-        <FILE id="ip5gWu" name="Iolets.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Iolets.cpp"/>
-        <FILE id="F9ETuz" name="Iolets.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Iolets.h"/>
-        <FILE id="yO2R5z" name="Link.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Link.cpp"/>
-        <FILE id="tkZsZP" name="Link.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Link.h"/>
-        <FILE id="RF6zKc" name="Box.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Box.cpp"/>
-        <FILE id="NoJ6kS" name="Box.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Box.h"/>
-        <FILE id="yU7Igj" name="PageUtils.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/PageUtils.cpp"/>
-        <FILE id="Qsfpzk" name="PageUtils.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/PageUtils.h"/>
-        <FILE id="lhnocd" name="Page.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Page.cpp"/>
-        <FILE id="wJOIS2" name="Page.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Page.h"/>
-        <FILE id="rw3MNl" name="Instance.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Instance.cpp"/>
-        <FILE id="vkLYIZ" name="Instance.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBase/Instance.h"/>
-      </GROUP>
-      <GROUP id="{09159B7F-FC16-C947-F94C-39F0E3FE5D7A}" name="KiwiBoxes">
-        <FILE id="JI1j9v" name="DspGenerator.cpp" compile="1" resource="0"
-              file="ThirdParty/KiwiCore/KiwiBoxes/DspGenerator.cpp"/>
-        <FILE id="PIsRkk" name="DspGenerator.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/DspGenerator.h"/>
-        <FILE id="yNr84P" name="DspMisc.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/DspMisc.cpp"/>
-        <FILE id="NlTjZb" name="DspMisc.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/DspMisc.h"/>
-        <FILE id="Kx5HDr" name="NewBox.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/NewBox.cpp"/>
-        <FILE id="ucXHvv" name="NewBox.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/NewBox.h"/>
-        <FILE id="t9vxGq" name="Gui.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Gui.cpp"/>
-        <FILE id="b8rlbr" name="Gui.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Gui.h"/>
-        <FILE id="eJkJMH" name="Arithmetic.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Arithmetic.cpp"/>
-        <FILE id="a5kou1" name="Arithmetic.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Arithmetic.h"/>
-        <FILE id="XBulYT" name="Time.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Time.cpp"/>
-        <FILE id="UAcPR5" name="Time.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Time.h"/>
-        <FILE id="RLkJBt" name="Wireless.cpp" compile="1" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Wireless.cpp"/>
-        <FILE id="gdeINo" name="Wireless.h" compile="0" resource="0" file="ThirdParty/KiwiCore/KiwiBoxes/Wireless.h"/>
-        <FILE id="zV5Jgi" name="ArithmeticTilde.cpp" compile="1" resource="0"
-              file="ThirdParty/KiwiCore/KiwiBoxes/ArithmeticTilde.cpp"/>
-        <FILE id="i5EXm1" name="ArithmeticTilde.h" compile="0" resource="0"
-              file="ThirdParty/KiwiCore/KiwiBoxes/ArithmeticTilde.h"/>
+      <GROUP id="{C30F7E14-EB63-78F8-11A9-3EE2036371EC}" name="KiwiGui">
+        <FILE id="KdC5BX" name="Color.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Color.cpp"/>
+        <FILE id="VaejJx" name="Color.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Color.h"/>
+        <FILE id="uX5Ks6" name="Defs.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Defs.h"/>
+        <FILE id="Of4DKi" name="Doodle.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Doodle.cpp"/>
+        <FILE id="n1IS1X" name="Doodle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Doodle.h"/>
+        <FILE id="baZZ0A" name="Event.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Event.cpp"/>
+        <FILE id="EgC5q2" name="Event.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Event.h"/>
+        <FILE id="WTkze1" name="Font.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Font.cpp"/>
+        <FILE id="sX06Om" name="Font.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Font.h"/>
+        <FILE id="uTw8nu" name="Font.mm" compile="1" resource="0" file="KiwiCore/KiwiGui/Font.mm"/>
+        <FILE id="pvy3ld" name="Gui.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Gui.h"/>
+        <FILE id="bYda35" name="Path.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Path.cpp"/>
+        <FILE id="A9L74n" name="Path.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Path.h"/>
+        <FILE id="RW4qLg" name="Point.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Point.cpp"/>
+        <FILE id="a9K2sd" name="Point.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Point.h"/>
+        <FILE id="Q5uiNS" name="Rectangle.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Rectangle.cpp"/>
+        <FILE id="AHW6Pq" name="Rectangle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Rectangle.h"/>
+        <FILE id="pCtzNU" name="Text.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Text.cpp"/>
+        <FILE id="hz7HZM" name="Text.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Text.h"/>
       </GROUP>
     </GROUP>
-    <GROUP id="{C6205A64-E0BB-0655-39E3-868F49A2FFAB}" name="Source">
-      <GROUP id="{EF13EE01-12C3-C9D4-D1BE-9037B5E0494B}" name="Console">
-        <FILE id="Qj6Ufk" name="ConsoleComponent.cpp" compile="1" resource="0"
-              file="Source/ConsoleComponent.cpp"/>
-        <FILE id="VDPMqz" name="ConsoleComponent.h" compile="0" resource="0"
-              file="Source/ConsoleComponent.h"/>
+    <GROUP id="{F6406C11-CFDE-6D77-B9E8-E3C9758A8862}" name="Sources">
+      <FILE id="BgmziC" name="Application.cpp" compile="1" resource="0" file="Sources/Application.cpp"/>
+      <FILE id="y1sy8f" name="Application.h" compile="0" resource="0" file="Sources/Application.h"/>
+      <GROUP id="{B08C12E8-B1A6-7FDC-A6A3-E3A9D31D8731}" name="Components">
+        <FILE id="TCSAar" name="NumberBoxComponent.cpp" compile="1" resource="0"
+              file="Sources/Components/NumberBoxComponent.cpp"/>
+        <FILE id="KzY0dH" name="NumberBoxComponent.h" compile="0" resource="0"
+              file="Sources/Components/NumberBoxComponent.h"/>
       </GROUP>
-      <GROUP id="{2C0EBAC7-998D-84A3-D02B-7A0F111A2532}" name="Components">
-        <FILE id="pu8A0s" name="NumberBoxComponent.cpp" compile="1" resource="0"
-              file="Source/Components/NumberBoxComponent.cpp"/>
-        <FILE id="wQIGl1" name="NumberBoxComponent.h" compile="0" resource="0"
-              file="Source/Components/NumberBoxComponent.h"/>
+      <FILE id="wOejt5" name="ConsoleComponent.cpp" compile="1" resource="0"
+            file="Sources/ConsoleComponent.cpp"/>
+      <FILE id="AgNi3y" name="ConsoleComponent.h" compile="0" resource="0"
+            file="Sources/ConsoleComponent.h"/>
+      <GROUP id="{023748B5-18B5-EBB0-408F-E25185BA6E9D}" name="inspector">
+        <FILE id="vLJHhp" name="AttributeBoolComponent.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributeBoolComponent.cpp"/>
+        <FILE id="Ch3Hjz" name="AttributeBoolComponent.h" compile="0" resource="0"
+              file="Sources/inspector/AttributeBoolComponent.h"/>
+        <FILE id="yn7ZE7" name="AttributeColorComponent.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributeColorComponent.cpp"/>
+        <FILE id="OxSnWT" name="AttributeColorComponent.h" compile="0" resource="0"
+              file="Sources/inspector/AttributeColorComponent.h"/>
+        <FILE id="olFzH2" name="AttributeComponent.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributeComponent.cpp"/>
+        <FILE id="kzmpzG" name="AttributeComponent.h" compile="0" resource="0"
+              file="Sources/inspector/AttributeComponent.h"/>
+        <FILE id="RuCKhJ" name="AttributeMenuComponent.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributeMenuComponent.cpp"/>
+        <FILE id="mLTg5S" name="AttributeMenuComponent.h" compile="0" resource="0"
+              file="Sources/inspector/AttributeMenuComponent.h"/>
+        <FILE id="mfEYci" name="AttributeNumberComponent.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributeNumberComponent.cpp"/>
+        <FILE id="cj0vmv" name="AttributeNumberComponent.h" compile="0" resource="0"
+              file="Sources/inspector/AttributeNumberComponent.h"/>
+        <FILE id="tDWDn4" name="AttributePanel.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributePanel.cpp"/>
+        <FILE id="THSqqP" name="AttributePanel.h" compile="0" resource="0"
+              file="Sources/inspector/AttributePanel.h"/>
+        <FILE id="C8PCA1" name="AttributeTextComponent.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributeTextComponent.cpp"/>
+        <FILE id="qTS0ej" name="AttributeTextComponent.h" compile="0" resource="0"
+              file="Sources/inspector/AttributeTextComponent.h"/>
+        <FILE id="TMBa8x" name="AttributeView.cpp" compile="1" resource="0"
+              file="Sources/inspector/AttributeView.cpp"/>
+        <FILE id="F7eGqn" name="AttributeView.h" compile="0" resource="0" file="Sources/inspector/AttributeView.h"/>
       </GROUP>
-      <GROUP id="{6EAE2D48-DCF3-5AB0-F1E4-1E82B70F0348}" name="inspector">
-        <FILE id="JgNqrZ" name="AttributeBoolComponent.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributeBoolComponent.cpp"/>
-        <FILE id="Uez17C" name="AttributeBoolComponent.h" compile="0" resource="0"
-              file="Source/inspector/AttributeBoolComponent.h"/>
-        <FILE id="kRTLHF" name="AttributeNumberComponent.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributeNumberComponent.cpp"/>
-        <FILE id="BEsYhN" name="AttributeNumberComponent.h" compile="0" resource="0"
-              file="Source/inspector/AttributeNumberComponent.h"/>
-        <FILE id="GwBJLv" name="AttributeTextComponent.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributeTextComponent.cpp"/>
-        <FILE id="p5Np1t" name="AttributeTextComponent.h" compile="0" resource="0"
-              file="Source/inspector/AttributeTextComponent.h"/>
-        <FILE id="OwmBn2" name="AttributeMenuComponent.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributeMenuComponent.cpp"/>
-        <FILE id="KjIgiJ" name="AttributeMenuComponent.h" compile="0" resource="0"
-              file="Source/inspector/AttributeMenuComponent.h"/>
-        <FILE id="GmGGoR" name="AttributeColorComponent.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributeColorComponent.cpp"/>
-        <FILE id="FY6UnQ" name="AttributeColorComponent.h" compile="0" resource="0"
-              file="Source/inspector/AttributeColorComponent.h"/>
-        <FILE id="YSdpv7" name="AttributeComponent.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributeComponent.cpp"/>
-        <FILE id="vmli5b" name="AttributeComponent.h" compile="0" resource="0"
-              file="Source/inspector/AttributeComponent.h"/>
-        <FILE id="qdmWJx" name="AttributePanel.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributePanel.cpp"/>
-        <FILE id="FOfKnp" name="AttributePanel.h" compile="0" resource="0"
-              file="Source/inspector/AttributePanel.h"/>
-        <FILE id="GfNmrF" name="AttributeView.cpp" compile="1" resource="0"
-              file="Source/inspector/AttributeView.cpp"/>
-        <FILE id="JHB7J0" name="AttributeView.h" compile="0" resource="0" file="Source/inspector/AttributeView.h"/>
-      </GROUP>
-      <GROUP id="{BAFAD1FA-210A-9872-61A8-D396A449D6BD}" name="BinaryData"/>
-      <FILE id="i6gpSn" name="Wrapper.cpp" compile="1" resource="0" file="Source/Wrapper.cpp"/>
-      <FILE id="pf6grR" name="Wrapper.h" compile="0" resource="0" file="Source/Wrapper.h"/>
-      <FILE id="oI5OKA" name="jEvent.cpp" compile="1" resource="0" file="Source/jEvent.cpp"/>
-      <FILE id="zBrcU5" name="jEvent.h" compile="0" resource="0" file="Source/jEvent.h"/>
-      <FILE id="w2p3jr" name="jDoodle.cpp" compile="1" resource="0" file="Source/jDoodle.cpp"/>
-      <FILE id="p2OEML" name="jDoodle.h" compile="0" resource="0" file="Source/jDoodle.h"/>
-      <FILE id="glsZNd" name="jBox.cpp" compile="1" resource="0" file="Source/jBox.cpp"/>
-      <FILE id="gGTc0P" name="jBox.h" compile="0" resource="0" file="Source/jBox.h"/>
-      <FILE id="jUKRI6" name="jLink.cpp" compile="1" resource="0" file="Source/jLink.cpp"/>
-      <FILE id="lxKzuc" name="jLink.h" compile="0" resource="0" file="Source/jLink.h"/>
-      <FILE id="r6n34Z" name="jPageUtils.cpp" compile="1" resource="0" file="Source/jPageUtils.cpp"/>
-      <FILE id="LIiBnM" name="jPageUtils.h" compile="0" resource="0" file="Source/jPageUtils.h"/>
-      <FILE id="xTdCdh" name="jPage.cpp" compile="1" resource="0" file="Source/jPage.cpp"/>
-      <FILE id="yiWYAn" name="jPage.h" compile="0" resource="0" file="Source/jPage.h"/>
-      <FILE id="fsJmfZ" name="jInstance.cpp" compile="1" resource="0" file="Source/jInstance.cpp"/>
-      <FILE id="syEHzI" name="jInstance.h" compile="0" resource="0" file="Source/jInstance.h"/>
-      <FILE id="XXBkCF" name="jLookAndFeel.cpp" compile="1" resource="0"
-            file="Source/jLookAndFeel.cpp"/>
-      <FILE id="SAJBUH" name="jLookAndFeel.h" compile="0" resource="0" file="Source/jLookAndFeel.h"/>
-      <FILE id="Vt2YBl" name="MainWindow.cpp" compile="1" resource="0" file="Source/MainWindow.cpp"/>
-      <FILE id="aKcbVt" name="MainWindow.h" compile="0" resource="0" file="Source/MainWindow.h"/>
-      <FILE id="kH2lwI" name="Application.cpp" compile="1" resource="0" file="Source/Application.cpp"/>
-      <FILE id="JcxDjd" name="Application.h" compile="0" resource="0" file="Source/Application.h"/>
-      <FILE id="NgyG5o" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="Kx84fe" name="jBox.cpp" compile="1" resource="0" file="Sources/jBox.cpp"/>
+      <FILE id="pYraG8" name="jBox.h" compile="0" resource="0" file="Sources/jBox.h"/>
+      <FILE id="yWVhgU" name="jDoodle.cpp" compile="1" resource="0" file="Sources/jDoodle.cpp"/>
+      <FILE id="aPpFMX" name="jDoodle.h" compile="0" resource="0" file="Sources/jDoodle.h"/>
+      <FILE id="pounES" name="jEvent.cpp" compile="1" resource="0" file="Sources/jEvent.cpp"/>
+      <FILE id="rDBaLH" name="jEvent.h" compile="0" resource="0" file="Sources/jEvent.h"/>
+      <FILE id="uSSFRD" name="jInstance.cpp" compile="1" resource="0" file="Sources/jInstance.cpp"/>
+      <FILE id="FasKfu" name="jInstance.h" compile="0" resource="0" file="Sources/jInstance.h"/>
+      <FILE id="ommnFv" name="jLink.cpp" compile="1" resource="0" file="Sources/jLink.cpp"/>
+      <FILE id="bGvWQS" name="jLink.h" compile="0" resource="0" file="Sources/jLink.h"/>
+      <FILE id="RAAMI9" name="jLookAndFeel.cpp" compile="1" resource="0"
+            file="Sources/jLookAndFeel.cpp"/>
+      <FILE id="ieXyT7" name="jLookAndFeel.h" compile="0" resource="0" file="Sources/jLookAndFeel.h"/>
+      <FILE id="UJgoaV" name="jPage.cpp" compile="1" resource="0" file="Sources/jPage.cpp"/>
+      <FILE id="DXIxeU" name="jPage.h" compile="0" resource="0" file="Sources/jPage.h"/>
+      <FILE id="sH6bi7" name="jPageUtils.cpp" compile="1" resource="0" file="Sources/jPageUtils.cpp"/>
+      <FILE id="oBW09z" name="jPageUtils.h" compile="0" resource="0" file="Sources/jPageUtils.h"/>
+      <FILE id="T9Nkeo" name="Main.cpp" compile="1" resource="0" file="Sources/Main.cpp"/>
+      <FILE id="w7WH1j" name="MainWindow.cpp" compile="1" resource="0" file="Sources/MainWindow.cpp"/>
+      <FILE id="FYzfXp" name="MainWindow.h" compile="0" resource="0" file="Sources/MainWindow.h"/>
+      <FILE id="lmHJlN" name="Wrapper.cpp" compile="1" resource="0" file="Sources/Wrapper.cpp"/>
+      <FILE id="u2Ex90" name="Wrapper.h" compile="0" resource="0" file="Sources/Wrapper.h"/>
     </GROUP>
-    <GROUP id="{79BD6AF5-10C2-606C-7011-8CE31A9C966E}" name="BinaryData">
-      <FILE id="H1cy4v" name="Kiwi_icon.png" compile="0" resource="1" file="Source/BinaryData/Kiwi_icon.png"/>
-      <FILE id="Y4Q1ZV" name="kiwi_icon_flat.png" compile="0" resource="1"
-            file="Source/BinaryData/kiwi_icon_flat.png"/>
-      <FILE id="yadd4u" name="Kiwi_icon_2.png" compile="0" resource="1" file="Source/BinaryData/Kiwi_icon_2.png"/>
+    <GROUP id="{EDC6BA37-2F9F-0418-458A-4B86A7078C57}" name="Ressources">
+      <FILE id="wM1x4I" name="Kiwi_icon.png" compile="0" resource="1" file="Ressources/Kiwi_icon.png"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" bigIcon="H1cy4v" documentExtensions=""
-               customPList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;&#10;&lt;plist version=&quot;1.0&quot;&gt;&#10;&lt;dict&gt;&#10;&#9;&lt;key&gt;BuildMachineOSBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;14A389&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleDocumentTypes&lt;/key&gt;&#10;&#9;&lt;array&gt;&#10;&#9;&#9;&lt;dict&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeExtensions&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;array&gt;&#10;&#9;&#9;&#9;&#9;&lt;string&gt;kiwipage&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;/array&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeIconFile&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;string&gt;Icon.icns&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeName&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;string&gt;Kiwi Page&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeOSTypes&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;array&gt;&#10;&#9;&#9;&#9;&#9;&lt;string&gt;JSON&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;/array&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeRole&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;string&gt;Editor&lt;/string&gt;&#10;&#9;&#9;&lt;/dict&gt;&#10;&#9;&lt;/array&gt;&#10;&#9;&lt;key&gt;CFBundleExecutable&lt;/key&gt;&#10;&#9;&lt;string&gt;Kiwi&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleIconFile&lt;/key&gt;&#10;&#9;&lt;string&gt;Icon.icns&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleIdentifier&lt;/key&gt;&#10;&#9;&lt;string&gt;com.cicm.Kiwi&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleName&lt;/key&gt;&#10;&#9;&lt;string&gt;Kiwi&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundlePackageType&lt;/key&gt;&#10;&#9;&lt;string&gt;APPL&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleShortVersionString&lt;/key&gt;&#10;&#9;&lt;string&gt;1.0.0&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleSignature&lt;/key&gt;&#10;&#9;&lt;string&gt;????&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleVersion&lt;/key&gt;&#10;&#9;&lt;string&gt;1.0.0&lt;/string&gt;&#10;&#9;&lt;key&gt;DTCompiler&lt;/key&gt;&#10;&#9;&lt;string&gt;com.apple.compilers.llvm.clang.1_0&lt;/string&gt;&#10;&#9;&lt;key&gt;DTPlatformBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;6A1052d&lt;/string&gt;&#10;&#9;&lt;key&gt;DTPlatformVersion&lt;/key&gt;&#10;&#9;&lt;string&gt;GM&lt;/string&gt;&#10;&#9;&lt;key&gt;DTSDKBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;13F26&lt;/string&gt;&#10;&#9;&lt;key&gt;DTSDKName&lt;/key&gt;&#10;&#9;&lt;string&gt;macosx10.9&lt;/string&gt;&#10;&#9;&lt;key&gt;DTXcode&lt;/key&gt;&#10;&#9;&lt;string&gt;0610&lt;/string&gt;&#10;&#9;&lt;key&gt;DTXcodeBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;6A1052d&lt;/string&gt;&#10;&#9;&lt;key&gt;NSHighResolutionCapable&lt;/key&gt;&#10;&#9;&lt;true/&gt;&#10;&#9;&lt;key&gt;NSHumanReadableCopyright&lt;/key&gt;&#10;&#9;&lt;string&gt;cicm&lt;/string&gt;&#10;&lt;/dict&gt;&#10;&lt;/plist&gt;&#10;">
+    <XCODE_MAC targetFolder="Builds/MacOSX" bigIcon="wM1x4I" documentExtensions=""
+               customPList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;&#10;&lt;plist version=&quot;1.0&quot;&gt;&#10;&lt;dict&gt;&#10;&#9;&lt;key&gt;BuildMachineOSBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;14A389&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleDocumentTypes&lt;/key&gt;&#10;&#9;&lt;array&gt;&#10;&#9;&#9;&lt;dict&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeExtensions&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;array&gt;&#10;&#9;&#9;&#9;&#9;&lt;string&gt;kiwipage&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;/array&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeIconFile&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;string&gt;Icon.icns&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeName&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;string&gt;Kiwi Page&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeOSTypes&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;array&gt;&#10;&#9;&#9;&#9;&#9;&lt;string&gt;JSON&lt;/string&gt;&#10;&#9;&#9;&#9;&lt;/array&gt;&#10;&#9;&#9;&#9;&lt;key&gt;CFBundleTypeRole&lt;/key&gt;&#10;&#9;&#9;&#9;&lt;string&gt;Editor&lt;/string&gt;&#10;&#9;&#9;&lt;/dict&gt;&#10;&#9;&lt;/array&gt;&#10;&#9;&lt;key&gt;CFBundleExecutable&lt;/key&gt;&#10;&#9;&lt;string&gt;Kiwi&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleIconFile&lt;/key&gt;&#10;&#9;&lt;string&gt;Icon.icns&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleIdentifier&lt;/key&gt;&#10;&#9;&lt;string&gt;com.cicm.Kiwi&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleName&lt;/key&gt;&#10;&#9;&lt;string&gt;Kiwi&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundlePackageType&lt;/key&gt;&#10;&#9;&lt;string&gt;APPL&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleShortVersionString&lt;/key&gt;&#10;&#9;&lt;string&gt;1.0.0&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleSignature&lt;/key&gt;&#10;&#9;&lt;string&gt;????&lt;/string&gt;&#10;&#9;&lt;key&gt;CFBundleVersion&lt;/key&gt;&#10;&#9;&lt;string&gt;1.0.0&lt;/string&gt;&#10;&#9;&lt;key&gt;DTCompiler&lt;/key&gt;&#10;&#9;&lt;string&gt;com.apple.compilers.llvm.clang.1_0&lt;/string&gt;&#10;&#9;&lt;key&gt;DTPlatformBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;6A1052d&lt;/string&gt;&#10;&#9;&lt;key&gt;DTPlatformVersion&lt;/key&gt;&#10;&#9;&lt;string&gt;GM&lt;/string&gt;&#10;&#9;&lt;key&gt;DTSDKBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;13F26&lt;/string&gt;&#10;&#9;&lt;key&gt;DTSDKName&lt;/key&gt;&#10;&#9;&lt;string&gt;macosx10.9&lt;/string&gt;&#10;&#9;&lt;key&gt;DTXcode&lt;/key&gt;&#10;&#9;&lt;string&gt;0610&lt;/string&gt;&#10;&#9;&lt;key&gt;DTXcodeBuild&lt;/key&gt;&#10;&#9;&lt;string&gt;6A1052d&lt;/string&gt;&#10;&#9;&lt;key&gt;NSHighResolutionCapable&lt;/key&gt;&#10;&#9;&lt;true/&gt;&#10;&#9;&lt;key&gt;NSHumanReadableCopyright&lt;/key&gt;&#10;&#9;&lt;string&gt;cicm&lt;/string&gt;&#10;&lt;/dict&gt;&#10;&lt;/plist&gt;&#10;"
+               smallIcon="wM1x4I">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="10.9 SDK" osxCompatibility="10.9 SDK" osxArchitecture="Native"
                        isDebug="1" optimisation="1" targetName="Kiwi" headerPath=""/>
@@ -201,20 +196,20 @@
                        linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_events" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_graphics" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_data_structures" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_cryptography" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_video" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_opengl" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="ThirdParty/Juce/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="ThirdParty/Juce/modules"/>
+        <MODULEPATH id="juce_core" path="Juce/modules"/>
+        <MODULEPATH id="juce_events" path="Juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="Juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="Juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="Juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="Juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="Juce/modules"/>
+        <MODULEPATH id="juce_video" path="Juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="Juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="Juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="Juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="Juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="Juce/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="Juce/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
