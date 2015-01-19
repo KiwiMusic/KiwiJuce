@@ -1,0 +1,3 @@
+[submodule "KiwiCore"]
+	path = KiwiCore
+	url = https://pierreguillot@github.com/KiwiMusic/KiwiCore.git
