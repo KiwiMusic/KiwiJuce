@@ -53,7 +53,7 @@ namespace Kiwi
         {
             if(page)
             {
-				sjPage jpc = Page::Controller::create<jPage>(page);
+				sjPage jpc = PageView::create<jPage>(page);
                 if(jpc)
                 {
                     m_pages.push_back(jpc);
@@ -190,18 +190,18 @@ namespace Kiwi
 				dico->read(filename + extension, directory);
 				//DBG(toString(dico));
 				
-				if (sPage page = m_instance->createPage())
-				{
-					page->read(dico);
-					
-					if (Page::sController pagectrl = page->getController())
-					{
-						pagectrl->setLockStatus(true);
-					}
-					
-					DBG("page loaded");
-					return true;
-				}
+                sPage page =m_instance->createPage();
+                if(page)
+                {
+                    page->read(dico);
+                    sPageView ctrl = dynamic_pointer_cast<PageView>(page->getController());
+                    if(ctrl)
+                    {
+                        ctrl->setLockStatus(true);
+                        DBG("page loaded");
+                        return true;
+                    }
+                }
 			}
 			else
 			{

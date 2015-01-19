@@ -36,7 +36,7 @@ namespace Kiwi
 	/**
 	 The jPage ...
 	 */
-	class jPage : public Page::Controller, public Component, public ApplicationCommandTarget, public juce::TextEditor::Listener
+	class jPage : public PageView, public Component, public ApplicationCommandTarget, public juce::TextEditor::Listener
 	{
     private:
         sjLasso                         	m_lasso;

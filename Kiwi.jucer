@@ -39,8 +39,6 @@
         <FILE id="etPqGb" name="Link.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Link.h"/>
         <FILE id="p3giuv" name="Box.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Box.cpp"/>
         <FILE id="Wa4YnU" name="Box.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Box.h"/>
-        <FILE id="T989Fr" name="PageUtils.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/PageUtils.cpp"/>
-        <FILE id="Y6HRbl" name="PageUtils.h" compile="0" resource="0" file="KiwiCore/KiwiBase/PageUtils.h"/>
         <FILE id="zbdGRh" name="Page.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Page.cpp"/>
         <FILE id="vDxknU" name="Page.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Page.h"/>
         <FILE id="ohjQyO" name="Instance.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Instance.cpp"/>
@@ -109,6 +107,14 @@
         <FILE id="AHW6Pq" name="Rectangle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Rectangle.h"/>
         <FILE id="pCtzNU" name="Text.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Text.cpp"/>
         <FILE id="hz7HZM" name="Text.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Text.h"/>
+      </GROUP>
+      <GROUP id="{FA240F6D-4B6D-94B1-7307-F40BB73F33F0}" name="KiwiView">
+        <FILE id="rR4qV2" name="View.h" compile="0" resource="0" file="KiwiCore/KiwiView/View.h"/>
+        <FILE id="fCqNIm" name="Defs.h" compile="0" resource="0" file="KiwiCore/KiwiView/Defs.h"/>
+        <FILE id="sSlbKs" name="Tools.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/Tools.cpp"/>
+        <FILE id="AUo4HH" name="Tools.h" compile="0" resource="0" file="KiwiCore/KiwiView/Tools.h"/>
+        <FILE id="ZeSlut" name="Page.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/Page.cpp"/>
+        <FILE id="TIhx5x" name="Page.h" compile="0" resource="0" file="KiwiCore/KiwiView/Page.h"/>
       </GROUP>
     </GROUP>
     <GROUP id="{F6406C11-CFDE-6D77-B9E8-E3C9758A8862}" name="Sources">

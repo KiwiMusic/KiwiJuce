@@ -30,7 +30,7 @@ namespace Kiwi
 	//                                 JPAGE CONTROLER                                  //
 	// ================================================================================ //
 	
-	jPage::jPage(sPage page) : Page::Controller(page)
+	jPage::jPage(sPage page) : PageView(page)
     {
         setWantsKeyboardFocus(true);
 		setInterceptsMouseClicks(true, true);
