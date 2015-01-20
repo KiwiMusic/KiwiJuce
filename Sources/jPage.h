@@ -65,7 +65,7 @@ namespace Kiwi
 		}
 		
 		//! Retrieves a temporary link.
-		inline sTempLink getTempLink(const unsigned long index = 0) const
+		inline sTempLink getTempLink(const ulong index = 0) const
 		{
 			if (index < m_templinks.size())
             {
@@ -179,7 +179,7 @@ namespace Kiwi
 		 @param attr The attribute.
 		 @return pass true to notify changes to listeners, false if you don't want them to be notified
 		 */
-		virtual bool pageAttributeValueChanged(sAttr attr) override;
+		virtual bool attributeChanged(sAttr attr) override;
 		
 		//! Create a box controller.
 		/** Page controller's subclasses must implement this method to create custom box controller.
@@ -192,7 +192,7 @@ namespace Kiwi
 		/** The function is called by the page when a box controller has been created.
 		 @param boxctrl The box controller.
 		 */
-		virtual void boxControllerHasBeenCreated(Box::sController boxctrl) override;
+		virtual void boxControllerCreated(Box::sController boxctrl) override;
         
 		//! Receive the notification that a box controller before a box has been removed.
 		/** The function is called by the page controller before a box has been removed.
@@ -211,7 +211,7 @@ namespace Kiwi
 		/** The function is called by the page when a link controller has been created.
 		 @param linkctrl The link controller.
 		 */
-		virtual void linkControllerHasBeenCreated(Link::sController linkctrl) override;
+		virtual void linkControllerCreated(Link::sController linkctrl) override;
 		
 		//! Receive the notification that a link controller before a box has been removed.
 		/** The function is called by the page controller before a link has been removed.

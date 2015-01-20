@@ -47,7 +47,7 @@ namespace Kiwi
         return that;
     }
     
-    void jInstance::pageHasBeenCreated(sInstance instance, sPage page)
+    void jInstance::pageCreated(sInstance instance, sPage page)
     {
         if(instance == m_instance)
         {
@@ -69,17 +69,17 @@ namespace Kiwi
         }
     }
     
-    void jInstance::pageHasBeenRemoved(sInstance instance, sPage page)
+    void jInstance::pageRemoved(sInstance instance, sPage page)
     {
         Console::post("Page has been removed from the application");
     }
     
-    void jInstance::dspHasBeenStarted(shared_ptr<Instance> instance)
+    void jInstance::dspStarted(shared_ptr<Instance> instance)
     {
         ;
     }
     
-    void jInstance::dspHasBeenStopped(shared_ptr<Instance> instance)
+    void jInstance::dspStopped(shared_ptr<Instance> instance)
     {
         ;
     }

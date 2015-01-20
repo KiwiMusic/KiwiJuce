@@ -213,7 +213,7 @@ namespace Kiwi
 			Gui::Point next;
 			p.startNewSubPath(pt.x(), pt.y());
 			
-			for(unsigned long i = 0; i < m_path.size() - 1; i++)
+			for(ulong i = 0; i < m_path.size() - 1; i++)
 			{
 				double h;
 				next = getLocalPoint(m_path.getPoint(i+1));

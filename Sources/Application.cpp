@@ -269,7 +269,7 @@ namespace Kiwi
 		{
 			PopupMenu names;
 			
-			sort(boxNames.begin(), boxNames.end(), Tag::compareAlphabetic);
+			sort(boxNames.begin(), boxNames.end());
 			
 			for (int i = 0; i < boxNames.size(); ++i)
 			{

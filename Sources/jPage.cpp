@@ -236,7 +236,7 @@ namespace Kiwi
 		}
 	}
 	
-	bool jPage::pageAttributeValueChanged(sAttr attr)
+	bool jPage::attributeChanged(sAttr attr)
 	{
 		redraw();
 		return true;
@@ -247,7 +247,7 @@ namespace Kiwi
 		return Box::Controller::create<jBox>(box);
 	}
 	
-	void jPage::boxControllerHasBeenCreated(Box::sController boxctrl)
+	void jPage::boxControllerCreated(Box::sController boxctrl)
     {
 		if(boxctrl)
 		{
@@ -290,7 +290,7 @@ namespace Kiwi
 		return Link::Controller::create<jLink>(link);
 	}
 	
-	void jPage::linkControllerHasBeenCreated(Link::sController linkctrl)
+	void jPage::linkControllerCreated(Link::sController linkctrl)
 	{
 		if(linkctrl)
 		{
@@ -852,7 +852,7 @@ namespace Kiwi
             sPage page = getPage();
             if(page)
             {
-                page->startDsp(44100., 64);
+                page->dspStart(44100., 64);
                 return true;
             }
         }
@@ -861,7 +861,7 @@ namespace Kiwi
             sPage page = getPage();
             if(page)
             {
-                page->tickDsp();
+                page->dspTick();
                 return true;
             }
         }

@@ -69,7 +69,7 @@ namespace Kiwi
             juce::Path jpath;
             Gui::Path::Node node = path.getNode(0);
             jpath.startNewSubPath(node.point.x(), node.point.y());
-            for(unsigned long i = 1; i < path.size(); i++)
+            for(ulong i = 1; i < path.size(); i++)
             {
                 node = path.getNode(i);
                 switch(node.mode)
@@ -117,7 +117,7 @@ namespace Kiwi
             juce::Path jpath;
             Gui::Path::Node node = path.getNode(0);
             jpath.startNewSubPath(node.point.x(), node.point.y());
-            for(unsigned long i = 1; i < path.size(); i++)
+            for(ulong i = 1; i < path.size(); i++)
             {
                 node = path.getNode(i);
                 switch(node.mode)

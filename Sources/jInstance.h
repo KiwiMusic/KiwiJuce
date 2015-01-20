@@ -83,26 +83,26 @@ namespace Kiwi
          @param instance    The instance.
          @param page        The page.
          */
-        void pageHasBeenCreated(sInstance instance, sPage page) override;
+        void pageCreated(sInstance instance, sPage page) override;
         
         //! Receive the notification that a page has been closed.
         /** The function is called by the instance when a page has been closed.
          @param instance    The instance.
          @param page        The page.
          */
-        void pageHasBeenRemoved(sInstance instance, sPage page) override;
+        void pageRemoved(sInstance instance, sPage page) override;
         
         //! Receive the notification that the dsp has been started.
         /** The function is called by the instance when the dsp has been started.
          @param instance    The instance.
          */
-        void dspHasBeenStarted(shared_ptr<Instance> instance) override;
+        void dspStarted(shared_ptr<Instance> instance) override;
         
         //! Receive the notification that the dsp has been stopped.
         /** The function is called by the instance when the dsp has been stopped.
          @param instance    The instance.
          */
-        void dspHasBeenStopped(shared_ptr<Instance> instance) override;
+        void dspStopped(shared_ptr<Instance> instance) override;
         
         //! Create a new empty page.
         /** The function creates a new empty page.
