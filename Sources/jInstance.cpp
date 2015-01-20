@@ -192,7 +192,8 @@ namespace Kiwi
                     sPage page = m_instance->createPage(dico);
                     if(page)
                     {
-                        sPageView ctrl = dynamic_pointer_cast<PageView>(page->getController());
+                        int zaza;
+                        sPageView ctrl = nullptr;//dynamic_pointer_cast<PageView>(page->getController());
                         if(ctrl)
                         {
                             ctrl->setLockStatus(true);
