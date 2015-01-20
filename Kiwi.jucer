@@ -30,9 +30,6 @@
         <FILE id="xRBH7N" name="AttributeBox.cpp" compile="1" resource="0"
               file="KiwiCore/KiwiBase/AttributeBox.cpp"/>
         <FILE id="ctmnDA" name="AttributeBox.h" compile="0" resource="0" file="KiwiCore/KiwiBase/AttributeBox.h"/>
-        <FILE id="RPOpDG" name="AttributePage.cpp" compile="1" resource="0"
-              file="KiwiCore/KiwiBase/AttributePage.cpp"/>
-        <FILE id="W3bGmv" name="AttributePage.h" compile="0" resource="0" file="KiwiCore/KiwiBase/AttributePage.h"/>
         <FILE id="vQpkmp" name="Iolets.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Iolets.cpp"/>
         <FILE id="ngcarz" name="Iolets.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Iolets.h"/>
         <FILE id="ytHkIG" name="Link.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Link.cpp"/>
