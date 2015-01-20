@@ -86,8 +86,7 @@ namespace Kiwi
     
     void jInstance::newPage()
     {
-		sDico dico = Dico::create();
-        m_instance->createPage(dico);
+        m_instance->createPage(Dico::create());
     }
     
     void jInstance::openPage(const File& file)
@@ -187,19 +186,19 @@ namespace Kiwi
 			if (extension == ".kiwipage" && !filename.empty() && !directory.empty())
 			{
 				sDico dico = Dico::create();
-				dico->read(filename + extension, directory);
-				//DBG(toString(dico));
-				
-                sPage page =m_instance->createPage();
-                if(page)
+                if(dico)
                 {
-                    page->read(dico);
-                    sPageView ctrl = dynamic_pointer_cast<PageView>(page->getController());
-                    if(ctrl)
+                    dico->read(filename + extension, directory);
+                    sPage page = m_instance->createPage(dico);
+                    if(page)
                     {
-                        ctrl->setLockStatus(true);
-                        DBG("page loaded");
-                        return true;
+                        sPageView ctrl = dynamic_pointer_cast<PageView>(page->getController());
+                        if(ctrl)
+                        {
+                            ctrl->setLockStatus(true);
+                            DBG("page loaded");
+                            return true;
+                        }
                     }
                 }
 			}

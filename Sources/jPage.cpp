@@ -25,7 +25,24 @@
 #include "Application.h"
 
 namespace Kiwi
-{	
+{
+    sDico createBoxDicoAtPosition(string const& name, juce::Point<int> const& pt)
+    {
+        sDico dico = Dico::evaluateForBox(name);
+        if(dico)
+        {
+            sDico sub = dico->get(Page::Tag_boxes);
+            if(sub)
+            {
+                sub = sub->get(Page::Tag_box);
+                if(sub)
+                {
+                    sub->set(AttrBox::Tag_position, {pt.x, pt.y});
+                }
+            }
+        }
+        return dico;
+    }
 	// ================================================================================ //
 	//                                 JPAGE CONTROLER                                  //
 	// ================================================================================ //
@@ -185,9 +202,7 @@ namespace Kiwi
 		const string text = SystemClipboard::getTextFromClipboard().toStdString();
 		if(!text.empty())
 		{
-			sDico dico = Dico::create();
-			dico->read(text);
-
+            sDico dico = Dico::evaluateForJson(text);
 			unselectAll();
 			addBoxesFromDico(dico, offset);
 		}
@@ -699,7 +714,8 @@ namespace Kiwi
                     }
                     
                     sLink link = Link::create(getPage(), from, out, to, in);
-                    getPage()->addLink(link);
+                    int TODO_add_link_whith_dico;
+                    //getPage()->createLink(link);
 				}
 			}
             else if(box)
@@ -904,15 +920,10 @@ namespace Kiwi
     
     void jPage::textEditorReturnKeyPressed(juce::TextEditor& e)
     {
-        sDico dico = Dico::create();
-        dico->read(e.getText().toStdString());
-        if(!dico->has(Tag::create("position")))
-        {
-            dico->set(Tag::create("position"), {e.getBounds().getX(), e.getBounds().getY()});
-        }
+        sDico dico = createBoxDicoAtPosition(e.getText().toStdString(), e.getPosition());
         e.clear();
         e.setVisible(false);
-        getPage()->createBox(dico);
+        getPage()->add(dico);
     }
     
     void jPage::textEditorEscapeKeyPressed(juce::TextEditor& e)
@@ -1259,58 +1270,35 @@ namespace Kiwi
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                juce::Point<int> pt = getMouseXYRelative();
-                sDico dico = Dico::create();
-                dico->read("newbox");
-				dico->set(AttrBox::Tag_position, {pt.x, pt.y});
-				getPage()->createBox(dico);
+                getPage()->add(createBoxDicoAtPosition("newbox", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newBang:
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                juce::Point<int> pt = getMouseXYRelative();
-                sDico dico = Dico::create();
-                dico->read("bang");
-				dico->set(AttrBox::Tag_position, {pt.x, pt.y});
-                getPage()->createBox(dico);
-                
+                getPage()->add(createBoxDicoAtPosition("bang", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newToggle:
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                juce::Point<int> pt = getMouseXYRelative();
-                sDico dico = Dico::create();
-                dico->read("toggle");
-				dico->set(AttrBox::Tag_position, {pt.x, pt.y});
-				getPage()->createBox(dico);
-                
+                getPage()->add(createBoxDicoAtPosition("toggle", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newNumber:
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                juce::Point<int> pt = getMouseXYRelative();
-                sDico dico = Dico::create();
-                dico->read("number");
-				dico->set(AttrBox::Tag_position, {pt.x, pt.y});
-                getPage()->createBox(dico);
-                
+                getPage()->add(createBoxDicoAtPosition("number", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newMessage:
             {
 				if (isMouseButtonDownAnywhere()) return false;
-                juce::Point<int> pt = getMouseXYRelative();
-                sDico dico = Dico::create();
-                dico->read("message");
-				dico->set(AttrBox::Tag_position, {pt.x, pt.y});
-                getPage()->createBox(dico);
-                
+                unselectAll();
+                getPage()->add(createBoxDicoAtPosition("message", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::zoomIn:
