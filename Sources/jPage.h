@@ -87,11 +87,11 @@ namespace Kiwi
 		}
 		
 		void addToSelectionBasedOnModifiers(Box::sController box, bool selOnly);
-		void addToSelectionBasedOnModifiers(Link::sController link, bool selOnly);
+		void addToSelectionBasedOnModifiers(sLinkView link, bool selOnly);
 		bool selectOnMouseDown(Box::sController box, bool selOnly);
-		bool selectOnMouseDown(Link::sController link, bool selOnly);
+		bool selectOnMouseDown(sLinkView link, bool selOnly);
 		void selectOnMouseUp(Box::sController box, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
-		void selectOnMouseUp(Link::sController link, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
+		void selectOnMouseUp(sLinkView link, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
 		
 		//! Copy selected boxes to clipboard
 		/** The function copy boxes to clipboard
@@ -205,19 +205,19 @@ namespace Kiwi
 		 @param link     The link.
 		 @return The newly created link controller.
 		 */
-		virtual Link::sController createLinkController(sLink link) override;
+		virtual sLinkView createLinkController(sLink link) override;
 		
 		//! Receive the notification that a link controller has been created.
 		/** The function is called by the page when a link controller has been created.
 		 @param linkctrl The link controller.
 		 */
-		virtual void linkControllerCreated(Link::sController linkctrl) override;
+		virtual void linkControllerCreated(sLinkView linkctrl) override;
 		
 		//! Receive the notification that a link controller before a box has been removed.
 		/** The function is called by the page controller before a link has been removed.
 		 @param linkctrl The link controller.
 		 */
-		virtual void linkControllerWillBeRemoved(Link::sController linkctrl) override;
+		virtual void linkControllerWillBeRemoved(sLinkView linkctrl) override;
 		
 		//! The overriden redraw function.
 		/** The function is called when the page needs to be redrawn.

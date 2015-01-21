@@ -27,7 +27,7 @@
 namespace Kiwi
 {
     
-	jLink::jLink(sLink link) : Link::Controller(link)
+	jLink::jLink(sLink link) : LinkView(link)
     {
         setInterceptsMouseClicks(false, false);
         boundsChanged();
@@ -53,7 +53,7 @@ namespace Kiwi
         if(isVisible())
         {
             JDoodle d(g, getLocalBounds());
-            Link::Controller::paint(getLink(), d, isSelected());
+            LinkView::paint(getLink(), d, isSelected());
         }
     }
 }

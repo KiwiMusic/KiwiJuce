@@ -36,7 +36,7 @@ namespace Kiwi
     /**
      The jLink overrides
      */
-    class jLink  : public Link::Controller, public Component
+    class jLink  : public LinkView, public Component
     {
     public:
         

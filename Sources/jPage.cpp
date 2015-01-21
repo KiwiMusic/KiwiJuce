@@ -130,7 +130,7 @@ namespace Kiwi
 		}
 	}
 	
-	void jPage::addToSelectionBasedOnModifiers(Link::sController link, bool selOnly)
+	void jPage::addToSelectionBasedOnModifiers(sLinkView link, bool selOnly)
 	{
 		if(selOnly)
 		{
@@ -157,7 +157,7 @@ namespace Kiwi
 		return false;
 	}
 	
-	bool jPage::selectOnMouseDown(Link::sController link, bool selOnly)
+	bool jPage::selectOnMouseDown(sLinkView link, bool selOnly)
 	{
 		if(isSelected(link))
         {
@@ -177,7 +177,7 @@ namespace Kiwi
 	}
 	
 	
-	void jPage::selectOnMouseUp(Link::sController link, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod)
+	void jPage::selectOnMouseUp(sLinkView link, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod)
 	{
 		if(resultOfMouseDownSelectMethod && ! boxWasDragged)
         {
@@ -210,9 +210,9 @@ namespace Kiwi
 	
 	void jPage::bringsLinksToFront()
 	{
-		vector<Link::sController> links;
+		vector<sLinkView> links;
 		getLinks(links);
-		for(vector<Link::sController>::size_type i = 0; i < links.size(); i++)
+		for(vector<sLinkView>::size_type i = 0; i < links.size(); i++)
 		{
 			sjLink link = dynamic_pointer_cast<jLink>(links[i]);
 			if(link)
@@ -285,12 +285,12 @@ namespace Kiwi
 		}
     }
 	
-	Link::sController jPage::createLinkController(sLink link)
+	sLinkView jPage::createLinkController(sLink link)
 	{
-		return Link::Controller::create<jLink>(link);
+		return LinkView::create<jLink>(link);
 	}
 	
-	void jPage::linkControllerCreated(Link::sController linkctrl)
+	void jPage::linkControllerCreated(sLinkView linkctrl)
 	{
 		if(linkctrl)
 		{
@@ -304,7 +304,7 @@ namespace Kiwi
 	}
 	
 	
-	void jPage::linkControllerWillBeRemoved(Link::sController linkctrl)
+	void jPage::linkControllerWillBeRemoved(sLinkView linkctrl)
 	{
 		if(linkctrl)
 		{
@@ -394,9 +394,9 @@ namespace Kiwi
 			}
 		}
 		
-		vector<Link::sController> links;
+		vector<sLinkView> links;
 		getLinks(links);
-		for (vector<Link::sController>::size_type i = 0; i < links.size(); i++)
+		for (vector<sLinkView>::size_type i = 0; i < links.size(); i++)
 		{
 			if (sjLink jlink = static_pointer_cast<jLink>(links[i]))
 			{
@@ -525,7 +525,8 @@ namespace Kiwi
                     sLink link = knockGetLink();
                     if(link)
                     {
-                        Link::sController link_ctrl = link->getController();
+                        int zaza;
+                        sLinkView link_ctrl = nullptr;//link->getController();
                         if(link_ctrl)
                         {
                             m_link_downstatus = selectOnMouseDown(link_ctrl, !e.mods.isShiftDown());
