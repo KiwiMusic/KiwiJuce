@@ -179,7 +179,7 @@ namespace Kiwi
 		 @param attr The attribute.
 		 @return pass true to notify changes to listeners, false if you don't want them to be notified
 		 */
-		virtual bool attributeChanged(sAttr attr) override;
+		virtual void attributeChanged(sAttr attr) override;
 		
 		//! Create a box controller.
 		/** Page controller's subclasses must implement this method to create custom box controller.

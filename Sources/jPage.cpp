@@ -31,10 +31,10 @@ namespace Kiwi
         sDico dico = Dico::evaluateForBox(name);
         if(dico)
         {
-            sDico sub = dico->get(Page::Tag_boxes);
+            sDico sub = dico->get(Tag::List::boxes);
             if(sub)
             {
-                sub = sub->get(Page::Tag_box);
+                sub = sub->get(Tag::List::box);
                 if(sub)
                 {
                     sub->set(AttrBox::Tag_position, {pt.x, pt.y});
@@ -236,10 +236,9 @@ namespace Kiwi
 		}
 	}
 	
-	bool jPage::attributeChanged(sAttr attr)
+	void jPage::attributeChanged(sAttr attr)
 	{
 		redraw();
-		return true;
 	}
 	
 	Box::sController jPage::createBoxController(sBox box)
@@ -714,7 +713,7 @@ namespace Kiwi
                         out = magnetGetIndex();
                     }
                     
-                    sLink link = Link::create(getPage(), from, out, to, in);
+                    //sLink link = Link::create(getPage(), from, out, to, in);
                     int TODO_add_link_whith_dico;
                     //getPage()->createLink(link);
 				}
