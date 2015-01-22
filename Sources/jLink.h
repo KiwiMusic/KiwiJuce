@@ -142,7 +142,7 @@ namespace Kiwi
 			{
 				;
 			}
-			
+			/*
             sBox box = m_attached_box.lock();
 			if(box)
 			{
@@ -162,7 +162,7 @@ namespace Kiwi
 						m_path.lineTo(Gui::Point());
 					}
 				}
-			}
+			}*/
 		}
 		
 		/** Call this in your mouseDrag event, to update the link's position.

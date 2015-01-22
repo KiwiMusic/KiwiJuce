@@ -38,7 +38,7 @@ namespace Kiwi
     /**
      The jBox overrides the redraw and paint method and wraps the mouse and keyboard events.
      */
-    class jBox  : public Box::Controller, public Component
+    class jBox  : public BoxView, public Component
     {
 	private:
 		typedef shared_ptr<jBox>		sjBox;

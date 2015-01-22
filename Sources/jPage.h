@@ -86,11 +86,11 @@ namespace Kiwi
 			m_templinks.clear();
 		}
 		
-		void addToSelectionBasedOnModifiers(Box::sController box, bool selOnly);
+		void addToSelectionBasedOnModifiers(sBoxView box, bool selOnly);
 		void addToSelectionBasedOnModifiers(sLinkView link, bool selOnly);
-		bool selectOnMouseDown(Box::sController box, bool selOnly);
+		bool selectOnMouseDown(sBoxView box, bool selOnly);
 		bool selectOnMouseDown(sLinkView link, bool selOnly);
-		void selectOnMouseUp(Box::sController box, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
+		void selectOnMouseUp(sBoxView box, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
 		void selectOnMouseUp(sLinkView link, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
 		
 		//! Copy selected boxes to clipboard
@@ -179,26 +179,26 @@ namespace Kiwi
 		 @param attr The attribute.
 		 @return pass true to notify changes to listeners, false if you don't want them to be notified
 		 */
-		virtual void attributeChanged(sAttr attr) override;
+		void attributeChanged(sPage page, sAttr attr) override;
 		
 		//! Create a box controller.
 		/** Page controller's subclasses must implement this method to create custom box controller.
 		 @param box     The box.
 		 @return The newly created box controller.
 		 */
-		virtual Box::sController createBoxController(sBox box) override;
+		virtual sBoxView createBoxController(sBox box) override;
 		
 		//! Receive the notification that a box controller has been created.
 		/** The function is called by the page when a box controller has been created.
 		 @param boxctrl The box controller.
 		 */
-		virtual void boxControllerCreated(Box::sController boxctrl) override;
+		virtual void boxControllerCreated(sBoxView boxctrl) override;
         
 		//! Receive the notification that a box controller before a box has been removed.
 		/** The function is called by the page controller before a box has been removed.
 		 @param boxctrl The box controller.
 		 */
-        virtual void boxControllerWillBeRemoved(Box::sController boxctrl) override;
+        virtual void boxControllerWillBeRemoved(sBoxView boxctrl) override;
         
 		//! Create a link controller.
 		/** Page controller's subclasses must implement this method to create custom link controller.

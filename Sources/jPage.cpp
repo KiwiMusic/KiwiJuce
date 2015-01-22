@@ -114,7 +114,7 @@ namespace Kiwi
         }
     }
 	
-	void jPage::addToSelectionBasedOnModifiers(Box::sController box, bool selOnly)
+	void jPage::addToSelectionBasedOnModifiers(sBoxView box, bool selOnly)
 	{
 		if(selOnly)
 		{
@@ -146,7 +146,7 @@ namespace Kiwi
 		}
 	}
 	
-	bool jPage::selectOnMouseDown(Box::sController box, bool selOnly)
+	bool jPage::selectOnMouseDown(sBoxView box, bool selOnly)
 	{
 		if(isSelected(box))
         {
@@ -168,7 +168,7 @@ namespace Kiwi
 		return false;
 	}
 	
-	void jPage::selectOnMouseUp(Box::sController box, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod)
+	void jPage::selectOnMouseUp(sBoxView box, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod)
 	{
 		if(resultOfMouseDownSelectMethod && ! boxWasDragged)
         {
@@ -224,9 +224,9 @@ namespace Kiwi
 	
 	void jPage::bringsBoxesToFront()
 	{
-		vector<Box::sController> boxes;
+		vector<sBoxView> boxes;
 		getBoxes(boxes);
-		for (vector<Box::sController>::size_type i = 0; i < boxes.size(); i++)
+		for (vector<sBoxView>::size_type i = 0; i < boxes.size(); i++)
 		{
 			sjBox box = dynamic_pointer_cast<jBox>(boxes[i]);
 			if (box)
@@ -236,17 +236,17 @@ namespace Kiwi
 		}
 	}
 	
-	void jPage::attributeChanged(sAttr attr)
+	void jPage::attributeChanged(sPage, sAttr attr)
 	{
 		redraw();
 	}
 	
-	Box::sController jPage::createBoxController(sBox box)
+	sBoxView jPage::createBoxController(sBox box)
 	{
-		return Box::Controller::create<jBox>(box);
+		return BoxView::create<jBox>(box);
 	}
 	
-	void jPage::boxControllerCreated(Box::sController boxctrl)
+	void jPage::boxControllerCreated(sBoxView boxctrl)
     {
 		if(boxctrl)
 		{
@@ -273,7 +273,7 @@ namespace Kiwi
 		}
     }
 	
-    void jPage::boxControllerWillBeRemoved(Box::sController boxctrl)
+    void jPage::boxControllerWillBeRemoved(sBoxView boxctrl)
     {
 		if(boxctrl)
 		{
@@ -322,11 +322,14 @@ namespace Kiwi
             sBox box = knockGetBox();
             if(box)
             {
-                Box::sController box_ctrl = box->getController();
+                int zaza;
+                /*
+                sBoxView box_ctrl = box->getController();
                 if(box_ctrl)
                 {
                     return static_pointer_cast<jBox>(box_ctrl);
                 }
+                 */
             }
         }
 		
@@ -335,7 +338,7 @@ namespace Kiwi
 	
 	void jPage::selectionChanged()
 	{
-		vector<Box::sController> boxes, selboxes;
+		vector<sBoxView> boxes, selboxes;
 		getBoxes(boxes);
 		getSelection(selboxes);
 		
@@ -371,9 +374,9 @@ namespace Kiwi
 		const bool presentation = getPresentationStatus();
 		
 		ComponentAnimator& animator = Desktop::getInstance().getAnimator();
-		vector<Box::sController> boxes;
+		vector<sBoxView> boxes;
 		getBoxes(boxes);
-		for (vector<Box::sController>::size_type i = 0; i < boxes.size(); i++)
+		for (vector<sBoxView>::size_type i = 0; i < boxes.size(); i++)
 		{
 			if (sBox box = boxes[i]->getBox())
 			{
@@ -482,7 +485,8 @@ namespace Kiwi
                     {
                         if(e.mods.isAltDown())
                         {
-                            Box::sController box_ctrl = box->getController();
+                            int zaza;
+                            sBoxView box_ctrl = nullptr;//box->getController();
                             if(box_ctrl)
                             {
                                 m_copy_on_drag = true;
@@ -496,7 +500,9 @@ namespace Kiwi
                         }
                         else
                         {
-                            if(Box::sController boxctrl = box->getController())
+                            int zaza;
+                            /*
+                            sBoxView box_ctrl = nullptr;//box->getController();
                             {
                                 if(e.mods.isPopupMenu())
                                 {
@@ -512,7 +518,7 @@ namespace Kiwi
 									m_box_downstatus = selectOnMouseDown(boxctrl, !e.mods.isShiftDown());
 									Console::post("selectOnMouseDown");
 								}
-                            }
+                            }*/
                         }
                     }
                 }
@@ -720,8 +726,8 @@ namespace Kiwi
 			}
             else if(box)
             {
-                Box::sController box_ctrl = box->getController();
-                if(box_ctrl)
+                int zaza;
+                sBoxView box_ctrl = nullptr;//box->getController();
                 {
                     selectOnMouseUp(box_ctrl, !e.mods.isShiftDown(), m_box_dragstatus, m_box_downstatus);
                 }
@@ -1190,7 +1196,7 @@ namespace Kiwi
 			{
 				DBG("|- object inspector");
 				
-				vector<Box::sController> boxes;
+				vector<sBoxView> boxes;
 				getSelection(boxes);
 				if(boxes.size() == 1)
 				{
@@ -1254,14 +1260,14 @@ namespace Kiwi
 			}
 			case CommandIDs::addToPresentation:
 			{
-				vector<Box::sController> boxes;
+				vector<sBoxView> boxes;
 				getSelection(boxes);
 				setBoxesPresentationStatus(boxes, true);
 				break;
 			}
 			case CommandIDs::removeFromPresentation:
 			{
-				vector<Box::sController> boxes;
+				vector<sBoxView> boxes;
 				getSelection(boxes);
 				setBoxesPresentationStatus(boxes, false);
 				break;

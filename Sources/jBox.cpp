@@ -30,9 +30,9 @@ namespace Kiwi
 	//                                  JBOX CONTROLER                                  //
 	// ================================================================================ //
 	
-	jBox::jBox(sBox box) : Box::Controller(box)
+	jBox::jBox(sBox box) : BoxView(box)
     {
-		const Gui::Rectangle bounds = Box::Controller::getBounds(getPagePresentationStatus());
+		const Gui::Rectangle bounds = BoxView::getBounds(getPagePresentationStatus());
 		setBounds(bounds.x(), bounds.y(), bounds.width(), bounds.height());
         setInterceptsMouseClicks(false, false);
         setWantsKeyboardFocus(false);
@@ -93,13 +93,13 @@ namespace Kiwi
 	
     void jBox::positionChanged()
     {
-		const Gui::Point pt = Box::Controller::getPosition(getPagePresentationStatus());
+		const Gui::Point pt = BoxView::getPosition(getPagePresentationStatus());
         setTopLeftPosition(round(pt.x()), round(pt.y()));
     }
     
     void jBox::sizeChanged()
     {
-		const Gui::Point pt = Box::Controller::getSize(getPagePresentationStatus());
+		const Gui::Point pt = BoxView::getSize(getPagePresentationStatus());
         setSize(round(pt.x()), round(pt.y()));
     }
 	
@@ -133,11 +133,11 @@ namespace Kiwi
 			g.setOrigin(frameSize, frameSize);
 			g.reduceClipRegion(boxFrame);
 			JDoodle d(g, boxFrame);
-			Box::Controller::paintBox(getBox(), d);
+			BoxView::paintBox(getBox(), d);
 			g.endTransparencyLayer();
 
 			JDoodle d2(g, getLocalBounds());
-			Box::Controller::paintBoxFrame(getBox(), d2, isSelected(), getPageEditionStatus(), getPagePresentationStatus());
+			BoxView::paintBoxFrame(getBox(), d2, isSelected(), getPageEditionStatus(), getPagePresentationStatus());
         }
     }
 
