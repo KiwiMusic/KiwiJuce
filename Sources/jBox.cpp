@@ -30,7 +30,7 @@ namespace Kiwi
 	//                                  JBOX CONTROLER                                  //
 	// ================================================================================ //
 	
-	jBox::jBox(sBox box) : BoxView(box)
+	jBox::jBox(sBox box, sPageView pageview) : BoxView(box, pageview)
     {
 		const Gui::Rectangle bounds = BoxView::getBounds(getPagePresentationStatus());
 		setBounds(bounds.x(), bounds.y(), bounds.width(), bounds.height());
@@ -51,7 +51,7 @@ namespace Kiwi
 		{
 			const bool locked					= !getPageEditionStatus();
 			const bool pagePresentationStatus	= getPagePresentationStatus();
-			const bool boxPresentationStatus	= box->isInPresentation();
+			const bool boxPresentationStatus	= box->isIncludeInPresentation();
 			const bool invisible				= (locked && box->isHiddenOnLock()) || (pagePresentationStatus && !boxPresentationStatus);
 			const bool acceptClick				= !invisible && locked && !box->getIgnoreClick();
 			
@@ -130,16 +130,17 @@ namespace Kiwi
         if(isVisible())
         {
 			g.beginTransparencyLayer(1);
-			double frameSize = getFrameSize() * 0.5;
+            /*
+			//double frameSize = getFrameSize() * 0.5;
 			juce::Rectangle<int> boxFrame = getLocalBounds().reduced(frameSize).withPosition(0, 0);
 			g.setOrigin(frameSize, frameSize);
 			g.reduceClipRegion(boxFrame);
 			JDoodle d(g, boxFrame);
-			BoxView::paintBox(getBox(), d);
+			//BoxView::paintBox(getBox(), d);
 			g.endTransparencyLayer();
-
+             */
 			JDoodle d2(g, getLocalBounds());
-			BoxView::paintBoxFrame(getBox(), d2, isSelected(), getPageEditionStatus(), getPagePresentationStatus());
+			//BoxView::paintBoxFrame(getBox(), d2, isSelected(), getPageEditionStatus(), getPagePresentationStatus());
         }
     }
 

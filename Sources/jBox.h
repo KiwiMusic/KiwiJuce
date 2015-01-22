@@ -47,7 +47,7 @@ namespace Kiwi
         //! The constructor.
         /** You should never have to use this function.
          */
-        jBox(sBox box);
+        jBox(sBox box, sPageView pageview);
         
         //! Destructor.
         /** You should never have to use this function.
