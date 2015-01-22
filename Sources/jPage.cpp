@@ -495,7 +495,8 @@ namespace Kiwi
                         }
                         else if (e.mods.isCommandDown())
                         {
-                            box->receive(jEventMouse(Gui::Event::Mouse::Type::Down, e));
+                            int todo;//
+                            //box->receive(jEventMouse(Gui::Event::Mouse::Down, e));
                             m_box_received_downevent = true;
                         }
                         else
@@ -632,7 +633,8 @@ namespace Kiwi
 				{
 					if(m_box_received_downevent)
 					{
-						box->receive(jEventMouse(Gui::Event::Mouse::Type::Drag, e));
+                        int zaza;
+						//box->receive(jEventMouse(Gui::Event::Mouse::Type::Drag, e));
 					}
 				}
 				else if (m_last_border_downstatus != Knock::None)
@@ -687,7 +689,8 @@ namespace Kiwi
 				sBox box = knockGetBox();
 				if(box)
 				{
-					box->receive(jEventMouse(Gui::Event::Mouse::Type::Up, e));
+                    int zaza;
+					//box->receive(jEventMouse(Gui::Event::Mouse::Type::Up, e));
 					return;
 				}
 			}

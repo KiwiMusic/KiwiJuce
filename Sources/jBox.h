@@ -41,10 +41,6 @@ namespace Kiwi
     class jBox  : public BoxView, public Component
     {
 	private:
-		typedef shared_ptr<jBox>		sjBox;
-		typedef shared_ptr<const jBox> 	scjBox;
-		typedef weak_ptr<jBox>			wjBox;
-		
 		void checkVisibilityAndInteractionMode();
     public:
         

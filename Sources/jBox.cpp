@@ -46,7 +46,8 @@ namespace Kiwi
 	
 	void jBox::checkVisibilityAndInteractionMode()
 	{
-		if (sBox box = getBox())
+        sBox box = getBox();
+		if(box)
 		{
 			const bool locked					= !getPageEditionStatus();
 			const bool pagePresentationStatus	= getPagePresentationStatus();
@@ -69,7 +70,8 @@ namespace Kiwi
 			
 			setInterceptsMouseClicks(acceptClick, acceptClick);
 			
-			if(isKeyboardListener())
+            Gui::sKeyboarder keyboarder = dynamic_pointer_cast<Gui::Keyboarder>(box);
+			if(keyboarder)
 			{
 				setWantsKeyboardFocus(acceptClick);
 				setMouseClickGrabsKeyboardFocus(acceptClick);
@@ -143,65 +145,92 @@ namespace Kiwi
 
     void jBox::mouseDown(const MouseEvent& e)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(Gui::Event::Mouse::Type::Down, e));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+            box->receive(jEventMouse(Gui::Event::Mouse::Type::Down, e));
+        }
     }
     
     void jBox::mouseDrag(const MouseEvent& e)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(Gui::Event::Mouse::Type::Drag, e));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+            box->receive(jEventMouse(Gui::Event::Mouse::Type::Drag, e));
+        }
     }
     
     void jBox::mouseUp(const MouseEvent& e)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(Gui::Event::Mouse::Type::Up, e));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+            box->receive(jEventMouse(Gui::Event::Mouse::Type::Up, e));
+        }
     }
     
     void jBox::mouseMove(const MouseEvent& e)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(Gui::Event::Mouse::Type::Move, e));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+			box->receive(jEventMouse(Gui::Event::Mouse::Type::Move, e));
+        }
     }
     
     void jBox::mouseEnter(const MouseEvent& e)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(Gui::Event::Mouse::Type::Enter, e));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+            box->receive(jEventMouse(Gui::Event::Mouse::Type::Enter, e));
+        }
     }
     
     void jBox::mouseExit(const MouseEvent& e)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(Gui::Event::Mouse::Type::Leave, e));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+            box->receive(jEventMouse(Gui::Event::Mouse::Type::Leave, e));
+        }
     }
     
     void jBox::mouseDoubleClick(const MouseEvent& e)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(Gui::Event::Mouse::Type::DoubleClick, e));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+            box->receive(jEventMouse(Gui::Event::Mouse::Type::Move, e));
+        }
     }
     
     void jBox::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel)
     {
-		if(isMouseListener())
-			getBox()->receive(jEventMouse(event, wheel));
+        Gui::sMouser box = dynamic_pointer_cast<Gui::Mouser>(getBox());
+        if(box)
+        {
+            box->receive(jEventMouse(event, wheel));
+        }
     }
     
     void jBox::focusGained(FocusChangeType cause)
     {
-        getBox()->receive(Gui::Event::Focus::In);
+        Gui::sKeyboarder box = dynamic_pointer_cast<Gui::Keyboarder>(getBox());
+        box->receive(Gui::Event::In);
     }
     
     void jBox::focusLost(FocusChangeType cause)
     {
-        getBox()->receive(Gui::Event::Focus::Out);
+        Gui::sKeyboarder box = dynamic_pointer_cast<Gui::Keyboarder>(getBox());
+        box->receive(Gui::Event::Out);
     }
     
     bool jBox::keyPressed(const KeyPress& key)
     {
-        return getBox()->receive(jEventKeyboard(key));
+        Gui::sKeyboarder box = dynamic_pointer_cast<Gui::Keyboarder>(getBox());
+        return box->receive(jEventKeyboard(key));
     }
 }
 
