@@ -24,7 +24,6 @@
 #ifndef __DEF_KIWI_JBOX_CONTROLLER__
 #define __DEF_KIWI_JBOX_CONTROLLER__
 
-#include "Wrapper.h"
 #include "jDoodle.h"
 #include "jEvent.h"
 

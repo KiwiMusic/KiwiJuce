@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_JPAGECONTROLLER__
 #define __DEF_KIWI_JPAGECONTROLLER__
 
-#include "jPageUtils.h"
+#include "jLink.h"
 
 namespace Kiwi
 {
@@ -39,11 +39,17 @@ namespace Kiwi
 	class jPage : public PageView, public Component, public ApplicationCommandTarget, public juce::TextEditor::Listener
 	{
     private:
-        sjLasso                         	m_lasso;
-        sjIoletHighlighter              	m_io_highlighter;
+        class jLasso;
+        class jIolighter;
+        
         wjBox								m_box_edited;
 		ScopedPointer<juce::TextEditor>		m_editor;
         vector<sTempLink>					m_templinks;
+        
+        Knock                               m_knock;
+        Magnet                              m_magnet;
+        ScopedPointer<jIolighter>           m_iolighter;
+        ScopedPointer<jLasso>               m_lasso;
         
         juce::Point<int>	m_last_drag;
 		bool				m_copy_on_drag;
@@ -243,6 +249,73 @@ namespace Kiwi
 	typedef shared_ptr<jPage>		sjPage;
 	typedef shared_ptr<jPage>		scjPage;
 	typedef weak_ptr<jPage>		wjPage;
+    
+    class jPage::jLasso : public PageView::Lasso, public Component
+    {
+    public:
+        jLasso()
+        {
+            setInterceptsMouseClicks(false, false);
+            setWantsKeyboardFocus(false);
+            setVisible(false);
+        }
+        
+        ~jLasso()
+        {
+            ;
+        }
+        
+        void paint(Graphics& g) override
+        {
+            g.setColour(juce::Colour::fromFloatRGBA(0.96, 0.96, 0.96, 0.5));
+            g.fillAll();
+            g.setColour(juce::Colour::fromFloatRGBA(0.96, 0.96, 0.96, 1.));
+            g.drawRect(0., 0., getWidth(), getHeight(), 1.);
+        }
+    };
+
+    class jPage::jIolighter : public Component
+    {
+    private:
+        juce::Colour    m_colour;
+    public:
+        //! Contructor.
+        /** You should never have to use this method.
+         */
+        jIolighter();
+        
+        //! Destrcutor.
+        /** You should never have to use this method.
+         */
+        ~jIolighter();
+        
+        //! The juce paint method.
+        /** The function paints in a graphics.
+         */
+        void paint(Graphics& g) override;
+        
+        //! The juce hit test method.
+        /** The function test if the component has been hitted.
+         */
+        bool hitTest(int x, int y) override
+        {
+            return false;
+        }
+        
+        //! Defines an inlet to be highlighted.
+        /** The function defines an inlet to be highlighted.
+         @param box The box that owns the inlet.
+         @param index The index of the inlet.
+         */
+        void setInlet(sBoxView box, ulong index);
+        
+        //! Defines an outlet to be highlighted.
+        /** The function defines an outlet to be highlighted.
+         @param box The box that owns the outlet.
+         @param index The index of the outlet.
+         */
+        void setOutlet(sBoxView box, ulong index);
+    };
 }
 
 

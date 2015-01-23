@@ -38,7 +38,7 @@ namespace Kiwi
     
     void JDoodle::setColor(Gui::Color const& color)
     {
-        g.setColour(Colour::fromFloatRGBA(color.red(), color.green(), color.blue(), color.alpha()));
+        g.setColour(toJuce(color));
     }
     
     void JDoodle::setFont(Gui::Font const& font)

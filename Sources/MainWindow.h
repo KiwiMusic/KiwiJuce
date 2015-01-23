@@ -24,7 +24,6 @@
 #ifndef __DEF_KIWI_MAIN_WINDOW__
 #define __DEF_KIWI_MAIN_WINDOW__
 
-#include "Wrapper.h"
 #include "jPage.h"
 
 namespace Kiwi

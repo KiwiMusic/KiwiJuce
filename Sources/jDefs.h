@@ -26,11 +26,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Kiwi.h"
 
-#define KiwiToJuceColour(KiwiColor) Colour::fromFloatRGBA(KiwiColor.red(), KiwiColor.green(), KiwiColor.blue(), KiwiColor.alpha())
-
-#define KiwiToJucePoint(KiwiPoint) juce::Point<int>(KiwiPoint.x(), KiwiPoint.y())
-#define JuceToKiwiPoint(JucePoint) Gui::Point(JucePoint.x, JucePoint.y)
-
 enum CommandIDs
 {
     newPage						= 0x200010,		/**< Create a new blank page window. */

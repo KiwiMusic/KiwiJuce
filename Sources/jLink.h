@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_JLINK_CONTROLLER__
 #define __DEF_KIWI_JLINK_CONTROLLER__
 
-#include "Wrapper.h"
+#include "jBox.h"
 
 namespace Kiwi
 {
@@ -83,9 +83,9 @@ namespace Kiwi
 	class TempLink : public Component
 	{
 	private:
-		const wBox	m_attached_box;
-		const bool	m_attached_to_outlet;
-		const long	m_io_index;
+		const wBoxView m_attached_box;
+		const bool      m_attached_to_outlet;
+		const long      m_io_index;
 		
 		// gui
 		Gui::Path		m_path;
@@ -93,7 +93,7 @@ namespace Kiwi
 		Gui::Point		m_dragpos;
 		
 	public:
-		TempLink(sBox attachedBox, long index, bool fromOutlet) :
+		TempLink(wBoxView attachedBox, long index, bool fromOutlet) :
 		m_attached_box(attachedBox),
 		m_attached_to_outlet(fromOutlet),
 		m_io_index(index)
@@ -123,7 +123,7 @@ namespace Kiwi
 			return m_io_index;
 		}
 		
-		inline sBox getAttachedBox() const noexcept
+		inline wBoxView getAttachedBox() const noexcept
 		{
 			return m_attached_box.lock();
 		}

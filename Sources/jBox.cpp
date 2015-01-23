@@ -32,7 +32,7 @@ namespace Kiwi
 	
 	jBox::jBox(sBox box, sPageView pageview) : BoxView(box, pageview)
     {
-		const Gui::Rectangle bounds = BoxView::getBounds(getPagePresentationStatus());
+		const Gui::Rectangle bounds = BoxView::getBounds();
 		setBounds(bounds.x(), bounds.y(), bounds.width(), bounds.height());
         setInterceptsMouseClicks(false, false);
         setWantsKeyboardFocus(false);
@@ -49,17 +49,11 @@ namespace Kiwi
         sBox box = getBox();
 		if(box)
 		{
-			const bool locked					= !getPageEditionStatus();
-			const bool pagePresentationStatus	= getPagePresentationStatus();
-			const bool boxPresentationStatus	= box->isIncludeInPresentation();
-			const bool invisible				= (locked && box->isHiddenOnLock()) || (pagePresentationStatus && !boxPresentationStatus);
-			const bool acceptClick				= !invisible && locked && !box->getIgnoreClick();
-			
-			if(isVisible() && invisible)
+            if(Component::isVisible() && !BoxView::isVisible())
 			{
 				setVisible(false);
 			}
-			else if(!isVisible() && !invisible)
+			else if(!Component::isVisible() && !!BoxView::isVisible())
 			{
 				setVisible(true);
 			}
@@ -68,6 +62,7 @@ namespace Kiwi
 				redraw();
 			}
 			
+            const bool acceptClick = BoxView::isVisible() && !getPageEditionStatus() && !box->getIgnoreClick();
 			setInterceptsMouseClicks(acceptClick, acceptClick);
 			
             Gui::sKeyboarder keyboarder = dynamic_pointer_cast<Gui::Keyboarder>(box);
@@ -95,13 +90,13 @@ namespace Kiwi
 	
     void jBox::positionChanged()
     {
-		const Gui::Point pt = BoxView::getPosition(getPagePresentationStatus());
+		const Gui::Point pt = BoxView::getPosition();
         setTopLeftPosition(round(pt.x()), round(pt.y()));
     }
     
     void jBox::sizeChanged()
     {
-		const Gui::Point pt = BoxView::getSize(getPagePresentationStatus());
+		const Gui::Point pt = BoxView::getSize();
         setSize(round(pt.x()), round(pt.y()));
     }
 	
@@ -127,7 +122,7 @@ namespace Kiwi
 	
     void jBox::paint(Graphics& g)
     {
-        if(isVisible())
+        if(Component::isVisible())
         {
 			g.beginTransparencyLayer(1);
             /*

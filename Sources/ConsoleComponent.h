@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_CONSOLE_WINDOW__
 #define __DEF_KIWI_CONSOLE_WINDOW__
 
-#include "Wrapper.h"
+#include "jDefs.h"
 
 namespace Kiwi
 {

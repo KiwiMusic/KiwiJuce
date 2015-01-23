@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_JEVENT__
 #define __DEF_KIWI_JEVENT__
 
-#include "Wrapper.h"
+#include "jDefs.h"
 
 namespace Kiwi
 {

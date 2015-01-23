@@ -42,7 +42,7 @@ namespace Kiwi
         shared_ptr<jInstance> that = make_shared<jInstance>();
         if(that)
         {
-            that->m_instance->bind(that);
+            that->m_instance->addListener(that);
         }
         return that;
     }
@@ -183,24 +183,13 @@ namespace Kiwi
 			DBG("filename : " + filename);
 			DBG("directory : " + directory);
 			
-			if (extension == ".kiwipage" && !filename.empty() && !directory.empty())
+			if(extension == ".kiwipage" && !filename.empty() && !directory.empty())
 			{
 				sDico dico = Dico::create();
                 if(dico)
                 {
                     dico->read(filename + extension, directory);
                     sPage page = m_instance->createPage(dico);
-                    if(page)
-                    {
-                        int zaza;
-                        sPageView ctrl = nullptr;//dynamic_pointer_cast<PageView>(page->getController());
-                        if(ctrl)
-                        {
-                            ctrl->setLockStatus(true);
-                            DBG("page loaded");
-                            return true;
-                        }
-                    }
                 }
 			}
 			else

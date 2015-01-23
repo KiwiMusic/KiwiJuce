@@ -24,10 +24,40 @@
 #ifndef __DEF_KIWI_JDOODLE__
 #define __DEF_KIWI_JDOODLE__
 
-#include "Wrapper.h"
+#include "jDefs.h"
 
 namespace Kiwi
 {
+    template<typename type> static inline juce::Point<type> toJuce(Gui::Point const& pt)
+    {
+        return juce::Point<type>((type)pt.x(), (type)pt.y());
+    }
+    
+    template<typename type> static inline Gui::Point toKiwi(juce::Point<type> const& rect)
+    {
+        return Gui::Point(rect.getX(), rect.getY());
+    }
+    
+    template<typename type> static inline juce::Rectangle<type> toJuce(Gui::Rectangle const& rect)
+    {
+        return juce::Rectangle<type>((type)rect.x(), (type)rect.y(), (type)rect.width(), (type)rect.height());
+    }
+    
+    template<typename type> static inline Gui::Rectangle toKiwi(juce::Rectangle<type> const& rect)
+    {
+        return Gui::Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+    }
+    
+    static inline juce::Colour toJuce(Gui::Color const& color)
+    {
+        return Colour::fromFloatRGBA(color.red(), color.green(), color.blue(), color.alpha());
+    }
+    
+    static inline Gui::Color toKiwi(juce::Colour const& color)
+    {
+        return Gui::Color(color.getFloatRed(), color.getFloatGreen(), color.getFloatBlue(), color.getFloatAlpha());
+    }
+    
     class JDoodle : public Kiwi::Gui::Doodle
     {
     private:

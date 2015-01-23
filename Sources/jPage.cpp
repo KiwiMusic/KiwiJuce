@@ -55,22 +55,22 @@ namespace Kiwi
         
         Application::bindToCommandManager(this);
         Application::bindToKeyMapping(this);
-		
-		m_io_highlighter = IoletHighlighter::create<jIoletHighlighter>();
-        m_lasso          = Lasso::create<jLasso>(getPage());
+    
 		m_editor         = new juce::TextEditor();
         m_editor->addListener(this);
-        
         addChildComponent(m_editor);
-		addChildComponent(m_io_highlighter.get());
-        addChildComponent(m_lasso.get());
+        m_iolighter      = new jIolighter();
+		addChildComponent(m_iolighter);
+        m_lasso          = new jLasso();
+        addChildComponent(m_lasso);
     }
     
     jPage::~jPage()
     {
         removeChildComponent(m_editor);
-        removeChildComponent(m_lasso.get());
-        removeChildComponent(m_io_highlighter.get());
+        removeChildComponent(m_iolighter);
+        removeChildComponent(m_lasso);
+        
         
         m_editor->removeListener(this);
 		m_editor = nullptr;
@@ -316,22 +316,24 @@ namespace Kiwi
 	
     sjBox jPage::getjBox(int x, int y) noexcept
     {
+        int zaza;
+        /*
         knockBoxes(Gui::Point(x, y), getPresentationStatus());
-        if(knockHasHitBox())
+        if(m_knock.hasHitBox())
         {
-            sBox box = knockGetBox();
+            sBox box = m_knock.getBox();
             if(box)
             {
-                int zaza;
-                /*
+                
+                
                 sBoxView box_ctrl = box->getController();
                 if(box_ctrl)
                 {
                     return static_pointer_cast<jBox>(box_ctrl);
                 }
-                 */
+                
             }
-        }
+        }*/
 		
         return nullptr;
     }
@@ -381,9 +383,8 @@ namespace Kiwi
             sjBox jbox = static_pointer_cast<jBox>(boxes[i]);
 			if(jbox)
 			{
-                const bool usePresentationBounds = presentation && jbox->isIncludeInPresentation();
                 const bool visible = !presentation || (presentation && jbox->isIncludeInPresentation());
-                const Gui::Rectangle boxBounds = jbox->getDisplayBounds(usePresentationBounds);
+                const Gui::Rectangle boxBounds = jbox->getDisplayBounds();
                 const juce::Rectangle<int> finalBounds = juce::Rectangle<int>(boxBounds.x(),
                                                                               boxBounds.y(),
                                                                               boxBounds.width(),
@@ -412,7 +413,7 @@ namespace Kiwi
     void jPage::paint(Graphics& g)
     {
 		const bool locked = getEditionStatus();
-		const juce::Colour bgcolor = KiwiToJuceColour((locked ? getPage()->getLockedBgColor() : getPage()->getEditingBgColor()));
+		const juce::Colour bgcolor = toJuce((locked ? getPage()->getLockedBgColor() : getPage()->getEditingBgColor()));
 		const int grid_size = getPage()->getGridSize();
         const juce::Rectangle<int> bounds(g.getClipBounds());
 		
@@ -444,52 +445,48 @@ namespace Kiwi
 
 		if(!getEditionStatus())
 		{
-            knockAll(Gui::Point(e.x, e.y), getPresentationStatus());
-			if(knockHasHitBox())
+            m_knock = knockAll(Gui::Point(e.x, e.y));
+			if(m_knock.hasHitBox())
 			{
-                if(sBox box = knockGetBox())
+                sBoxView box = m_knock.getBox();
+                if(box)
                 {
-					if(knockGetPart() == Knock::Border)
+					if(m_knock.getPart() == Knock::Border)
 					{
-						m_last_border_downstatus = knockGetBorder();
+						m_last_border_downstatus = m_knock.getBorder();
 					}
-                    else if(knockGetPart() == Knock::Inlet)
+                    else if(m_knock.getPart() == Knock::Inlet)
                     {
                         int zaza;
                         m_templinks.clear();
-                        sTempLink link = make_shared<TempLink>(box, knockGetIndex(), false);
+                        sTempLink link = make_shared<TempLink>(box, m_knock.getIndex(), false);
                         m_templinks.push_back(link);
                         addAndMakeVisible(link.get());
                         link->beginLink(e);
-                        m_io_highlighter->toFront(false);
+                        m_iolighter->toFront(false);
                         
                         unselectAll();
                         Console::post("- templink from inlet created");
                     }
-                    else if(knockGetPart() == Knock::Outlet)
+                    else if(m_knock.getPart() == Knock::Outlet)
                     {
                         int zaza;
                         m_templinks.clear();
-                        sTempLink link = make_shared<TempLink>(box, knockGetIndex(), true);
+                        sTempLink link = make_shared<TempLink>(box, m_knock.getIndex(), true);
                         m_templinks.push_back(link);
                         addAndMakeVisible(link.get());
                         link->beginLink(e);
-                        m_io_highlighter->toFront(false);
+                        m_iolighter->toFront(false);
                         
                         unselectAll();
                         Console::post("- templink from outlet created");
                     }
-                    else if(knockGetPart() == Knock::Inside)
+                    else if(m_knock.getPart() == Knock::Inside)
                     {
                         if(e.mods.isAltDown())
                         {
-                            int zaza;
-                            sBoxView box_ctrl = nullptr;//box->getController();
-                            if(box_ctrl)
-                            {
-                                m_copy_on_drag = true;
-                                m_box_downstatus = selectOnMouseDown(box_ctrl, true);
-                            }
+                            m_copy_on_drag = true;
+                            m_box_downstatus = selectOnMouseDown(box, true);
                         }
                         else if (e.mods.isCommandDown())
                         {
@@ -522,25 +519,20 @@ namespace Kiwi
                     }
                 }
 			}
-			else if(knockHasHitLink())
+			else if(m_knock.hasHitLink())
 			{
-				if(knockGetPart() == Knock::Inside)
+				if(m_knock.getPart() == Knock::Inside)
 				{
-                    sLink link = knockGetLink();
+                    sLinkView link = m_knock.getLink();
                     if(link)
                     {
-                        int zaza;
-                        sLinkView link_ctrl = nullptr;//link->getController();
-                        if(link_ctrl)
-                        {
-                            m_link_downstatus = selectOnMouseDown(link_ctrl, !e.mods.isShiftDown());
-                        }
+                        m_link_downstatus = selectOnMouseDown(link, !e.mods.isShiftDown());
                     }
                 }
 			}
-			else if(knockHasHitPage())
+			else if(m_knock.hasHitPage())
 			{
-				m_lasso->begin(Gui::Point(e.x, e.y), e.mods.isShiftDown());
+				lassoBegin(m_lasso, Gui::Point(e.x, e.y), e.mods.isShiftDown());
 			}
 		}
 
@@ -554,40 +546,41 @@ namespace Kiwi
 		
 		if(!getEditionStatus())
 		{
-			if(m_lasso->isPerforming())
+			if(m_lasso->dragging)
 			{
 				m_lasso->setVisible(true);
                 m_lasso->toFront(false);
-                m_lasso->perform(Gui::Point(e.x, e.y), true, e.mods.isAltDown(), e.mods.isShiftDown(), getPresentationStatus());
+                lassoPerform(m_lasso, Gui::Point(e.x, e.y), true, e.mods.isAltDown(), e.mods.isShiftDown());
+                m_lasso->setBounds(toJuce<int>(m_lasso->Lasso::bounds));
 			}
 			else if(hasTempLinks())
 			{
-                knockAll(Gui::Point(e.x, e.y), getPresentationStatus());
-				if(knockHasHitBox() && m_io_highlighter)
+                m_knock = knockAll(Gui::Point(e.x, e.y));
+				if(m_knock.hasHitBox() && m_iolighter)
 				{
-					if(knockGetPart() == Knock::Inlet)
+					if(m_knock.getPart() == Knock::Inlet)
                     {
-                        if(m_io_highlighter)
+                        if(m_iolighter)
                         {
-                            sBox box  = knockGetBox();
+                            sBoxView box  = m_knock.getBox();
                             if(box)
                             {
-                                m_io_highlighter->highlightInlet(box, knockGetIndex());
-                                m_io_highlighter->setVisible(true);
-                                m_io_highlighter->toFront(false);
+                                m_iolighter->setInlet(box, m_knock.getIndex());
+                                m_iolighter->setVisible(true);
+                                m_iolighter->toFront(false);
                             }
                         }
                     }
-					else if(knockGetPart() == Knock::Outlet)
+					else if(m_knock.getPart() == Knock::Outlet)
                     {
-                        if(m_io_highlighter)
+                        if(m_iolighter)
                         {
-                            sBox box  = knockGetBox();
+                            sBoxView box  = m_knock.getBox();
                             if(box)
                             {
-                                m_io_highlighter->highlightOutlet(box, knockGetIndex());
-                                m_io_highlighter->setVisible(true);
-                                m_io_highlighter->toFront(false);
+                                m_iolighter->setOutlet(box, m_knock.getIndex());
+                                m_iolighter->setVisible(true);
+                                m_iolighter->toFront(false);
                             }
                         }
                     }
@@ -597,24 +590,27 @@ namespace Kiwi
 				if(link)
 				{
 					link->dragLink(e);
-					if(magnetFindIolet(link->getEndCoord(), link->getAttachedBox(), link->isAttachedToOutlet(), 50.))
+                    if(link->isAttachedToOutlet())
                     {
-                        if(link->isAttachedToOutlet())
-                        {
-                            m_io_highlighter->highlightInlet(magnetGetBox(), magnetGetIndex());
-                        }
-                        else
-                        {
-                            m_io_highlighter->highlightOutlet(magnetGetBox(), magnetGetIndex());
-                        }
-                        m_io_highlighter->setVisible(true);
-                        m_io_highlighter->toFront(false);
+                        int todo;
+                        //m_magnet = magnetFindInlet(link->getAttachedBox(), link->getEndCoord());
+                        m_iolighter->setInlet(m_magnet.getBox(), m_magnet.getIndex());
+                        m_iolighter->setVisible(true);
+                        m_iolighter->toFront(false);
                     }
-                    else if(m_io_highlighter->isVisible())
+                    else
                     {
-                        m_io_highlighter->setVisible(false);
+                        int todo;
+                        //m_magnet = magnetFindOutlet(link->getAttachedBox(), link->getEndCoord());
+                        m_iolighter->setOutlet(m_magnet.getBox(), m_magnet.getIndex());
+                        m_iolighter->setVisible(true);
+                        m_iolighter->toFront(false);
                     }
 				}
+                else if(m_iolighter->isVisible())
+                {
+                    m_iolighter->setVisible(false);
+                }
 			}
 			else if (m_copy_on_drag && e.mods.isAltDown())
 			{
@@ -625,9 +621,10 @@ namespace Kiwi
 				unselectAllLinks();
 				m_copy_on_drag = false;
 			}
-			else if(sBox box = knockGetBox())
+			else if(m_knock.hasHitBox())
 			{
-				if(m_box_received_downevent && knockGetPart() == Knock::Inside)
+                sBoxView box = m_knock.getBox();
+				if(m_box_received_downevent && m_knock.getPart() == Knock::Inside)
 				{
 					if(m_box_received_downevent)
 					{
@@ -665,7 +662,7 @@ namespace Kiwi
 						startMoveOrResizeBoxes();
 					}
 					const juce::Point<int> pos = e.getPosition();
-					Gui::Point delta = JuceToKiwiPoint(pos) - JuceToKiwiPoint(m_last_drag);
+					Gui::Point delta = toKiwi(pos) - toKiwi(m_last_drag);
 					moveSelectedBoxes(delta);
 					m_last_drag = pos;
 				}
@@ -682,34 +679,34 @@ namespace Kiwi
 		
 		if(!getEditionStatus())
 		{
-			if(knockHasHitBox() && knockGetPart() == Knock::Inside && e.mods.isCommandDown())
+			if(m_knock.hasHitBox() && m_knock.getPart() == Knock::Inside && e.mods.isCommandDown())
 			{
-				sBox box = knockGetBox();
+				sBoxView box = m_knock.getBox();
 				if(box)
 				{
-                    int zaza;
-					//box->receive(jEventMouse(Gui::Event::Mouse::Type::Up, e));
+                    sjBox jbox = dynamic_pointer_cast<jBox>(box);
+                    jbox->mouseUp(e);
 					return;
 				}
 			}
 
-            knockAll(Gui::Point(e.x, e.y), getPresentationStatus());
-            sBox       magnet_box = magnetGetBox();
-            sTempLink templink          = getTempLink();
             int zaza;
-            sBox box = knockGetBox();
+            m_knock = knockAll(Gui::Point(e.x, e.y));
+            sBoxView box = m_knock.getBox();
+            sBoxView magnet_box = m_magnet.getBox();
+            sTempLink templink  = getTempLink();
 			if(magnet_box && templink)
 			{
 				if(templink)
 				{
-                    sBox from, to;
+                    wBoxView from, to;
                     long in, out;
                     
                     if(templink->isAttachedToOutlet())
                     {
                         from = templink->getAttachedBox();
                         to = magnet_box;
-                        in = magnetGetIndex();
+                        in = m_magnet.getIndex();
                         out = templink->getAttachedIOIndex();
                     }
                     else
@@ -717,7 +714,7 @@ namespace Kiwi
                         from= magnet_box;
                         to  = templink->getAttachedBox();
                         in  = templink->getAttachedIOIndex();
-                        out = magnetGetIndex();
+                        out = m_magnet.getIndex();
                     }
                     
                     //sLink link = Link::create(getPage(), from, out, to, in);
@@ -727,11 +724,7 @@ namespace Kiwi
 			}
             else if(box)
             {
-                int zaza;
-                sBoxView box_ctrl = nullptr;//box->getController();
-                {
-                    selectOnMouseUp(box_ctrl, !e.mods.isShiftDown(), m_box_dragstatus, m_box_downstatus);
-                }
+                selectOnMouseUp(box, !e.mods.isShiftDown(), m_box_dragstatus, m_box_downstatus);
             }
 			else if(e.mods.isCommandDown())
 			{
@@ -748,15 +741,15 @@ namespace Kiwi
 				}
 			}
 			
-			if(m_lasso)
+			if(m_lasso->isVisible())
 			{
-				m_lasso->end();
+                lassoEnd(m_lasso);
                 m_lasso->setVisible(false);
 			}
 			
-			if(m_io_highlighter && m_io_highlighter->isVisible())
+			if(m_iolighter && m_iolighter->isVisible())
 			{
-				m_io_highlighter->setVisible(false);
+				m_iolighter->setVisible(false);
 			}
 		}
 		else if(e.mods.isCommandDown())
@@ -771,13 +764,13 @@ namespace Kiwi
     {
 		MouseCursor::StandardCursorType mc = MouseCursor::NormalCursor;
         
-        knockAll(Gui::Point(e.x, e.y), getPresentationStatus());
+        m_knock = knockAll(Gui::Point(e.x, e.y));
 		
-		if(knockHasHitBox())
+		if(m_knock.hasHitBox())
 		{
-			if(knockGetPart() == Knock::Border)
+			if(m_knock.getPart() == Knock::Border)
 			{
-				switch (knockGetBorder())
+				switch (m_knock.getBorder())
 				{
 					case (Knock::Left | Knock::Top):		mc = MouseCursor::TopLeftCornerResizeCursor; break;
 					case (Knock::Top) :						mc = MouseCursor::TopEdgeResizeCursor; break;
@@ -790,40 +783,40 @@ namespace Kiwi
 					default: break;
 				}
 			}
-			else if(knockGetPart() == Knock::Inlet)
+			else if(m_knock.getPart() == Knock::Inlet)
 			{
-				if(m_io_highlighter)
+				if(m_iolighter)
 				{
-                    sBox box  = knockGetBox();
+                    sBoxView box  = m_knock.getBox();
                     if(box)
                     {
-                        m_io_highlighter->highlightInlet(box, knockGetIndex());
-                        m_io_highlighter->setVisible(true);
-                        m_io_highlighter->toFront(false);
+                        m_iolighter->setInlet(box, m_knock.getIndex());
+                        m_iolighter->setVisible(true);
+                        m_iolighter->toFront(false);
                     }
 				}
 			}
-			else if(knockGetPart() == Knock::Outlet)
+			else if(m_knock.getPart() == Knock::Outlet)
 			{
-				if(m_io_highlighter)
+				if(m_iolighter)
 				{
-                    sBox box  = knockGetBox();
+                    sBoxView box  = m_knock.getBox();
                     if(box)
                     {
-                        m_io_highlighter->highlightOutlet(box, knockGetIndex());
-                        m_io_highlighter->setVisible(true);
-                        m_io_highlighter->toFront(false);
+                        m_iolighter->setOutlet(box, m_knock.getIndex());
+                        m_iolighter->setVisible(true);
+                        m_iolighter->toFront(false);
                     }
 				}
 			}
-			else if(m_io_highlighter->isVisible())
+			else if(m_iolighter->isVisible())
 			{
-				m_io_highlighter->setVisible(false);
+				m_iolighter->setVisible(false);
 			}
 		}
-		else if(m_io_highlighter && m_io_highlighter->isVisible())
+		else if(m_iolighter && m_iolighter->isVisible())
 		{
-			m_io_highlighter->setVisible(false);
+			m_iolighter->setVisible(false);
 		}
 		
 		setMouseCursor(mc);
@@ -1348,6 +1341,65 @@ namespace Kiwi
         }
         
         return true;
+    }
+    
+    // ================================================================================ //
+    //                                 JIO HIGHLIGHTER									//
+    // ================================================================================ //
+    
+    jPage::jIolighter::jIolighter()
+    {
+        setInterceptsMouseClicks(false, false);
+        setWantsKeyboardFocus(false);
+    }
+    
+    jPage::jIolighter::~jIolighter()
+    {
+        ;
+    }
+    
+    void jPage::jIolighter::paint(Graphics& g)
+    {
+        const juce::Rectangle<float> size(4.5, 4.5, getWidth() - 9., getHeight() - 9.);
+        g.setColour(m_colour.brighter(0.3));
+        g.fillEllipse(size);
+        g.setColour(m_colour);
+        g.fillEllipse(size);
+    }
+    
+    void jPage::jIolighter::setInlet(sBoxView box, ulong index)
+    {
+        if(box)
+        {
+            Box::sInlet inlet = box->getBox()->getInlet(index);
+            if(inlet)
+            {
+                if(inlet->getPolarity() == Box::Io::Cold)
+                {
+                    m_colour = juce::Colour::fromFloatRGBA(0.28, 0.28, 0.88, 1);
+                }
+                else
+                {
+                    m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
+                }
+                const Gui::Point pos = box->getInletPosition(index);
+                setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
+            }
+        }
+    }
+    
+    void jPage::jIolighter::setOutlet(sBoxView box, ulong index)
+    {
+        if(box)
+        {
+            Box::sOutlet outlet = box->getBox()->getOutlet(index);
+            if(outlet)
+            {
+                m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
+                const Gui::Point pos = box->getOutletPosition(index);
+                setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
+            }
+        }
     }
 }
 
