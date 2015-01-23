@@ -112,6 +112,26 @@ namespace Kiwi
          @param truncated If the text should be truncated if it goes out the boundaries.
          */
         void drawText(string const& text, Gui::Rectangle const& rect, Gui::Font::Justification j, bool wrap = false) override;
+		
+		//! Tries to draw a text string inside a given rectangle.
+		/** The function tries to draw a text string inside a given space.
+		 @see drawFittedText
+		 */
+		void drawFittedText(string const& text, const double x, const double y, const double width, const double height, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale) override;
+		
+		//! Tries to draw a text string inside a given rectangle.
+		/** The function tries to draw a text string inside a given space.
+		 @see drawFittedText
+		 */
+		void drawFittedText(string const& text, Gui::Rectangle const& rect, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale) override;
+		
+		//! Draws text across multiple lines.
+		/** Draws text across multiple lines. This will break the text onto a new line
+		 where there's a new-line or carriage-return character, or at a word-boundary when the text becomes wider
+		 than the size specified by the maximumLineWidth parameter.
+		 @see setFont, drawFittedText
+		 */
+		void drawMultiLineText(wstring const& text, const long startX, const long baselineY, const long maximumLineWidth) const override;
         
         //! Fill a path.
         /** The function fills a page.

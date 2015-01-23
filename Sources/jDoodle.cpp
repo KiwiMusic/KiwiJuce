@@ -43,7 +43,7 @@ namespace Kiwi
     
     void JDoodle::setFont(Gui::Font const& font)
     {
-        juce::Font jfont(font.name, (float)font.size, font.face);
+        juce::Font jfont(font.getName(), (float)font.getSize(), font.getStyle());
         g.setFont(jfont);
     }
     
@@ -61,6 +61,21 @@ namespace Kiwi
     {
         g.drawText(text, rect.x(), rect.y(), rect.width(), rect.height(), juce::Justification(j), wrap);
     }
+	
+	void JDoodle::drawFittedText(string const& text, Gui::Rectangle const& rect, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale)
+	{
+		g.drawFittedText(text, rect.x(), rect.y(), rect.width(), rect.height(), juce::Justification(j), maximumNumberOfLines, minimumHorizontalScale);
+	}
+	
+	void JDoodle::drawFittedText(string const& text, const double x, const double y, const double width, const double height, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale)
+	{
+		g.drawFittedText(text, x, y, width, height, juce::Justification(j), maximumNumberOfLines, minimumHorizontalScale);
+	}
+	
+	void JDoodle::drawMultiLineText(wstring const& text, const long startX, const long baselineY, const long maximumLineWidth) const
+	{
+		g.drawMultiLineText(text.c_str(), startX, baselineY, maximumLineWidth);
+	}
     
     void JDoodle::fillPath(Gui::Path const& path)
     {
