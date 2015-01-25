@@ -21,8 +21,8 @@
  ==============================================================================
  */
 
-#ifndef __DEF_KIWI_JBOX_CONTROLLER__
-#define __DEF_KIWI_JBOX_CONTROLLER__
+#ifndef __DEF_KIWI_JBOX__
+#define __DEF_KIWI_JBOX__
 
 #include "jDoodle.h"
 #include "jEvent.h"
@@ -84,10 +84,10 @@ namespace Kiwi
 		 */
 		void presentationStatusChanged() override;
 		
-		//! Called by the page when the edition status has changed.
-		/** The function is called by the page when the edition status has changed.
+		//! Called by the page when the lock status has changed.
+		/** The function is called by the page when the lock status has changed.
 		 */
-		void pageEditionStatusChanged() override;
+		void pageLockStatusChanged() override;
 		
 		//! Called by the page when the edition status has changed.
 		/** The function is called by the page when the edition status has changed.

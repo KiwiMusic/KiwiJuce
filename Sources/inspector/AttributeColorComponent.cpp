@@ -96,7 +96,7 @@ namespace Kiwi
 			{
 				blue = clip((double)attrval[2], 0., 1.);
 			}
-			if(size > 2 && attrval[3].isNumber())
+			if(size > 3 && attrval[3].isNumber())
 			{
 				alpha = clip((double)attrval[3], 0., 1.);
 			}

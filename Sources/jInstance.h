@@ -26,7 +26,7 @@
 
 #include "jLookAndFeel.h"
 #include "MainWindow.h"
-#include "ConsoleComponent.h"
+#include "jConsole.h"
 #include "jPage.h"
 #include "AttributeView.h"
 

@@ -21,18 +21,18 @@
  ==============================================================================
  */
 
-#include "ConsoleComponent.h"
+#include "jConsole.h"
 #include "Application.h"
 
 namespace Kiwi
 {
-    shared_ptr<Console::History> ConsoleComponent::m_history = Console::History::create();
+    shared_ptr<Console::History> jConsole::m_history = Console::History::create();
     
     // ================================================================================ //
     //                                  CONSOLE COMPONENT                               //
     // ================================================================================ //
     
-    ConsoleComponent::ConsoleComponent() :
+    jConsole::jConsole() :
     m_font(13.f)
     {
         TableHeaderComponent* header = new TableHeaderComponent();
@@ -61,14 +61,14 @@ namespace Kiwi
 
     }
     
-    ConsoleComponent::~ConsoleComponent()
+    jConsole::~jConsole()
     {
         ;
     }
     
-    shared_ptr<ConsoleComponent> ConsoleComponent::create()
+    shared_ptr<jConsole> jConsole::create()
     {
-        shared_ptr<ConsoleComponent> component = make_shared<ConsoleComponent>();
+        shared_ptr<jConsole> component = make_shared<jConsole>();
         m_history->bind(component);
         return component;
     }
@@ -77,7 +77,7 @@ namespace Kiwi
     //                                      COMMAND                                     //
     // ================================================================================ //
     
-    void ConsoleComponent::copy()
+    void jConsole::copy()
     {
         String text;
         SparseSet<int> selection = m_table.getSelectedRows();
@@ -97,7 +97,7 @@ namespace Kiwi
         SystemClipboard::copyTextToClipboard(text);
     }
     
-    void ConsoleComponent::erase()
+    void jConsole::erase()
     {
         SparseSet<int> selection = m_table.getSelectedRows();
         vector<size_t> select;
@@ -114,7 +114,7 @@ namespace Kiwi
     //                                  HISTORY LISTENER                                //
     // ================================================================================ //
     
-    void ConsoleComponent::historyHasChanged(shared_ptr<Console::History> history)
+    void jConsole::historyHasChanged(shared_ptr<Console::History> history)
     {
         m_table.updateContent();
     }
@@ -123,13 +123,13 @@ namespace Kiwi
     //                                      COMPONENT                                   //
     // ================================================================================ //
     
-    void ConsoleComponent::resized()
+    void jConsole::resized()
     {
         m_table.setBounds(getLocalBounds());
         updateRighmostColumnWidth(&m_table.getHeader());
     }
     
-    void ConsoleComponent::paint(Graphics& g)
+    void jConsole::paint(Graphics& g)
     {
         int width   = m_table.getVisibleContentWidth();
         int rowheight = m_table.getRowHeight();
@@ -144,12 +144,12 @@ namespace Kiwi
     //                        APPLICATION COMMAND TARGET                                //
     // ================================================================================ //
     
-    ApplicationCommandTarget* ConsoleComponent::getNextCommandTarget()
+    ApplicationCommandTarget* jConsole::getNextCommandTarget()
     {
         return findFirstTargetParentComponent();
     }
     
-    void ConsoleComponent::getAllCommands(Array<CommandID>& commands)
+    void jConsole::getAllCommands(Array<CommandID>& commands)
     {
         /*
         commands.add(StandardApplicationCommandIDs::cut);
@@ -160,7 +160,7 @@ namespace Kiwi
         // Todo save
     }
     
-    void ConsoleComponent::getCommandInfo(const CommandID commandID, ApplicationCommandInfo& result)
+    void jConsole::getCommandInfo(const CommandID commandID, ApplicationCommandInfo& result)
     {
         const bool rowSelected = m_table.getNumSelectedRows();
         switch(commandID)
@@ -198,7 +198,7 @@ namespace Kiwi
         }
     }
     
-    bool ConsoleComponent::perform(const InvocationInfo& info)
+    bool jConsole::perform(const InvocationInfo& info)
     {
         switch(info.commandID)
         {
@@ -237,27 +237,27 @@ namespace Kiwi
     //                              TABLE LIST BOX MODEL                                //
     // ================================================================================ //
     
-    void ConsoleComponent::selectedRowsChanged(int row)
+    void jConsole::selectedRowsChanged(int row)
     {
         Application::commandStatusChanged();
     }
     
-    void ConsoleComponent::deleteKeyPressed(int lastRowSelected)
+    void jConsole::deleteKeyPressed(int lastRowSelected)
     {
         erase();
     }
     
-    void ConsoleComponent::backgroundClicked(const MouseEvent& mouse)
+    void jConsole::backgroundClicked(const MouseEvent& mouse)
     {
         m_table.deselectAllRows();
     }
     
-    int ConsoleComponent::getNumRows()
+    int jConsole::getNumRows()
     {
         return m_history->size();
     }
     
-    void ConsoleComponent::paintRowBackground(Graphics& g, int rowNumber, int width, int height, bool selected)
+    void jConsole::paintRowBackground(Graphics& g, int rowNumber, int width, int height, bool selected)
     {
         sConsoleMessage mess = m_history->get(rowNumber);
         if(mess)
@@ -288,7 +288,7 @@ namespace Kiwi
         g.drawLine(0, height, width, height);
     }
     
-    void ConsoleComponent::paintOverChildren(Graphics &g)
+    void jConsole::paintOverChildren(Graphics &g)
     {
         int numColumns = m_table.getHeader().getNumColumns(true);
         float left = 0, width = 0;
@@ -307,7 +307,7 @@ namespace Kiwi
         }
     }
     
-    void ConsoleComponent::paintCell(Graphics& g, int rowNumber, int columnId, int width, int height, bool rowIsSelected)
+    void jConsole::paintCell(Graphics& g, int rowNumber, int columnId, int width, int height, bool rowIsSelected)
     {
         g.setColour(Colours::black.brighter(0.4));
         g.setFont(m_font);
@@ -335,7 +335,7 @@ namespace Kiwi
         }
     }
     
-    void ConsoleComponent::sortOrderChanged(int newSortColumnId, bool isForwards)
+    void jConsole::sortOrderChanged(int newSortColumnId, bool isForwards)
     {
         switch(newSortColumnId)
         {
@@ -357,13 +357,13 @@ namespace Kiwi
         m_table.updateContent();
     }
     
-    void ConsoleComponent::cellDoubleClicked(int rowNumber, int columnId, const MouseEvent& mouse)
+    void jConsole::cellDoubleClicked(int rowNumber, int columnId, const MouseEvent& mouse)
     {
         // TODO : hilight(if possible) object corresponding to the dblclicked row
     }
     
     // This is overloaded from TableListBoxModel, and must update any custom components that we're using
-    Component* ConsoleComponent::refreshComponentForCell(int rowNumber, int columnId, bool /*isRowSelected*/,
+    Component* jConsole::refreshComponentForCell(int rowNumber, int columnId, bool /*isRowSelected*/,
                                                           Component* existingComponentToUpdate)
     {
         // Just return 0, as we'll be painting these columns directly.
@@ -373,7 +373,7 @@ namespace Kiwi
     
     // This is overloaded from TableListBoxModel, and should choose the best width for the specified
     // column.
-    int ConsoleComponent::getColumnAutoSizeWidth(int columnId)
+    int jConsole::getColumnAutoSizeWidth(int columnId)
     {
         if(columnId == Column::Id)
             return 30;
@@ -391,7 +391,7 @@ namespace Kiwi
         return widest + 8;
     }
     
-    void ConsoleComponent::tableColumnsResized(TableHeaderComponent* tableHeader)
+    void jConsole::tableColumnsResized(TableHeaderComponent* tableHeader)
     {
         if(tableHeader == &m_table.getHeader())
         {
@@ -399,7 +399,7 @@ namespace Kiwi
         }
     }
     
-    void ConsoleComponent::updateRighmostColumnWidth(TableHeaderComponent* header)
+    void jConsole::updateRighmostColumnWidth(TableHeaderComponent* header)
     {
         int rightmostColumnId   = 0;
         int rightmostColumnX    = 0;
@@ -426,7 +426,7 @@ namespace Kiwi
     /*
     ConsoleWindow::ConsoleWindow(PropertiesFile* file) :
     BaseWindow("Console", Colours::white, minimiseButton | closeButton, true),
-    m_component(ConsoleComponent::create()),
+    m_component(jConsole::create()),
     m_property_file(file)
     {
         setContentNonOwned(m_component.get(), false);

@@ -62,7 +62,7 @@ namespace Kiwi
 				redraw();
 			}
 			
-            const bool acceptClick = BoxView::isVisible() && !getPageEditionStatus() && !box->getIgnoreClick();
+            const bool acceptClick = BoxView::isVisible() && getPageLockStatus() && !box->getIgnoreClick();
 			setInterceptsMouseClicks(acceptClick, acceptClick);
 			
             Gui::sKeyboarder keyboarder = dynamic_pointer_cast<Gui::Keyboarder>(box);
@@ -110,7 +110,7 @@ namespace Kiwi
 		checkVisibilityAndInteractionMode();
 	}
 	
-	void jBox::pageEditionStatusChanged()
+	void jBox::pageLockStatusChanged()
 	{
 		checkVisibilityAndInteractionMode();
 	}

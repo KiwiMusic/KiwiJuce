@@ -250,9 +250,11 @@ namespace Kiwi
     {
 		if(boxctrl)
 		{
-			if (sjBox jbox = dynamic_pointer_cast<jBox>(boxctrl))
+			sjBox jbox = dynamic_pointer_cast<jBox>(boxctrl);
+			if (jbox)
 			{
-				if (sBox box = jbox->getBox())
+				sBox box = jbox->getBox();
+				if (box)
 				{
 					if(getPresentationStatus())
 					{
@@ -261,8 +263,8 @@ namespace Kiwi
                         box->setAttributeValue(AttrBox::Tag_presentation_position, {pos.x(), pos.y()});
                         pos = box->getSize(false);
 						box->setAttributeValue(AttrBox::Tag_presentation_size, {pos.x(), pos.y()});
-						jbox->setPageEditionStatus(!getEditionStatus());
-						jbox->setPagePresentationStatus(getPresentationStatus());
+						jbox->pageLockStatusChanged();
+						jbox->pagePresentationStatusChanged();
 					}
 					
 					addAndMakeVisible(jbox.get());
@@ -277,7 +279,8 @@ namespace Kiwi
     {
 		if(boxctrl)
 		{
-			if (sjBox jbox = dynamic_pointer_cast<jBox>(boxctrl))
+			sjBox jbox = dynamic_pointer_cast<jBox>(boxctrl);
+			if (jbox)
 			{
 				removeChildComponent(jbox.get());
 			}
@@ -359,7 +362,7 @@ namespace Kiwi
 	
 	void jPage::updateBoxesAndLinksLayers()
 	{
-		if (getEditionStatus())
+		if (getLockStatus())
 			bringsBoxesToFront();
 		else
 			bringsLinksToFront();
@@ -385,12 +388,9 @@ namespace Kiwi
 			{
                 const bool visible = !presentation || (presentation && jbox->isIncludeInPresentation());
                 const Gui::Rectangle boxBounds = jbox->getDisplayBounds();
-                const juce::Rectangle<int> finalBounds = juce::Rectangle<int>(boxBounds.x(),
-                                                                              boxBounds.y(),
-                                                                              boxBounds.width(),
-                                                                              boxBounds.height());
-                
-                animator.animateComponent(jbox.get(), finalBounds, visible ? 1. : 0., 200., false, 1., 1.);
+				const juce::Rectangle<int> finalBounds = toJuce<int>(boxBounds);
+				
+                animator.animateComponent(jbox.get(), finalBounds, visible, 200., false, 1., 1.);
                 jbox->setVisible(visible);
 			}
 		}
@@ -399,7 +399,8 @@ namespace Kiwi
 		getLinks(links);
 		for (vector<sLinkView>::size_type i = 0; i < links.size(); i++)
 		{
-			if (sjLink jlink = static_pointer_cast<jLink>(links[i]))
+			sjLink jlink = static_pointer_cast<jLink>(links[i]);
+			if (jlink)
 			{
 				jlink->setVisible(!presentation);
 			}
@@ -412,24 +413,27 @@ namespace Kiwi
     
     void jPage::paint(Graphics& g)
     {
-		const bool locked = getEditionStatus();
-		const juce::Colour bgcolor = toJuce((locked ? getPage()->getLockedBgColor() : getPage()->getEditingBgColor()));
-		const int grid_size = getPage()->getGridSize();
-        const juce::Rectangle<int> bounds(g.getClipBounds());
-		
-		g.setColour(bgcolor);
-		g.fillAll();
-		
-		if (!getEditionStatus())
+		sPage page = getPage();
+		if (page)
 		{
-			getPage()->getEditingBgColor();
+			const bool locked = getLockStatus();
+			const juce::Colour bgcolor = toJuce((locked ? page->getLockedBgColor() : page->getEditingBgColor()));
 			
-			g.setColour(bgcolor.contrasting(0.5));
-			for(int x = bounds.getX() - (bounds.getX() % grid_size); x < bounds.getRight(); x += grid_size)
+			g.setColour(bgcolor);
+			g.fillAll();
+			
+			if (!locked)
 			{
-				for(int y = bounds.getY() - (bounds.getY() % grid_size) ; y < bounds.getBottom(); y += grid_size)
+				const int grid_size = page->getGridSize();
+				const juce::Rectangle<int> bounds(g.getClipBounds());
+				
+				g.setColour(bgcolor.contrasting(0.5));
+				for(int x = bounds.getX() - (bounds.getX() % grid_size); x < bounds.getRight(); x += grid_size)
 				{
-					g.setPixel(x, y);
+					for(int y = bounds.getY() - (bounds.getY() % grid_size) ; y < bounds.getBottom(); y += grid_size)
+					{
+						g.setPixel(x, y);
+					}
 				}
 			}
 		}
@@ -443,7 +447,7 @@ namespace Kiwi
 		m_link_dragstatus = false;
 		m_mouse_wasclicked = true;
 
-		if(!getEditionStatus())
+		if(!getLockStatus())
 		{
             m_knock = knockAll(Gui::Point(e.x, e.y));
 			if(m_knock.hasHitBox())
@@ -544,7 +548,7 @@ namespace Kiwi
 		MouseCursor::StandardCursorType mc = MouseCursor::NormalCursor;
 		m_box_dragstatus = ! m_mouse_wasclicked;
 		
-		if(!getEditionStatus())
+		if(!getLockStatus())
 		{
 			if(m_lasso->dragging)
 			{
@@ -677,7 +681,7 @@ namespace Kiwi
     {
 		m_last_border_downstatus = Knock::None;
 		
-		if(!getEditionStatus())
+		if(!getLockStatus())
 		{
 			if(m_knock.hasHitBox() && m_knock.getPart() == Knock::Inside && e.mods.isCommandDown())
 			{
@@ -834,7 +838,7 @@ namespace Kiwi
     
     void jPage::mouseDoubleClick(const MouseEvent& e)
     {
-		if (!getEditionStatus() && !e.mods.isAnyModifierKeyDown())
+		if (!getLockStatus() && !e.mods.isAnyModifierKeyDown())
 		{
 			newBox(e.x, e.y, true);
 		}
@@ -1044,7 +1048,7 @@ namespace Kiwi
 			case StandardApplicationCommandIDs::paste:
 				result.setInfo(TRANS("Paste"), TRANS("Paste"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('v', ModifierKeys::commandModifier);
-				result.setActive(!getEditionStatus() && SystemClipboard::getTextFromClipboard().isNotEmpty());
+				result.setActive(!getLockStatus() && SystemClipboard::getTextFromClipboard().isNotEmpty());
 				break;
 				
 			case CommandIDs::pasteReplace:
@@ -1068,7 +1072,7 @@ namespace Kiwi
             case StandardApplicationCommandIDs::selectAll:
                 result.setInfo(TRANS("Select All"), TRANS("Select all boxes and links"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('a', ModifierKeys::commandModifier);
-				result.setActive(!getEditionStatus());
+				result.setActive(!getLockStatus());
                 break;
 				
 			case CommandIDs::toFront:
@@ -1098,25 +1102,25 @@ namespace Kiwi
             case CommandIDs::newBox:
                 result.setInfo(TRANS("New Box"), TRANS("Add a new box in the page"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('n', ModifierKeys::noModifiers);
-				result.setActive(!getEditionStatus());
+				result.setActive(!getLockStatus());
                 break;
             
             case CommandIDs::newBang:
                 result.setInfo(TRANS("New Bang"), TRANS("Add a bang in the page"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('b', ModifierKeys::noModifiers);
-				result.setActive(!getEditionStatus());
+				result.setActive(!getLockStatus());
                 break;
                 
             case CommandIDs::newNumber:
                 result.setInfo(TRANS("New Number"), TRANS("Add a number in the page"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('f', ModifierKeys::noModifiers);
-				result.setActive(!getEditionStatus());
+				result.setActive(!getLockStatus());
                 break;
                 
             case CommandIDs::newToggle:
                 result.setInfo(TRANS("New Toggle"), TRANS("Add a toggle in the page"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('t', ModifierKeys::noModifiers);
-				result.setActive(!getEditionStatus());
+				result.setActive(!getLockStatus());
                 break;
                 
             case CommandIDs::newMessage:
@@ -1143,7 +1147,7 @@ namespace Kiwi
             case CommandIDs::editModeSwitch:
                 result.setInfo (TRANS("Edit"), TRANS("Switch between edit and play mode"), CommandCategories::view, 0);
                 result.addDefaultKeypress ('e',  ModifierKeys::commandModifier);
-                result.setTicked(!getEditionStatus());
+                result.setTicked(!getLockStatus());
                 break;
                 
             case CommandIDs::presentationModeSwitch:
@@ -1318,7 +1322,7 @@ namespace Kiwi
             }
             case CommandIDs::editModeSwitch:
             {
-                setLockStatus(!getEditionStatus());
+                setLockStatus(!getLockStatus());
                 break;
             }
             case CommandIDs::presentationModeSwitch:

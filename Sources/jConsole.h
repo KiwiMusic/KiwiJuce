@@ -21,8 +21,8 @@
  ==============================================================================
  */
 
-#ifndef __DEF_KIWI_CONSOLE_WINDOW__
-#define __DEF_KIWI_CONSOLE_WINDOW__
+#ifndef __DEF_KIWI_JCONSOLE__
+#define __DEF_KIWI_JCONSOLE__
 
 #include "jDefs.h"
 
@@ -30,10 +30,10 @@ namespace Kiwi
 {
     
     // ================================================================================ //
-    //                                  CONSOLE COMPONENT                               //
+    //                                  JCONSOLE COMPONENT                              //
     // ================================================================================ //
     
-    class ConsoleComponent :
+    class jConsole :
     public Console::History::Listener,
     public Component,
     public ApplicationCommandTarget,
@@ -66,17 +66,17 @@ namespace Kiwi
         //! The constructor.
         /** You should never use this method except if you really know what you do.
          */
-        ConsoleComponent();
+        jConsole();
         
         //! The destructor.
         /** You should never use this method except if you really know what you do.
          */
-        ~ConsoleComponent();
+        ~jConsole();
         
         //! The console component creation method.
         /** The function allocates a console component and initialize the defaults members.
          */
-        static shared_ptr<ConsoleComponent> create();
+        static shared_ptr<jConsole> create();
         
         // ================================================================================ //
         //                                  HISTORY LISTENER                                //
@@ -193,7 +193,7 @@ namespace Kiwi
     class ConsoleWindow  :	public BaseWindow
     {
     private:
-        shared_ptr<ConsoleComponent> m_component;
+        shared_ptr<jConsole> m_component;
         PropertiesFile*              m_property_file;
         
     public:
