@@ -30,7 +30,13 @@ namespace Kiwi
     {
         ;
     }
-    
+	
+	JDoodle::JDoodle(Graphics &_g, Gui::Rectangle b) :
+	g(_g), bounds(b)
+	{
+		;
+	}
+	
     JDoodle::~JDoodle()
     {
         

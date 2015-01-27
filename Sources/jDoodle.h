@@ -69,7 +69,12 @@ namespace Kiwi
         /** The function initialize the juce graphics and the bounds.
          */
         JDoodle(Graphics& _g, juce::Rectangle<int> b);
-        
+		
+		//! Constructor.
+		/** The function initialize the juce graphics and the bounds.
+		 */
+		JDoodle(Graphics& _g, Gui::Rectangle b);
+		
         //! Destructor.
         /** The function does nothing.
          */

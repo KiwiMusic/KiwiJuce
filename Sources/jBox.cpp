@@ -30,10 +30,10 @@ namespace Kiwi
 	//                                  JBOX CONTROLER                                  //
 	// ================================================================================ //
 	
-	jBox::jBox(sBox box, sPageView pageview) : BoxView(box, pageview)
+	jBox::jBox(sBox box, sPageView pageview) : BoxView(box, pageview),
+	m_framesize(2)
     {
-		const Gui::Rectangle bounds = BoxView::getBounds();
-		setBounds(bounds.x(), bounds.y(), bounds.width(), bounds.height());
+		setBounds(toJuce<int>(getDisplayBounds()));
         setInterceptsMouseClicks(false, false);
         setWantsKeyboardFocus(false);
 		setMouseClickGrabsKeyboardFocus(false);
@@ -43,6 +43,48 @@ namespace Kiwi
     {
         ;
     }
+	
+	Gui::Rectangle jBox::getDisplayBounds() const noexcept
+	{
+		return BoxView::getBounds().expanded(m_framesize);
+	}
+
+	Gui::Point jBox::getDisplayPosition() const noexcept
+	{
+		return BoxView::getPosition() - m_framesize;
+	}
+
+	Gui::Point jBox::getDisplaySize() const noexcept
+	{
+		return BoxView::getSize() + m_framesize * 2;
+	}
+	
+	ulong jBox::resizerKnock(Gui::Point const& pt) const noexcept
+	{
+		ulong borderFlag = Knock::BorderZone::None;
+		if(isSelected())
+		{
+			const Gui::Point localPoint = pt - getDisplayPosition();
+			if(localPoint.y() <= m_framesize*2)
+			{
+				borderFlag |= Knock::BorderZone::Top;
+			}
+			if(localPoint.x() >= getDisplaySize().x() - m_framesize*2)
+			{
+				borderFlag |= Knock::BorderZone::Right;
+			}
+			if(localPoint.y() >= getDisplaySize().y() - m_framesize*2)
+			{
+				borderFlag |= Knock::BorderZone::Bottom;
+			}
+			if(localPoint.x() <= m_framesize*2)
+			{
+				borderFlag |= Knock::BorderZone::Left;
+			}
+		}
+		
+		return borderFlag;
+	}
 	
 	void jBox::checkVisibilityAndInteractionMode()
 	{
@@ -90,13 +132,12 @@ namespace Kiwi
 	
     void jBox::positionChanged()
     {
-		const Gui::Point pt = BoxView::getPosition();
-        setTopLeftPosition(round(pt.x()), round(pt.y()));
+        setTopLeftPosition(toJuce<int>(getDisplayPosition()));
     }
     
     void jBox::sizeChanged()
     {
-		const Gui::Point pt = BoxView::getSize();
+		const Gui::Point pt = getDisplaySize();
         setSize(round(pt.x()), round(pt.y()));
     }
 	
@@ -124,18 +165,83 @@ namespace Kiwi
     {
         if(Component::isVisible())
         {
-			g.beginTransparencyLayer(1);
-            /*
-			//double frameSize = getFrameSize() * 0.5;
-			juce::Rectangle<int> boxFrame = getLocalBounds().reduced(frameSize).withPosition(0, 0);
-			g.setOrigin(frameSize, frameSize);
-			g.reduceClipRegion(boxFrame);
-			JDoodle d(g, boxFrame);
-			//BoxView::paintBox(getBox(), d);
-			g.endTransparencyLayer();
-             */
-			JDoodle d2(g, getLocalBounds());
-			//BoxView::paintBoxFrame(getBox(), d2, isSelected(), getPageEditionStatus(), getPagePresentationStatus());
+			sBox box = getBox();
+			if (box)
+			{
+				const bool edit = !getPageLockStatus();
+				const bool presentation = getPagePresentationStatus();
+				
+				const Gui::Rectangle localBoxFrame = getDisplayBounds().withZeroOrigin();
+				const Gui::Rectangle localBoxBounds = BoxView::getBounds().withPosition(Gui::Point(m_framesize, m_framesize));
+				
+				JDoodle d(g, localBoxFrame);
+
+				Gui::sSketcher sketcher = dynamic_pointer_cast<Gui::Sketcher>(box);
+				if (sketcher)
+				{
+					const Rectangle<int> jlocalBoxBounds = toJuce<int>(localBoxBounds.withZeroOrigin());
+					g.beginTransparencyLayer(1);
+					
+					JDoodle d(g, jlocalBoxBounds);
+					g.setOrigin(m_framesize, m_framesize);
+					g.reduceClipRegion(jlocalBoxBounds);
+					
+					sketcher->draw(d);
+					
+					g.endTransparencyLayer();
+				}
+				else
+				{
+					const double borderSize = 1.;
+					d.setColor(box->getBackgroundColor());
+					d.fillRectangle(localBoxBounds);
+					
+					d.setColor(box->getBorderColor());
+					d.drawRectangle(localBoxBounds.reduced(borderSize*0.5), borderSize);
+					
+					d.setColor(box->getTextColor());
+					d.drawText(toString(box->getText()), 3 + m_framesize, m_framesize, localBoxBounds.width(), localBoxBounds.height(), box->getFontJustification());
+				}
+			 
+				//Paint Box frame :
+				if(edit)
+				{
+					const Gui::Color ioColor = Gui::Color(0.3, 0.3, 0.3);
+					const Gui::Color presentationColor = Gui::Color(0., 0.8, 0.);
+					const Gui::Color selectionColor = presentation ? presentationColor : Gui::Color(0., 0.6, 0.9);
+					
+					if(isSelected())
+					{
+						d.setColor(selectionColor);
+						d.drawRectangle(localBoxFrame.reduced(m_framesize*0.5), m_framesize);
+						
+						d.setColor(selectionColor.darker(0.3));
+						d.drawRectangle(localBoxFrame.reduced(0.5), 1);
+					}
+					else if(!presentation)
+					{
+						const ulong ninlets = box->getNumberOfInlets();
+						const ulong noutlets= box->getNumberOfOutlets();
+						
+						d.setColor(ioColor);
+						for(ulong i = 1; i <= ninlets; i++)
+						{
+							d.fillRectangle(getInletBounds(i) - getDisplayPosition());
+						}
+						
+						for(ulong i = 1; i <= noutlets; i++)
+						{
+							d.fillRectangle(getOutletBounds(i) - getDisplayPosition());
+						}
+						
+						if (isIncludeInPresentation())
+						{
+							d.setColor(presentationColor.withAlpha(0.2));
+							d.drawRectangle(localBoxBounds, 3);
+						}
+					}
+				}
+			}
         }
     }
 

@@ -40,6 +40,7 @@ namespace Kiwi
     class jBox  : public BoxView, public Component
     {
 	private:
+		const double m_framesize;
 		void checkVisibilityAndInteractionMode();
     public:
         
@@ -52,13 +53,38 @@ namespace Kiwi
         /** You should never have to use this function.
          */
         ~jBox();
-        
+		
+		//! Retrieve the display bounds of the box view.
+		/** The function retrieves the display bounds of the box view.
+		 @return The bounds of the box view.
+		 */
+		Gui::Rectangle getDisplayBounds() const noexcept override;
+		
+		//! Retrieve the display position of the box view.
+		/** The function retrieves the display position of the box view.
+		 @return The position of the box view.
+		 */
+		Gui::Point getDisplayPosition() const noexcept override;
+		
+		//! Retrieve the display size of the box view.
+		/** The function retrieves the display size of the box view.
+		 @return The size of the box view.
+		 */
+		Gui::Point getDisplaySize() const noexcept override;
+		
+		//! Tests if a point is inside a box resizer zone.
+		/** The function tests if a point is inside a box resizer zone. The point is relative to the page top-left's coordinates
+		 @param point The point to test.
+		 @return A flag describing the resizer zone as defined in the Knock::Border enum.
+		 */
+		ulong resizerKnock(Gui::Point const& point) const noexcept override;
+		
         //! The redraw function that should be override.
         /** The function is called by the box when it should be repainted.
          @param box    The box.
          */
         void redraw() override;
-        
+		
         //! The grab focus function that should be override.
         /** The function is called by the box when it want to grab keyboard focus.
          */

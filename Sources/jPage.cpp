@@ -487,38 +487,37 @@ namespace Kiwi
                     }
                     else if(m_knock.getPart() == Knock::Inside)
                     {
+						Console::post("Hit Box inside");
                         if(e.mods.isAltDown())
                         {
                             m_copy_on_drag = true;
                             m_box_downstatus = selectOnMouseDown(box, true);
                         }
                         else if (e.mods.isCommandDown())
-                        {
-                            int todo;//
-                            //box->receive(jEventMouse(Gui::Event::Mouse::Down, e));
-                            m_box_received_downevent = true;
+						{
+							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(box->getBox());
+							if(mouser)
+							{
+								mouser->receive(jEventMouse(Gui::Event::Mouse::Down, e));
+								m_box_received_downevent = true;
+							}
                         }
                         else
                         {
-                            int zaza;
-                            /*
-                            sBoxView box_ctrl = nullptr;//box->getController();
-                            {
-                                if(e.mods.isPopupMenu())
-                                {
-									if (!boxctrl->isSelected())
-									{
-										m_box_downstatus = selectOnMouseDown(boxctrl, true);
-									}
-									
-									showBoxPopupMenu(box);
-                                }
-								else
+							if(e.mods.isPopupMenu())
+							{
+								if (!isSelected(box))
 								{
-									m_box_downstatus = selectOnMouseDown(boxctrl, !e.mods.isShiftDown());
-									Console::post("selectOnMouseDown");
+									m_box_downstatus = selectOnMouseDown(box, true);
 								}
-                            }*/
+
+								showBoxPopupMenu(box->getBox());
+							}
+							else
+							{
+								m_box_downstatus = selectOnMouseDown(box, !e.mods.isShiftDown());
+								Console::post("selectOnMouseDown");
+							}
                         }
                     }
                 }
@@ -628,47 +627,53 @@ namespace Kiwi
 			else if(m_knock.hasHitBox())
 			{
                 sBoxView box = m_knock.getBox();
-				if(m_box_received_downevent && m_knock.getPart() == Knock::Inside)
+				if (box)
 				{
-					if(m_box_received_downevent)
+					if(m_box_received_downevent && m_knock.getPart() == Knock::Inside)
 					{
-                        int zaza;
-						//box->receive(jEventMouse(Gui::Event::Mouse::Type::Drag, e));
+						if(m_box_received_downevent)
+						{
+							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(box->getBox());
+							if(mouser)
+							{
+								mouser->receive(jEventMouse(Gui::Event::Mouse::Drag, e));
+							}
+						}
 					}
-				}
-				else if (m_last_border_downstatus != Knock::None)
-				{
-					if (m_mouse_wasclicked)
+					else if (m_last_border_downstatus != Knock::None)
 					{
-						startMoveOrResizeBoxes();
+						if (m_mouse_wasclicked)
+						{
+							startMoveOrResizeBoxes();
+						}
+						Gui::Point delta = Gui::Point(e.getDistanceFromDragStartX(), e.getDistanceFromDragStartY());
+						resizeSelectedBoxes(delta, m_last_border_downstatus, e.mods.isShiftDown());
+						m_last_drag = e.getPosition();
+						
+						switch (m_last_border_downstatus)
+						{
+							case (Knock::Left | Knock::Top):		mc = MouseCursor::TopLeftCornerResizeCursor; break;
+							case (Knock::Top) :						mc = MouseCursor::TopEdgeResizeCursor; break;
+							case (Knock::Top | Knock::Right):		mc = MouseCursor::TopRightCornerResizeCursor; break;
+							case (Knock::Left):						mc = MouseCursor::LeftEdgeResizeCursor; break;
+							case (Knock::Right):					mc = MouseCursor::RightEdgeResizeCursor; break;
+							case (Knock::Left | Knock::Bottom):		mc = MouseCursor::BottomLeftCornerResizeCursor; break;
+							case (Knock::Bottom):					mc = MouseCursor::BottomEdgeResizeCursor; break;
+							case (Knock::Right | Knock::Bottom):	mc = MouseCursor::BottomRightCornerResizeCursor; break;
+							default: break;
+						}
 					}
-					Gui::Point delta = Gui::Point(e.getDistanceFromDragStartX(), e.getDistanceFromDragStartY());
-					resizeSelectedBoxes(delta, m_last_border_downstatus, e.mods.isShiftDown());
-					m_last_drag = e.getPosition();
-					
-					switch (m_last_border_downstatus)
+					else if(isAnyBoxSelected() && m_box_dragstatus && !e.mods.isPopupMenu())
 					{
-						case (Knock::Left | Knock::Top):		mc = MouseCursor::TopLeftCornerResizeCursor; break;
-						case (Knock::Top) :						mc = MouseCursor::TopEdgeResizeCursor; break;
-						case (Knock::Top | Knock::Right):		mc = MouseCursor::TopRightCornerResizeCursor; break;
-						case (Knock::Left):						mc = MouseCursor::LeftEdgeResizeCursor; break;
-						case (Knock::Right):					mc = MouseCursor::RightEdgeResizeCursor; break;
-						case (Knock::Left | Knock::Bottom):		mc = MouseCursor::BottomLeftCornerResizeCursor; break;
-						case (Knock::Bottom):					mc = MouseCursor::BottomEdgeResizeCursor; break;
-						case (Knock::Right | Knock::Bottom):	mc = MouseCursor::BottomRightCornerResizeCursor; break;
-						default: break;
+						if(m_mouse_wasclicked)
+						{
+							startMoveOrResizeBoxes();
+						}
+						const juce::Point<int> pos = e.getPosition();
+						Gui::Point delta = toKiwi(pos) - toKiwi(m_last_drag);
+						moveSelectedBoxes(delta);
+						m_last_drag = pos;
 					}
-				}
-				else if(isAnyBoxSelected() && m_box_dragstatus && !e.mods.isPopupMenu())
-				{
-					if(m_mouse_wasclicked)
-					{
-						startMoveOrResizeBoxes();
-					}
-					const juce::Point<int> pos = e.getPosition();
-					Gui::Point delta = toKiwi(pos) - toKiwi(m_last_drag);
-					moveSelectedBoxes(delta);
-					m_last_drag = pos;
 				}
 			}
 		}
@@ -681,19 +686,22 @@ namespace Kiwi
     {
 		m_last_border_downstatus = Knock::None;
 		
-		if(!getLockStatus())
+		if(m_box_received_downevent)
 		{
-			if(m_knock.hasHitBox() && m_knock.getPart() == Knock::Inside && e.mods.isCommandDown())
+			sBoxView box = m_knock.getBox();
+			if(box)
 			{
-				sBoxView box = m_knock.getBox();
-				if(box)
+				Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(box->getBox());
+				if(mouser)
 				{
-                    sjBox jbox = dynamic_pointer_cast<jBox>(box);
-                    jbox->mouseUp(e);
+					mouser->receive(jEventMouse(Gui::Event::Mouse::Up, e));
 					return;
 				}
 			}
-
+		}
+		
+		if(!getLockStatus())
+		{
             int zaza;
             m_knock = knockAll(Gui::Point(e.x, e.y));
             sBoxView box = m_knock.getBox();
@@ -1281,7 +1289,12 @@ namespace Kiwi
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                getPage()->add(createBoxDicoAtPosition("bang", getMouseXYRelative()));
+				sPage page = getPage();
+				if (page)
+				{
+					sDico dico = createBoxDicoAtPosition("bang", getMouseXYRelative());
+					page->add(dico);
+				}
                 break;
             }
             case CommandIDs::newToggle:
