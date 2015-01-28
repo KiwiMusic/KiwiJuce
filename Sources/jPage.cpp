@@ -241,16 +241,16 @@ namespace Kiwi
 		redraw();
 	}
 	
-	sBoxView jPage::createBoxController(sBox box)
+	sBoxView jPage::createBoxView(sBox box)
 	{
 		return BoxView::create<jBox>(box, static_pointer_cast<PageView>(shared_from_this()));
 	}
 	
-	void jPage::boxControllerCreated(sBoxView boxctrl)
+	void jPage::boxViewCreated(sBoxView boxview)
     {
-		if(boxctrl)
+		if(boxview)
 		{
-			sjBox jbox = dynamic_pointer_cast<jBox>(boxctrl);
+			sjBox jbox = dynamic_pointer_cast<jBox>(boxview);
 			if (jbox)
 			{
 				sBox box = jbox->getBox();
@@ -275,11 +275,11 @@ namespace Kiwi
 		}
     }
 	
-    void jPage::boxControllerWillBeRemoved(sBoxView boxctrl)
+    void jPage::boxViewWillBeRemoved(sBoxView boxview)
     {
-		if(boxctrl)
+		if(boxview)
 		{
-			sjBox jbox = dynamic_pointer_cast<jBox>(boxctrl);
+			sjBox jbox = dynamic_pointer_cast<jBox>(boxview);
 			if (jbox)
 			{
 				removeChildComponent(jbox.get());
@@ -287,16 +287,16 @@ namespace Kiwi
 		}
     }
 	
-	sLinkView jPage::createLinkController(sLink link)
+	sLinkView jPage::createLinkView(sLink link)
 	{
 		return LinkView::create<jLink>(link);
 	}
 	
-	void jPage::linkControllerCreated(sLinkView linkctrl)
+	void jPage::linkViewCreated(sLinkView linkview)
 	{
-		if(linkctrl)
+		if(linkview)
 		{
-			if (sjLink jlink = dynamic_pointer_cast<jLink>(linkctrl))
+			if (sjLink jlink = dynamic_pointer_cast<jLink>(linkview))
 			{
 				addAndMakeVisible(jlink.get());
 				select(jlink);
@@ -306,11 +306,11 @@ namespace Kiwi
 	}
 	
 	
-	void jPage::linkControllerWillBeRemoved(sLinkView linkctrl)
+	void jPage::linkViewWillBeRemoved(sLinkView linkview)
 	{
-		if(linkctrl)
+		if(linkview)
 		{
-			if (sjLink jlink = dynamic_pointer_cast<jLink>(linkctrl))
+			if (sjLink jlink = dynamic_pointer_cast<jLink>(linkview))
 			{
 				removeChildComponent(jlink.get());
 			}
@@ -329,10 +329,10 @@ namespace Kiwi
             {
                 
                 
-                sBoxView box_ctrl = box->getController();
-                if(box_ctrl)
+                sBoxView boxview = box->getView();
+                if(boxview)
                 {
-                    return static_pointer_cast<jBox>(box_ctrl);
+                    return static_pointer_cast<jBox>(boxview);
                 }
                 
             }

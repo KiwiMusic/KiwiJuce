@@ -215,7 +215,7 @@ namespace Kiwi
 						d.setColor(selectionColor);
 						d.drawRectangle(localBoxFrame.reduced(m_framesize*0.5), m_framesize);
 						
-						d.setColor(selectionColor.darker(0.3));
+						d.setColor(selectionColor.darker(0.1));
 						d.drawRectangle(localBoxFrame.reduced(0.5), 1);
 					}
 					else if(!presentation)

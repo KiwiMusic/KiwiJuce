@@ -27,7 +27,8 @@ namespace Kiwi
 {
     jInstance::jInstance() :
     m_instance(Instance::create()),
-    m_window(MainWindow::create())
+    m_window(MainWindow::create()),
+	m_window2(MainWindow::create())
     {
 		LookAndFeel::setDefaultLookAndFeel(&m_lookandfeel);
     }
@@ -65,10 +66,23 @@ namespace Kiwi
                 {
                     m_instance->removePage(page);
                 }
+				
+				sjPage jpc2 = PageView::create<jPage>(page);
+				if(jpc2)
+				{
+					m_pages.push_back(jpc2);
+					m_window2->setContentNonOwned(jpc2.get(), false);
+					//m_window->setName(jpc->getN)
+					Console::post("Page has been added to the application");
+				}
+				else
+				{
+					m_instance->removePage(page);
+				}
             }
         }
     }
-    
+	
     void jInstance::pageRemoved(sInstance instance, sPage page)
     {
         Console::post("Page has been removed from the application");

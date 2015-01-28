@@ -32,7 +32,7 @@ namespace Kiwi
 	//                                 JPAGE CONTROLER                                  //
 	// ================================================================================ //
 	
-	//! The jPage is the juce implementation of the Page::Controller.
+	//! The jPage is the juce implementation of the Page::View.
 	/**
 	 The jPage ...
 	 */
@@ -128,7 +128,7 @@ namespace Kiwi
 		
         //! The constructor.
         /** You should never have to use this function.
-		 Please use the Box::Controller
+		 Please use the Box::View
          */
         jPage(sPage page);
         
@@ -192,38 +192,38 @@ namespace Kiwi
 		 @param box     The box.
 		 @return The newly created box controller.
 		 */
-		virtual sBoxView createBoxController(sBox box) override;
+		virtual sBoxView createBoxView(sBox box) override;
 		
 		//! Receive the notification that a box controller has been created.
 		/** The function is called by the page when a box controller has been created.
 		 @param boxctrl The box controller.
 		 */
-		virtual void boxControllerCreated(sBoxView boxctrl) override;
+		virtual void boxViewCreated(sBoxView boxctrl) override;
         
 		//! Receive the notification that a box controller before a box has been removed.
 		/** The function is called by the page controller before a box has been removed.
 		 @param boxctrl The box controller.
 		 */
-        virtual void boxControllerWillBeRemoved(sBoxView boxctrl) override;
+        virtual void boxViewWillBeRemoved(sBoxView boxctrl) override;
         
 		//! Create a link controller.
 		/** Page controller's subclasses must implement this method to create custom link controller.
 		 @param link     The link.
 		 @return The newly created link controller.
 		 */
-		virtual sLinkView createLinkController(sLink link) override;
+		virtual sLinkView createLinkView(sLink link) override;
 		
 		//! Receive the notification that a link controller has been created.
 		/** The function is called by the page when a link controller has been created.
 		 @param linkctrl The link controller.
 		 */
-		virtual void linkControllerCreated(sLinkView linkctrl) override;
+		virtual void linkViewCreated(sLinkView linkctrl) override;
 		
 		//! Receive the notification that a link controller before a box has been removed.
 		/** The function is called by the page controller before a link has been removed.
 		 @param linkctrl The link controller.
 		 */
-		virtual void linkControllerWillBeRemoved(sLinkView linkctrl) override;
+		virtual void linkViewWillBeRemoved(sLinkView linkctrl) override;
 		
 		//! The overriden redraw function.
 		/** The function is called when the page needs to be redrawn.
