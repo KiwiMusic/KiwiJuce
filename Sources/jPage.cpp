@@ -887,7 +887,20 @@ namespace Kiwi
 			else if(key.isKeyCode(KeyPress::returnKey))
 			{
 				//if a box is selected (only one) anf this box is a textbox container => give it textediting focus
-				//showBoxTextEditor(nullptr);
+				
+				if (isAnyBoxSelected())
+				{
+					vector<sBoxView> boxes;
+					getSelection(boxes);
+					if(boxes.size() == 1)
+					{
+						sjBox jbox = dynamic_pointer_cast<jBox>(boxes[0]);
+						if (jbox)
+						{
+							jbox->grabKeyboardFocus();
+						}
+					}
+				}
 			}
 			else
 			{

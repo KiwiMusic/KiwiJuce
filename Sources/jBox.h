@@ -26,6 +26,7 @@
 
 #include "jDoodle.h"
 #include "jEvent.h"
+#include "jTextField.h"
 
 namespace Kiwi
 {
@@ -33,13 +34,15 @@ namespace Kiwi
     //                                  JBOX CONTROLER                                  //
     // ================================================================================ //
     
-    //! The jBox is the juce implementation of the box::controller.
+    //! The jBox is the juce implementation of the BoxView.
     /**
      The jBox overrides the redraw and paint method and wraps the mouse and keyboard events.
      */
     class jBox  : public BoxView, public Component
     {
 	private:
+		sjTextField		m_textfield;
+		
 		const double m_framesize;
 		void checkVisibilityAndInteractionMode();
     public:
@@ -135,8 +138,9 @@ namespace Kiwi
     };
     
     typedef shared_ptr<jBox>		sjBox;
+	typedef weak_ptr<jBox>			wjBox;
 	typedef shared_ptr<const jBox> 	scjBox;
-    typedef weak_ptr<jBox>			wjBox;
+	typedef weak_ptr<const jBox> 	wcjBox;
 }
 
 

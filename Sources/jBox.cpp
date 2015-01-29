@@ -22,7 +22,6 @@
  */
 
 #include "jBox.h"
-#include "Application.h"
 
 namespace Kiwi
 {	
@@ -37,6 +36,16 @@ namespace Kiwi
         setInterceptsMouseClicks(false, false);
         setWantsKeyboardFocus(false);
 		setMouseClickGrabsKeyboardFocus(false);
+		
+		Gui::TextField::sOwner textfieldOwner = dynamic_pointer_cast<Gui::TextField::Owner>(box);
+		if (textfieldOwner)
+		{
+			m_textfield = make_shared<jTextField>();
+			m_textfield->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
+			addAndMakeVisible(m_textfield.get());
+			textfieldOwner->addTextfield(m_textfield);
+			DBG("text : " + m_textfield->Label::getText());
+		}
     }
     
     jBox::~jBox()
@@ -127,18 +136,35 @@ namespace Kiwi
     
     void jBox::grabKeyboardFocus()
     {
-        juce::Component::grabKeyboardFocus();
+		if (m_textfield)
+		{
+			m_textfield->showEditor();
+		}
+		else
+		{
+			juce::Component::grabKeyboardFocus();
+		}
     }
 	
     void jBox::positionChanged()
     {
         setTopLeftPosition(toJuce<int>(getDisplayPosition()));
+		
+		if (m_textfield)
+		{
+			m_textfield->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
+		}
     }
     
     void jBox::sizeChanged()
     {
 		const Gui::Point pt = getDisplaySize();
         setSize(round(pt.x()), round(pt.y()));
+		
+		if (m_textfield)
+		{
+			m_textfield->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
+		}
     }
 	
 	void jBox::selectionStatusChanged()
