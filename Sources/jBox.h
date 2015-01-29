@@ -106,7 +106,7 @@ namespace Kiwi
 		//! Called by the box when the box selection status changed.
 		/** The function is called by the box selection status changed.
 		 */
-		void selectionStatusChanged() override;
+		void pageViewSelectionStatusChanged() override;
 		
 		//! Called by the box when the presentation status changed.
 		/** The function is called by the box when the presentation status changed.
@@ -116,12 +116,12 @@ namespace Kiwi
 		//! Called by the page when the lock status has changed.
 		/** The function is called by the page when the lock status has changed.
 		 */
-		void pageLockStatusChanged() override;
+		void pageViewLockStatusChanged() override;
 		
 		//! Called by the page when the edition status has changed.
 		/** The function is called by the page when the edition status has changed.
 		 */
-		void pagePresentationStatusChanged() override;
+		void pageViewPresentationStatusChanged() override;
 	
         void paint(Graphics& g) override;
         void mouseEnter(const MouseEvent& e) override;

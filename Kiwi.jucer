@@ -103,13 +103,13 @@
       </GROUP>
       <GROUP id="{FA240F6D-4B6D-94B1-7307-F40BB73F33F0}" name="KiwiView">
         <FILE id="rR4qV2" name="View.h" compile="0" resource="0" file="KiwiCore/KiwiView/View.h"/>
-        <FILE id="zPbYeQ" name="BoxView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/BoxView.cpp"/>
-        <FILE id="iyUmJF" name="BoxView.h" compile="0" resource="0" file="KiwiCore/KiwiView/BoxView.h"/>
         <FILE id="Lst8vY" name="DefsView.h" compile="0" resource="0" file="KiwiCore/KiwiView/DefsView.h"/>
-        <FILE id="N5eGUp" name="LinkView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/LinkView.cpp"/>
-        <FILE id="I8UVUI" name="LinkView.h" compile="0" resource="0" file="KiwiCore/KiwiView/LinkView.h"/>
         <FILE id="ICKDzx" name="PageView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/PageView.cpp"/>
         <FILE id="RUaM5Y" name="PageView.h" compile="0" resource="0" file="KiwiCore/KiwiView/PageView.h"/>
+        <FILE id="N5eGUp" name="LinkView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/LinkView.cpp"/>
+        <FILE id="I8UVUI" name="LinkView.h" compile="0" resource="0" file="KiwiCore/KiwiView/LinkView.h"/>
+        <FILE id="zPbYeQ" name="BoxView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/BoxView.cpp"/>
+        <FILE id="iyUmJF" name="BoxView.h" compile="0" resource="0" file="KiwiCore/KiwiView/BoxView.h"/>
       </GROUP>
     </GROUP>
     <GROUP id="{F6406C11-CFDE-6D77-B9E8-E3C9758A8862}" name="Sources">
