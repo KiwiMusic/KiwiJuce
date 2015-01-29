@@ -44,7 +44,6 @@ namespace Kiwi
 			m_textfield->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
 			addAndMakeVisible(m_textfield.get());
 			textfieldOwner->addTextfield(m_textfield);
-			DBG("text : " + m_textfield->Label::getText());
 		}
     }
     
