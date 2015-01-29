@@ -167,7 +167,7 @@ namespace Kiwi
 		}
     }
 	
-	void jBox::selectionStatusChanged()
+	void jBox::pageViewSelectionStatusChanged()
 	{
 		redraw();
 	}
@@ -177,12 +177,12 @@ namespace Kiwi
 		checkVisibilityAndInteractionMode();
 	}
 	
-	void jBox::pageLockStatusChanged()
+	void jBox::pageViewLockStatusChanged()
 	{
 		checkVisibilityAndInteractionMode();
 	}
 	
-	void jBox::pagePresentationStatusChanged()
+	void jBox::pageViewPresentationStatusChanged()
 	{
 		checkVisibilityAndInteractionMode();
 	}

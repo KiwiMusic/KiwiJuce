@@ -263,8 +263,8 @@ namespace Kiwi
                         box->setAttributeValue(AttrBox::Tag_presentation_position, {pos.x(), pos.y()});
                         pos = box->getSize(false);
 						box->setAttributeValue(AttrBox::Tag_presentation_size, {pos.x(), pos.y()});
-						jbox->pageLockStatusChanged();
-						jbox->pagePresentationStatusChanged();
+						jbox->pageViewLockStatusChanged();
+						jbox->pageViewPresentationStatusChanged();
 					}
 					
 					addAndMakeVisible(jbox.get());
