@@ -427,7 +427,7 @@ namespace Kiwi
 				const int grid_size = page->getGridSize();
 				const juce::Rectangle<int> bounds(g.getClipBounds());
 				
-				g.setColour(bgcolor.contrasting(0.5));
+				g.setColour(bgcolor.contrasting(0.5).withAlpha(0.7f));
 				for(int x = bounds.getX() - (bounds.getX() % grid_size); x < bounds.getRight(); x += grid_size)
 				{
 					for(int y = bounds.getY() - (bounds.getY() % grid_size) ; y < bounds.getBottom(); y += grid_size)
@@ -686,6 +686,12 @@ namespace Kiwi
     {
 		m_last_border_downstatus = Knock::None;
 		
+		if(m_lasso->dragging)
+		{
+			lassoEnd(m_lasso);
+			m_lasso->setVisible(false);
+		}
+		
 		if(m_box_received_downevent)
 		{
 			sBoxView box = m_knock.getBox();
@@ -751,12 +757,6 @@ namespace Kiwi
 					link->endDrag();
 					removeAllTempLink();
 				}
-			}
-			
-			if(m_lasso->isVisible())
-			{
-                lassoEnd(m_lasso);
-                m_lasso->setVisible(false);
 			}
 			
 			if(m_iolighter && m_iolighter->isVisible())

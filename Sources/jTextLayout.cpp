@@ -21,11 +21,28 @@
  ==============================================================================
  */
 
-#include "jTextField.h"
+#include "jTextLayout.h"
 
 namespace Kiwi
 {
-    
+    jTextLayout::jTextLayout()
+    {
+        ;
+    }
+	
+    jTextLayout::~jTextLayout()
+    {
+        
+    }
+	
+	void jTextLayout::set(wstring const& text,
+						  Gui::Font const& font,
+						  Gui::Rectangle const& bounds,
+						  Gui::Font::Justification justification,
+						  const bool wordwrap, const bool ellipsis)
+	{
+		;
+	}
 }
 
 

@@ -267,10 +267,10 @@ namespace Kiwi
         
         void paint(Graphics& g) override
         {
-            g.setColour(juce::Colour::fromFloatRGBA(0.96, 0.96, 0.96, 0.5));
-            g.fillAll();
-            g.setColour(juce::Colour::fromFloatRGBA(0.96, 0.96, 0.96, 1.));
-            g.drawRect(0., 0., getWidth(), getHeight(), 1.);
+			const Colour color = Colour::fromFloatRGBA(0.96, 0.96, 0.96, 1.);
+            g.fillAll(color.withAlpha(0.4f));
+            g.setColour(color);
+            g.drawRect(getLocalBounds(), 1.);
         }
     };
 

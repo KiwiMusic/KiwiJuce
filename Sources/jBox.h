@@ -26,7 +26,7 @@
 
 #include "jDoodle.h"
 #include "jEvent.h"
-#include "jTextField.h"
+#include "jLabel.h"
 
 namespace Kiwi
 {
@@ -38,11 +38,12 @@ namespace Kiwi
     /**
      The jBox overrides the redraw and paint method and wraps the mouse and keyboard events.
      */
-    class jBox  : public BoxView, public Component
+	class jBox : public BoxView, public Component
     {
 	private:
-		sjTextField		m_textfield;
-		
+		typedef shared_ptr<jBox>		sjBox;
+		sjLabel							m_label;
+				
 		const double m_framesize;
 		void checkVisibilityAndInteractionMode();
     public:
@@ -56,6 +57,15 @@ namespace Kiwi
         /** You should never have to use this function.
          */
         ~jBox();
+		
+		sjBox getShared()
+		{
+			return dynamic_pointer_cast<jBox>(shared_from_this());
+		}
+		
+		/** This function is called just after the boxview has been created.
+		 */
+		void init() override;
 		
 		//! Retrieve the display bounds of the box view.
 		/** The function retrieves the display bounds of the box view.
@@ -87,6 +97,17 @@ namespace Kiwi
          @param box    The box.
          */
         void redraw() override;
+		
+		//! Get if the view is currently being edited.
+		/** The function get if the view is currently being edited.
+		 @return True if the view is currently being edited, false otherwise.
+		 */
+		void textFieldEditorShown() override;
+		
+		//! Receives the notification that the textfield's text changed.
+		/** The function receives the notification that the textfield's text changed
+		 */
+		void textfieldTextChanged() override;
 		
         //! The grab focus function that should be override.
         /** The function is called by the box when it want to grab keyboard focus.

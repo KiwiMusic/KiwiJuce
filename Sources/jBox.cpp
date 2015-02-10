@@ -26,31 +26,42 @@
 namespace Kiwi
 {	
 	// ================================================================================ //
-	//                                  JBOX CONTROLER                                  //
+	//										JBOX										//
 	// ================================================================================ //
 	
 	jBox::jBox(sBox box, sPageView pageview) : BoxView(box, pageview),
 	m_framesize(2)
     {
 		setBounds(toJuce<int>(getDisplayBounds()));
-        setInterceptsMouseClicks(false, false);
+        setInterceptsMouseClicks(false, true);
         setWantsKeyboardFocus(false);
 		setMouseClickGrabsKeyboardFocus(false);
-		
-		Gui::TextField::sOwner textfieldOwner = dynamic_pointer_cast<Gui::TextField::Owner>(box);
-		if (textfieldOwner)
-		{
-			m_textfield = make_shared<jTextField>();
-			m_textfield->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
-			addAndMakeVisible(m_textfield.get());
-			textfieldOwner->addTextfield(m_textfield);
-		}
     }
-    
+	
     jBox::~jBox()
     {
-        ;
+		;
     }
+	
+	void jBox::init()
+	{
+		Gui::sWriter writer = dynamic_pointer_cast<Gui::Writer>(getBox());
+		if (writer)
+		{
+			Gui::Writer::sTextField textfield = writer->getTextField();
+			if (textfield)
+			{
+				m_label = make_shared<jLabel>(textfield);
+				
+				if (m_label)
+				{
+					m_label->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
+					addAndMakeVisible(m_label.get());
+					textfield->addView(m_label);
+				}
+			}
+		}
+	}
 	
 	Gui::Rectangle jBox::getDisplayBounds() const noexcept
 	{
@@ -70,6 +81,8 @@ namespace Kiwi
 	ulong jBox::resizerKnock(Gui::Point const& pt) const noexcept
 	{
 		ulong borderFlag = Knock::BorderZone::None;
+		const bool growy = (m_label != nullptr);
+		
 		if(isSelected())
 		{
 			const Gui::Point localPoint = pt - getDisplayPosition();
@@ -88,6 +101,24 @@ namespace Kiwi
 			if(localPoint.x() <= m_framesize*2)
 			{
 				borderFlag |= Knock::BorderZone::Left;
+			}
+			
+			if(growy)
+			{
+				if((borderFlag & Knock::BorderZone::Top || borderFlag & Knock::BorderZone::Bottom))
+				{
+					if(localPoint.x() <= m_framesize*4)
+					{
+						borderFlag |= Knock::BorderZone::Left;
+					}
+					else if(localPoint.x() >= getDisplaySize().x() - m_framesize*4)
+					{
+						borderFlag |= Knock::BorderZone::Right;
+					}
+					
+					borderFlag &= ~Knock::BorderZone::Top;
+					borderFlag &= ~Knock::BorderZone::Bottom;
+				}
 			}
 		}
 		
@@ -132,12 +163,32 @@ namespace Kiwi
 			repaint();
         }
 	}
-    
+	
+	void jBox::textFieldEditorShown()
+	{
+		;
+	}
+	
+	void jBox::textfieldTextChanged()
+	{
+		if (m_label)
+		{
+			if (m_label->isBeingEdited())
+			{
+				String text = m_label->getText(true);
+				Gui::Font font = getBox()->getFont();
+				juce::Font jfont(font.getName(), (float)font.getSize(), font.getStyle());
+				double textwidth = jfont.getStringWidthFloat(text);
+				getBox()->setAttributeValue(AttrBox::Tag_size, {textwidth + 10, getSize().y()});
+			}
+		}
+	}
+	
     void jBox::grabKeyboardFocus()
     {
-		if (m_textfield)
+		if (m_label)
 		{
-			m_textfield->showEditor();
+			m_label->showEditor();
 		}
 		else
 		{
@@ -149,9 +200,9 @@ namespace Kiwi
     {
         setTopLeftPosition(toJuce<int>(getDisplayPosition()));
 		
-		if (m_textfield)
+		if (m_label)
 		{
-			m_textfield->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
+			m_label->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
 		}
     }
     
@@ -160,9 +211,9 @@ namespace Kiwi
 		const Gui::Point pt = getDisplaySize();
         setSize(round(pt.x()), round(pt.y()));
 		
-		if (m_textfield)
+		if (m_label)
 		{
-			m_textfield->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
+			m_label->setBounds(toJuce<int>(BoxView::getBounds()).withPosition(m_framesize, m_framesize));
 		}
     }
 	
@@ -231,17 +282,33 @@ namespace Kiwi
 				//Paint Box frame :
 				if(edit)
 				{
+					const bool growy = (m_label != nullptr);
 					const Gui::Color ioColor = Gui::Color(0.3, 0.3, 0.3);
 					const Gui::Color presentationColor = Gui::Color(0., 0.8, 0.);
 					const Gui::Color selectionColor = presentation ? presentationColor : Gui::Color(0., 0.6, 0.9);
 					
 					if(isSelected())
 					{
-						d.setColor(selectionColor);
-						d.drawRectangle(localBoxFrame.reduced(m_framesize*0.5), m_framesize);
-						
-						d.setColor(selectionColor.darker(0.1));
-						d.drawRectangle(localBoxFrame.reduced(0.5), 1);
+						if (growy)
+						{
+							d.setColor(selectionColor);
+							// left
+							d.fillRectangle(0, 0, m_framesize*4, m_framesize);
+							d.fillRectangle(0, m_framesize, m_framesize, localBoxFrame.height() - m_framesize*2);
+							d.fillRectangle(0, localBoxFrame.height() - m_framesize, m_framesize*4, m_framesize);
+							// right
+							d.fillRectangle(localBoxFrame.width() - m_framesize*4, 0, m_framesize*4, m_framesize);
+							d.fillRectangle(localBoxFrame.width() - m_framesize, m_framesize, m_framesize, localBoxFrame.height() - m_framesize*2);
+							d.fillRectangle(localBoxFrame.width() - m_framesize*4, localBoxFrame.height() - m_framesize, m_framesize*4, m_framesize);
+						}
+						else
+						{
+							d.setColor(selectionColor);
+							d.drawRectangle(localBoxFrame.reduced(m_framesize*0.5), m_framesize);
+							
+							d.setColor(selectionColor.darker(0.1));
+							d.drawRectangle(localBoxFrame.reduced(0.5), 1);
+						}
 					}
 					else if(!presentation)
 					{

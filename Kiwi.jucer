@@ -41,6 +41,8 @@
         <FILE id="LKRp9E" name="Path.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Path.h"/>
         <FILE id="wTu8kH" name="Color.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Color.cpp"/>
         <FILE id="EIExcO" name="Color.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Color.h"/>
+        <FILE id="RaRAig" name="TextLayout.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/TextLayout.cpp"/>
+        <FILE id="CpPcnV" name="TextLayout.h" compile="0" resource="0" file="KiwiCore/KiwiGui/TextLayout.h"/>
         <FILE id="GAGXNY" name="Doodle.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Doodle.cpp"/>
         <FILE id="EAcqh9" name="Doodle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Doodle.h"/>
         <FILE id="oTo89z" name="Event.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Event.cpp"/>
@@ -50,10 +52,10 @@
         <FILE id="eqYwe1" name="Font.mm" compile="1" resource="0" file="KiwiCore/KiwiGui/Font.mm"/>
         <FILE id="DTDgfO" name="Attribute.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Attribute.cpp"/>
         <FILE id="znEeQ0" name="Attribute.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Attribute.h"/>
-        <FILE id="L4i41D" name="TextField.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/TextField.cpp"/>
-        <FILE id="VS6HKr" name="TextField.h" compile="0" resource="0" file="KiwiCore/KiwiGui/TextField.h"/>
         <FILE id="SbDhI7" name="Sketcher.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Sketcher.cpp"/>
         <FILE id="akkD7p" name="Sketcher.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Sketcher.h"/>
+        <FILE id="L4i41D" name="Writer.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Writer.cpp"/>
+        <FILE id="VS6HKr" name="Writer.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Writer.h"/>
       </GROUP>
       <GROUP id="{38D1343D-8B6A-0FCE-D0B7-0453BCB997DE}" name="KiwiBase">
         <FILE id="jPVf7H" name="Core.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Core.h"/>
@@ -114,12 +116,16 @@
     </GROUP>
     <GROUP id="{F6406C11-CFDE-6D77-B9E8-E3C9758A8862}" name="Sources">
       <FILE id="kNyk7g" name="jDefs.h" compile="0" resource="0" file="Sources/jDefs.h"/>
+      <FILE id="sLBymB" name="jTextLayout.cpp" compile="1" resource="0" file="Sources/jTextLayout.cpp"/>
+      <FILE id="mboTmQ" name="jTextLayout.h" compile="0" resource="0" file="Sources/jTextLayout.h"/>
       <FILE id="yWVhgU" name="jDoodle.cpp" compile="1" resource="0" file="Sources/jDoodle.cpp"/>
       <FILE id="aPpFMX" name="jDoodle.h" compile="0" resource="0" file="Sources/jDoodle.h"/>
       <FILE id="pounES" name="jEvent.cpp" compile="1" resource="0" file="Sources/jEvent.cpp"/>
       <FILE id="rDBaLH" name="jEvent.h" compile="0" resource="0" file="Sources/jEvent.h"/>
-      <FILE id="YNTgEh" name="jTextField.cpp" compile="1" resource="0" file="Sources/jTextField.cpp"/>
-      <FILE id="iRQ5P1" name="jTextField.h" compile="0" resource="0" file="Sources/jTextField.h"/>
+      <FILE id="IClPm4" name="jTextEditor.cpp" compile="1" resource="0" file="Sources/jTextEditor.cpp"/>
+      <FILE id="kdH7UN" name="jTextEditor.h" compile="0" resource="0" file="Sources/jTextEditor.h"/>
+      <FILE id="cr3uWb" name="jLabel.cpp" compile="1" resource="0" file="Sources/jLabel.cpp"/>
+      <FILE id="e4FAUX" name="jLabel.h" compile="0" resource="0" file="Sources/jLabel.h"/>
       <FILE id="Kx84fe" name="jBox.cpp" compile="1" resource="0" file="Sources/jBox.cpp"/>
       <FILE id="pYraG8" name="jBox.h" compile="0" resource="0" file="Sources/jBox.h"/>
       <FILE id="ommnFv" name="jLink.cpp" compile="1" resource="0" file="Sources/jLink.cpp"/>
