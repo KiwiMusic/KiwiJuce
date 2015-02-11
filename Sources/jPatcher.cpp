@@ -21,7 +21,7 @@
  ==============================================================================
  */
 
-#include "jPage.h"
+#include "jPatcher.h"
 #include "Application.h"
 
 namespace Kiwi
@@ -47,7 +47,7 @@ namespace Kiwi
 	//                                 JPAGE CONTROLER                                  //
 	// ================================================================================ //
 	
-	jPage::jPage(sPage page) : PageView(page)
+	jPatcher::jPatcher(sPatcher patcher) : PatcherView(patcher)
     {
         setWantsKeyboardFocus(true);
 		setInterceptsMouseClicks(true, true);
@@ -65,7 +65,7 @@ namespace Kiwi
         addChildComponent(m_lasso);
     }
     
-    jPage::~jPage()
+    jPatcher::~jPatcher()
     {
         removeChildComponent(m_editor);
         removeChildComponent(m_iolighter);
@@ -76,12 +76,12 @@ namespace Kiwi
 		m_editor = nullptr;
     }
 	
-	void jPage::redraw()
+	void jPatcher::redraw()
 	{
 		repaint();
 	}
     
-    void jPage::newObject(int x, int y, bool dblClick)
+    void jPatcher::newObject(int x, int y, bool dblClick)
     {
         sjObject object;
         object = m_object_edited.lock();
@@ -114,7 +114,7 @@ namespace Kiwi
         }
     }
 	
-	void jPage::addToSelectionBasedOnModifiers(sObjectView object, bool selOnly)
+	void jPatcher::addToSelectionBasedOnModifiers(sObjectView object, bool selOnly)
 	{
 		if(selOnly)
 		{
@@ -130,7 +130,7 @@ namespace Kiwi
 		}
 	}
 	
-	void jPage::addToSelectionBasedOnModifiers(sLinkView link, bool selOnly)
+	void jPatcher::addToSelectionBasedOnModifiers(sLinkView link, bool selOnly)
 	{
 		if(selOnly)
 		{
@@ -146,7 +146,7 @@ namespace Kiwi
 		}
 	}
 	
-	bool jPage::selectOnMouseDown(sObjectView object, bool selOnly)
+	bool jPatcher::selectOnMouseDown(sObjectView object, bool selOnly)
 	{
 		if(isSelected(object))
         {
@@ -157,7 +157,7 @@ namespace Kiwi
 		return false;
 	}
 	
-	bool jPage::selectOnMouseDown(sLinkView link, bool selOnly)
+	bool jPatcher::selectOnMouseDown(sLinkView link, bool selOnly)
 	{
 		if(isSelected(link))
         {
@@ -168,7 +168,7 @@ namespace Kiwi
 		return false;
 	}
 	
-	void jPage::selectOnMouseUp(sObjectView object, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod)
+	void jPatcher::selectOnMouseUp(sObjectView object, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod)
 	{
 		if(resultOfMouseDownSelectMethod && ! objectWasDragged)
         {
@@ -177,7 +177,7 @@ namespace Kiwi
 	}
 	
 	
-	void jPage::selectOnMouseUp(sLinkView link, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod)
+	void jPatcher::selectOnMouseUp(sLinkView link, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod)
 	{
 		if(resultOfMouseDownSelectMethod && ! objectWasDragged)
         {
@@ -185,7 +185,7 @@ namespace Kiwi
         }
 	}
 	
-	void jPage::copySelectionToClipboard()
+	void jPatcher::copySelectionToClipboard()
 	{
 		int todo;
 		/*
@@ -200,7 +200,7 @@ namespace Kiwi
 		*/
 	}
 	
-	void jPage::pasteFromClipboard(Gui::Point const& offset)
+	void jPatcher::pasteFromClipboard(Gui::Point const& offset)
 	{
 		const string text = SystemClipboard::getTextFromClipboard().toStdString();
 		if(!text.empty())
@@ -211,7 +211,7 @@ namespace Kiwi
 		}
 	}
 	
-	void jPage::bringsLinksToFront()
+	void jPatcher::bringsLinksToFront()
 	{
 		vector<sLinkView> links;
 		getLinks(links);
@@ -225,7 +225,7 @@ namespace Kiwi
 		}
 	}
 	
-	void jPage::bringsObjectsToFront()
+	void jPatcher::bringsObjectsToFront()
 	{
 		vector<sObjectView> objects;
 		getObjects(objects);
@@ -239,18 +239,18 @@ namespace Kiwi
 		}
 	}
 	
-	bool jPage::notify(sAttr attr)
+	bool jPatcher::notify(sAttr attr)
 	{
 		redraw();
 		return true;
 	}
 	
-	sObjectView jPage::createObjectView(sObject object)
+	sObjectView jPatcher::createObjectView(sObject object)
 	{
-		return ObjectView::create<jObject>(object, static_pointer_cast<PageView>(shared_from_this()));
+		return ObjectView::create<jObject>(object, static_pointer_cast<PatcherView>(shared_from_this()));
 	}
 	
-	void jPage::objectViewCreated(sObjectView objectview)
+	void jPatcher::objectViewCreated(sObjectView objectview)
     {
 		if(objectview)
 		{
@@ -269,8 +269,8 @@ namespace Kiwi
                         object->setAttributeValue(AttrObject::Tag_presentation_position, {pos.x(), pos.y()});
                         pos = object->getSize(false);
 						object->setAttributeValue(AttrObject::Tag_presentation_size, {pos.x(), pos.y()});
-						jobject->pageViewLockStatusChanged();
-						jobject->pageViewPresentationStatusChanged();
+						jobject->patcherViewLockStatusChanged();
+						jobject->patcherViewPresentationStatusChanged();
 						*/
 					}
 					
@@ -282,7 +282,7 @@ namespace Kiwi
 		}
     }
 	
-    void jPage::objectViewWillBeRemoved(sObjectView objectview)
+    void jPatcher::objectViewWillBeRemoved(sObjectView objectview)
     {
 		if(objectview)
 		{
@@ -294,12 +294,12 @@ namespace Kiwi
 		}
     }
 	
-	sLinkView jPage::createLinkView(sLink link)
+	sLinkView jPatcher::createLinkView(sLink link)
 	{
 		return LinkView::create<jLink>(link);
 	}
 	
-	void jPage::linkViewCreated(sLinkView linkview)
+	void jPatcher::linkViewCreated(sLinkView linkview)
 	{
 		if(linkview)
 		{
@@ -313,7 +313,7 @@ namespace Kiwi
 	}
 	
 	
-	void jPage::linkViewWillBeRemoved(sLinkView linkview)
+	void jPatcher::linkViewWillBeRemoved(sLinkView linkview)
 	{
 		if(linkview)
 		{
@@ -324,7 +324,7 @@ namespace Kiwi
 		}
 	}
 	
-    sjObject jPage::getjObject(int x, int y) noexcept
+    sjObject jPatcher::getjObject(int x, int y) noexcept
     {
         int zaza;
         /*
@@ -348,7 +348,7 @@ namespace Kiwi
         return nullptr;
     }
 	
-	void jPage::selectionChanged()
+	void jPatcher::selectionChanged()
 	{
 		vector<sObjectView> objects, selobjects;
 		getObjects(objects);
@@ -367,7 +367,7 @@ namespace Kiwi
 		Application::commandStatusChanged();
 	}
 	
-	void jPage::updateObjectsAndLinksLayers()
+	void jPatcher::updateObjectsAndLinksLayers()
 	{
 		if (getLockStatus())
 			bringsObjectsToFront();
@@ -375,13 +375,13 @@ namespace Kiwi
 			bringsLinksToFront();
 	}
 	
-	void jPage::lockStatusChanged()
+	void jPatcher::lockStatusChanged()
 	{
 		updateObjectsAndLinksLayers();
 		repaint();
 	}
 	
-	void jPage::presentationStatusChanged()
+	void jPatcher::presentationStatusChanged()
 	{
 		const bool presentation = getPresentationStatus();
 		
@@ -418,22 +418,22 @@ namespace Kiwi
     //                                      COMPONENT                                   //
     // ================================================================================ //
     
-    void jPage::paint(Graphics& g)
+    void jPatcher::paint(Graphics& g)
     {
-		sPage page = getPage();
-		if (page)
+		sPatcher patcher = getPatcher();
+		if (patcher)
 		{
 			int todo;
 			/*
 			const bool locked = getLockStatus();
-			const juce::Colour bgcolor = toJuce((locked ? page->getLockedBgColor() : page->getEditingBgColor()));
+			const juce::Colour bgcolor = toJuce((locked ? patcher->getLockedBgColor() : patcher->getEditingBgColor()));
 			
 			g.setColour(bgcolor);
 			g.fillAll();
 			
 			if (!locked)
 			{
-				const int grid_size = page->getGridSize();
+				const int grid_size = patcher->getGridSize();
 				const juce::Rectangle<int> bounds(g.getClipBounds());
 				
 				g.setColour(bgcolor.contrasting(0.5).withAlpha(0.7f));
@@ -449,7 +449,7 @@ namespace Kiwi
 		}
     }
 	
-    void jPage::mouseDown(const MouseEvent& e)
+    void jPatcher::mouseDown(const MouseEvent& e)
     {
 		m_object_received_downevent = false;
 		m_copy_on_drag = false;
@@ -543,7 +543,7 @@ namespace Kiwi
                     }
                 }
 			}
-			else if(m_knock.hasHitPage())
+			else if(m_knock.hasHitPatcher())
 			{
 				lassoBegin(m_lasso, Gui::Point(e.x, e.y), e.mods.isShiftDown());
 			}
@@ -552,7 +552,7 @@ namespace Kiwi
 		m_last_drag = e.getPosition();
     }
 	
-	void jPage::mouseDrag(const MouseEvent& e)
+	void jPatcher::mouseDrag(const MouseEvent& e)
 	{
 		MouseCursor::StandardCursorType mc = MouseCursor::NormalCursor;
 		m_object_dragstatus = ! m_mouse_wasclicked;
@@ -692,7 +692,7 @@ namespace Kiwi
 		m_mouse_wasclicked = false;
 	}
 	
-    void jPage::mouseUp(const MouseEvent& e)
+    void jPatcher::mouseUp(const MouseEvent& e)
     {
 		m_last_border_downstatus = Knock::None;
 		
@@ -745,9 +745,9 @@ namespace Kiwi
                         out = m_magnet.getIndex();
                     }
                     
-                    //sLink link = Link::create(getPage(), from, out, to, in);
+                    //sLink link = Link::create(getPatcher(), from, out, to, in);
                     int TODO_add_link_whith_dico;
-                    //getPage()->createLink(link);
+                    //getPatcher()->createLink(link);
 				}
 			}
             else if(object)
@@ -782,7 +782,7 @@ namespace Kiwi
 		m_mouse_wasclicked = false;
     }
 	
-    void jPage::mouseMove(const MouseEvent& e)
+    void jPatcher::mouseMove(const MouseEvent& e)
     {
 		MouseCursor::StandardCursorType mc = MouseCursor::NormalCursor;
         
@@ -844,17 +844,17 @@ namespace Kiwi
 		setMouseCursor(mc);
     }
 	
-    void jPage::mouseEnter(const MouseEvent& e)
+    void jPatcher::mouseEnter(const MouseEvent& e)
     {
         ;
     }
     
-    void jPage::mouseExit(const MouseEvent& e)
+    void jPatcher::mouseExit(const MouseEvent& e)
     {
         ;
     }
     
-    void jPage::mouseDoubleClick(const MouseEvent& e)
+    void jPatcher::mouseDoubleClick(const MouseEvent& e)
     {
 		if (!getLockStatus() && !e.mods.isAnyModifierKeyDown())
 		{
@@ -862,28 +862,28 @@ namespace Kiwi
 		}
     }
     
-    void jPage::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel)
+    void jPatcher::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel)
     {
         ;
     }
     
-    bool jPage::keyPressed(const KeyPress& key)
+    bool jPatcher::keyPressed(const KeyPress& key)
     {
         if(key.isKeyCode(KeyPress::spaceKey))
         {
-            sPage page = getPage();
-            if(page)
+            sPatcher patcher = getPatcher();
+            if(patcher)
             {
-                page->dspStart(44100., 64);
+                patcher->dspStart(44100., 64);
                 return true;
             }
         }
         if(key.getTextCharacter() == L'v')
         {
-            sPage page = getPage();
-            if(page)
+            sPatcher patcher = getPatcher();
+            if(patcher)
             {
-                page->dspTick();
+                patcher->dspTick();
                 return true;
             }
         }
@@ -916,7 +916,7 @@ namespace Kiwi
 			{
 				const bool snap = key.getModifiers().isShiftDown();
 				int todo;
-				//const long gridsize = getPage()->getGridSize();
+				//const long gridsize = getPatcher()->getGridSize();
 				const long gridsize = 10;
 				const int amount = snap ? gridsize : 1;
 
@@ -950,20 +950,20 @@ namespace Kiwi
     //                                  LABEL LISTENER                                  //
     // ================================================================================ //
     
-	void jPage::textEditorTextChanged(juce::TextEditor& e)
+	void jPatcher::textEditorTextChanged(juce::TextEditor& e)
     {
         Console::post("textEditorTextChanged");
     }
     
-    void jPage::textEditorReturnKeyPressed(juce::TextEditor& e)
+    void jPatcher::textEditorReturnKeyPressed(juce::TextEditor& e)
     {
         sDico dico = createObjectDicoAtPosition(e.getText().toStdString(), e.getPosition());
         e.clear();
         e.setVisible(false);
-        getPage()->add(dico);
+        getPatcher()->add(dico);
     }
     
-    void jPage::textEditorEscapeKeyPressed(juce::TextEditor& e)
+    void jPatcher::textEditorEscapeKeyPressed(juce::TextEditor& e)
     {
         sjObject object = m_object_edited.lock();
         if(object)
@@ -975,7 +975,7 @@ namespace Kiwi
         e.setVisible(false);
     }
     
-    void jPage::textEditorFocusLost(juce::TextEditor& e)
+    void jPatcher::textEditorFocusLost(juce::TextEditor& e)
     {
         ;
     }
@@ -984,7 +984,7 @@ namespace Kiwi
     //                              APPLICATION COMMAND TARGET                          //
     // ================================================================================ //
 	
-	void jPage::showObjectPopupMenu(sObject object)
+	void jPatcher::showObjectPopupMenu(sObject object)
 	{
 		ApplicationCommandManager* commandManager = &Application::getCommandManager();
 		
@@ -1003,12 +1003,12 @@ namespace Kiwi
 		m.show();
 	}
     
-    ApplicationCommandTarget* jPage::getNextCommandTarget()
+    ApplicationCommandTarget* jPatcher::getNextCommandTarget()
     {
         return findFirstTargetParentComponent();
     }
     
-    void jPage::getAllCommands(Array<CommandID>& commands)
+    void jPatcher::getAllCommands(Array<CommandID>& commands)
     {
 		commands.add(CommandIDs::save);
         //commands.add(StandardApplicationCommandIDs::undo);
@@ -1040,13 +1040,13 @@ namespace Kiwi
         commands.add(CommandIDs::gridModeSwitch);
         commands.add(CommandIDs::enableSnapToGrid);
 		
-		commands.add(CommandIDs::showPageInspector);
+		commands.add(CommandIDs::showPatcherInspector);
 		commands.add(CommandIDs::showObjectInspector);
 		
 		//CommandIDs::openObjectHelp
     }
     
-    void jPage::getCommandInfo(const CommandID commandID, ApplicationCommandInfo& result)
+    void jPatcher::getCommandInfo(const CommandID commandID, ApplicationCommandInfo& result)
     {
         switch(commandID)
         {
@@ -1055,8 +1055,8 @@ namespace Kiwi
 				result.addDefaultKeypress ('s',  ModifierKeys::commandModifier);
 				break;
 				
-			case CommandIDs::showPageInspector:
-				result.setInfo (TRANS("Page inspector"), TRANS("Open page inspector"), CommandCategories::view, 0);
+			case CommandIDs::showPatcherInspector:
+				result.setInfo (TRANS("Patcher inspector"), TRANS("Open patcher inspector"), CommandCategories::view, 0);
 				result.addDefaultKeypress ('i',  ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
 				break;
 				
@@ -1133,31 +1133,31 @@ namespace Kiwi
 				break;
                 
             case CommandIDs::newObject:
-                result.setInfo(TRANS("New Object"), TRANS("Add a new object in the page"), CommandCategories::editing, 0);
+                result.setInfo(TRANS("New Object"), TRANS("Add a new object in the patcher"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('n', ModifierKeys::noModifiers);
 				result.setActive(!getLockStatus());
                 break;
             
             case CommandIDs::newBang:
-                result.setInfo(TRANS("New Bang"), TRANS("Add a bang in the page"), CommandCategories::editing, 0);
+                result.setInfo(TRANS("New Bang"), TRANS("Add a bang in the patcher"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('b', ModifierKeys::noModifiers);
 				result.setActive(!getLockStatus());
                 break;
                 
             case CommandIDs::newNumber:
-                result.setInfo(TRANS("New Number"), TRANS("Add a number in the page"), CommandCategories::editing, 0);
+                result.setInfo(TRANS("New Number"), TRANS("Add a number in the patcher"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('f', ModifierKeys::noModifiers);
 				result.setActive(!getLockStatus());
                 break;
                 
             case CommandIDs::newToggle:
-                result.setInfo(TRANS("New Toggle"), TRANS("Add a toggle in the page"), CommandCategories::editing, 0);
+                result.setInfo(TRANS("New Toggle"), TRANS("Add a toggle in the patcher"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('t', ModifierKeys::noModifiers);
 				result.setActive(!getLockStatus());
                 break;
                 
             case CommandIDs::newMessage:
-                result.setInfo(TRANS("New Message"), TRANS("Add a message in the page"), CommandCategories::editing, 0);
+                result.setInfo(TRANS("New Message"), TRANS("Add a message in the patcher"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('m', ModifierKeys::noModifiers);
                 break;
                 
@@ -1206,21 +1206,21 @@ namespace Kiwi
         }
     }
     
-    bool jPage::perform(const InvocationInfo& info)
+    bool jPatcher::perform(const InvocationInfo& info)
     {
         Console::post("perform command");
         switch (info.commandID)
         {
 			case CommandIDs::save:
 			{
-				DBG("|- try to save page");
-				Application::getKiwiInstance()->savePage(getPage());
+				DBG("|- try to save patcher");
+				Application::getKiwiInstance()->savePatcher(getPatcher());
 				break;
 			}
-			case CommandIDs::showPageInspector:
+			case CommandIDs::showPatcherInspector:
 			{
-				DBG("|- page inspector");
-				Application::getKiwiInstance()->showInspector(getPage());
+				DBG("|- patcher inspector");
+				Application::getKiwiInstance()->showInspector(getPatcher());
 				break;
 			}
 			case CommandIDs::showObjectInspector:
@@ -1252,7 +1252,7 @@ namespace Kiwi
 			{
 				/*
 				DBG("|- paste objects");
-				const long gridsize = getPage()->getGridSize();
+				const long gridsize = getPatcher()->getGridSize();
 				pasteFromClipboard(Gui::Point(gridsize, gridsize));
 				*/
 				break;
@@ -1268,7 +1268,7 @@ namespace Kiwi
 				/*
 				DBG("|- duplicate objects");
 				copySelectionToClipboard();
-				const long gridsize = getPage()->getGridSize();
+				const long gridsize = getPatcher()->getGridSize();
 				pasteFromClipboard(Gui::Point(gridsize, gridsize));
 				unselectAllLinks();
 				*/
@@ -1311,18 +1311,18 @@ namespace Kiwi
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                getPage()->add(createObjectDicoAtPosition("newobject", getMouseXYRelative()));
+                getPatcher()->add(createObjectDicoAtPosition("newobject", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newBang:
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-				sPage page = getPage();
-				if (page)
+				sPatcher patcher = getPatcher();
+				if (patcher)
 				{
 					sDico dico = createObjectDicoAtPosition("bang", getMouseXYRelative());
-					page->add(dico);
+					patcher->add(dico);
 				}
                 break;
             }
@@ -1330,21 +1330,21 @@ namespace Kiwi
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                getPage()->add(createObjectDicoAtPosition("toggle", getMouseXYRelative()));
+                getPatcher()->add(createObjectDicoAtPosition("toggle", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newNumber:
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                getPage()->add(createObjectDicoAtPosition("number", getMouseXYRelative()));
+                getPatcher()->add(createObjectDicoAtPosition("number", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newMessage:
             {
 				if (isMouseButtonDownAnywhere()) return false;
                 unselectAll();
-                getPage()->add(createObjectDicoAtPosition("message", getMouseXYRelative()));
+                getPatcher()->add(createObjectDicoAtPosition("message", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::zoomIn:
@@ -1393,18 +1393,18 @@ namespace Kiwi
     //                                 JIO HIGHLIGHTER									//
     // ================================================================================ //
     
-    jPage::jIolighter::jIolighter()
+    jPatcher::jIolighter::jIolighter()
     {
         setInterceptsMouseClicks(false, false);
         setWantsKeyboardFocus(false);
     }
     
-    jPage::jIolighter::~jIolighter()
+    jPatcher::jIolighter::~jIolighter()
     {
         ;
     }
     
-    void jPage::jIolighter::paint(Graphics& g)
+    void jPatcher::jIolighter::paint(Graphics& g)
     {
         const juce::Rectangle<float> size(4.5, 4.5, getWidth() - 9., getHeight() - 9.);
         g.setColour(m_colour.brighter(0.3));
@@ -1413,7 +1413,7 @@ namespace Kiwi
         g.fillEllipse(size);
     }
     
-    void jPage::jIolighter::setInlet(sObjectView object, ulong index)
+    void jPatcher::jIolighter::setInlet(sObjectView object, ulong index)
     {
         if(object)
         {
@@ -1434,7 +1434,7 @@ namespace Kiwi
         }
     }
     
-    void jPage::jIolighter::setOutlet(sObjectView object, ulong index)
+    void jPatcher::jIolighter::setOutlet(sObjectView object, ulong index)
     {
         if(object)
         {

@@ -139,13 +139,13 @@ namespace Kiwi
 		void drawMultiLineText(wstring const& text, const long startX, const long baselineY, const long maximumLineWidth) const override;
         
         //! Fill a path.
-        /** The function fills a page.
+        /** The function fills a patcher.
          @param path The path.
          */
         void fillPath(Gui::Path const& path) override;
         
         //! Draw a path.
-        /** The function draws a page.
+        /** The function draws a patcher.
          @param path The path.
          @param thickness The thickness of the parth.
          */

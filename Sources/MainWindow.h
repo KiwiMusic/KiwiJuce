@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_MAIN_WINDOW__
 #define __DEF_KIWI_MAIN_WINDOW__
 
-#include "jPage.h"
+#include "jPatcher.h"
 
 namespace Kiwi
 {
@@ -73,9 +73,9 @@ namespace Kiwi
     //                                  PAGE WINDOW                                     //
     // ================================================================================ //
     
-    //! The page window.
+    //! The patcher window.
     /*
-     The page window
+     The patcher window
      */
     //class MainWindow : public ResizableWindow
 	class MainWindow : public BaseWindow
@@ -104,7 +104,7 @@ namespace Kiwi
         /** The function allocates an instance component.
          @return The instance component.
          */
-        void addPage(sjPage page);
+        void addPatcher(sjPatcher patcher);
     };
 }
 

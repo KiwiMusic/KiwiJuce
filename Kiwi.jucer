@@ -84,8 +84,8 @@
         <FILE id="nel9cw" name="Object.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Object.h"/>
         <FILE id="ytHkIG" name="Link.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Link.cpp"/>
         <FILE id="etPqGb" name="Link.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Link.h"/>
-        <FILE id="zbdGRh" name="Page.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Page.cpp"/>
-        <FILE id="vDxknU" name="Page.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Page.h"/>
+        <FILE id="zbdGRh" name="Patcher.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Patcher.cpp"/>
+        <FILE id="vDxknU" name="Patcher.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Patcher.h"/>
         <FILE id="ohjQyO" name="Instance.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Instance.cpp"/>
         <FILE id="HzdEjf" name="Instance.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Instance.h"/>
       </GROUP>
@@ -98,12 +98,12 @@
       <GROUP id="{FA240F6D-4B6D-94B1-7307-F40BB73F33F0}" name="KiwiView">
         <FILE id="rR4qV2" name="View.h" compile="0" resource="0" file="KiwiCore/KiwiView/View.h"/>
         <FILE id="Lst8vY" name="DefsView.h" compile="0" resource="0" file="KiwiCore/KiwiView/DefsView.h"/>
-        <FILE id="zPbYeQ" name="BoxView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/BoxView.cpp"/>
-        <FILE id="iyUmJF" name="BoxView.h" compile="0" resource="0" file="KiwiCore/KiwiView/BoxView.h"/>
+        <FILE id="zPbYeQ" name="ObjectView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/ObjectView.cpp"/>
+        <FILE id="iyUmJF" name="ObjectView.h" compile="0" resource="0" file="KiwiCore/KiwiView/ObjectView.h"/>
         <FILE id="N5eGUp" name="LinkView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/LinkView.cpp"/>
         <FILE id="I8UVUI" name="LinkView.h" compile="0" resource="0" file="KiwiCore/KiwiView/LinkView.h"/>
-        <FILE id="ICKDzx" name="PageView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/PageView.cpp"/>
-        <FILE id="RUaM5Y" name="PageView.h" compile="0" resource="0" file="KiwiCore/KiwiView/PageView.h"/>
+        <FILE id="ICKDzx" name="PatcherView.cpp" compile="1" resource="0" file="KiwiCore/KiwiView/PatcherView.cpp"/>
+        <FILE id="RUaM5Y" name="PatcherView.h" compile="0" resource="0" file="KiwiCore/KiwiView/PatcherView.h"/>
       </GROUP>
     </GROUP>
     <GROUP id="{F6406C11-CFDE-6D77-B9E8-E3C9758A8862}" name="Sources">
@@ -118,12 +118,12 @@
       <FILE id="kdH7UN" name="jTextEditor.h" compile="0" resource="0" file="Sources/jTextEditor.h"/>
       <FILE id="cr3uWb" name="jLabel.cpp" compile="1" resource="0" file="Sources/jLabel.cpp"/>
       <FILE id="e4FAUX" name="jLabel.h" compile="0" resource="0" file="Sources/jLabel.h"/>
-      <FILE id="Kx84fe" name="jBox.cpp" compile="1" resource="0" file="Sources/jBox.cpp"/>
-      <FILE id="pYraG8" name="jBox.h" compile="0" resource="0" file="Sources/jBox.h"/>
+      <FILE id="Kx84fe" name="jObject.cpp" compile="1" resource="0" file="Sources/jObject.cpp"/>
+      <FILE id="pYraG8" name="jObject.h" compile="0" resource="0" file="Sources/jObject.h"/>
       <FILE id="ommnFv" name="jLink.cpp" compile="1" resource="0" file="Sources/jLink.cpp"/>
       <FILE id="bGvWQS" name="jLink.h" compile="0" resource="0" file="Sources/jLink.h"/>
-      <FILE id="UJgoaV" name="jPage.cpp" compile="1" resource="0" file="Sources/jPage.cpp"/>
-      <FILE id="DXIxeU" name="jPage.h" compile="0" resource="0" file="Sources/jPage.h"/>
+      <FILE id="UJgoaV" name="jPatcher.cpp" compile="1" resource="0" file="Sources/jPatcher.cpp"/>
+      <FILE id="DXIxeU" name="jPatcher.h" compile="0" resource="0" file="Sources/jPatcher.h"/>
       <FILE id="w7WH1j" name="MainWindow.cpp" compile="1" resource="0" file="Sources/MainWindow.cpp"/>
       <FILE id="FYzfXp" name="MainWindow.h" compile="0" resource="0" file="Sources/MainWindow.h"/>
       <FILE id="uSSFRD" name="jInstance.cpp" compile="1" resource="0" file="Sources/jInstance.cpp"/>

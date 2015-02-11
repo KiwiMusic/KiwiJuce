@@ -35,7 +35,7 @@ namespace Kiwi
 	
     jInstance::~jInstance()
     {
-        m_pages.clear();
+        m_patchers.clear();
     }
     
     shared_ptr<jInstance> jInstance::create()
@@ -48,44 +48,44 @@ namespace Kiwi
         return that;
     }
     
-    void jInstance::pageCreated(sInstance instance, sPage page)
+    void jInstance::patcherCreated(sInstance instance, sPatcher patcher)
     {
         if(instance == m_instance)
         {
-            if(page)
+            if(patcher)
             {
-				sjPage jpc = PageView::create<jPage>(page);
+				sjPatcher jpc = PatcherView::create<jPatcher>(patcher);
                 if(jpc)
                 {
-                    m_pages.push_back(jpc);
+                    m_patchers.push_back(jpc);
                     m_window->setContentNonOwned(jpc.get(), false);
 					//m_window->setName(jpc->getN)
-                    Console::post("Page has been added to the application");
+                    Console::post("Patcher has been added to the application");
                 }
                 else
                 {
-                    m_instance->removePage(page);
+                    m_instance->removePatcher(patcher);
                 }
 				
-				sjPage jpc2 = PageView::create<jPage>(page);
+				sjPatcher jpc2 = PatcherView::create<jPatcher>(patcher);
 				if(jpc2)
 				{
-					m_pages.push_back(jpc2);
+					m_patchers.push_back(jpc2);
 					m_window2->setContentNonOwned(jpc2.get(), false);
 					//m_window->setName(jpc->getN)
-					Console::post("Page has been added to the application");
+					Console::post("Patcher has been added to the application");
 				}
 				else
 				{
-					m_instance->removePage(page);
+					m_instance->removePatcher(patcher);
 				}
             }
         }
     }
 	
-    void jInstance::pageRemoved(sInstance instance, sPage page)
+    void jInstance::patcherRemoved(sInstance instance, sPatcher patcher)
     {
-        Console::post("Page has been removed from the application");
+        Console::post("Patcher has been removed from the application");
     }
     
     void jInstance::dspStarted(shared_ptr<Instance> instance)
@@ -98,12 +98,12 @@ namespace Kiwi
         ;
     }
     
-    void jInstance::newPage()
+    void jInstance::newPatcher()
     {
-        m_instance->createPage(Dico::create());
+        m_instance->createPatcher(Dico::create());
     }
     
-    void jInstance::openPage(const File& file)
+    void jInstance::openPatcher(const File& file)
     {
         ;
     }
@@ -124,21 +124,21 @@ namespace Kiwi
 		*/
 	}
 	
-	void jInstance::showInspector(sPage page)
+	void jInstance::showInspector(sPatcher patcher)
 	{
 		/*
-		if (m_page_inspector_window)
+		if (m_patcher_inspector_window)
 		{
-			m_page_inspector_window->setPage(page);
-			m_page_inspector_window->setVisible(true);
-			m_page_inspector_window->toFront(true);
+			m_patcher_inspector_window->setPatcher(patcher);
+			m_patcher_inspector_window->setVisible(true);
+			m_patcher_inspector_window->toFront(true);
 		}
 		else
 		{
-			if (page)
+			if (patcher)
 			{
-				m_page_inspector_window = InspectorWindow::create();
-				showInspector(page);
+				m_patcher_inspector_window = InspectorWindow::create();
+				showInspector(patcher);
 			}
 		}
 		*/
@@ -171,13 +171,13 @@ namespace Kiwi
 		*/
 	}
 	
-	void jInstance::savePage(sPage page)
+	void jInstance::savePatcher(sPatcher patcher)
 	{
-		if (page)
+		if (patcher)
 		{
 			sDico dico = Dico::create();
-			page->write(dico);
-			const string extension = ".kiwipage";
+			patcher->write(dico);
+			const string extension = ".kiwipatcher";
 			const string filename = "testeuuuur";
 			const string directory = File::getSpecialLocation(File::userDesktopDirectory).getFullPathName().toStdString();
 			
@@ -205,13 +205,13 @@ namespace Kiwi
 			DBG("filename : " + filename);
 			DBG("directory : " + directory);
 			
-			if(extension == ".kiwipage" && !filename.empty() && !directory.empty())
+			if(extension == ".kiwipatcher" && !filename.empty() && !directory.empty())
 			{
 				sDico dico = Dico::create();
                 if(dico)
                 {
                     dico->read(filename + extension, directory);
-                    sPage page = m_instance->createPage(dico);
+                    sPatcher patcher = m_instance->createPatcher(dico);
                 }
 			}
 			else

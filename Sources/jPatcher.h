@@ -32,11 +32,11 @@ namespace Kiwi
 	//                                 JPAGE CONTROLER                                  //
 	// ================================================================================ //
 	
-	//! The jPage is the juce implementation of the Page::View.
+	//! The jPatcher is the juce implementation of the Patcher::View.
 	/**
-	 The jPage ...
+	 The jPatcher ...
 	 */
-	class jPage : public PageView, public Component, public ApplicationCommandTarget, public juce::TextEditor::Listener
+	class jPatcher : public PatcherView, public Component, public ApplicationCommandTarget, public juce::TextEditor::Listener
 	{
     private:
         class jLasso;
@@ -104,8 +104,8 @@ namespace Kiwi
 		 */
 		void copySelectionToClipboard();
 		
-		//! Attempts to add objects to the page from clipboard.
-		/** The function attempts to add objects to the page from clipboard.
+		//! Attempts to add objects to the patcher from clipboard.
+		/** The function attempts to add objects to the patcher from clipboard.
 		 */
 		void pasteFromClipboard(Gui::Point const& offset = Gui::Point());
 		
@@ -130,12 +130,12 @@ namespace Kiwi
         /** You should never have to use this function.
 		 Please use the Object::View
          */
-        jPage(sPage page);
+        jPatcher(sPatcher patcher);
         
         //! Destructor.
         /** You should never have to use this function.
          */
-        ~jPage();
+        ~jPatcher();
 		
         // ================================================================================ //
         //                                      COMPONENT                                   //
@@ -180,53 +180,53 @@ namespace Kiwi
         //                                  PAGE CONTROLLER                                 //
         // ================================================================================ //
 		
-		//! Receives notification when an attribute value of the page has changed.
-		/** The function receives notification when an attribute value of the page has changed.
+		//! Receives notification when an attribute value of the patcher has changed.
+		/** The function receives notification when an attribute value of the patcher has changed.
 		 @param attr The attribute.
 		 @return pass true to notify changes to listeners, false if you don't want them to be notified
 		 */
 		bool notify(sAttr attr) override;
 		
 		//! Create an object controller.
-		/** Page controller's subclasses must implement this method to create custom object controller.
+		/** Patcher controller's subclasses must implement this method to create custom object controller.
 		 @param object     The object.
 		 @return The newly created object controller.
 		 */
 		virtual sObjectView createObjectView(sObject object) override;
 		
 		//! Receive the notification that an object controller has been created.
-		/** The function is called by the page when an object controller has been created.
+		/** The function is called by the patcher when an object controller has been created.
 		 @param objectctrl The object controller.
 		 */
 		virtual void objectViewCreated(sObjectView objectctrl) override;
         
 		//! Receive the notification that an object controller before an object has been removed.
-		/** The function is called by the page controller before an object has been removed.
+		/** The function is called by the patcher controller before an object has been removed.
 		 @param objectctrl The object controller.
 		 */
         virtual void objectViewWillBeRemoved(sObjectView objectctrl) override;
         
 		//! Create a link controller.
-		/** Page controller's subclasses must implement this method to create custom link controller.
+		/** Patcher controller's subclasses must implement this method to create custom link controller.
 		 @param link     The link.
 		 @return The newly created link controller.
 		 */
 		virtual sLinkView createLinkView(sLink link) override;
 		
 		//! Receive the notification that a link controller has been created.
-		/** The function is called by the page when a link controller has been created.
+		/** The function is called by the patcher when a link controller has been created.
 		 @param linkctrl The link controller.
 		 */
 		virtual void linkViewCreated(sLinkView linkctrl) override;
 		
 		//! Receive the notification that a link controller before an object has been removed.
-		/** The function is called by the page controller before a link has been removed.
+		/** The function is called by the patcher controller before a link has been removed.
 		 @param linkctrl The link controller.
 		 */
 		virtual void linkViewWillBeRemoved(sLinkView linkctrl) override;
 		
 		//! The overriden redraw function.
-		/** The function is called when the page needs to be redrawn.
+		/** The function is called when the patcher needs to be redrawn.
 		 */
 		void redraw() override;
 		
@@ -235,22 +235,22 @@ namespace Kiwi
 		 */
 		void selectionChanged() override;
 		
-		//! Called when the page has been locked/unlocked.
-		/** The function is called when the page has been locked/unlocked.
+		//! Called when the patcher has been locked/unlocked.
+		/** The function is called when the patcher has been locked/unlocked.
 		 */
 		void lockStatusChanged() override;
 		
-		//! Called when the page presentation mode has been activated/deactivated.
-		/** The function is called when the page presentation mode has been activated/deactivated.
+		//! Called when the patcher presentation mode has been activated/deactivated.
+		/** The function is called when the patcher presentation mode has been activated/deactivated.
 		 */
 		void presentationStatusChanged() override;
     };
 
-	typedef shared_ptr<jPage>		sjPage;
-	typedef shared_ptr<jPage>		scjPage;
-	typedef weak_ptr<jPage>		wjPage;
+	typedef shared_ptr<jPatcher>		sjPatcher;
+	typedef shared_ptr<jPatcher>		scjPatcher;
+	typedef weak_ptr<jPatcher>		wjPatcher;
     
-    class jPage::jLasso : public PageView::Lasso, public Component
+    class jPatcher::jLasso : public PatcherView::Lasso, public Component
     {
     public:
         jLasso()
@@ -274,7 +274,7 @@ namespace Kiwi
         }
     };
 
-    class jPage::jIolighter : public Component
+    class jPatcher::jIolighter : public Component
     {
     private:
         juce::Colour    m_colour;

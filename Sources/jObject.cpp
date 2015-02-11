@@ -21,7 +21,7 @@
  ==============================================================================
  */
 
-#include "jBox.h"
+#include "jObject.h"
 
 namespace Kiwi
 {	
@@ -29,7 +29,7 @@ namespace Kiwi
 	//										JBOX										//
 	// ================================================================================ //
 	
-	jObject::jObject(sObject object, sPageView pageview) : ObjectView(object, pageview),
+	jObject::jObject(sObject object, sPatcherView patcherview) : ObjectView(object, patcherview),
 	m_framesize(2)
     {
 		setBounds(toJuce<int>(getDisplayBounds()));
@@ -143,7 +143,7 @@ namespace Kiwi
 				redraw();
 			}
 			
-            const bool acceptClick = ObjectView::isVisible() && getPageLockStatus() && !object->getIgnoreClick();
+            const bool acceptClick = ObjectView::isVisible() && getPatcherLockStatus() && !object->getIgnoreClick();
 			setInterceptsMouseClicks(acceptClick, acceptClick);
 			
             Gui::sKeyboarder keyboarder = dynamic_pointer_cast<Gui::Keyboarder>(object);
@@ -219,7 +219,7 @@ namespace Kiwi
 		}
     }
 	
-	void jObject::pageViewSelectionStatusChanged()
+	void jObject::patcherViewSelectionStatusChanged()
 	{
 		redraw();
 	}
@@ -229,12 +229,12 @@ namespace Kiwi
 		checkVisibilityAndInteractionMode();
 	}
 	
-	void jObject::pageViewLockStatusChanged()
+	void jObject::patcherViewLockStatusChanged()
 	{
 		checkVisibilityAndInteractionMode();
 	}
 	
-	void jObject::pageViewPresentationStatusChanged()
+	void jObject::patcherViewPresentationStatusChanged()
 	{
 		checkVisibilityAndInteractionMode();
 	}
@@ -246,8 +246,8 @@ namespace Kiwi
 			sObject object = getObject();
 			if (object)
 			{
-				const bool edit = !getPageLockStatus();
-				const bool presentation = getPagePresentationStatus();
+				const bool edit = !getPatcherLockStatus();
+				const bool presentation = getPatcherPresentationStatus();
 				
 				const Gui::Rectangle localObjectFrame = getDisplayBounds().withZeroOrigin();
 				const Gui::Rectangle localObjectBounds = ObjectView::getBounds().withPosition(Gui::Point(m_framesize, m_framesize));

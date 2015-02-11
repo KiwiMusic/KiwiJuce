@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_JLINK_CONTROLLER__
 #define __DEF_KIWI_JLINK_CONTROLLER__
 
-#include "jBox.h"
+#include "jObject.h"
 
 namespace Kiwi
 {

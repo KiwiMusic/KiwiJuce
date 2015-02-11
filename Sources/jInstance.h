@@ -27,7 +27,7 @@
 #include "jLookAndFeel.h"
 #include "MainWindow.h"
 //#include "jConsole.h"
-#include "jPage.h"
+#include "jPatcher.h"
 //#include "AttributeView.h"
 
 namespace Kiwi
@@ -57,11 +57,11 @@ namespace Kiwi
 		shared_ptr<MainWindow>                  m_window2;
 		/*
 		shared_ptr<InspectorWindow>             m_app_settings_window;
-		shared_ptr<InspectorWindow>             m_page_inspector_window;
+		shared_ptr<InspectorWindow>             m_patcher_inspector_window;
 		shared_ptr<InspectorWindow>             m_object_inspector_window;
 		*/
-        vector<sjPage>							m_pages;
-		vector<shared_ptr<MainWindow>>          m_page_windows;
+        vector<sjPatcher>							m_patchers;
+		vector<shared_ptr<MainWindow>>          m_patcher_windows;
 		KiwiLookAndFeel							m_lookandfeel;
     public:
         
@@ -81,19 +81,19 @@ namespace Kiwi
          */
         static shared_ptr<jInstance> create();
         
-        //! Receive the notification that a page has been created.
-        /** The function is called by the instance when a page has been created.
+        //! Receive the notification that a patcher has been created.
+        /** The function is called by the instance when a patcher has been created.
          @param instance    The instance.
-         @param page        The page.
+         @param patcher        The patcher.
          */
-        void pageCreated(sInstance instance, sPage page) override;
+        void patcherCreated(sInstance instance, sPatcher patcher) override;
         
-        //! Receive the notification that a page has been closed.
-        /** The function is called by the instance when a page has been closed.
+        //! Receive the notification that a patcher has been closed.
+        /** The function is called by the instance when a patcher has been closed.
          @param instance    The instance.
-         @param page        The page.
+         @param patcher        The patcher.
          */
-        void pageRemoved(sInstance instance, sPage page) override;
+        void patcherRemoved(sInstance instance, sPatcher patcher) override;
         
         //! Receive the notification that the dsp has been started.
         /** The function is called by the instance when the dsp has been started.
@@ -107,26 +107,26 @@ namespace Kiwi
          */
         void dspStopped(shared_ptr<Instance> instance) override;
         
-        //! Create a new empty page.
-        /** The function creates a new empty page.
+        //! Create a new empty patcher.
+        /** The function creates a new empty patcher.
          */
-        void newPage();
+        void newPatcher();
         
         //! Open a file
-        /** The function opens a page
+        /** The function opens a patcher
          @param file The file to open.
          */
-        void openPage(const File& file);
+        void openPatcher(const File& file);
 		
 		//! Brings the global application settings window to front
 		/** The function brings the global application settings window to front
 		 */
 		void showAppSettingsWindow();
 		
-		//! Brings the page inspector window to front
-		/** The function brings the page inspector window to front
+		//! Brings the patcher inspector window to front
+		/** The function brings the patcher inspector window to front
 		 */
-		void showInspector(sPage jpage);
+		void showInspector(sPatcher jpatcher);
 		
 		//! Brings the object inspector window to front
 		/** The function brings the object inspector window to front
@@ -138,10 +138,10 @@ namespace Kiwi
 		 */
 		void setInspectorContent(sObject objects);
 		
-		//! Try to save a page to disk.
-		/** The function attempts to save a page to disk.
+		//! Try to save a patcher to disk.
+		/** The function attempts to save a patcher to disk.
 		 */
-		void savePage(sPage jpage);
+		void savePatcher(sPatcher jpatcher);
 		
 		//! Asks user to open a file.
 		/** The function asks user to open a file and attempts to load it.
@@ -149,19 +149,19 @@ namespace Kiwi
 		void askUserToOpenFile();
 		
 		//! Try to open a file
-		/** The function attempts to load a page.
+		/** The function attempts to load a patcher.
 		 */
 		bool openFile(File file);
         
         /*
-        closePage
+        closePatcher
         save
         saveAs
         
         minimizeWindow
         maximizeWindow
         closeWindow	
-        closeAllPages
+        closeAllPatchers
          */
     };
 	

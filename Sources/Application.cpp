@@ -90,7 +90,7 @@ namespace Kiwi
         MenuBarModel::setMacMainMenu (m_menu_model, &macMainMenuPopup, TRANS("Open Recent"));
 #endif
         
-        m_instance->newPage();
+        m_instance->newPatcher();
     }
     
     void Application::shutdown()
@@ -202,19 +202,19 @@ namespace Kiwi
         else                                jassertfalse; // names have changed?
     }
     
-    void Application::createOpenRecentPageMenu (PopupMenu& menu)
+    void Application::createOpenRecentPatcherMenu (PopupMenu& menu)
     {
         
     }
     
     void Application::createFileMenu (PopupMenu& menu)
     {
-        menu.addCommandItem (m_command_manager, CommandIDs::newPage);
-        menu.addCommandItem (m_command_manager, CommandIDs::newTabPage);
+        menu.addCommandItem (m_command_manager, CommandIDs::newPatcher);
+        menu.addCommandItem (m_command_manager, CommandIDs::newTabPatcher);
         menu.addSeparator();
         
         menu.addCommandItem (m_command_manager, CommandIDs::openFile);
-        createOpenRecentPageMenu (menu);
+        createOpenRecentPatcherMenu (menu);
         menu.addCommandItem (m_command_manager, CommandIDs::closeWindow);
         menu.addSeparator();
         
@@ -250,7 +250,7 @@ namespace Kiwi
         menu.addCommandItem (m_command_manager, CommandIDs::editModeSwitch);
         menu.addCommandItem (m_command_manager, CommandIDs::presentationModeSwitch);
 		menu.addSeparator();
-		menu.addCommandItem (m_command_manager, CommandIDs::showPageInspector);
+		menu.addCommandItem (m_command_manager, CommandIDs::showPatcherInspector);
         menu.addSeparator();
         menu.addCommandItem (m_command_manager, CommandIDs::gridModeSwitch);
         menu.addSeparator();
@@ -308,7 +308,7 @@ namespace Kiwi
         menu.addCommandItem (m_command_manager, CommandIDs::showConsoleWindow);
         
         menu.addSeparator();
-        menu.addCommandItem (m_command_manager, CommandIDs::closeAllPages);
+        menu.addCommandItem (m_command_manager, CommandIDs::closeAllPatchers);
     }
     
     void Application::createExtraMenu (PopupMenu& menu)
@@ -334,8 +334,8 @@ namespace Kiwi
         // this returns the set of all commands that this target can perform..
         const CommandID ids[] =
         {
-            CommandIDs::newPage,
-            CommandIDs::newTabPage,
+            CommandIDs::newPatcher,
+            CommandIDs::newTabPatcher,
             CommandIDs::openFile,
             CommandIDs::showConsoleWindow,
             CommandIDs::showAudioStatusWindow,
@@ -350,13 +350,13 @@ namespace Kiwi
     {
         switch (commandID)
         {
-            case CommandIDs::newPage:
-                result.setInfo (TRANS("New Page Window..."), TRANS("Creates a new Page Window"), CommandCategories::general, 0);
+            case CommandIDs::newPatcher:
+                result.setInfo (TRANS("New Patcher Window..."), TRANS("Creates a new Patcher Window"), CommandCategories::general, 0);
                 result.defaultKeypresses.add (KeyPress ('n', ModifierKeys::commandModifier, 0));
                 break;
                 
-            case CommandIDs::newTabPage:
-                result.setInfo (TRANS("New Tab Page"), TRANS("Create a New Tab Page"), CommandCategories::general, 0);
+            case CommandIDs::newTabPatcher:
+                result.setInfo (TRANS("New Tab Patcher"), TRANS("Create a New Tab Patcher"), CommandCategories::general, 0);
                 result.defaultKeypresses.add (KeyPress ('t', ModifierKeys::commandModifier, 0));
                 result.setActive(false);
                 break;
@@ -366,8 +366,8 @@ namespace Kiwi
                 result.defaultKeypresses.add (KeyPress ('o', ModifierKeys::commandModifier, 0));
                 break;
                 
-            case CommandIDs::closeAllPages:
-                result.setInfo (TRANS("Close All Pages"), TRANS("Close All Pages"), CommandCategories::windows, 0);
+            case CommandIDs::closeAllPatchers:
+                result.setInfo (TRANS("Close All Patchers"), TRANS("Close All Patchers"), CommandCategories::windows, 0);
                 //result.setActive (m_instance->getNumOpenMainWindows() > 0);
                 break;
                 
@@ -399,9 +399,9 @@ namespace Kiwi
     {
         switch (info.commandID)
         {
-            //case CommandIDs::newPage:						m_instance->createNewMainWindow();	break;
+            //case CommandIDs::newPatcher:						m_instance->createNewMainWindow();	break;
             case CommandIDs::openFile:						m_instance->askUserToOpenFile();		break;
-            //case CommandIDs::closeAllPages:					m_instance->closeAllMainWindows(); 	break;
+            //case CommandIDs::closeAllPatchers:					m_instance->closeAllMainWindows(); 	break;
             //case CommandIDs::showConsoleWindow:				m_instance->showConsoleWindow();		break;
             //case CommandIDs::showAudioStatusWindow:			m_instance->showAudioStatusWindow();	break;
 				

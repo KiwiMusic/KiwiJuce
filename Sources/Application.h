@@ -52,7 +52,7 @@ namespace Kiwi
         void createMenu (PopupMenu& menu, const String& menuName);
         
         //! Called by createMenu to create each menu
-        void createOpenRecentPageMenu	(PopupMenu& menu);
+        void createOpenRecentPatcherMenu	(PopupMenu& menu);
         void createFileMenu				(PopupMenu& menu);
         void createEditMenu				(PopupMenu& menu);
         void createViewMenu				(PopupMenu& menu);

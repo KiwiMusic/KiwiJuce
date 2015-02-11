@@ -51,7 +51,7 @@ namespace Kiwi
         //! The constructor.
         /** You should never have to use this function.
          */
-        jObject(sObject object, sPageView pageview);
+        jObject(sObject object, sPatcherView patcherview);
         
         //! Destructor.
         /** You should never have to use this function.
@@ -86,7 +86,7 @@ namespace Kiwi
 		Gui::Point getDisplaySize() const noexcept override;
 		
 		//! Tests if a point is inside an object resizer zone.
-		/** The function tests if a point is inside an object resizer zone. The point is relative to the page top-left's coordinates
+		/** The function tests if a point is inside an object resizer zone. The point is relative to the patcher top-left's coordinates
 		 @param point The point to test.
 		 @return A flag describing the resizer zone as defined in the Knock::Border enum.
 		 */
@@ -127,22 +127,22 @@ namespace Kiwi
 		//! Called by the object when the object selection status changed.
 		/** The function is called by the object selection status changed.
 		 */
-		void pageViewSelectionStatusChanged() override;
+		void patcherViewSelectionStatusChanged() override;
 		
 		//! Called by the object when the presentation status changed.
 		/** The function is called by the object when the presentation status changed.
 		 */
 		void presentationStatusChanged() override;
 		
-		//! Called by the page when the lock status has changed.
-		/** The function is called by the page when the lock status has changed.
+		//! Called by the patcher when the lock status has changed.
+		/** The function is called by the patcher when the lock status has changed.
 		 */
-		void pageViewLockStatusChanged() override;
+		void patcherViewLockStatusChanged() override;
 		
-		//! Called by the page when the edition status has changed.
-		/** The function is called by the page when the edition status has changed.
+		//! Called by the patcher when the edition status has changed.
+		/** The function is called by the patcher when the edition status has changed.
 		 */
-		void pageViewPresentationStatusChanged() override;
+		void patcherViewPresentationStatusChanged() override;
 	
         void paint(Graphics& g) override;
         void mouseEnter(const MouseEvent& e) override;
