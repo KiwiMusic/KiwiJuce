@@ -43,34 +43,44 @@ namespace Kiwi
 	
 	void AttributeComponent::getAttributeValue(ElemVector& elements)
 	{
+		/*
 		if (m_attr)
 		{
 			m_attr->get(elements);
 		}
+		*/
 	}
 	
 	void AttributeComponent::setAttributeValue(ElemVector const& elements)
 	{
+		/*
 		if (m_manager && m_attr)
 		{
 			m_manager->setAttributeValue(m_attr->getName(), elements);
 		}
+		*/
 	}
 	
 	const String AttributeComponent::getAttrName() const noexcept
 	{
+		/*
 		if (m_attr)
+		{
 			return m_attr->getName()->getName();
-			else
-				return String::empty;
+		}
+		*/
+		return String::empty;
 	}
 	
 	const String AttributeComponent::getAttrLabel() const noexcept
 	{
+		/*
 		if (m_attr)
+		{
 			return m_attr->getLabel()->getName();
-			else
-				return String::empty;
+		}
+		*/
+		return String::empty;
 	}
 	
 	void AttributeComponent::paint(Graphics& g)
@@ -106,10 +116,12 @@ namespace Kiwi
 		}
 	}
 	
-	void AttributeComponent::notify(shared_ptr<Attr::Manager> manager, sAttr attr, Attr::Notification type)
+	void AttributeComponent::notify(sAttr attr)
 	{
-		if(manager && attr && manager == m_manager && attr == m_attr)
+		if(attr == m_attr)
 		{
+			refresh();
+			/*
 			if (type == Attr::Notification::ValueChanged)
 			{
 				refresh();
@@ -118,6 +130,7 @@ namespace Kiwi
 			{
 				setEnabled(!m_attr->isDisabled());
 			}
+			*/
 		}
 	}
 	

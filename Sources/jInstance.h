@@ -26,9 +26,9 @@
 
 #include "jLookAndFeel.h"
 #include "MainWindow.h"
-#include "jConsole.h"
+//#include "jConsole.h"
 #include "jPage.h"
-#include "AttributeView.h"
+//#include "AttributeView.h"
 
 namespace Kiwi
 {
@@ -55,9 +55,11 @@ namespace Kiwi
         shared_ptr<MenuBarModel>                m_menu;
         shared_ptr<MainWindow>                  m_window;
 		shared_ptr<MainWindow>                  m_window2;
+		/*
 		shared_ptr<InspectorWindow>             m_app_settings_window;
 		shared_ptr<InspectorWindow>             m_page_inspector_window;
 		shared_ptr<InspectorWindow>             m_object_inspector_window;
+		*/
         vector<sjPage>							m_pages;
 		vector<shared_ptr<MainWindow>>          m_page_windows;
 		KiwiLookAndFeel							m_lookandfeel;
@@ -129,12 +131,12 @@ namespace Kiwi
 		//! Brings the object inspector window to front
 		/** The function brings the object inspector window to front
 		 */
-		void showInspector(sBox boxes);
+		void showInspector(sObject objects);
 		
 		//! Changes the object inspector content if visible.
 		/** Changes the object inspector content if visible.
 		 */
-		void setInspectorContent(sBox boxes);
+		void setInspectorContent(sObject objects);
 		
 		//! Try to save a page to disk.
 		/** The function attempts to save a page to disk.

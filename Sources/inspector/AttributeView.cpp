@@ -223,20 +223,20 @@ namespace Kiwi
 		}
 	}
 	
-	void InspectorWindow::setBox(sBox box)
+	void InspectorWindow::setObject(sObject object)
 	{
-		if (box)
+		if (object)
 		{
-			if (!m_attr_viewer || (m_attr_viewer->getViewedManager() != box))
+			if (!m_attr_viewer || (m_attr_viewer->getViewedManager() != object))
 			{
-				shared_ptr<AttributeViewer> viewer = AttributeViewer::create(box);
+				shared_ptr<AttributeViewer> viewer = AttributeViewer::create(object);
 				
 				if (viewer)
 				{
 					m_attr_viewer = viewer;
 					m_attr_viewer->setBounds(getLocalBounds());
 					setContentNonOwned(m_attr_viewer.get(), true);
-					string name = toString(box->getName());
+					string name = toString(object->getName());
 					if (name.empty())
 						name = "Object";
 					

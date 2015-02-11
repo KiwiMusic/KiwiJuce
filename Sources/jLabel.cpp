@@ -45,7 +45,7 @@ namespace Kiwi
 		
 		setText(textfield->getText().c_str(), dontSendNotification);
 		
-		Font font(13);
+		juce::Font font(13);
 		font.setTypefaceName("Menelo");
 		setFont(font);
 
@@ -117,7 +117,7 @@ namespace Kiwi
 	}
 	
 	//==============================================================================
-	void jLabel::setFont(const Font& newFont)
+	void jLabel::setFont(const juce::Font& newFont)
 	{
 		if(font != newFont)
 		{
@@ -126,7 +126,7 @@ namespace Kiwi
 		}
 	}
 	
-	Font jLabel::getFont() const noexcept
+	juce::Font jLabel::getFont() const noexcept
 	{
 		return font;
 	}
@@ -328,12 +328,12 @@ namespace Kiwi
 		if(!isBeingEdited())
 		{
 			const float alpha = isEnabled() ? 1.0f : 0.5f;
-			const Font font(getFont());
+			const juce::Font font(getFont());
 			
 			g.setColour(findColour(Label::textColourId).withMultipliedAlpha(alpha));
 			g.setFont(font);
 			
-			Rectangle<int> textArea(getBorderSize().subtractedFrom(getLocalBounds()));
+			juce::Rectangle<int> textArea(getBorderSize().subtractedFrom(getLocalBounds()));
 			
 			const bool isMultiline = true;
 			

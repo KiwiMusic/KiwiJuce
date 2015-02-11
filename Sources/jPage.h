@@ -42,7 +42,7 @@ namespace Kiwi
         class jLasso;
         class jIolighter;
         
-        wjBox								m_box_edited;
+        wjObject								m_object_edited;
 		ScopedPointer<juce::TextEditor>		m_editor;
         vector<sTempLink>					m_templinks;
         
@@ -53,15 +53,15 @@ namespace Kiwi
         
         juce::Point<int>	m_last_drag;
 		bool				m_copy_on_drag;
-		bool				m_box_received_downevent;
-        bool m_box_dragstatus, m_link_dragstatus;
-		bool m_box_downstatus, m_link_downstatus;
+		bool				m_object_received_downevent;
+        bool m_object_dragstatus, m_link_dragstatus;
+		bool m_object_downstatus, m_link_downstatus;
 		
 		bool m_mouse_wasclicked;
 		long m_last_border_downstatus;
 		
-		sjBox getjBox(int x, int y) noexcept;
-		void newBox(int x, int y, bool dblClick = 0);
+		sjObject getjObject(int x, int y) noexcept;
+		void newObject(int x, int y, bool dblClick = 0);
 		
 		
 		//! Retrieves if there are one or more temporary links.
@@ -92,43 +92,43 @@ namespace Kiwi
 			m_templinks.clear();
 		}
 		
-		void addToSelectionBasedOnModifiers(sBoxView box, bool selOnly);
+		void addToSelectionBasedOnModifiers(sObjectView object, bool selOnly);
 		void addToSelectionBasedOnModifiers(sLinkView link, bool selOnly);
-		bool selectOnMouseDown(sBoxView box, bool selOnly);
+		bool selectOnMouseDown(sObjectView object, bool selOnly);
 		bool selectOnMouseDown(sLinkView link, bool selOnly);
-		void selectOnMouseUp(sBoxView box, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
-		void selectOnMouseUp(sLinkView link, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod);
+		void selectOnMouseUp(sObjectView object, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod);
+		void selectOnMouseUp(sLinkView link, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod);
 		
-		//! Copy selected boxes to clipboard
-		/** The function copy boxes to clipboard
+		//! Copy selected objects to clipboard
+		/** The function copy objects to clipboard
 		 */
 		void copySelectionToClipboard();
 		
-		//! Attempts to add boxes to the page from clipboard.
-		/** The function attempts to add boxes to the page from clipboard.
+		//! Attempts to add objects to the page from clipboard.
+		/** The function attempts to add objects to the page from clipboard.
 		 */
 		void pasteFromClipboard(Gui::Point const& offset = Gui::Point());
 		
-		//! Bring all the links in front of boxes.
-		/** The function brings all the links in front of boxes.
+		//! Bring all the links in front of objects.
+		/** The function brings all the links in front of objects.
 		 */
 		void bringsLinksToFront();
 		
-		//! Brings all the boxes in front of links.
-		/** The function brings all the boxes in front of links.
+		//! Brings all the objects in front of links.
+		/** The function brings all the objects in front of links.
 		 */
-		void bringsBoxesToFront();
+		void bringsObjectsToFront();
 		
-		//! Brings boxes or links to front depending on lock status.
-		/** Brings boxes or links to front depending on lock status.
+		//! Brings objects or links to front depending on lock status.
+		/** Brings objects or links to front depending on lock status.
 		 */
-		void updateBoxesAndLinksLayers();
+		void updateObjectsAndLinksLayers();
 		
     public:
 		
         //! The constructor.
         /** You should never have to use this function.
-		 Please use the Box::View
+		 Please use the Object::View
          */
         jPage(sPage page);
         
@@ -170,11 +170,11 @@ namespace Kiwi
         void getCommandInfo(CommandID commandID, ApplicationCommandInfo& result) override;
         bool perform(const InvocationInfo& info) override;
 		
-		//! Shows box contextual popup menu.
-		/** The function shows the box contextual popup menu.
-		 @param box The box.
+		//! Shows object contextual popup menu.
+		/** The function shows the object contextual popup menu.
+		 @param object The object.
 		 */
-		void showBoxPopupMenu(sBox box);
+		void showObjectPopupMenu(sObject object);
         
         // ================================================================================ //
         //                                  PAGE CONTROLLER                                 //
@@ -185,26 +185,26 @@ namespace Kiwi
 		 @param attr The attribute.
 		 @return pass true to notify changes to listeners, false if you don't want them to be notified
 		 */
-		void attributeChanged(sPage page, sAttr attr) override;
+		bool notify(sAttr attr) override;
 		
-		//! Create a box controller.
-		/** Page controller's subclasses must implement this method to create custom box controller.
-		 @param box     The box.
-		 @return The newly created box controller.
+		//! Create an object controller.
+		/** Page controller's subclasses must implement this method to create custom object controller.
+		 @param object     The object.
+		 @return The newly created object controller.
 		 */
-		virtual sBoxView createBoxView(sBox box) override;
+		virtual sObjectView createObjectView(sObject object) override;
 		
-		//! Receive the notification that a box controller has been created.
-		/** The function is called by the page when a box controller has been created.
-		 @param boxctrl The box controller.
+		//! Receive the notification that an object controller has been created.
+		/** The function is called by the page when an object controller has been created.
+		 @param objectctrl The object controller.
 		 */
-		virtual void boxViewCreated(sBoxView boxctrl) override;
+		virtual void objectViewCreated(sObjectView objectctrl) override;
         
-		//! Receive the notification that a box controller before a box has been removed.
-		/** The function is called by the page controller before a box has been removed.
-		 @param boxctrl The box controller.
+		//! Receive the notification that an object controller before an object has been removed.
+		/** The function is called by the page controller before an object has been removed.
+		 @param objectctrl The object controller.
 		 */
-        virtual void boxViewWillBeRemoved(sBoxView boxctrl) override;
+        virtual void objectViewWillBeRemoved(sObjectView objectctrl) override;
         
 		//! Create a link controller.
 		/** Page controller's subclasses must implement this method to create custom link controller.
@@ -219,7 +219,7 @@ namespace Kiwi
 		 */
 		virtual void linkViewCreated(sLinkView linkctrl) override;
 		
-		//! Receive the notification that a link controller before a box has been removed.
+		//! Receive the notification that a link controller before an object has been removed.
 		/** The function is called by the page controller before a link has been removed.
 		 @param linkctrl The link controller.
 		 */
@@ -304,17 +304,17 @@ namespace Kiwi
         
         //! Defines an inlet to be highlighted.
         /** The function defines an inlet to be highlighted.
-         @param box The box that owns the inlet.
+         @param object The object that owns the inlet.
          @param index The index of the inlet.
          */
-        void setInlet(sBoxView box, ulong index);
+        void setInlet(sObjectView object, ulong index);
         
         //! Defines an outlet to be highlighted.
         /** The function defines an outlet to be highlighted.
-         @param box The box that owns the outlet.
+         @param object The object that owns the outlet.
          @param index The index of the outlet.
          */
-        void setOutlet(sBoxView box, ulong index);
+        void setOutlet(sObjectView object, ulong index);
     };
 }
 

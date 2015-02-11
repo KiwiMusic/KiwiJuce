@@ -193,10 +193,10 @@ namespace Kiwi
 			
 			highlightedTextColourId  = 0x1000203, /**< The colour with which to draw the text in highlighted sections. */
 			
-			outlineColourId          = 0x1000205, /**< If this is non-transparent, it will be used to draw a box around
+			outlineColourId          = 0x1000205, /**< If this is non-transparent, it will be used to draw an object around
 												   the edge of the component. */
 			
-			focusedOutlineColourId   = 0x1000206, /**< If this is non-transparent, it will be used to draw a box around
+			focusedOutlineColourId   = 0x1000206, /**< If this is non-transparent, it will be used to draw an object around
 												   the edge of the component when it has focus. */
 			
 			shadowColourId           = 0x1000207, /**< If this is non-transparent, it'll be used to draw an inner shadow
@@ -212,25 +212,25 @@ namespace Kiwi
 		 
 		 @see applyFontToAllText
 		 */
-		void setFont(const Font& newFont);
+		void setFont(const juce::Font& newFont);
 		
 		/** Applies a font to all the text in the editor.
 		 This will also set the current font to use for any new text that's added.
 		 @see setFont
 		 */
-		void applyFontToAllText(const Font& newFont);
+		void applyFontToAllText(const juce::Font& newFont);
 		
 		/** Returns the font that's currently being used for new text.
 		 @see setFont
 		 */
-		const Font& getFont() const noexcept            { return currentFont; }
+		const juce::Font& getFont() const noexcept            { return currentFont; }
 		
 		//==============================================================================
 		/** If set to true, focusing on the editor will highlight all its text.
 		 
 		 (Set to false by default).
 		 
-		 This is useful for boxes where you expect the user to re-enter all the
+		 This is useful for objects where you expect the user to re-enter all the
 		 text when they focus on the component, rather than editing what's already there.
 		 */
 		void setSelectAllWhenFocused(bool shouldSelectAll);
@@ -315,7 +315,7 @@ namespace Kiwi
 		 
 		 Bear in mind that this operate quite slowly if your text box contains large
 		 amounts of text, as it needs to dynamically build the string that's involved.
-		 It's best used for small text boxes.
+		 It's best used for small text objects.
 		 */
 		Value& getTextValue();
 		
@@ -379,7 +379,7 @@ namespace Kiwi
 		 The rectangle returned is relative to the component's top-left corner.
 		 @see scrollEditorToPositionCaret
 		 */
-		Rectangle<int> getCaretRectangle() override;
+		juce::Rectangle<int> getCaretRectangle() override;
 		
 		/** Selects a section of the text. */
 		void setHighlightedRegion(const Range<int>& newSelection) override;
@@ -667,7 +667,7 @@ namespace Kiwi
 		Range<int> selection;
 		int leftIndent, topIndent;
 		unsigned int lastTransactionTime;
-		Font currentFont;
+		juce::Font currentFont;
 		mutable int totalNumChars;
 		int caretPosition;
 		OwnedArray<UniformTextSection> sections;
@@ -693,7 +693,7 @@ namespace Kiwi
 		void coalesceSimilarSections();
 		void splitSection(int sectionIndex, int charToSplitAt);
 		void clearInternal(UndoManager*);
-		void insert(const String&, int insertIndex, const Font&, const Colour, UndoManager*, int newCaretPos);
+		void insert(const String&, int insertIndex, const juce::Font&, const Colour, UndoManager*, int newCaretPos);
 		void reinsert(int insertIndex, const OwnedArray<UniformTextSection>&);
 		void remove(Range<int> range, UndoManager*, int caretPositionToMoveTo);
 		void getCharPosition(int index, float& x, float& y, float& lineHeight) const;

@@ -110,6 +110,7 @@ namespace Kiwi
 	
 	void jInstance::showAppSettingsWindow()
 	{
+		/*
 		if (m_app_settings_window)
 		{
 			m_app_settings_window->setVisible(true);
@@ -120,10 +121,12 @@ namespace Kiwi
 			m_app_settings_window = InspectorWindow::create();
 			showAppSettingsWindow();
 		}
+		*/
 	}
 	
 	void jInstance::showInspector(sPage page)
 	{
+		/*
 		if (m_page_inspector_window)
 		{
 			m_page_inspector_window->setPage(page);
@@ -138,29 +141,34 @@ namespace Kiwi
 				showInspector(page);
 			}
 		}
+		*/
 	}
 	
-	void jInstance::showInspector(sBox box)
+	void jInstance::showInspector(sObject object)
 	{
+		/*
 		if (m_object_inspector_window)
 		{
-			m_object_inspector_window->setBox(box);
+			m_object_inspector_window->setObject(object);
 			m_object_inspector_window->setVisible(true);
 			m_object_inspector_window->toFront(true);
 		}
 		else
 		{
 			m_object_inspector_window = InspectorWindow::create();
-			showInspector(box);
+			showInspector(object);
 		}
+		*/
 	}
 	
-	void jInstance::setInspectorContent(sBox box)
+	void jInstance::setInspectorContent(sObject object)
 	{
+		/*
 		if (m_object_inspector_window)
 		{
-			m_object_inspector_window->setBox(box);
+			m_object_inspector_window->setObject(object);
 		}
+		*/
 	}
 	
 	void jInstance::savePage(sPage page)

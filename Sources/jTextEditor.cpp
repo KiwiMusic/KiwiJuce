@@ -56,7 +56,7 @@ namespace Kiwi
 	class jTextEditor::UniformTextSection
 	{
 	public:
-		UniformTextSection(const String& text, const Font& f, Colour col)
+		UniformTextSection(const String& text, const juce::Font& f, Colour col)
 		: font(f), colour(col)
 		{
 			initialiseAtoms(text);
@@ -188,7 +188,7 @@ namespace Kiwi
 				return total;
 		}
 		
-		void setFont(const Font& newFont)
+		void setFont(const juce::Font& newFont)
 		{
 			if(font != newFont)
 			{
@@ -203,7 +203,7 @@ namespace Kiwi
 		}
 		
 		//==============================================================================
-		Font font;
+		juce::Font font;
 		Colour colour;
 		OwnedArray<TextAtom> atoms;
 		
@@ -548,8 +548,8 @@ namespace Kiwi
 			const int baselineY = roundToInt(lineY + currentSection->font.getAscent() + 0.5f);
 			
 			Graphics::ScopedSaveState state(g);
-			g.reduceClipRegion(Rectangle<int>(startX, baselineY, endX - startX, 1));
-			g.fillCheckerBoard(Rectangle<int>(endX, baselineY + 1), 3, 1, colour, Colours::transparentBlack);
+			g.reduceClipRegion(juce::Rectangle<int>(startX, baselineY, endX - startX, 1));
+			g.fillCheckerBoard(juce::Rectangle<int>(endX, baselineY + 1), 3, 1, colour, Colours::transparentBlack);
 		}
 		
 		void drawSelectedText(Graphics& g,
@@ -699,7 +699,7 @@ namespace Kiwi
 		InsertAction(jTextEditor& ed,
 					  const String& newText,
 					  const int insertPos,
-					  const Font& newFont,
+					  const juce::Font& newFont,
 					  const Colour newColour,
 					  const int oldCaret,
 					  const int newCaret)
@@ -734,7 +734,7 @@ namespace Kiwi
 		jTextEditor& owner;
 		const String text;
 		const int insertIndex, oldCaretPos, newCaretPos;
-		const Font font;
+		const juce::Font font;
 		const Colour colour;
 		
 		JUCE_DECLARE_NON_COPYABLE(InsertAction)
@@ -843,7 +843,7 @@ namespace Kiwi
 		{
 		}
 		
-		void visibleAreaChanged(const Rectangle<int>&) override
+		void visibleAreaChanged(const juce::Rectangle<int>&) override
 		{
 			if(! rentrant) // it's rare, but possible to get into a feedback loop as the viewport's scrollbars
 				// appear and disappear, causing the wrap width to change.
@@ -1040,13 +1040,13 @@ namespace Kiwi
 	}
 	
 	//==============================================================================
-	void jTextEditor::setFont(const Font& newFont)
+	void jTextEditor::setFont(const juce::Font& newFont)
 	{
 		currentFont = newFont;
 		scrollToMakeSureCursorIsVisible();
 	}
 	
-	void jTextEditor::applyFontToAllText(const Font& newFont)
+	void jTextEditor::applyFontToAllText(const juce::Font& newFont)
 	{
 		currentFont = newFont;
 		const Colour overallColour(findColour(textColourId));
@@ -1309,7 +1309,7 @@ namespace Kiwi
 	{
 		updateCaretPosition();
 		
-		const Rectangle<int> caretPos(getCaretRectangle());
+		const juce::Rectangle<int> caretPos(getCaretRectangle());
 		
 		int vx = caretPos.getX() - desiredCaretX;
 		int vy = caretPos.getY() - desiredCaretY;
@@ -1338,13 +1338,13 @@ namespace Kiwi
 		viewport->setViewPosition(vx, vy);
 	}
 	
-	Rectangle<int> jTextEditor::getCaretRectangle()
+	juce::Rectangle<int> jTextEditor::getCaretRectangle()
 	{
 		float cursorX, cursorY;
 		float cursorHeight = currentFont.getHeight(); //(in case the text is empty and the call below doesn't set this value)
 		getCharPosition(caretPosition, cursorX, cursorY, cursorHeight);
 		
-		return Rectangle<int>(roundToInt(cursorX), roundToInt(cursorY), 2, roundToInt(cursorHeight));
+		return juce::Rectangle<int>(roundToInt(cursorX), roundToInt(cursorY), 2, roundToInt(cursorHeight));
 	}
 	
 	//==============================================================================
@@ -1408,10 +1408,9 @@ namespace Kiwi
 		
 		if(keepCaretOnScreen)
 		{
-			Point<int> viewPos(viewport->getViewPosition());
-			const Rectangle<int> caretRect(getCaretRectangle());
-			
-			const Point<int> relativeCursor = caretRect.getPosition() - viewPos;
+			juce::Point<int> viewPos(viewport->getViewPosition());
+			const juce::Rectangle<int> caretRect(getCaretRectangle());
+			const juce::Point<int> relativeCursor = caretRect.getPosition() - viewPos;
 			
 			if(relativeCursor.x < jmax(1, proportionOfWidth(0.05f)))
 			{
@@ -1579,7 +1578,7 @@ namespace Kiwi
 		if(wordWrapWidth > 0)
 		{
 			g.setOrigin(leftIndent, topIndent);
-			const Rectangle<int> clip(g.getClipBounds());
+			const juce::Rectangle<int> clip(g.getClipBounds());
 			Colour selectedTextColour;
 			
 			Iterator i(sections, wordWrapWidth);
@@ -1870,7 +1869,7 @@ namespace Kiwi
 		if(! isMultiLine())
 			return moveCaretToStartOfLine(selecting);
 		
-		const Rectangle<float> caretPos(getCaretRectangle().toFloat());
+		const juce::Rectangle<float> caretPos(getCaretRectangle().toFloat());
 		return moveCaretWithTransaction(indexAtPosition(caretPos.getX(), caretPos.getY() - 1.0f), selecting);
 	}
 	
@@ -1879,7 +1878,7 @@ namespace Kiwi
 		if(! isMultiLine())
 			return moveCaretToEndOfLine(selecting);
 		
-		const Rectangle<float> caretPos(getCaretRectangle().toFloat());
+		const juce::Rectangle<float> caretPos(getCaretRectangle().toFloat());
 		return moveCaretWithTransaction(indexAtPosition(caretPos.getX(), caretPos.getBottom() + 1.0f), selecting);
 	}
 	
@@ -1888,7 +1887,7 @@ namespace Kiwi
 		if(! isMultiLine())
 			return moveCaretToStartOfLine(selecting);
 		
-		const Rectangle<float> caretPos(getCaretRectangle().toFloat());
+		const juce::Rectangle<float> caretPos(getCaretRectangle().toFloat());
 		return moveCaretWithTransaction(indexAtPosition(caretPos.getX(), caretPos.getY() - viewport->getViewHeight()), selecting);
 	}
 	
@@ -1897,7 +1896,7 @@ namespace Kiwi
 		if(! isMultiLine())
 			return moveCaretToEndOfLine(selecting);
 		
-		const Rectangle<float> caretPos(getCaretRectangle().toFloat());
+		const juce::Rectangle<float> caretPos(getCaretRectangle().toFloat());
 		return moveCaretWithTransaction(indexAtPosition(caretPos.getX(), caretPos.getBottom() + viewport->getViewHeight()), selecting);
 	}
 	
@@ -1926,7 +1925,7 @@ namespace Kiwi
 	
 	bool jTextEditor::moveCaretToStartOfLine(bool selecting)
 	{
-		const Rectangle<float> caretPos(getCaretRectangle().toFloat());
+		const juce::Rectangle<float> caretPos(getCaretRectangle().toFloat());
 		return moveCaretWithTransaction(indexAtPosition(0.0f, caretPos.getY()), selecting);
 	}
 	
@@ -1937,7 +1936,7 @@ namespace Kiwi
 	
 	bool jTextEditor::moveCaretToEndOfLine(bool selecting)
 	{
-		const Rectangle<float> caretPos(getCaretRectangle().toFloat());
+		const juce::Rectangle<float> caretPos(getCaretRectangle().toFloat());
 		return moveCaretWithTransaction(indexAtPosition((float) textHolder->getWidth(), caretPos.getY()), selecting);
 	}
 	
@@ -2173,7 +2172,7 @@ namespace Kiwi
 	
 	void jTextEditor::insert(const String& text,
 							 const int insertIndex,
-							 const Font& font,
+							 const juce::Font& font,
 							 const Colour colour,
 							 UndoManager* const um,
 							 const int caretPositionToMoveTo)

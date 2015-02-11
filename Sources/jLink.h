@@ -83,7 +83,7 @@ namespace Kiwi
 	class TempLink : public Component
 	{
 	private:
-		const wBoxView m_attached_box;
+		const wObjectView m_attached_object;
 		const bool      m_attached_to_outlet;
 		const long      m_io_index;
 		
@@ -93,8 +93,8 @@ namespace Kiwi
 		Gui::Point		m_dragpos;
 		
 	public:
-		TempLink(wBoxView attachedBox, long index, bool fromOutlet) :
-		m_attached_box(attachedBox),
+		TempLink(wObjectView attachedObject, long index, bool fromOutlet) :
+		m_attached_object(attachedObject),
 		m_attached_to_outlet(fromOutlet),
 		m_io_index(index)
 		{
@@ -123,9 +123,9 @@ namespace Kiwi
 			return m_io_index;
 		}
 		
-		inline wBoxView getAttachedBox() const noexcept
+		inline wObjectView getAttachedObject() const noexcept
 		{
-			return m_attached_box.lock();
+			return m_attached_object.lock();
 		}
 		
 		/** Call this in your mouseDown event, to initialise a drag.
@@ -143,21 +143,21 @@ namespace Kiwi
 				;
 			}
 			/*
-            sBox box = m_attached_box.lock();
-			if(box)
+            sObject object = m_attached_object.lock();
+			if(object)
 			{
-				Box::sController jbox = box->getController();
-				if(jbox)
+				Object::sController jobject = object->getController();
+				if(jobject)
 				{
-					if (m_attached_to_outlet && m_io_index < box->getNumberOfOutlets())
+					if (m_attached_to_outlet && m_io_index < object->getNumberOfOutlets())
 					{
-						m_startpos = jbox->getOutletPosition(m_io_index);
+						m_startpos = jobject->getOutletPosition(m_io_index);
 						m_path.moveTo(m_startpos);
 						m_path.lineTo(Gui::Point());
 					}
-					else if (!m_attached_to_outlet && m_io_index < box->getNumberOfInlets())
+					else if (!m_attached_to_outlet && m_io_index < object->getNumberOfInlets())
 					{
-						m_startpos = jbox->getInletPosition(m_io_index);
+						m_startpos = jobject->getInletPosition(m_io_index);
 						m_path.moveTo(m_startpos);
 						m_path.lineTo(Gui::Point());
 					}

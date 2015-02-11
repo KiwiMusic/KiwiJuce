@@ -34,14 +34,14 @@ namespace Kiwi
     //                                  JBOX CONTROLER                                  //
     // ================================================================================ //
     
-    //! The jBox is the juce implementation of the BoxView.
+    //! The jObject is the juce implementation of the ObjectView.
     /**
-     The jBox overrides the redraw and paint method and wraps the mouse and keyboard events.
+     The jObject overrides the redraw and paint method and wraps the mouse and keyboard events.
      */
-	class jBox : public BoxView, public Component
+	class jObject : public ObjectView, public Component
     {
 	private:
-		typedef shared_ptr<jBox>		sjBox;
+		typedef shared_ptr<jObject>		sjObject;
 		sjLabel							m_label;
 				
 		const double m_framesize;
@@ -51,50 +51,50 @@ namespace Kiwi
         //! The constructor.
         /** You should never have to use this function.
          */
-        jBox(sBox box, sPageView pageview);
+        jObject(sObject object, sPageView pageview);
         
         //! Destructor.
         /** You should never have to use this function.
          */
-        ~jBox();
+        ~jObject();
 		
-		sjBox getShared()
+		sjObject getShared()
 		{
-			return dynamic_pointer_cast<jBox>(shared_from_this());
+			return dynamic_pointer_cast<jObject>(shared_from_this());
 		}
 		
-		/** This function is called just after the boxview has been created.
+		/** This function is called just after the objectview has been created.
 		 */
 		void init() override;
 		
-		//! Retrieve the display bounds of the box view.
-		/** The function retrieves the display bounds of the box view.
-		 @return The bounds of the box view.
+		//! Retrieve the display bounds of the object view.
+		/** The function retrieves the display bounds of the object view.
+		 @return The bounds of the object view.
 		 */
 		Gui::Rectangle getDisplayBounds() const noexcept override;
 		
-		//! Retrieve the display position of the box view.
-		/** The function retrieves the display position of the box view.
-		 @return The position of the box view.
+		//! Retrieve the display position of the object view.
+		/** The function retrieves the display position of the object view.
+		 @return The position of the object view.
 		 */
 		Gui::Point getDisplayPosition() const noexcept override;
 		
-		//! Retrieve the display size of the box view.
-		/** The function retrieves the display size of the box view.
-		 @return The size of the box view.
+		//! Retrieve the display size of the object view.
+		/** The function retrieves the display size of the object view.
+		 @return The size of the object view.
 		 */
 		Gui::Point getDisplaySize() const noexcept override;
 		
-		//! Tests if a point is inside a box resizer zone.
-		/** The function tests if a point is inside a box resizer zone. The point is relative to the page top-left's coordinates
+		//! Tests if a point is inside an object resizer zone.
+		/** The function tests if a point is inside an object resizer zone. The point is relative to the page top-left's coordinates
 		 @param point The point to test.
 		 @return A flag describing the resizer zone as defined in the Knock::Border enum.
 		 */
 		ulong resizerKnock(Gui::Point const& point) const noexcept override;
 		
         //! The redraw function that should be override.
-        /** The function is called by the box when it should be repainted.
-         @param box    The box.
+        /** The function is called by the object when it should be repainted.
+         @param object    The object.
          */
         void redraw() override;
 		
@@ -110,27 +110,27 @@ namespace Kiwi
 		void textfieldTextChanged() override;
 		
         //! The grab focus function that should be override.
-        /** The function is called by the box when it want to grab keyboard focus.
+        /** The function is called by the object when it want to grab keyboard focus.
          */
         void grabKeyboardFocus() override;
     
         //! The position notification function that should be override.
-        /** The function is called by the box when its position changed.
+        /** The function is called by the object when its position changed.
          */
         void positionChanged() override;
         
         //! The size notification function that should be override.
-        /** The function is called by the box when its size changed.
+        /** The function is called by the object when its size changed.
          */
         void sizeChanged() override;
 		
-		//! Called by the box when the box selection status changed.
-		/** The function is called by the box selection status changed.
+		//! Called by the object when the object selection status changed.
+		/** The function is called by the object selection status changed.
 		 */
 		void pageViewSelectionStatusChanged() override;
 		
-		//! Called by the box when the presentation status changed.
-		/** The function is called by the box when the presentation status changed.
+		//! Called by the object when the presentation status changed.
+		/** The function is called by the object when the presentation status changed.
 		 */
 		void presentationStatusChanged() override;
 		
@@ -158,10 +158,10 @@ namespace Kiwi
         bool keyPressed(const KeyPress& key) override;
     };
     
-    typedef shared_ptr<jBox>		sjBox;
-	typedef weak_ptr<jBox>			wjBox;
-	typedef shared_ptr<const jBox> 	scjBox;
-	typedef weak_ptr<const jBox> 	wcjBox;
+    typedef shared_ptr<jObject>		sjObject;
+	typedef weak_ptr<jObject>			wjObject;
+	typedef shared_ptr<const jObject> 	scjObject;
+	typedef weak_ptr<const jObject> 	wcjObject;
 }
 
 

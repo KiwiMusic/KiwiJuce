@@ -147,9 +147,9 @@ namespace Kiwi
 		
 		//! Replaces the current inspector panel by a new one.
 		/** Replaces the current inspector panel by a new one.
-		 @param page A Box.
+		 @param page A Object.
 		 */
-		void setBox(sBox box);
+		void setObject(sObject object);
         
         void closeButtonPressed() override;
     };

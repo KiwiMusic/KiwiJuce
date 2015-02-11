@@ -26,18 +26,18 @@
 
 namespace Kiwi
 {
-    sDico createBoxDicoAtPosition(string const& name, juce::Point<int> const& pt)
+    sDico createObjectDicoAtPosition(string const& name, juce::Point<int> const& pt)
     {
-        sDico dico = Dico::evaluateForBox(name);
+        sDico dico = Dico::evaluateForObject(name);
         if(dico)
         {
-            sDico sub = dico->get(Tag::List::boxes);
+            sDico sub = dico->get(Tag::List::objects);
             if(sub)
             {
-                sub = sub->get(Tag::List::box);
+                sub = sub->get(Tag::List::object);
                 if(sub)
                 {
-                    sub->set(AttrBox::Tag_position, {pt.x, pt.y});
+					sub->set(Tag::create("position"), {pt.x, pt.y});
                 }
             }
         }
@@ -81,24 +81,24 @@ namespace Kiwi
 		repaint();
 	}
     
-    void jPage::newBox(int x, int y, bool dblClick)
+    void jPage::newObject(int x, int y, bool dblClick)
     {
-        sjBox box;
-        box = m_box_edited.lock();
-        if(box)
+        sjObject object;
+        object = m_object_edited.lock();
+        if(object)
         {
-            box->setVisible(true);
-            m_box_edited.reset();
+            object->setVisible(true);
+            m_object_edited.reset();
         }
         if(dblClick)
         {
-            box = getjBox(x, y);
-            if(box)
+            object = getjObject(x, y);
+            if(object)
             {
-                m_box_edited = box;
-				m_editor->setBounds(box->Component::getBounds());
-                m_editor->setText(box->getText());
-                box->setVisible(false);
+                m_object_edited = object;
+				m_editor->setBounds(object->Component::getBounds());
+                m_editor->setText(object->getText());
+                object->setVisible(false);
                 m_editor->setVisible(true);
             }
             else
@@ -114,19 +114,19 @@ namespace Kiwi
         }
     }
 	
-	void jPage::addToSelectionBasedOnModifiers(sBoxView box, bool selOnly)
+	void jPage::addToSelectionBasedOnModifiers(sObjectView object, bool selOnly)
 	{
 		if(selOnly)
 		{
-			selectOnly(box);
+			selectOnly(object);
 		}
-		else if(isSelected(box))
+		else if(isSelected(object))
 		{
-			unselect(box);
+			unselect(object);
 		}
 		else
 		{
-			select(box);
+			select(object);
 		}
 	}
 	
@@ -146,14 +146,14 @@ namespace Kiwi
 		}
 	}
 	
-	bool jPage::selectOnMouseDown(sBoxView box, bool selOnly)
+	bool jPage::selectOnMouseDown(sObjectView object, bool selOnly)
 	{
-		if(isSelected(box))
+		if(isSelected(object))
         {
 			return true;
         }
 		
-		addToSelectionBasedOnModifiers(box, selOnly);
+		addToSelectionBasedOnModifiers(object, selOnly);
 		return false;
 	}
 	
@@ -168,18 +168,18 @@ namespace Kiwi
 		return false;
 	}
 	
-	void jPage::selectOnMouseUp(sBoxView box, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod)
+	void jPage::selectOnMouseUp(sObjectView object, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod)
 	{
-		if(resultOfMouseDownSelectMethod && ! boxWasDragged)
+		if(resultOfMouseDownSelectMethod && ! objectWasDragged)
         {
-			addToSelectionBasedOnModifiers(box, selOnly);
+			addToSelectionBasedOnModifiers(object, selOnly);
         }
 	}
 	
 	
-	void jPage::selectOnMouseUp(sLinkView link, bool selOnly, const bool boxWasDragged, const bool resultOfMouseDownSelectMethod)
+	void jPage::selectOnMouseUp(sLinkView link, bool selOnly, const bool objectWasDragged, const bool resultOfMouseDownSelectMethod)
 	{
-		if(resultOfMouseDownSelectMethod && ! boxWasDragged)
+		if(resultOfMouseDownSelectMethod && ! objectWasDragged)
         {
 			addToSelectionBasedOnModifiers(link, selOnly);
         }
@@ -187,14 +187,17 @@ namespace Kiwi
 	
 	void jPage::copySelectionToClipboard()
 	{
+		int todo;
+		/*
 		sDico dico = Dico::create();
-		getSelectedBoxesDico(dico);
+		getSelectedObjectsDico(dico);
 		String text = toString(dico);
 		if (text.isNotEmpty())
 		{
 			SystemClipboard::copyTextToClipboard(text);
 			Application::commandStatusChanged();
 		}
+		*/
 	}
 	
 	void jPage::pasteFromClipboard(Gui::Point const& offset)
@@ -204,7 +207,7 @@ namespace Kiwi
 		{
             sDico dico = Dico::evaluateForJson(text);
 			unselectAll();
-			addBoxesFromDico(dico, offset);
+			addObjectsFromDico(dico, offset);
 		}
 	}
 	
@@ -222,67 +225,71 @@ namespace Kiwi
 		}
 	}
 	
-	void jPage::bringsBoxesToFront()
+	void jPage::bringsObjectsToFront()
 	{
-		vector<sBoxView> boxes;
-		getBoxes(boxes);
-		for (vector<sBoxView>::size_type i = 0; i < boxes.size(); i++)
+		vector<sObjectView> objects;
+		getObjects(objects);
+		for (vector<sObjectView>::size_type i = 0; i < objects.size(); i++)
 		{
-			sjBox box = dynamic_pointer_cast<jBox>(boxes[i]);
-			if (box)
+			sjObject object = dynamic_pointer_cast<jObject>(objects[i]);
+			if (object)
 			{
-				box->toFront(false);
+				object->toFront(false);
 			}
 		}
 	}
 	
-	void jPage::attributeChanged(sPage, sAttr attr)
+	bool jPage::notify(sAttr attr)
 	{
 		redraw();
+		return true;
 	}
 	
-	sBoxView jPage::createBoxView(sBox box)
+	sObjectView jPage::createObjectView(sObject object)
 	{
-		return BoxView::create<jBox>(box, static_pointer_cast<PageView>(shared_from_this()));
+		return ObjectView::create<jObject>(object, static_pointer_cast<PageView>(shared_from_this()));
 	}
 	
-	void jPage::boxViewCreated(sBoxView boxview)
+	void jPage::objectViewCreated(sObjectView objectview)
     {
-		if(boxview)
+		if(objectview)
 		{
-			sjBox jbox = dynamic_pointer_cast<jBox>(boxview);
-			if (jbox)
+			sjObject jobject = dynamic_pointer_cast<jObject>(objectview);
+			if (jobject)
 			{
-				sBox box = jbox->getBox();
-				if (box)
+				sObject object = jobject->getObject();
+				if (object)
 				{
 					if(getPresentationStatus())
 					{
-						box->setAttributeValue(AttrBox::Tag_presentation, {true});
-                        Gui::Point pos = box->getPosition(false);
-                        box->setAttributeValue(AttrBox::Tag_presentation_position, {pos.x(), pos.y()});
-                        pos = box->getSize(false);
-						box->setAttributeValue(AttrBox::Tag_presentation_size, {pos.x(), pos.y()});
-						jbox->pageViewLockStatusChanged();
-						jbox->pageViewPresentationStatusChanged();
+						int todo;
+						/*
+						object->setAttributeValue(AttrObject::Tag_presentation, {true});
+                        Gui::Point pos = object->getPosition(false);
+                        object->setAttributeValue(AttrObject::Tag_presentation_position, {pos.x(), pos.y()});
+                        pos = object->getSize(false);
+						object->setAttributeValue(AttrObject::Tag_presentation_size, {pos.x(), pos.y()});
+						jobject->pageViewLockStatusChanged();
+						jobject->pageViewPresentationStatusChanged();
+						*/
 					}
 					
-					addAndMakeVisible(jbox.get());
-					select(jbox);
-					updateBoxesAndLinksLayers();
+					addAndMakeVisible(jobject.get());
+					select(jobject);
+					updateObjectsAndLinksLayers();
 				}
 			}
 		}
     }
 	
-    void jPage::boxViewWillBeRemoved(sBoxView boxview)
+    void jPage::objectViewWillBeRemoved(sObjectView objectview)
     {
-		if(boxview)
+		if(objectview)
 		{
-			sjBox jbox = dynamic_pointer_cast<jBox>(boxview);
-			if (jbox)
+			sjObject jobject = dynamic_pointer_cast<jObject>(objectview);
+			if (jobject)
 			{
-				removeChildComponent(jbox.get());
+				removeChildComponent(jobject.get());
 			}
 		}
     }
@@ -300,7 +307,7 @@ namespace Kiwi
 			{
 				addAndMakeVisible(jlink.get());
 				select(jlink);
-				updateBoxesAndLinksLayers();
+				updateObjectsAndLinksLayers();
 			}
 		}
 	}
@@ -317,22 +324,22 @@ namespace Kiwi
 		}
 	}
 	
-    sjBox jPage::getjBox(int x, int y) noexcept
+    sjObject jPage::getjObject(int x, int y) noexcept
     {
         int zaza;
         /*
-        knockBoxes(Gui::Point(x, y), getPresentationStatus());
-        if(m_knock.hasHitBox())
+        knockObjects(Gui::Point(x, y), getPresentationStatus());
+        if(m_knock.hasHitObject())
         {
-            sBox box = m_knock.getBox();
-            if(box)
+            sObject object = m_knock.getObject();
+            if(object)
             {
                 
                 
-                sBoxView boxview = box->getView();
-                if(boxview)
+                sObjectView objectview = object->getView();
+                if(objectview)
                 {
-                    return static_pointer_cast<jBox>(boxview);
+                    return static_pointer_cast<jObject>(objectview);
                 }
                 
             }
@@ -343,34 +350,34 @@ namespace Kiwi
 	
 	void jPage::selectionChanged()
 	{
-		vector<sBoxView> boxes, selboxes;
-		getBoxes(boxes);
-		getSelection(selboxes);
+		vector<sObjectView> objects, selobjects;
+		getObjects(objects);
+		getSelection(selobjects);
 		
 		// update inspector
-		if(selboxes.size() == 1)
+		if(selobjects.size() == 1)
 		{
-			Application::getKiwiInstance()->setInspectorContent(selboxes[0]->getBox());
+			Application::getKiwiInstance()->setInspectorContent(selobjects[0]->getObject());
 		}
-		else if(selboxes.empty())
+		else if(selobjects.empty())
 		{
-			Application::getKiwiInstance()->setInspectorContent(sBox());
+			Application::getKiwiInstance()->setInspectorContent(sObject());
 		}
 		
 		Application::commandStatusChanged();
 	}
 	
-	void jPage::updateBoxesAndLinksLayers()
+	void jPage::updateObjectsAndLinksLayers()
 	{
 		if (getLockStatus())
-			bringsBoxesToFront();
+			bringsObjectsToFront();
 		else
 			bringsLinksToFront();
 	}
 	
 	void jPage::lockStatusChanged()
 	{
-		updateBoxesAndLinksLayers();
+		updateObjectsAndLinksLayers();
 		repaint();
 	}
 	
@@ -379,19 +386,19 @@ namespace Kiwi
 		const bool presentation = getPresentationStatus();
 		
 		ComponentAnimator& animator = Desktop::getInstance().getAnimator();
-		vector<sBoxView> boxes;
-		getBoxes(boxes);
-		for(vector<sBoxView>::size_type i = 0; i < boxes.size(); i++)
+		vector<sObjectView> objects;
+		getObjects(objects);
+		for(vector<sObjectView>::size_type i = 0; i < objects.size(); i++)
 		{
-            sjBox jbox = static_pointer_cast<jBox>(boxes[i]);
-			if(jbox)
+            sjObject jobject = static_pointer_cast<jObject>(objects[i]);
+			if(jobject)
 			{
-                const bool visible = !presentation || (presentation && jbox->isIncludeInPresentation());
-                const Gui::Rectangle boxBounds = jbox->getDisplayBounds();
-				const juce::Rectangle<int> finalBounds = toJuce<int>(boxBounds);
+                const bool visible = !presentation || (presentation && jobject->isIncludeInPresentation());
+                const Gui::Rectangle objectBounds = jobject->getDisplayBounds();
+				const juce::Rectangle<int> finalBounds = toJuce<int>(objectBounds);
 				
-                animator.animateComponent(jbox.get(), finalBounds, visible, 200., false, 1., 1.);
-                jbox->setVisible(visible);
+                animator.animateComponent(jobject.get(), finalBounds, visible, 200., false, 1., 1.);
+                jobject->setVisible(visible);
 			}
 		}
 		
@@ -416,6 +423,8 @@ namespace Kiwi
 		sPage page = getPage();
 		if (page)
 		{
+			int todo;
+			/*
 			const bool locked = getLockStatus();
 			const juce::Colour bgcolor = toJuce((locked ? page->getLockedBgColor() : page->getEditingBgColor()));
 			
@@ -436,24 +445,25 @@ namespace Kiwi
 					}
 				}
 			}
+			*/
 		}
     }
 	
     void jPage::mouseDown(const MouseEvent& e)
     {
-		m_box_received_downevent = false;
+		m_object_received_downevent = false;
 		m_copy_on_drag = false;
-		m_box_dragstatus = false;
+		m_object_dragstatus = false;
 		m_link_dragstatus = false;
 		m_mouse_wasclicked = true;
 
 		if(!getLockStatus())
 		{
             m_knock = knockAll(Gui::Point(e.x, e.y));
-			if(m_knock.hasHitBox())
+			if(m_knock.hasHitObject())
 			{
-                sBoxView box = m_knock.getBox();
-                if(box)
+                sObjectView object = m_knock.getObject();
+                if(object)
                 {
 					if(m_knock.getPart() == Knock::Border)
 					{
@@ -463,7 +473,7 @@ namespace Kiwi
                     {
                         int zaza;
                         m_templinks.clear();
-                        sTempLink link = make_shared<TempLink>(box, m_knock.getIndex(), false);
+                        sTempLink link = make_shared<TempLink>(object, m_knock.getIndex(), false);
                         m_templinks.push_back(link);
                         addAndMakeVisible(link.get());
                         link->beginLink(e);
@@ -476,7 +486,7 @@ namespace Kiwi
                     {
                         int zaza;
                         m_templinks.clear();
-                        sTempLink link = make_shared<TempLink>(box, m_knock.getIndex(), true);
+                        sTempLink link = make_shared<TempLink>(object, m_knock.getIndex(), true);
                         m_templinks.push_back(link);
                         addAndMakeVisible(link.get());
                         link->beginLink(e);
@@ -487,35 +497,35 @@ namespace Kiwi
                     }
                     else if(m_knock.getPart() == Knock::Inside)
                     {
-						Console::post("Hit Box inside");
+						Console::post("Hit Object inside");
                         if(e.mods.isAltDown())
                         {
                             m_copy_on_drag = true;
-                            m_box_downstatus = selectOnMouseDown(box, true);
+                            m_object_downstatus = selectOnMouseDown(object, true);
                         }
                         else if (e.mods.isCommandDown())
 						{
-							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(box->getBox());
+							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(object->getObject());
 							if(mouser)
 							{
-								mouser->receive(jEventMouse(Gui::Event::Mouse::Down, e));
-								m_box_received_downevent = true;
+								mouser->receive(jEventMouse(Gui::Mouser::Event::Down, e));
+								m_object_received_downevent = true;
 							}
                         }
                         else
                         {
 							if(e.mods.isPopupMenu())
 							{
-								if (!isSelected(box))
+								if (!isSelected(object))
 								{
-									m_box_downstatus = selectOnMouseDown(box, true);
+									m_object_downstatus = selectOnMouseDown(object, true);
 								}
 
-								showBoxPopupMenu(box->getBox());
+								showObjectPopupMenu(object->getObject());
 							}
 							else
 							{
-								m_box_downstatus = selectOnMouseDown(box, !e.mods.isShiftDown());
+								m_object_downstatus = selectOnMouseDown(object, !e.mods.isShiftDown());
 								Console::post("selectOnMouseDown");
 							}
                         }
@@ -545,7 +555,7 @@ namespace Kiwi
 	void jPage::mouseDrag(const MouseEvent& e)
 	{
 		MouseCursor::StandardCursorType mc = MouseCursor::NormalCursor;
-		m_box_dragstatus = ! m_mouse_wasclicked;
+		m_object_dragstatus = ! m_mouse_wasclicked;
 		
 		if(!getLockStatus())
 		{
@@ -559,16 +569,16 @@ namespace Kiwi
 			else if(hasTempLinks())
 			{
                 m_knock = knockAll(Gui::Point(e.x, e.y));
-				if(m_knock.hasHitBox() && m_iolighter)
+				if(m_knock.hasHitObject() && m_iolighter)
 				{
 					if(m_knock.getPart() == Knock::Inlet)
                     {
                         if(m_iolighter)
                         {
-                            sBoxView box  = m_knock.getBox();
-                            if(box)
+                            sObjectView object  = m_knock.getObject();
+                            if(object)
                             {
-                                m_iolighter->setInlet(box, m_knock.getIndex());
+                                m_iolighter->setInlet(object, m_knock.getIndex());
                                 m_iolighter->setVisible(true);
                                 m_iolighter->toFront(false);
                             }
@@ -578,10 +588,10 @@ namespace Kiwi
                     {
                         if(m_iolighter)
                         {
-                            sBoxView box  = m_knock.getBox();
-                            if(box)
+                            sObjectView object  = m_knock.getObject();
+                            if(object)
                             {
-                                m_iolighter->setOutlet(box, m_knock.getIndex());
+                                m_iolighter->setOutlet(object, m_knock.getIndex());
                                 m_iolighter->setVisible(true);
                                 m_iolighter->toFront(false);
                             }
@@ -596,16 +606,16 @@ namespace Kiwi
                     if(link->isAttachedToOutlet())
                     {
                         int todo;
-                        //m_magnet = magnetFindInlet(link->getAttachedBox(), link->getEndCoord());
-                        m_iolighter->setInlet(m_magnet.getBox(), m_magnet.getIndex());
+                        //m_magnet = magnetFindInlet(link->getAttachedObject(), link->getEndCoord());
+                        m_iolighter->setInlet(m_magnet.getObject(), m_magnet.getIndex());
                         m_iolighter->setVisible(true);
                         m_iolighter->toFront(false);
                     }
                     else
                     {
                         int todo;
-                        //m_magnet = magnetFindOutlet(link->getAttachedBox(), link->getEndCoord());
-                        m_iolighter->setOutlet(m_magnet.getBox(), m_magnet.getIndex());
+                        //m_magnet = magnetFindOutlet(link->getAttachedObject(), link->getEndCoord());
+                        m_iolighter->setOutlet(m_magnet.getObject(), m_magnet.getIndex());
                         m_iolighter->setVisible(true);
                         m_iolighter->toFront(false);
                     }
@@ -618,25 +628,25 @@ namespace Kiwi
 			else if (m_copy_on_drag && e.mods.isAltDown())
 			{
 				sDico dico = Dico::create();
-				getSelectedBoxesDico(dico);
+				getSelectedObjectsDico(dico);
 				unselectAll();
-				addBoxesFromDico(dico);
+				addObjectsFromDico(dico);
 				unselectAllLinks();
 				m_copy_on_drag = false;
 			}
-			else if(m_knock.hasHitBox())
+			else if(m_knock.hasHitObject())
 			{
-                sBoxView box = m_knock.getBox();
-				if (box)
+                sObjectView object = m_knock.getObject();
+				if (object)
 				{
-					if(m_box_received_downevent && m_knock.getPart() == Knock::Inside)
+					if(m_object_received_downevent && m_knock.getPart() == Knock::Inside)
 					{
-						if(m_box_received_downevent)
+						if(m_object_received_downevent)
 						{
-							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(box->getBox());
+							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(object->getObject());
 							if(mouser)
 							{
-								mouser->receive(jEventMouse(Gui::Event::Mouse::Drag, e));
+								mouser->receive(jEventMouse(Gui::Mouser::Event::Drag, e));
 							}
 						}
 					}
@@ -644,10 +654,10 @@ namespace Kiwi
 					{
 						if (m_mouse_wasclicked)
 						{
-							startMoveOrResizeBoxes();
+							startMoveOrResizeObjects();
 						}
 						Gui::Point delta = Gui::Point(e.getDistanceFromDragStartX(), e.getDistanceFromDragStartY());
-						resizeSelectedBoxes(delta, m_last_border_downstatus, e.mods.isShiftDown());
+						resizeSelectedObjects(delta, m_last_border_downstatus, e.mods.isShiftDown());
 						m_last_drag = e.getPosition();
 						
 						switch (m_last_border_downstatus)
@@ -663,15 +673,15 @@ namespace Kiwi
 							default: break;
 						}
 					}
-					else if(isAnyBoxSelected() && m_box_dragstatus && !e.mods.isPopupMenu())
+					else if(isAnyObjectSelected() && m_object_dragstatus && !e.mods.isPopupMenu())
 					{
 						if(m_mouse_wasclicked)
 						{
-							startMoveOrResizeBoxes();
+							startMoveOrResizeObjects();
 						}
 						const juce::Point<int> pos = e.getPosition();
 						Gui::Point delta = toKiwi(pos) - toKiwi(m_last_drag);
-						moveSelectedBoxes(delta);
+						moveSelectedObjects(delta);
 						m_last_drag = pos;
 					}
 				}
@@ -692,15 +702,15 @@ namespace Kiwi
 			m_lasso->setVisible(false);
 		}
 		
-		if(m_box_received_downevent)
+		if(m_object_received_downevent)
 		{
-			sBoxView box = m_knock.getBox();
-			if(box)
+			sObjectView object = m_knock.getObject();
+			if(object)
 			{
-				Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(box->getBox());
+				Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(object->getObject());
 				if(mouser)
 				{
-					mouser->receive(jEventMouse(Gui::Event::Mouse::Up, e));
+					mouser->receive(jEventMouse(Gui::Mouser::Event::Up, e));
 					return;
 				}
 			}
@@ -710,27 +720,27 @@ namespace Kiwi
 		{
             int zaza;
             m_knock = knockAll(Gui::Point(e.x, e.y));
-            sBoxView box = m_knock.getBox();
-            sBoxView magnet_box = m_magnet.getBox();
+            sObjectView object = m_knock.getObject();
+            sObjectView magnet_object = m_magnet.getObject();
             sTempLink templink  = getTempLink();
-			if(magnet_box && templink)
+			if(magnet_object && templink)
 			{
 				if(templink)
 				{
-                    wBoxView from, to;
+                    wObjectView from, to;
                     long in, out;
                     
                     if(templink->isAttachedToOutlet())
                     {
-                        from = templink->getAttachedBox();
-                        to = magnet_box;
+                        from = templink->getAttachedObject();
+                        to = magnet_object;
                         in = m_magnet.getIndex();
                         out = templink->getAttachedIOIndex();
                     }
                     else
                     {
-                        from= magnet_box;
-                        to  = templink->getAttachedBox();
+                        from= magnet_object;
+                        to  = templink->getAttachedObject();
                         in  = templink->getAttachedIOIndex();
                         out = m_magnet.getIndex();
                     }
@@ -740,9 +750,9 @@ namespace Kiwi
                     //getPage()->createLink(link);
 				}
 			}
-            else if(box)
+            else if(object)
             {
-                selectOnMouseUp(box, !e.mods.isShiftDown(), m_box_dragstatus, m_box_downstatus);
+                selectOnMouseUp(object, !e.mods.isShiftDown(), m_object_dragstatus, m_object_downstatus);
             }
 			else if(e.mods.isCommandDown())
 			{
@@ -778,7 +788,7 @@ namespace Kiwi
         
         m_knock = knockAll(Gui::Point(e.x, e.y));
 		
-		if(m_knock.hasHitBox())
+		if(m_knock.hasHitObject())
 		{
 			if(m_knock.getPart() == Knock::Border)
 			{
@@ -799,10 +809,10 @@ namespace Kiwi
 			{
 				if(m_iolighter)
 				{
-                    sBoxView box  = m_knock.getBox();
-                    if(box)
+                    sObjectView object  = m_knock.getObject();
+                    if(object)
                     {
-                        m_iolighter->setInlet(box, m_knock.getIndex());
+                        m_iolighter->setInlet(object, m_knock.getIndex());
                         m_iolighter->setVisible(true);
                         m_iolighter->toFront(false);
                     }
@@ -812,10 +822,10 @@ namespace Kiwi
 			{
 				if(m_iolighter)
 				{
-                    sBoxView box  = m_knock.getBox();
-                    if(box)
+                    sObjectView object  = m_knock.getObject();
+                    if(object)
                     {
-                        m_iolighter->setOutlet(box, m_knock.getIndex());
+                        m_iolighter->setOutlet(object, m_knock.getIndex());
                         m_iolighter->setVisible(true);
                         m_iolighter->toFront(false);
                     }
@@ -848,7 +858,7 @@ namespace Kiwi
     {
 		if (!getLockStatus() && !e.mods.isAnyModifierKeyDown())
 		{
-			newBox(e.x, e.y, true);
+			newObject(e.x, e.y, true);
 		}
     }
     
@@ -886,18 +896,18 @@ namespace Kiwi
 			}
 			else if(key.isKeyCode(KeyPress::returnKey))
 			{
-				//if a box is selected (only one) anf this box is a textbox container => give it textediting focus
+				//if an object is selected (only one) anf this object is a textobject container => give it textediting focus
 				
-				if (isAnyBoxSelected())
+				if (isAnyObjectSelected())
 				{
-					vector<sBoxView> boxes;
-					getSelection(boxes);
-					if(boxes.size() == 1)
+					vector<sObjectView> objects;
+					getSelection(objects);
+					if(objects.size() == 1)
 					{
-						sjBox jbox = dynamic_pointer_cast<jBox>(boxes[0]);
-						if (jbox)
+						sjObject jobject = dynamic_pointer_cast<jObject>(objects[0]);
+						if (jobject)
 						{
-							jbox->grabKeyboardFocus();
+							jobject->grabKeyboardFocus();
 						}
 					}
 				}
@@ -905,27 +915,29 @@ namespace Kiwi
 			else
 			{
 				const bool snap = key.getModifiers().isShiftDown();
-				const long gridsize = getPage()->getGridSize();
+				int todo;
+				//const long gridsize = getPage()->getGridSize();
+				const long gridsize = 10;
 				const int amount = snap ? gridsize : 1;
 
 				if(key.isKeyCode(KeyPress::rightKey))
 				{
-					moveSelectedBoxes(Gui::Point(amount, 0));
+					moveSelectedObjects(Gui::Point(amount, 0));
 					return true;
 				}
 				else if(key.isKeyCode(KeyPress::downKey))
 				{
-					moveSelectedBoxes(Gui::Point(0, amount));
+					moveSelectedObjects(Gui::Point(0, amount));
 					return true;
 				}
 				else if(key.isKeyCode(KeyPress::leftKey))
 				{
-					moveSelectedBoxes(Gui::Point(-amount, 0));
+					moveSelectedObjects(Gui::Point(-amount, 0));
 					return true;
 				}
 				else if(key.isKeyCode(KeyPress::upKey))
 				{
-					moveSelectedBoxes(Gui::Point(0, -amount));
+					moveSelectedObjects(Gui::Point(0, -amount));
 					return true;
 				}
 			}
@@ -945,7 +957,7 @@ namespace Kiwi
     
     void jPage::textEditorReturnKeyPressed(juce::TextEditor& e)
     {
-        sDico dico = createBoxDicoAtPosition(e.getText().toStdString(), e.getPosition());
+        sDico dico = createObjectDicoAtPosition(e.getText().toStdString(), e.getPosition());
         e.clear();
         e.setVisible(false);
         getPage()->add(dico);
@@ -953,11 +965,11 @@ namespace Kiwi
     
     void jPage::textEditorEscapeKeyPressed(juce::TextEditor& e)
     {
-        sjBox box = m_box_edited.lock();
-        if(box)
+        sjObject object = m_object_edited.lock();
+        if(object)
         {
-            box->setVisible(true);
-            m_box_edited.reset();
+            object->setVisible(true);
+            m_object_edited.reset();
         }
         Console::post("textEditorEscapeKeyPressed");
         e.setVisible(false);
@@ -972,7 +984,7 @@ namespace Kiwi
     //                              APPLICATION COMMAND TARGET                          //
     // ================================================================================ //
 	
-	void jPage::showBoxPopupMenu(sBox box)
+	void jPage::showObjectPopupMenu(sObject object)
 	{
 		ApplicationCommandManager* commandManager = &Application::getCommandManager();
 		
@@ -1014,7 +1026,7 @@ namespace Kiwi
 		commands.add(CommandIDs::addToPresentation);
 		commands.add(CommandIDs::removeFromPresentation);
 		
-        commands.add(CommandIDs::newBox);
+        commands.add(CommandIDs::newObject);
         commands.add(CommandIDs::newBang);
         commands.add(CommandIDs::newToggle);
         commands.add(CommandIDs::newNumber);
@@ -1051,19 +1063,19 @@ namespace Kiwi
 			case CommandIDs::showObjectInspector:
 				result.setInfo (TRANS("Object inspector"), TRANS("Open object inspector"), CommandCategories::view, 0);
 				result.addDefaultKeypress ('i',  ModifierKeys::commandModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
 				
 			case StandardApplicationCommandIDs::cut:
 				result.setInfo(TRANS("Cut"), TRANS("Cut"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('x', ModifierKeys::commandModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
 				
 			case StandardApplicationCommandIDs::copy:
 				result.setInfo(TRANS("Copy"), TRANS("Copy"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('c', ModifierKeys::commandModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
 				
 			case StandardApplicationCommandIDs::paste:
@@ -1075,53 +1087,53 @@ namespace Kiwi
 			case CommandIDs::pasteReplace:
 				result.setInfo(TRANS("Paste replace"), TRANS("Replace selected objects with the object on the clipboard"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('v', ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
-				result.setActive(isAnyBoxSelected() && SystemClipboard::getTextFromClipboard().isNotEmpty());
+				result.setActive(isAnyObjectSelected() && SystemClipboard::getTextFromClipboard().isNotEmpty());
 				break;
 				
 			case CommandIDs::duplicate:
 				result.setInfo(TRANS("Duplicate"), TRANS("Duplicate the selection"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('d', ModifierKeys::commandModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
 				
             case StandardApplicationCommandIDs::del:
-                result.setInfo(TRANS("Delete"), TRANS("Delete all selected boxes and links"), CommandCategories::editing, 0);
+                result.setInfo(TRANS("Delete"), TRANS("Delete all selected objects and links"), CommandCategories::editing, 0);
                 result.addDefaultKeypress(KeyPress::backspaceKey, ModifierKeys::noModifiers);
                 result.setActive(isAnythingSelected());
                 break;
             
             case StandardApplicationCommandIDs::selectAll:
-                result.setInfo(TRANS("Select All"), TRANS("Select all boxes and links"), CommandCategories::editing, 0);
+                result.setInfo(TRANS("Select All"), TRANS("Select all objects and links"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('a', ModifierKeys::commandModifier);
 				result.setActive(!getLockStatus());
                 break;
 				
 			case CommandIDs::toFront:
-				result.setInfo(TRANS("Bring to Front"), TRANS("Bring selected boxes to front"), CommandCategories::editing, 0);
+				result.setInfo(TRANS("Bring to Front"), TRANS("Bring selected objects to front"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('f', ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
 				
 			case CommandIDs::toBack:
-				result.setInfo(TRANS("Send to Back"), TRANS("Send selected boxes to back"), CommandCategories::editing, 0);
+				result.setInfo(TRANS("Send to Back"), TRANS("Send selected objects to back"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('b', ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
 				
 			case CommandIDs::addToPresentation:
-				result.setInfo(TRANS("Add to Presentation"), TRANS("Add selected boxes to presentation"), CommandCategories::editing, 0);
+				result.setInfo(TRANS("Add to Presentation"), TRANS("Add selected objects to presentation"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('p', ModifierKeys::commandModifier | ModifierKeys::shiftModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
 				
 			case CommandIDs::removeFromPresentation:
-				result.setInfo(TRANS("Remove from Presentation"), TRANS("Remove selected boxes from presentation"), CommandCategories::editing, 0);
+				result.setInfo(TRANS("Remove from Presentation"), TRANS("Remove selected objects from presentation"), CommandCategories::editing, 0);
 				result.addDefaultKeypress('p', ModifierKeys::commandModifier | ModifierKeys::altModifier);
-				result.setActive(isAnyBoxSelected());
+				result.setActive(isAnyObjectSelected());
 				break;
                 
-            case CommandIDs::newBox:
-                result.setInfo(TRANS("New Box"), TRANS("Add a new box in the page"), CommandCategories::editing, 0);
+            case CommandIDs::newObject:
+                result.setInfo(TRANS("New Object"), TRANS("Add a new object in the page"), CommandCategories::editing, 0);
                 result.addDefaultKeypress('n', ModifierKeys::noModifiers);
 				result.setActive(!getLockStatus());
                 break;
@@ -1215,47 +1227,51 @@ namespace Kiwi
 			{
 				DBG("|- object inspector");
 				
-				vector<sBoxView> boxes;
-				getSelection(boxes);
-				if(boxes.size() == 1)
+				vector<sObjectView> objects;
+				getSelection(objects);
+				if(objects.size() == 1)
 				{
-					Application::getKiwiInstance()->showInspector(boxes[0]->getBox());
+					Application::getKiwiInstance()->showInspector(objects[0]->getObject());
 				}
 				break;
 			}
 			case StandardApplicationCommandIDs::cut:
 			{
-				DBG("|- cut box");
+				DBG("|- cut object");
 				copySelectionToClipboard();
 				deleteSelection();
 				break;
 			}
 			case StandardApplicationCommandIDs::copy:
 			{
-				DBG("|- copy box");
+				DBG("|- copy object");
 				copySelectionToClipboard();
 				break;
 			}
 			case StandardApplicationCommandIDs::paste:
 			{
-				DBG("|- paste boxes");
+				/*
+				DBG("|- paste objects");
 				const long gridsize = getPage()->getGridSize();
 				pasteFromClipboard(Gui::Point(gridsize, gridsize));
+				*/
 				break;
 			}
 			case CommandIDs::pasteReplace:
 			{
-				DBG("|- paste replace boxes");
-				//replaceBoxesFromClipboard();
+				DBG("|- paste replace objects");
+				//replaceObjectsFromClipboard();
 				break;
 			}
 			case CommandIDs::duplicate:
 			{
-				DBG("|- duplicate boxes");
+				/*
+				DBG("|- duplicate objects");
 				copySelectionToClipboard();
 				const long gridsize = getPage()->getGridSize();
 				pasteFromClipboard(Gui::Point(gridsize, gridsize));
 				unselectAllLinks();
+				*/
 				break;
 			}
 			case StandardApplicationCommandIDs::del:
@@ -1266,7 +1282,7 @@ namespace Kiwi
             }
             case StandardApplicationCommandIDs::selectAll:
             {
-				selectAllBoxes();
+				selectAllObjects();
                 break;
             }
 			case CommandIDs::toFront:
@@ -1279,23 +1295,23 @@ namespace Kiwi
 			}
 			case CommandIDs::addToPresentation:
 			{
-				vector<sBoxView> boxes;
-				getSelection(boxes);
-				setBoxesPresentationStatus(boxes, true);
+				vector<sObjectView> objects;
+				getSelection(objects);
+				setObjectsPresentationStatus(objects, true);
 				break;
 			}
 			case CommandIDs::removeFromPresentation:
 			{
-				vector<sBoxView> boxes;
-				getSelection(boxes);
-				setBoxesPresentationStatus(boxes, false);
+				vector<sObjectView> objects;
+				getSelection(objects);
+				setObjectsPresentationStatus(objects, false);
 				break;
 			}
-            case CommandIDs::newBox:
+            case CommandIDs::newObject:
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                getPage()->add(createBoxDicoAtPosition("newbox", getMouseXYRelative()));
+                getPage()->add(createObjectDicoAtPosition("newobject", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newBang:
@@ -1305,7 +1321,7 @@ namespace Kiwi
 				sPage page = getPage();
 				if (page)
 				{
-					sDico dico = createBoxDicoAtPosition("bang", getMouseXYRelative());
+					sDico dico = createObjectDicoAtPosition("bang", getMouseXYRelative());
 					page->add(dico);
 				}
                 break;
@@ -1314,21 +1330,21 @@ namespace Kiwi
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                getPage()->add(createBoxDicoAtPosition("toggle", getMouseXYRelative()));
+                getPage()->add(createObjectDicoAtPosition("toggle", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newNumber:
             {
 				if (isMouseButtonDownAnywhere()) return false;
 				unselectAll();
-                getPage()->add(createBoxDicoAtPosition("number", getMouseXYRelative()));
+                getPage()->add(createObjectDicoAtPosition("number", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newMessage:
             {
 				if (isMouseButtonDownAnywhere()) return false;
                 unselectAll();
-                getPage()->add(createBoxDicoAtPosition("message", getMouseXYRelative()));
+                getPage()->add(createObjectDicoAtPosition("message", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::zoomIn:
@@ -1397,14 +1413,14 @@ namespace Kiwi
         g.fillEllipse(size);
     }
     
-    void jPage::jIolighter::setInlet(sBoxView box, ulong index)
+    void jPage::jIolighter::setInlet(sObjectView object, ulong index)
     {
-        if(box)
+        if(object)
         {
-            Box::sInlet inlet = box->getBox()->getInlet(index);
+            Object::sInlet inlet = object->getObject()->getInlet(index);
             if(inlet)
             {
-                if(inlet->getPolarity() == Box::Io::Cold)
+                if(inlet->getPolarity() == Object::Io::Cold)
                 {
                     m_colour = juce::Colour::fromFloatRGBA(0.28, 0.28, 0.88, 1);
                 }
@@ -1412,21 +1428,21 @@ namespace Kiwi
                 {
                     m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
                 }
-                const Gui::Point pos = box->getInletPosition(index);
+                const Gui::Point pos = object->getInletPosition(index);
                 setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
             }
         }
     }
     
-    void jPage::jIolighter::setOutlet(sBoxView box, ulong index)
+    void jPage::jIolighter::setOutlet(sObjectView object, ulong index)
     {
-        if(box)
+        if(object)
         {
-            Box::sOutlet outlet = box->getBox()->getOutlet(index);
+            Object::sOutlet outlet = object->getObject()->getOutlet(index);
             if(outlet)
             {
                 m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
-                const Gui::Point pos = box->getOutletPosition(index);
+                const Gui::Point pos = object->getOutletPosition(index);
                 setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
             }
         }

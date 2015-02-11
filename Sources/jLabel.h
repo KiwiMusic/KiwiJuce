@@ -92,13 +92,13 @@ namespace Kiwi
 		/** Changes the font to use to draw the text.
 		 @see getFont
 		 */
-		void setFont(const Font& newFont);
+		void setFont(const juce::Font& newFont);
 		
 		/** Returns the font currently being used.
 		 This may be the one set by setFont(), unless it has been overridden by the current LookAndFeel
 		 @see setFont
 		 */
-		Font getFont() const noexcept;
+		juce::Font getFont() const noexcept;
 		
 		//==============================================================================
 		/** A set of colour IDs to use to change the colour of various aspects of the label.
@@ -286,7 +286,7 @@ namespace Kiwi
 		//==============================================================================
 		Value textValue;
 		String lastTextValue;
-		Font font;
+		juce::Font font;
 		Justification justification;
 		sjTextEditor m_editor;
 		ListenerList<Listener> listeners;

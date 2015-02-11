@@ -63,13 +63,13 @@ enum CommandIDs
     gridModeSwitch				= 0xf20200,		/**< Toggle grid page mode. */
     enableSnapToGrid			= 0xf20201,		/**< Toggle snap to grid page mode. */
     
-    newBox						= 0xf30300,		/**< Add a new "box" to the page. */
-    newMessage					= 0xf30301,		/**< Add a new "message" object box to the page. */
-    newFlonum					= 0xf30302,		/**< Add a new "flonum" object box to the page. */
-    newNumber					= 0xf30303,		/**< Add a new "number" object box to the page. */
-    newComment					= 0xf30304,		/**< Add a new "comment" object box to the page. */
-    newBang						= 0xf30305,		/**< Add a new "button" object box to the page. */
-    newToggle					= 0xf30306,		/**< Add a new "toggle" object box to the page. */
+    newObject						= 0xf30300,		/**< Add a new "object" to the page. */
+    newMessage					= 0xf30301,		/**< Add a new "message" object object to the page. */
+    newFlonum					= 0xf30302,		/**< Add a new "flonum" object object to the page. */
+    newNumber					= 0xf30303,		/**< Add a new "number" object object to the page. */
+    newComment					= 0xf30304,		/**< Add a new "comment" object object to the page. */
+    newBang						= 0xf30305,		/**< Add a new "button" object object to the page. */
+    newToggle					= 0xf30306,		/**< Add a new "toggle" object object to the page. */
     
     showPageInspector			= 0xf20400,		/**< Shows the page properties inspector. */
     

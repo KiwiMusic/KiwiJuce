@@ -86,10 +86,10 @@ namespace Kiwi
             sConsoleMessage mess = m_history->get(selection[i]);
             if(mess && !mess->content.empty())
             {
-                shared_ptr<const Box> box = mess->box.lock();
-                if(box)
+                shared_ptr<const Object> object = mess->object.lock();
+                if(object)
                 {
-                    text += toString(box) + " : ";
+                    text += toString(object) + " : ";
                 }
                 text += mess->content + "\n";
             }
@@ -318,10 +318,10 @@ namespace Kiwi
             {
                 case Column::Object:
                 {
-                    shared_ptr<const Box> box = mess->box.lock();
-                    if(box)
+                    shared_ptr<const Object> object = mess->object.lock();
+                    if(object)
                     {
-                        g.drawText(toString(box), 2, 0, width - 4, height, Justification::centredLeft, true);
+                        g.drawText(toString(object), 2, 0, width - 4, height, Justification::centredLeft, true);
                     }
                 }
                     break;

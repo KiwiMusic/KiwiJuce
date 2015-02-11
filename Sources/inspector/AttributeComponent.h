@@ -36,8 +36,8 @@ namespace Kiwi
 	 an item's attibute.
 	 
 	 Subclasses of this are used to display an attribute in various forms, e.g. an
-	 AttributeMenuComponent shows its value as a combo box; an AttributeNumberComponent
-	 shows its value as draggable/editable number box; an AttributeTextComponent as a text box, etc.
+	 AttributeMenuComponent shows its value as a combo object; an AttributeNumberComponent
+	 shows its value as draggable/editable number object; an AttributeTextComponent as a text object, etc.
 	 
 	 A subclass must implement the refresh() method which will be called to tell the
 	 component to update itself, and is also responsible for calling it when the
@@ -92,7 +92,7 @@ namespace Kiwi
 		 @param attr		The attribute that has been modified.
 		 @type type			The type of notification
 		 */
-		void notify(Attr::sManager manager, sAttr attr, Attr::Notification type) override;
+		void notify(sAttr attr) override;
 		
 		//==============================================================================
 		/** Returns this item's preferred height.

@@ -77,7 +77,7 @@ namespace Kiwi
     
     void Application::initialise(const String& commandLine)
     {
-        Process::setPriority (Process::RealtimePriority);
+		juce::Process::setPriority(juce::Process::RealtimePriority);
 		initCommandManager();
         m_instance = jInstance::create();
         m_menu_model = new MainMenuModel();
@@ -262,22 +262,22 @@ namespace Kiwi
     
     void Application::createObjectMenu (PopupMenu& menu)
     {
-		vector<sTag> boxNames;
-		Box::getPrototypeNames(boxNames);
+		vector<sTag> objectNames;
+		Prototypes::getNames(objectNames);
 		
-		if (boxNames.size() > 0)
+		if (objectNames.size() > 0)
 		{
 			PopupMenu names;
 			
-			sort(boxNames.begin(), boxNames.end());
+			sort(objectNames.begin(), objectNames.end());
 			
-			for (int i = 0; i < boxNames.size(); ++i)
+			for (int i = 0; i < objectNames.size(); ++i)
 			{
-				//names.addItem(boxPrototypeNamesBaseID + i, boxNames[i]);
-				names.addItem(1 + i, toString(boxNames[i]));
+				//names.addItem(objectPrototypeNamesBaseID + i, objectNames[i]);
+				names.addItem(1 + i, toString(objectNames[i]));
 			}
 			
-			menu.addSubMenu ("box thesaurus", names);
+			menu.addSubMenu ("object thesaurus", names);
 		}
 		
         menu.addCommandItem (m_command_manager, CommandIDs::showObjectInspector);
