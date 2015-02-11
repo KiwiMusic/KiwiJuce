@@ -262,8 +262,7 @@ namespace Kiwi
     
     void Application::createObjectMenu (PopupMenu& menu)
     {
-		vector<sTag> objectNames;
-		Prototypes::getNames(objectNames);
+		vector<sTag> objectNames = Factory::names();
 		
 		if (objectNames.size() > 0)
 		{

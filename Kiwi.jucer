@@ -70,8 +70,8 @@
         <FILE id="Z06V8p" name="Defs.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Defs.h"/>
         <FILE id="aujZhG" name="Tag.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Tag.cpp"/>
         <FILE id="kyhMp4" name="Tag.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Tag.h"/>
-        <FILE id="lUGqhA" name="Element.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Element.cpp"/>
-        <FILE id="kyMYfY" name="Element.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Element.h"/>
+        <FILE id="ogvpZG" name="Atom.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Atom.cpp"/>
+        <FILE id="hP4edi" name="Atom.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Atom.h"/>
         <FILE id="SgFQ2K" name="Beacon.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Beacon.cpp"/>
         <FILE id="zJYGZo" name="Beacon.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Beacon.h"/>
         <FILE id="sDJwsT" name="Clock.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Clock.cpp"/>
