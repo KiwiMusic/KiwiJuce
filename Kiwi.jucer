@@ -33,32 +33,41 @@
       <GROUP id="{C30F7E14-EB63-78F8-11A9-3EE2036371EC}" name="KiwiGui">
         <FILE id="MQDdkF" name="Gui.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Gui.h"/>
         <FILE id="o6seEu" name="GuiTools.h" compile="0" resource="0" file="KiwiCore/KiwiGui/GuiTools.h"/>
-        <FILE id="neUU2y" name="Point.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Point.cpp"/>
-        <FILE id="crCKSX" name="Point.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Point.h"/>
-        <FILE id="JARn1h" name="Size.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Size.cpp"/>
-        <FILE id="BI6oNE" name="Size.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Size.h"/>
-        <FILE id="rg4pIS" name="Rectangle.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Rectangle.cpp"/>
-        <FILE id="z36Qwx" name="Rectangle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Rectangle.h"/>
-        <FILE id="Qsp3iA" name="Path.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Path.cpp"/>
-        <FILE id="LKRp9E" name="Path.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Path.h"/>
-        <FILE id="wTu8kH" name="Color.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Color.cpp"/>
-        <FILE id="EIExcO" name="Color.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Color.h"/>
-        <FILE id="MC3KM1" name="Font.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Font.cpp"/>
-        <FILE id="jwL1tL" name="Font.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Font.h"/>
-        <FILE id="RaRAig" name="TextLayout.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/TextLayout.cpp"/>
-        <FILE id="CpPcnV" name="TextLayout.h" compile="0" resource="0" file="KiwiCore/KiwiGui/TextLayout.h"/>
-        <FILE id="GAGXNY" name="Doodle.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Doodle.cpp"/>
-        <FILE id="EAcqh9" name="Doodle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Doodle.h"/>
-        <FILE id="DTDgfO" name="Attribute.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Attribute.cpp"/>
-        <FILE id="znEeQ0" name="Attribute.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Attribute.h"/>
-        <FILE id="SbDhI7" name="Sketcher.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Sketcher.cpp"/>
-        <FILE id="akkD7p" name="Sketcher.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Sketcher.h"/>
-        <FILE id="zxjjrl" name="Mouser.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Mouser.cpp"/>
-        <FILE id="N05brx" name="Mouser.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Mouser.h"/>
-        <FILE id="hMJtsw" name="Keyboarder.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Keyboarder.cpp"/>
-        <FILE id="uUdcGU" name="Keyboarder.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Keyboarder.h"/>
-        <FILE id="L4i41D" name="Writer.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Writer.cpp"/>
-        <FILE id="VS6HKr" name="Writer.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Writer.h"/>
+        <GROUP id="{B9E52D3F-1E79-6D3E-89A1-8B4504116AB0}" name="Graphics">
+          <FILE id="SNwakq" name="Color.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Color.cpp"/>
+          <FILE id="aIzbno" name="Color.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Color.h"/>
+          <FILE id="tCPjDM" name="Font.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Font.cpp"/>
+          <FILE id="CRG5kR" name="Font.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Font.h"/>
+          <FILE id="KTLRum" name="Graphics.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Graphics.h"/>
+          <FILE id="SQjynr" name="Path.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Path.cpp"/>
+          <FILE id="iu2h8Z" name="Path.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Path.h"/>
+          <FILE id="DyikRx" name="Point.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Point.cpp"/>
+          <FILE id="x0TTZ6" name="Point.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Point.h"/>
+          <FILE id="nP0EoP" name="Rectangle.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Rectangle.cpp"/>
+          <FILE id="FhdOtP" name="Rectangle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Rectangle.h"/>
+          <FILE id="iIgkkt" name="TextLayout.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/TextLayout.cpp"/>
+          <FILE id="erMxee" name="TextLayout.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/TextLayout.h"/>
+        </GROUP>
+        <GROUP id="{9B385A0C-5192-BF34-D900-5A87E9B9BEA1}" name="Attributes">
+          <FILE id="SlUNFL" name="Attribute.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Attributes/Attribute.cpp"/>
+          <FILE id="YdFfBC" name="Attribute.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Attributes/Attribute.h"/>
+          <FILE id="yDGSDC" name="Attributes.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Attributes/Attributes.h"/>
+          <FILE id="SXoNMF" name="Default.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Attributes/Default.cpp"/>
+          <FILE id="vsoacc" name="Default.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Attributes/Default.h"/>
+          <FILE id="sfpC3V" name="Graphic.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Attributes/Graphic.cpp"/>
+          <FILE id="vMx1Zw" name="Graphic.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Attributes/Graphic.h"/>
+        </GROUP>
+        <GROUP id="{29FB9564-4B2C-94DE-70F3-008008B7EF9A}" name="Models">
+          <FILE id="B88aAC" name="Keyboarder.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Models/Keyboarder.cpp"/>
+          <FILE id="kIhSV8" name="Keyboarder.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Models/Keyboarder.h"/>
+          <FILE id="nsrK4b" name="Models.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Models/Models.h"/>
+          <FILE id="wvkIGi" name="Mouser.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Models/Mouser.cpp"/>
+          <FILE id="zfv9aj" name="Mouser.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Models/Mouser.h"/>
+          <FILE id="jViCS3" name="Sketcher.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Models/Sketcher.cpp"/>
+          <FILE id="iGe9iG" name="Sketcher.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Models/Sketcher.h"/>
+          <FILE id="SX88MG" name="Writer.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Models/Writer.cpp"/>
+          <FILE id="UQIJMl" name="Writer.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Models/Writer.h"/>
+        </GROUP>
         <GROUP id="{4A0C0D63-5E44-7623-D882-77DCCA17A4CC}" name="Modules">
           <FILE id="rxg25k" name="Major.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Modules/Major.cpp"/>
           <FILE id="kBDaBE" name="Major.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Modules/Major.h"/>
