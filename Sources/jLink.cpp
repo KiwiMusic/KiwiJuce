@@ -44,7 +44,7 @@ namespace Kiwi
     
     void jLink::boundsChanged()
     {
-        Gui::Rectangle bounds = LinkView::getBounds().expanded(20.);
+        Kiwi::Rectangle bounds = LinkView::getBounds().expanded(20.);
         setBounds(bounds.x(), bounds.y(), bounds.width(), bounds.height());
     }
 

@@ -28,7 +28,7 @@
 
 namespace Kiwi
 {
-    class jTextLayout : public Gui::TextLayout
+    class jTextLayout : public Kiwi::TextLayout
     {
     private:
 		GlyphArrangement layout;
@@ -55,9 +55,9 @@ namespace Kiwi
 		 @param	ellipsis		show/don't show ... if a line doesn't fit bounds (implies enabled word wrapping).
 		 */
 		void set(wstring const& text,
-				Gui::Font const& font,
-				Gui::Rectangle const& bounds,
-				Gui::Font::Justification justification,
+				Kiwi::Font const& font,
+				Kiwi::Rectangle const& bounds,
+				Kiwi::Font::Justification justification,
 				const bool wordwrap = false,
 				const bool ellipsis = false) override;
     };

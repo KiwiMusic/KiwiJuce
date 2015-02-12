@@ -88,7 +88,7 @@ namespace Kiwi
 		const long      m_io_index;
 		
 		// gui
-		Gui::Path		m_path;
+		Kiwi::Path		m_path;
 		Kiwi::Point		m_startpos;
 		Kiwi::Point		m_dragpos;
 		
@@ -185,7 +185,7 @@ namespace Kiwi
 				m_path.setPoint(1, m_startpos);
 			}
 			
-			const Gui::Rectangle b = m_path.getBounds().expanded(20);
+			const Kiwi::Rectangle b = m_path.getBounds().expanded(20);
 			setBounds(juce::Rectangle<int>(b.x(), b.y(), b.width(), b.height()));
 			setVisible(true);
 		}
@@ -200,7 +200,7 @@ namespace Kiwi
 		
 		Kiwi::Point getLocalPoint(Kiwi::Point const& point)
 		{
-			const Gui::Rectangle bounds = m_path.getBounds();
+			const Kiwi::Rectangle bounds = m_path.getBounds();
 			Kiwi::Point pt = point - bounds.expanded(20).position();
 			return pt;
 		}

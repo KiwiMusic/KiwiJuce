@@ -36,9 +36,9 @@ namespace Kiwi
     }
 	
 	void jTextLayout::set(wstring const& text,
-						  Gui::Font const& font,
-						  Gui::Rectangle const& bounds,
-						  Gui::Font::Justification justification,
+						  Kiwi::Font const& font,
+						  Kiwi::Rectangle const& bounds,
+						  Kiwi::Font::Justification justification,
 						  const bool wordwrap, const bool ellipsis)
 	{
 		;

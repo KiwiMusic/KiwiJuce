@@ -63,7 +63,7 @@ namespace Kiwi
 		}
 	}
 	
-	Gui::Rectangle jObject::getDisplayBounds() const noexcept
+	Kiwi::Rectangle jObject::getDisplayBounds() const noexcept
 	{
 		return ObjectView::getBounds().expanded(m_framesize);
 	}
@@ -177,7 +177,7 @@ namespace Kiwi
 			{
 				/*
 				String text = m_label->getText(true);
-				Gui::Font font = getObject()->getFont();
+				Kiwi::Font font = getObject()->getFont();
 				juce::Font jfont(font.getName(), (float)font.getSize(), font.getStyle());
 				double textwidth = jfont.getStringWidthFloat(text);
 				getObject()->setAttributeValue(AttrObject::Tag_size, {textwidth + 10, getSize().y()});
@@ -249,8 +249,8 @@ namespace Kiwi
 				const bool edit = !getPatcherLockStatus();
 				const bool presentation = getPatcherPresentationStatus();
 				
-				const Gui::Rectangle localObjectFrame = getDisplayBounds().withZeroOrigin();
-				const Gui::Rectangle localObjectBounds = ObjectView::getBounds().withPosition(Kiwi::Point(m_framesize, m_framesize));
+				const Kiwi::Rectangle localObjectFrame = getDisplayBounds().withZeroOrigin();
+				const Kiwi::Rectangle localObjectBounds = ObjectView::getBounds().withPosition(Kiwi::Point(m_framesize, m_framesize));
 				
 				JDoodle d(g, localObjectFrame);
 

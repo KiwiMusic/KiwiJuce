@@ -71,7 +71,7 @@ namespace Kiwi
 		/** The function retrieves the display bounds of the object view.
 		 @return The bounds of the object view.
 		 */
-		Gui::Rectangle getDisplayBounds() const noexcept override;
+		Kiwi::Rectangle getDisplayBounds() const noexcept override;
 		
 		//! Retrieve the display position of the object view.
 		/** The function retrieves the display position of the object view.

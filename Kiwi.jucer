@@ -34,17 +34,17 @@
         <FILE id="MQDdkF" name="Gui.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Gui.h"/>
         <FILE id="o6seEu" name="GuiTools.h" compile="0" resource="0" file="KiwiCore/KiwiGui/GuiTools.h"/>
         <GROUP id="{B9E52D3F-1E79-6D3E-89A1-8B4504116AB0}" name="Graphics">
-          <FILE id="SNwakq" name="Color.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Color.cpp"/>
-          <FILE id="aIzbno" name="Color.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Color.h"/>
-          <FILE id="tCPjDM" name="Font.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Font.cpp"/>
-          <FILE id="CRG5kR" name="Font.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Font.h"/>
           <FILE id="KTLRum" name="Graphics.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Graphics.h"/>
-          <FILE id="SQjynr" name="Path.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Path.cpp"/>
-          <FILE id="iu2h8Z" name="Path.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Path.h"/>
           <FILE id="DyikRx" name="Point.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Point.cpp"/>
           <FILE id="x0TTZ6" name="Point.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Point.h"/>
           <FILE id="nP0EoP" name="Rectangle.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Rectangle.cpp"/>
           <FILE id="FhdOtP" name="Rectangle.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Rectangle.h"/>
+          <FILE id="SQjynr" name="Path.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Path.cpp"/>
+          <FILE id="iu2h8Z" name="Path.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Path.h"/>
+          <FILE id="SNwakq" name="Color.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Color.cpp"/>
+          <FILE id="aIzbno" name="Color.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Color.h"/>
+          <FILE id="tCPjDM" name="Font.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/Font.cpp"/>
+          <FILE id="CRG5kR" name="Font.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/Font.h"/>
           <FILE id="iIgkkt" name="TextLayout.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Graphics/TextLayout.cpp"/>
           <FILE id="erMxee" name="TextLayout.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Graphics/TextLayout.h"/>
         </GROUP>

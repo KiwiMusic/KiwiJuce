@@ -31,7 +31,7 @@ namespace Kiwi
         ;
     }
 	
-	JDoodle::JDoodle(Graphics &_g, Gui::Rectangle b) :
+	JDoodle::JDoodle(Graphics &_g, Kiwi::Rectangle b) :
 	g(_g), bounds(b)
 	{
 		;
@@ -47,7 +47,7 @@ namespace Kiwi
         g.setColour(toJuce(color));
     }
     
-    void JDoodle::setFont(Gui::Font const& font)
+    void JDoodle::setFont(Kiwi::Font const& font)
     {
         juce::Font jfont(font.getName(), (float)font.getSize(), font.getStyle());
         g.setFont(jfont);
@@ -58,22 +58,22 @@ namespace Kiwi
         g.fillAll();
     }
     
-    void JDoodle::drawText(string const& text, double x, double y, double w, double h, Gui::Font::Justification j, bool wrap)
+    void JDoodle::drawText(string const& text, double x, double y, double w, double h, Kiwi::Font::Justification j, bool wrap)
     {
         g.drawText(text, x, y, w, h, juce::Justification(j), wrap);
     }
     
-    void JDoodle::drawText(string const& text, Gui::Rectangle const& rect, Gui::Font::Justification j, bool wrap )
+    void JDoodle::drawText(string const& text, Kiwi::Rectangle const& rect, Kiwi::Font::Justification j, bool wrap )
     {
         g.drawText(text, rect.x(), rect.y(), rect.width(), rect.height(), juce::Justification(j), wrap);
     }
 	
-	void JDoodle::drawFittedText(string const& text, Gui::Rectangle const& rect, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale)
+	void JDoodle::drawFittedText(string const& text, Kiwi::Rectangle const& rect, Kiwi::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale)
 	{
 		g.drawFittedText(text, rect.x(), rect.y(), rect.width(), rect.height(), juce::Justification(j), maximumNumberOfLines, minimumHorizontalScale);
 	}
 	
-	void JDoodle::drawFittedText(string const& text, const double x, const double y, const double width, const double height, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale)
+	void JDoodle::drawFittedText(string const& text, const double x, const double y, const double width, const double height, Kiwi::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale)
 	{
 		g.drawFittedText(text, x, y, width, height, juce::Justification(j), maximumNumberOfLines, minimumHorizontalScale);
 	}
@@ -83,41 +83,41 @@ namespace Kiwi
 		g.drawMultiLineText(text.c_str(), startX, baselineY, maximumLineWidth);
 	}
     
-    void JDoodle::fillPath(Gui::Path const& path)
+    void JDoodle::fillPath(Kiwi::Path const& path)
     {
         if(!path.empty())
         {
             juce::Path jpath;
-            Gui::Path::Node node = path.getNode(0);
+            Kiwi::Path::Node node = path.getNode(0);
             jpath.startNewSubPath(node.point.x(), node.point.y());
             for(ulong i = 1; i < path.size(); i++)
             {
                 node = path.getNode(i);
                 switch(node.mode)
                 {
-                    case Gui::Path::Move:
+                    case Kiwi::Path::Move:
                         jpath.startNewSubPath(node.point.x(), node.point.y());
                         break;
-                    case Gui::Path::Path::Linear:
+                    case Kiwi::Path::Path::Linear:
                         jpath.lineTo(node.point.x(), node.point.y());
                         break;
-                    case Gui::Path::Path::Quadratic:
+                    case Kiwi::Path::Path::Quadratic:
                     {
                         if(++i < path.size())
                         {
-                            Gui::Path::Node next_node = path.getNode(i);
+                            Kiwi::Path::Node next_node = path.getNode(i);
                             jpath.quadraticTo(node.point.x(), node.point.y(), next_node.point.x(), next_node.point.y());
                         }
                         
                     }
                         break;
-                    case Gui::Path::Cubic:
+                    case Kiwi::Path::Cubic:
                     {
                         i += 2;
                         if(i < path.size())
                         {
-                            Gui::Path::Node next_node = path.getNode(i-1);
-                            Gui::Path::Node next_node2 = path.getNode(i);
+                            Kiwi::Path::Node next_node = path.getNode(i-1);
+                            Kiwi::Path::Node next_node2 = path.getNode(i);
                             jpath.cubicTo(node.point.x(), node.point.y(), next_node.point.x(), next_node.point.y(), next_node2.point.x(), next_node2.point.y());
                         }
                     }
@@ -131,41 +131,41 @@ namespace Kiwi
         }
     }
     
-    void JDoodle::drawPath(const Gui::Path& path, double const thickness)
+    void JDoodle::drawPath(const Kiwi::Path& path, double const thickness)
     {
         if(!path.empty())
         {
             juce::Path jpath;
-            Gui::Path::Node node = path.getNode(0);
+            Kiwi::Path::Node node = path.getNode(0);
             jpath.startNewSubPath(node.point.x(), node.point.y());
             for(ulong i = 1; i < path.size(); i++)
             {
                 node = path.getNode(i);
                 switch(node.mode)
                 {
-                    case Gui::Path::Move:
+                    case Kiwi::Path::Move:
                         jpath.startNewSubPath(node.point.x(), node.point.y());
                         break;
-                    case Gui::Path::Linear:
+                    case Kiwi::Path::Linear:
                         jpath.lineTo(node.point.x(), node.point.y());
                         break;
-                    case Gui::Path::Quadratic:
+                    case Kiwi::Path::Quadratic:
                     {
                         if(++i < path.size())
                         {
-                            Gui::Path::Node next_node = path.getNode(i);
+                            Kiwi::Path::Node next_node = path.getNode(i);
                             jpath.quadraticTo(node.point.x(), node.point.y(), next_node.point.x(), next_node.point.y());
                         }
                         
                     }
                         break;
-                    case Gui::Path::Cubic:
+                    case Kiwi::Path::Cubic:
                     {
                         i += 2;
                         if(i < path.size())
                         {
-                            Gui::Path::Node next_node = path.getNode(i-1);
-                            Gui::Path::Node next_node2 = path.getNode(i);
+                            Kiwi::Path::Node next_node = path.getNode(i-1);
+                            Kiwi::Path::Node next_node2 = path.getNode(i);
                             jpath.cubicTo(node.point.x(), node.point.y(), next_node.point.x(), next_node.point.y(), next_node2.point.x(), next_node2.point.y());
                         }
                     }
