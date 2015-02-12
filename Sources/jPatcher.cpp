@@ -419,10 +419,8 @@ namespace Kiwi
 		sPatcher patcher = getPatcher();
 		if (patcher)
 		{
-			int todo;
-			/*
 			const bool locked = getLockStatus();
-			const juce::Colour bgcolor = toJuce((locked ? patcher->getLockedBgColor() : patcher->getEditingBgColor()));
+			const juce::Colour bgcolor = toJuce((locked ? patcher->getLockedBackgroundColor() : patcher->getUnlockedBackgroundColor()));
 			
 			g.setColour(bgcolor);
 			g.fillAll();
@@ -441,7 +439,6 @@ namespace Kiwi
 					}
 				}
 			}
-			*/
 		}
     }
 	
