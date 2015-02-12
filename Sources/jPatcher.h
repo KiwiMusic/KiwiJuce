@@ -107,7 +107,7 @@ namespace Kiwi
 		//! Attempts to add objects to the patcher from clipboard.
 		/** The function attempts to add objects to the patcher from clipboard.
 		 */
-		void pasteFromClipboard(Gui::Point const& offset = Gui::Point());
+		void pasteFromClipboard(Kiwi::Point const& offset = Kiwi::Point());
 		
 		//! Bring all the links in front of objects.
 		/** The function brings all the links in front of objects.

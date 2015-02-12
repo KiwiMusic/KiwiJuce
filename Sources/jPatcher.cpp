@@ -196,7 +196,7 @@ namespace Kiwi
 		*/
 	}
 	
-	void jPatcher::pasteFromClipboard(Gui::Point const& offset)
+	void jPatcher::pasteFromClipboard(Kiwi::Point const& offset)
 	{
 		const string text = SystemClipboard::getTextFromClipboard().toStdString();
 		if(!text.empty())
@@ -261,7 +261,7 @@ namespace Kiwi
 						int todo;
 						/*
 						object->setAttributeValue(AttrObject::Tag_presentation, {true});
-                        Gui::Point pos = object->getPosition(false);
+                        Kiwi::Point pos = object->getPosition(false);
                         object->setAttributeValue(AttrObject::Tag_presentation_position, {pos.x(), pos.y()});
                         pos = object->getSize(false);
 						object->setAttributeValue(AttrObject::Tag_presentation_size, {pos.x(), pos.y()});
@@ -324,7 +324,7 @@ namespace Kiwi
     {
         int zaza;
         /*
-        knockObjects(Gui::Point(x, y), getPresentationStatus());
+        knockObjects(Kiwi::Point(x, y), getPresentationStatus());
         if(m_knock.hasHitObject())
         {
             sObject object = m_knock.getObject();
@@ -452,7 +452,7 @@ namespace Kiwi
 
 		if(!getLockStatus())
 		{
-            m_knock = knockAll(Gui::Point(e.x, e.y));
+            m_knock = knockAll(Kiwi::Point(e.x, e.y));
 			if(m_knock.hasHitObject())
 			{
                 sObjectView object = m_knock.getObject();
@@ -538,7 +538,7 @@ namespace Kiwi
 			}
 			else if(m_knock.hasHitPatcher())
 			{
-				lassoBegin(m_lasso, Gui::Point(e.x, e.y), e.mods.isShiftDown());
+				lassoBegin(m_lasso, Kiwi::Point(e.x, e.y), e.mods.isShiftDown());
 			}
 		}
 
@@ -556,12 +556,12 @@ namespace Kiwi
 			{
 				m_lasso->setVisible(true);
                 m_lasso->toFront(false);
-                lassoPerform(m_lasso, Gui::Point(e.x, e.y), true, e.mods.isAltDown(), e.mods.isShiftDown());
+                lassoPerform(m_lasso, Kiwi::Point(e.x, e.y), true, e.mods.isAltDown(), e.mods.isShiftDown());
                 m_lasso->setBounds(toJuce<int>(m_lasso->Lasso::bounds));
 			}
 			else if(hasTempLinks())
 			{
-                m_knock = knockAll(Gui::Point(e.x, e.y));
+                m_knock = knockAll(Kiwi::Point(e.x, e.y));
 				if(m_knock.hasHitObject() && m_iolighter)
 				{
 					if(m_knock.getPart() == Knock::Inlet)
@@ -649,7 +649,7 @@ namespace Kiwi
 						{
 							startMoveOrResizeObjects();
 						}
-						Gui::Point delta = Gui::Point(e.getDistanceFromDragStartX(), e.getDistanceFromDragStartY());
+						Kiwi::Point delta = Kiwi::Point(e.getDistanceFromDragStartX(), e.getDistanceFromDragStartY());
 						resizeSelectedObjects(delta, m_last_border_downstatus, e.mods.isShiftDown());
 						m_last_drag = e.getPosition();
 						
@@ -673,7 +673,7 @@ namespace Kiwi
 							startMoveOrResizeObjects();
 						}
 						const juce::Point<int> pos = e.getPosition();
-						Gui::Point delta = toKiwi(pos) - toKiwi(m_last_drag);
+						Kiwi::Point delta = toKiwi(pos) - toKiwi(m_last_drag);
 						moveSelectedObjects(delta);
 						m_last_drag = pos;
 					}
@@ -712,7 +712,7 @@ namespace Kiwi
 		if(!getLockStatus())
 		{
             int zaza;
-            m_knock = knockAll(Gui::Point(e.x, e.y));
+            m_knock = knockAll(Kiwi::Point(e.x, e.y));
             sObjectView object = m_knock.getObject();
             sObjectView magnet_object = m_magnet.getObject();
             sTempLink templink  = getTempLink();
@@ -779,7 +779,7 @@ namespace Kiwi
     {
 		MouseCursor::StandardCursorType mc = MouseCursor::NormalCursor;
         
-        m_knock = knockAll(Gui::Point(e.x, e.y));
+        m_knock = knockAll(Kiwi::Point(e.x, e.y));
 		
 		if(m_knock.hasHitObject())
 		{
@@ -915,22 +915,22 @@ namespace Kiwi
 
 				if(key.isKeyCode(KeyPress::rightKey))
 				{
-					moveSelectedObjects(Gui::Point(amount, 0));
+					moveSelectedObjects(Kiwi::Point(amount, 0));
 					return true;
 				}
 				else if(key.isKeyCode(KeyPress::downKey))
 				{
-					moveSelectedObjects(Gui::Point(0, amount));
+					moveSelectedObjects(Kiwi::Point(0, amount));
 					return true;
 				}
 				else if(key.isKeyCode(KeyPress::leftKey))
 				{
-					moveSelectedObjects(Gui::Point(-amount, 0));
+					moveSelectedObjects(Kiwi::Point(-amount, 0));
 					return true;
 				}
 				else if(key.isKeyCode(KeyPress::upKey))
 				{
-					moveSelectedObjects(Gui::Point(0, -amount));
+					moveSelectedObjects(Kiwi::Point(0, -amount));
 					return true;
 				}
 			}
@@ -1246,7 +1246,7 @@ namespace Kiwi
 				/*
 				DBG("|- paste objects");
 				const long gridsize = getPatcher()->getGridSize();
-				pasteFromClipboard(Gui::Point(gridsize, gridsize));
+				pasteFromClipboard(Kiwi::Point(gridsize, gridsize));
 				*/
 				break;
 			}
@@ -1262,7 +1262,7 @@ namespace Kiwi
 				DBG("|- duplicate objects");
 				copySelectionToClipboard();
 				const long gridsize = getPatcher()->getGridSize();
-				pasteFromClipboard(Gui::Point(gridsize, gridsize));
+				pasteFromClipboard(Kiwi::Point(gridsize, gridsize));
 				unselectAllLinks();
 				*/
 				break;
@@ -1421,7 +1421,7 @@ namespace Kiwi
                 {
                     m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
                 }
-                const Gui::Point pos = object->getInletPosition(index);
+                const Kiwi::Point pos = object->getInletPosition(index);
                 setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
             }
         }
@@ -1435,7 +1435,7 @@ namespace Kiwi
             if(outlet)
             {
                 m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
-                const Gui::Point pos = object->getOutletPosition(index);
+                const Kiwi::Point pos = object->getOutletPosition(index);
                 setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
             }
         }

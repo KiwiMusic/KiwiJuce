@@ -89,8 +89,8 @@ namespace Kiwi
 		
 		// gui
 		Gui::Path		m_path;
-		Gui::Point		m_startpos;
-		Gui::Point		m_dragpos;
+		Kiwi::Point		m_startpos;
+		Kiwi::Point		m_dragpos;
 		
 	public:
 		TempLink(wObjectView attachedObject, long index, bool fromOutlet) :
@@ -103,12 +103,12 @@ namespace Kiwi
 		
 		~TempLink() {}
 		
-		inline Gui::Point getStartCoord() const noexcept
+		inline Kiwi::Point getStartCoord() const noexcept
 		{
 			return m_startpos;
 		}
 		
-		inline Gui::Point getEndCoord() const noexcept
+		inline Kiwi::Point getEndCoord() const noexcept
 		{
 			return m_dragpos;
 		}
@@ -153,13 +153,13 @@ namespace Kiwi
 					{
 						m_startpos = jobject->getOutletPosition(m_io_index);
 						m_path.moveTo(m_startpos);
-						m_path.lineTo(Gui::Point());
+						m_path.lineTo(Kiwi::Point());
 					}
 					else if (!m_attached_to_outlet && m_io_index < object->getNumberOfInlets())
 					{
 						m_startpos = jobject->getInletPosition(m_io_index);
 						m_path.moveTo(m_startpos);
-						m_path.lineTo(Gui::Point());
+						m_path.lineTo(Kiwi::Point());
 					}
 				}
 			}*/
@@ -172,7 +172,7 @@ namespace Kiwi
 		void dragLink(const MouseEvent& e)
 		{
 			juce::Point<int> pos = e.getPosition();
-			m_dragpos = Gui::Point(pos.x, pos.y);
+			m_dragpos = Kiwi::Point(pos.x, pos.y);
 			
 			if (isAttachedToOutlet())
 			{
@@ -198,19 +198,19 @@ namespace Kiwi
 			setVisible (false);
 		}
 		
-		Gui::Point getLocalPoint(Gui::Point const& point)
+		Kiwi::Point getLocalPoint(Kiwi::Point const& point)
 		{
 			const Gui::Rectangle bounds = m_path.getBounds();
-			Gui::Point pt = point - bounds.expanded(20).position();
+			Kiwi::Point pt = point - bounds.expanded(20).position();
 			return pt;
 		}
 		
 		void paint(Graphics& g) override
 		{
 			juce::Path p;
-			const Gui::Point pos = getLocalPoint(m_path.getPoint(0));
-			Gui::Point pt = pos;
-			Gui::Point next;
+			const Kiwi::Point pos = getLocalPoint(m_path.getPoint(0));
+			Kiwi::Point pt = pos;
+			Kiwi::Point next;
 			p.startNewSubPath(pt.x(), pt.y());
 			
 			for(ulong i = 0; i < m_path.size() - 1; i++)
@@ -238,7 +238,7 @@ namespace Kiwi
 			g.setColour(color.contrasting(0.4));
 			g.fillEllipse(start.expanded(3.5));
 			
-			const Gui::Point dragpos = getLocalPoint(m_dragpos);
+			const Kiwi::Point dragpos = getLocalPoint(m_dragpos);
 			const juce::Rectangle<float> dragger(dragpos.x(), dragpos.y(), 0, 0);
 			g.setColour(color.contrasting(0.4));
 			g.fillEllipse(dragger.expanded(4));
