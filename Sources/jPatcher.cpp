@@ -34,11 +34,7 @@ namespace Kiwi
             sDico sub = dico->get(Tag::List::objects);
             if(sub)
             {
-                sub = sub->get(Tag::List::object);
-                if(sub)
-                {
-					sub->set(Tag::create("position"), {pt.x, pt.y});
-                }
+                sub->set(Tag::create("position"), {pt.x, pt.y});
             }
         }
         return dico;
