@@ -38,14 +38,14 @@ namespace Kiwi
         return Kiwi::Point(rect.getX(), rect.getY());
     }
     
-    template<typename type> static inline juce::Rectangle<type> toJuce(Gui::Rectangle const& rect)
+    template<typename type> static inline juce::Rectangle<type> toJuce(Kiwi::Rectangle const& rect)
     {
         return juce::Rectangle<type>((type)rect.x(), (type)rect.y(), (type)rect.width(), (type)rect.height());
     }
     
-    template<typename type> static inline Gui::Rectangle toKiwi(juce::Rectangle<type> const& rect)
+    template<typename type> static inline Kiwi::Rectangle toKiwi(juce::Rectangle<type> const& rect)
     {
-        return Gui::Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+        return Kiwi::Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
     }
     
     static inline juce::Colour toJuce(Kiwi::Color const& color)
@@ -62,7 +62,7 @@ namespace Kiwi
     {
     private:
         Graphics &g;
-        Gui::Rectangle bounds;
+        Kiwi::Rectangle bounds;
     public:
         
         //! Constructor.
@@ -73,7 +73,7 @@ namespace Kiwi
 		//! Constructor.
 		/** The function initialize the juce graphics and the bounds.
 		 */
-		JDoodle(Graphics& _g, Gui::Rectangle b);
+		JDoodle(Graphics& _g, Kiwi::Rectangle b);
 		
         //! Destructor.
         /** The function does nothing.
@@ -90,7 +90,7 @@ namespace Kiwi
         /** The sets the font that now will be used by the doodle.
          @param font The font.
          */
-        void setFont(Gui::Font const& font) override;
+        void setFont(Kiwi::Font const& font) override;
         
         //! Fill the doodle with a color.
         /** The function fills the entire doodle with a color.
@@ -107,7 +107,7 @@ namespace Kiwi
          @param j The justification.
          @param truncated If the text should be truncated if it goes out the boundaries.
          */
-        void drawText(string const& text, double x, double y, double w, double h, Gui::Font::Justification j, bool truncated = false) override;
+        void drawText(string const& text, double x, double y, double w, double h, Kiwi::Font::Justification j, bool truncated = false) override;
         
         //! Draw a line of text within a rectangle.
         /** The function draws a line of text within a rectangle.
@@ -116,19 +116,19 @@ namespace Kiwi
          @param j The justification.
          @param truncated If the text should be truncated if it goes out the boundaries.
          */
-        void drawText(string const& text, Gui::Rectangle const& rect, Gui::Font::Justification j, bool wrap = false) override;
+        void drawText(string const& text, Kiwi::Rectangle const& rect, Kiwi::Font::Justification j, bool wrap = false) override;
 		
 		//! Tries to draw a text string inside a given rectangle.
 		/** The function tries to draw a text string inside a given space.
 		 @see drawFittedText
 		 */
-		void drawFittedText(string const& text, const double x, const double y, const double width, const double height, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale) override;
+		void drawFittedText(string const& text, const double x, const double y, const double width, const double height, Kiwi::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale) override;
 		
 		//! Tries to draw a text string inside a given rectangle.
 		/** The function tries to draw a text string inside a given space.
 		 @see drawFittedText
 		 */
-		void drawFittedText(string const& text, Gui::Rectangle const& rect, Gui::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale) override;
+		void drawFittedText(string const& text, Kiwi::Rectangle const& rect, Kiwi::Font::Justification j, const long maximumNumberOfLines, const double minimumHorizontalScale) override;
 		
 		//! Draws text across multiple lines.
 		/** Draws text across multiple lines. This will break the text onto a new line
@@ -142,14 +142,14 @@ namespace Kiwi
         /** The function fills a patcher.
          @param path The path.
          */
-        void fillPath(Gui::Path const& path) override;
+        void fillPath(Kiwi::Path const& path) override;
         
         //! Draw a path.
         /** The function draws a patcher.
          @param path The path.
          @param thickness The thickness of the parth.
          */
-        void drawPath(const Gui::Path& path, double const thickness) override;
+        void drawPath(const Kiwi::Path& path, double const thickness) override;
         
         //! Retrieve the abscissa.
         /** The function retrieves the abscissa.
@@ -209,7 +209,7 @@ namespace Kiwi
         /** The function retrieves the bounds.
          @return The bounds.
          */
-        inline Gui::Rectangle getBounds() override
+        inline Kiwi::Rectangle getBounds() override
         {
 			return bounds;
         }
@@ -224,7 +224,7 @@ namespace Kiwi
 			g.drawRoundedRectangle(x, y, w, h, rounded, thickness);
         }
 
-        inline void drawRectangle(Gui::Rectangle const& rect, double thickness, double rounded = 0.) override
+        inline void drawRectangle(Kiwi::Rectangle const& rect, double thickness, double rounded = 0.) override
         {
 			g.drawRoundedRectangle(rect.x(), rect.y(), rect.width(), rect.height(), rounded, thickness);
         }
@@ -234,7 +234,7 @@ namespace Kiwi
 			g.fillRoundedRectangle(x, y, w, h, rounded);
         }
 
-        inline void fillRectangle(Gui::Rectangle const& rect, double rounded = 0.) override
+        inline void fillRectangle(Kiwi::Rectangle const& rect, double rounded = 0.) override
         {
 			g.fillRoundedRectangle(rect.x(), rect.y(), rect.width(), rect.height(), rounded);
         }

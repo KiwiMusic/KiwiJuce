@@ -390,7 +390,7 @@ namespace Kiwi
 			if(jobject)
 			{
                 const bool visible = !presentation || (presentation && jobject->isIncludeInPresentation());
-                const Gui::Rectangle objectBounds = jobject->getDisplayBounds();
+                const Kiwi::Rectangle objectBounds = jobject->getDisplayBounds();
 				const juce::Rectangle<int> finalBounds = toJuce<int>(objectBounds);
 				
                 animator.animateComponent(jobject.get(), finalBounds, visible, 200., false, 1., 1.);
