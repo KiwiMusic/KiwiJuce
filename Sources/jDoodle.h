@@ -28,14 +28,14 @@
 
 namespace Kiwi
 {
-    template<typename type> static inline juce::Point<type> toJuce(Gui::Point const& pt)
+    template<typename type> static inline juce::Point<type> toJuce(Kiwi::Point const& pt)
     {
         return juce::Point<type>((type)pt.x(), (type)pt.y());
     }
     
-    template<typename type> static inline Gui::Point toKiwi(juce::Point<type> const& rect)
+    template<typename type> static inline Kiwi::Point toKiwi(juce::Point<type> const& rect)
     {
-        return Gui::Point(rect.getX(), rect.getY());
+        return Kiwi::Point(rect.getX(), rect.getY());
     }
     
     template<typename type> static inline juce::Rectangle<type> toJuce(Gui::Rectangle const& rect)
@@ -48,14 +48,14 @@ namespace Kiwi
         return Gui::Rectangle(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
     }
     
-    static inline juce::Colour toJuce(Gui::Color const& color)
+    static inline juce::Colour toJuce(Kiwi::Color const& color)
     {
         return Colour::fromFloatRGBA(color.red(), color.green(), color.blue(), color.alpha());
     }
     
-    static inline Gui::Color toKiwi(juce::Colour const& color)
+    static inline Kiwi::Color toKiwi(juce::Colour const& color)
     {
-        return Gui::Color(color.getFloatRed(), color.getFloatGreen(), color.getFloatBlue(), color.getFloatAlpha());
+        return Kiwi::Color(color.getFloatRed(), color.getFloatGreen(), color.getFloatBlue(), color.getFloatAlpha());
     }
     
     class JDoodle : public Kiwi::Gui::Doodle
@@ -84,7 +84,7 @@ namespace Kiwi
         /** The sets the color that now will be used by the doodle.
          @param colot The color.
          */
-        void setColor(Gui::Color const& color) override;
+        void setColor(Kiwi::Color const& color) override;
         
         //! Set the font.
         /** The sets the font that now will be used by the doodle.
@@ -191,7 +191,7 @@ namespace Kiwi
         /** The function retrieves the position.
          @return The position.
          */
-        inline Gui::Point getPosition() override
+        inline Kiwi::Point getPosition() override
         {
 			return bounds.position();
         }
@@ -200,7 +200,7 @@ namespace Kiwi
         /** The function retrieves the size.
          @return The size.
          */
-        inline Gui::Point getSize() override
+        inline Kiwi::Point getSize() override
         {
             return bounds.size();
         }

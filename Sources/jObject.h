@@ -77,20 +77,20 @@ namespace Kiwi
 		/** The function retrieves the display position of the object view.
 		 @return The position of the object view.
 		 */
-		Gui::Point getDisplayPosition() const noexcept override;
+		Kiwi::Point getDisplayPosition() const noexcept override;
 		
 		//! Retrieve the display size of the object view.
 		/** The function retrieves the display size of the object view.
 		 @return The size of the object view.
 		 */
-		Gui::Point getDisplaySize() const noexcept override;
+		Kiwi::Point getDisplaySize() const noexcept override;
 		
 		//! Tests if a point is inside an object resizer zone.
 		/** The function tests if a point is inside an object resizer zone. The point is relative to the patcher top-left's coordinates
 		 @param point The point to test.
 		 @return A flag describing the resizer zone as defined in the Knock::Border enum.
 		 */
-		ulong resizerKnock(Gui::Point const& point) const noexcept override;
+		ulong resizerKnock(Kiwi::Point const& point) const noexcept override;
 		
         //! The redraw function that should be override.
         /** The function is called by the object when it should be repainted.

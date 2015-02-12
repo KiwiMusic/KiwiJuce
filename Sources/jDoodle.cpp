@@ -42,7 +42,7 @@ namespace Kiwi
         
     }
     
-    void JDoodle::setColor(Gui::Color const& color)
+    void JDoodle::setColor(Kiwi::Color const& color)
     {
         g.setColour(toJuce(color));
     }

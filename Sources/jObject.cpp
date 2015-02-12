@@ -68,24 +68,24 @@ namespace Kiwi
 		return ObjectView::getBounds().expanded(m_framesize);
 	}
 
-	Gui::Point jObject::getDisplayPosition() const noexcept
+	Kiwi::Point jObject::getDisplayPosition() const noexcept
 	{
 		return ObjectView::getPosition() - m_framesize;
 	}
 
-	Gui::Point jObject::getDisplaySize() const noexcept
+	Kiwi::Point jObject::getDisplaySize() const noexcept
 	{
 		return ObjectView::getSize() + m_framesize * 2;
 	}
 	
-	ulong jObject::resizerKnock(Gui::Point const& pt) const noexcept
+	ulong jObject::resizerKnock(Kiwi::Point const& pt) const noexcept
 	{
 		ulong borderFlag = Knock::BorderZone::None;
 		const bool growy = (m_label != nullptr);
 		
 		if(isSelected())
 		{
-			const Gui::Point localPoint = pt - getDisplayPosition();
+			const Kiwi::Point localPoint = pt - getDisplayPosition();
 			if(localPoint.y() <= m_framesize*2)
 			{
 				borderFlag |= Knock::BorderZone::Top;
@@ -210,7 +210,7 @@ namespace Kiwi
     
     void jObject::sizeChanged()
     {
-		const Gui::Point pt = getDisplaySize();
+		const Kiwi::Point pt = getDisplaySize();
         setSize(round(pt.x()), round(pt.y()));
 		
 		if (m_label)
@@ -250,7 +250,7 @@ namespace Kiwi
 				const bool presentation = getPatcherPresentationStatus();
 				
 				const Gui::Rectangle localObjectFrame = getDisplayBounds().withZeroOrigin();
-				const Gui::Rectangle localObjectBounds = ObjectView::getBounds().withPosition(Gui::Point(m_framesize, m_framesize));
+				const Gui::Rectangle localObjectBounds = ObjectView::getBounds().withPosition(Kiwi::Point(m_framesize, m_framesize));
 				
 				JDoodle d(g, localObjectFrame);
 
@@ -287,9 +287,9 @@ namespace Kiwi
 				if(edit)
 				{
 					const bool growy = (m_label != nullptr);
-					const Gui::Color ioColor = Gui::Color(0.3, 0.3, 0.3);
-					const Gui::Color presentationColor = Gui::Color(0., 0.8, 0.);
-					const Gui::Color selectionColor = presentation ? presentationColor : Gui::Color(0., 0.6, 0.9);
+					const Kiwi::Color ioColor = Kiwi::Color(0.3, 0.3, 0.3);
+					const Kiwi::Color presentationColor = Kiwi::Color(0., 0.8, 0.);
+					const Kiwi::Color selectionColor = presentation ? presentationColor : Kiwi::Color(0., 0.6, 0.9);
 					
 					if(isSelected())
 					{
