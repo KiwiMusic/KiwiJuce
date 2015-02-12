@@ -60,6 +60,8 @@
         <FILE id="L4i41D" name="Writer.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Writer.cpp"/>
         <FILE id="VS6HKr" name="Writer.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Writer.h"/>
         <GROUP id="{4A0C0D63-5E44-7623-D882-77DCCA17A4CC}" name="Modules">
+          <FILE id="rxg25k" name="Major.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Modules/Major.cpp"/>
+          <FILE id="kBDaBE" name="Major.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Modules/Major.h"/>
           <FILE id="Tw14AA" name="Classic.cpp" compile="1" resource="0" file="KiwiCore/KiwiGui/Modules/Classic.cpp"/>
           <FILE id="fdvEbC" name="Classic.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Modules/Classic.h"/>
           <FILE id="zVh5h6" name="Modules.h" compile="0" resource="0" file="KiwiCore/KiwiGui/Modules/Modules.h"/>
