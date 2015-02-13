@@ -7,19 +7,14 @@
     <GROUP id="{E67ADCB5-DB9C-84EC-7241-38760FEE2E8A}" name="KiwiCore">
       <FILE id="sgH0R1" name="Kiwi.h" compile="0" resource="0" file="KiwiCore/Kiwi.h"/>
       <GROUP id="{AEF63660-BDF8-934C-B622-D22FF06C9BAA}" name="KiwiDsp">
-        <FILE id="qbBKcZ" name="Dsp.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Dsp.h"/>
-        <FILE id="QSgJn0" name="Error.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Error.cpp"/>
-        <FILE id="Fycq2F" name="Error.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Error.h"/>
-        <FILE id="lenhWt" name="Signal.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Signal.cpp"/>
-        <FILE id="b15Ynw" name="Signal.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Signal.h"/>
-        <FILE id="dGgHfQ" name="Process.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Process.cpp"/>
-        <FILE id="JOWtjS" name="Process.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Process.h"/>
-        <FILE id="m1Oft8" name="Connection.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Connection.cpp"/>
-        <FILE id="CjrQTF" name="Connection.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Connection.h"/>
-        <FILE id="Wjci8S" name="Node.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Node.cpp"/>
-        <FILE id="p3soEo" name="Node.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Node.h"/>
-        <FILE id="zyzzlM" name="Context.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Context.cpp"/>
-        <FILE id="BlUI6c" name="Context.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context.h"/>
+        <FILE id="WECy3I" name="Dsp.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Dsp.h"/>
+        <FILE id="YbTADr" name="DspError.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/DspError.cpp"/>
+        <FILE id="Ev94eB" name="DspError.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/DspError.h"/>
+        <FILE id="NbKRBr" name="Signal.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Signal.h"/>
+        <FILE id="y57ErU" name="DspContext.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/DspContext.cpp"/>
+        <FILE id="p0y5r3" name="DspContext.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/DspContext.h"/>
+        <FILE id="RB0uWv" name="DspNode.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/DspNode.cpp"/>
+        <FILE id="etGZe0" name="DspNode.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/DspNode.h"/>
         <GROUP id="{A8525BB6-406E-7309-438C-868B7AC5FB7F}" name="Modules">
           <FILE id="qkXdz2" name="Modules.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Modules.h"/>
           <FILE id="ptlOyX" name="Filter.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/Filter.cpp"/>
