@@ -60,7 +60,7 @@ namespace Kiwi
 		shared_ptr<InspectorWindow>             m_patcher_inspector_window;
 		shared_ptr<InspectorWindow>             m_object_inspector_window;
 		*/
-        vector<sjPatcher>							m_patchers;
+        vector<sjPatcher>						m_patchers;
 		vector<shared_ptr<MainWindow>>          m_patcher_windows;
 		KiwiLookAndFeel							m_lookandfeel;
     public:

@@ -66,8 +66,7 @@ namespace Kiwi
         removeChildComponent(m_editor);
         removeChildComponent(m_iolighter);
         removeChildComponent(m_lasso);
-        
-        
+		
         m_editor->removeListener(this);
 		m_editor = nullptr;
     }
@@ -183,17 +182,14 @@ namespace Kiwi
 	
 	void jPatcher::copySelectionToClipboard()
 	{
-		int todo;
-		/*
-		sDico dico = Dico::create();
-		getSelectedObjectsDico(dico);
+		scDico dico = getSelectedObjectsDico();
 		String text = toString(dico);
+		
 		if (text.isNotEmpty())
 		{
 			SystemClipboard::copyTextToClipboard(text);
 			Application::commandStatusChanged();
 		}
-		*/
 	}
 	
 	void jPatcher::pasteFromClipboard(Kiwi::Point const& offset)
@@ -259,6 +255,14 @@ namespace Kiwi
 					if(getPresentationStatus())
 					{
 						int todo;
+						object->setAttributeValue(AttrObject::Tag_presentation, {true});
+						Kiwi::Point pos = object->getPosition(false);
+						object->setAttributeValue(AttrObject::Tag_presentation_position, {pos.x(), pos.y()});
+						pos = object->getSize(false);
+						object->setAttributeValue(AttrObject::Tag_presentation_size, {pos.x(), pos.y()});
+						jobject->patcherViewLockStatusChanged();
+						jobject->patcherViewPresentationStatusChanged();
+						
 						/*
 						object->setAttributeValue(AttrObject::Tag_presentation, {true});
                         Kiwi::Point pos = object->getPosition(false);
@@ -620,8 +624,7 @@ namespace Kiwi
 			}
 			else if (m_copy_on_drag && e.mods.isAltDown())
 			{
-				sDico dico = Dico::create();
-				getSelectedObjectsDico(dico);
+				sDico dico = getSelectedObjectsDico();
 				unselectAll();
 				addObjectsFromDico(dico);
 				unselectAllLinks();
@@ -1243,11 +1246,9 @@ namespace Kiwi
 			}
 			case StandardApplicationCommandIDs::paste:
 			{
-				/*
 				DBG("|- paste objects");
 				const long gridsize = getPatcher()->getGridSize();
 				pasteFromClipboard(Kiwi::Point(gridsize, gridsize));
-				*/
 				break;
 			}
 			case CommandIDs::pasteReplace:
@@ -1258,13 +1259,11 @@ namespace Kiwi
 			}
 			case CommandIDs::duplicate:
 			{
-				/*
 				DBG("|- duplicate objects");
 				copySelectionToClipboard();
 				const long gridsize = getPatcher()->getGridSize();
 				pasteFromClipboard(Kiwi::Point(gridsize, gridsize));
 				unselectAllLinks();
-				*/
 				break;
 			}
 			case StandardApplicationCommandIDs::del:
