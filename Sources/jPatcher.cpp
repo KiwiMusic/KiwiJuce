@@ -254,24 +254,21 @@ namespace Kiwi
 				{
 					if(getPresentationStatus())
 					{
-						int todo;
-						object->setAttributeValue(AttrObject::Tag_presentation, {true});
-						Kiwi::Point pos = object->getPosition(false);
-						object->setAttributeValue(AttrObject::Tag_presentation_position, {pos.x(), pos.y()});
-						pos = object->getSize(false);
-						object->setAttributeValue(AttrObject::Tag_presentation_size, {pos.x(), pos.y()});
-						jobject->patcherViewLockStatusChanged();
-						jobject->patcherViewPresentationStatusChanged();
+						sAttrBool attr_pres = object->getAttrTyped<BoolValue>("presentation");
+						sAttrPoint attr_pres_pos = object->getAttrTyped<PointValue>("presentation_position");
+						sAttrSize attr_pres_size = object->getAttrTyped<SizeValue>("presentation_size");
 						
-						/*
-						object->setAttributeValue(AttrObject::Tag_presentation, {true});
-                        Kiwi::Point pos = object->getPosition(false);
-                        object->setAttributeValue(AttrObject::Tag_presentation_position, {pos.x(), pos.y()});
-                        pos = object->getSize(false);
-						object->setAttributeValue(AttrObject::Tag_presentation_size, {pos.x(), pos.y()});
-						jobject->patcherViewLockStatusChanged();
-						jobject->patcherViewPresentationStatusChanged();
-						*/
+						if (attr_pres && attr_pres_pos && attr_pres_size)
+						{
+							attr_pres->setValue(true);
+							attr_pres_pos->setValue(object->getPosition());
+							
+							SizeValue size(attr_pres_size->getValue());
+							attr_pres_size->setValue(object->getSize());
+							
+							jobject->patcherViewLockStatusChanged();
+							jobject->patcherViewPresentationStatusChanged();
+						}
 					}
 					
 					addAndMakeVisible(jobject.get());
@@ -870,16 +867,7 @@ namespace Kiwi
             sPatcher patcher = getPatcher();
             if(patcher)
             {
-                patcher->dspStart(44100., 64);
-                return true;
-            }
-        }
-        if(key.getTextCharacter() == L'v')
-        {
-            sPatcher patcher = getPatcher();
-            if(patcher)
-            {
-                patcher->dspTick();
+                patcher->start();
                 return true;
             }
         }
@@ -1301,40 +1289,56 @@ namespace Kiwi
 			}
             case CommandIDs::newObject:
             {
-				if (isMouseButtonDownAnywhere()) return false;
-				unselectAll();
-                getPatcher()->add(createObjectDicoAtPosition("newobject", getMouseXYRelative()));
-                break;
-            }
-            case CommandIDs::newBang:
-            {
-				if (isMouseButtonDownAnywhere()) return false;
+				if (isMouseButtonDownAnywhere())
+					return true;
+				
 				unselectAll();
 				sPatcher patcher = getPatcher();
 				if (patcher)
 				{
-					sDico dico = createObjectDicoAtPosition("bang", getMouseXYRelative());
+					scDico dico = createObjectDicoAtPosition("newbox", getMouseXYRelative());
+					patcher->add(dico);
+				}
+				
+				break;
+            }
+            case CommandIDs::newBang:
+            {
+				if (isMouseButtonDownAnywhere())
+					return true;
+				
+				unselectAll();
+				sPatcher patcher = getPatcher();
+				if (patcher)
+				{
+					scDico dico = createObjectDicoAtPosition("bang", getMouseXYRelative());
 					patcher->add(dico);
 				}
                 break;
             }
             case CommandIDs::newToggle:
             {
-				if (isMouseButtonDownAnywhere()) return false;
+				if (isMouseButtonDownAnywhere())
+					return true;
+				
 				unselectAll();
                 getPatcher()->add(createObjectDicoAtPosition("toggle", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newNumber:
             {
-				if (isMouseButtonDownAnywhere()) return false;
+				if (isMouseButtonDownAnywhere())
+					return true;
+				
 				unselectAll();
                 getPatcher()->add(createObjectDicoAtPosition("number", getMouseXYRelative()));
                 break;
             }
             case CommandIDs::newMessage:
             {
-				if (isMouseButtonDownAnywhere()) return false;
+				if (isMouseButtonDownAnywhere())
+					return true;
+				
                 unselectAll();
                 getPatcher()->add(createObjectDicoAtPosition("message", getMouseXYRelative()));
                 break;

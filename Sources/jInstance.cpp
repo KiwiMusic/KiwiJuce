@@ -25,8 +25,8 @@
 
 namespace Kiwi
 {
-    jInstance::jInstance() :
-    m_instance(Instance::create()),
+    jInstance::jInstance(sDspDeviceManager device) :
+    m_instance(Instance::create(device)),
     m_window(MainWindow::create()),
 	m_window2(MainWindow::create())
     {
@@ -38,9 +38,9 @@ namespace Kiwi
         m_patchers.clear();
     }
     
-    shared_ptr<jInstance> jInstance::create()
+    shared_ptr<jInstance> jInstance::create(sDspDeviceManager device)
     {
-        shared_ptr<jInstance> that = make_shared<jInstance>();
+        shared_ptr<jInstance> that = make_shared<jInstance>(device);
         if(that)
         {
             that->m_instance->addListener(that);

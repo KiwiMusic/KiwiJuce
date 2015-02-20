@@ -252,40 +252,22 @@ namespace Kiwi
 				const Kiwi::Rectangle localObjectFrame = getDisplayBounds().withZeroOrigin();
 				const Kiwi::Rectangle localObjectBounds = ObjectView::getBounds().withPosition(Kiwi::Point(m_framesize, m_framesize));
 				
-				JDoodle d(g, localObjectFrame);
-
-				Gui::sSketcher sketcher = dynamic_pointer_cast<Gui::Sketcher>(object);
-				if (sketcher)
-				{
-					const juce::Rectangle<int> jlocalObjectBounds = toJuce<int>(localObjectBounds.withZeroOrigin());
-					g.beginTransparencyLayer(1);
-					
-					JDoodle d(g, jlocalObjectBounds);
-					g.setOrigin(m_framesize, m_framesize);
-					g.reduceClipRegion(jlocalObjectBounds);
-					
-					sketcher->draw(d);
-					
-					g.endTransparencyLayer();
-				}
-				else
-				{
-					/*
-					const double borderSize = 1.;
-					d.setColor(object->getBackgroundColor());
-					d.fillRectangle(localObjectBounds);
-					
-					d.setColor(object->getBorderColor());
-					d.drawRectangle(localObjectBounds.reduced(borderSize*0.5), borderSize);
-					
-					d.setColor(object->getTextColor());
-					d.drawText(toString(object->getText()), 3 + m_framesize, m_framesize, localObjectBounds.width(), localObjectBounds.height(), object->getFontJustification());
-					*/
-				}
+				const juce::Rectangle<int> jlocalObjectBounds = toJuce<int>(localObjectBounds.withZeroOrigin());
+				g.beginTransparencyLayer(1);
+				
+				JDoodle d(g, jlocalObjectBounds);
+				g.setOrigin(m_framesize, m_framesize);
+				g.reduceClipRegion(jlocalObjectBounds);
+				
+				object->draw(d);
+				
+				g.endTransparencyLayer();
 			 
 				//Paint Object frame :
 				if(edit)
 				{
+					JDoodle d(g, localObjectFrame);
+					
 					const bool growy = (m_label != nullptr);
 					const Kiwi::Color ioColor = Kiwi::Color(0.3, 0.3, 0.3);
 					const Kiwi::Color presentationColor = Kiwi::Color(0., 0.8, 0.);

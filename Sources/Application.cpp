@@ -79,7 +79,8 @@ namespace Kiwi
     {
 		juce::Process::setPriority(juce::Process::RealtimePriority);
 		initCommandManager();
-        m_instance = jInstance::create();
+		m_dsp_device_manager = make_shared<JuceDeviceManager>();
+        m_instance = jInstance::create(m_dsp_device_manager);
         m_menu_model = new MainMenuModel();
         
 #if JUCE_MAC

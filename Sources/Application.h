@@ -25,6 +25,7 @@
 #define __DEF_KIWI_APPLICATION__
 
 #include "jInstance.h"
+#include "DspJuce.h"
 
 //! The Kiwi Application, where all the magic starts !
 
@@ -67,6 +68,7 @@ namespace Kiwi
         void handleMainMenuCommand (int menuItemID);
         
         //==============================================================================
+		shared_ptr<JuceDeviceManager>				m_dsp_device_manager;
         sjInstance									m_instance;
         ScopedPointer<MainMenuModel>				m_menu_model;
         ScopedPointer<ApplicationCommandManager>	m_command_manager;

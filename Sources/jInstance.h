@@ -68,7 +68,7 @@ namespace Kiwi
         //! The constructor.
         /** You should never have to use this function.
          */
-        jInstance();
+        jInstance(sDspDeviceManager device);
         
         //! The destrcutor.
         /** You should never have to use this function.
@@ -79,7 +79,7 @@ namespace Kiwi
         /** The function allocates an instance component.
          @return The instance component.
          */
-        static shared_ptr<jInstance> create();
+        static shared_ptr<jInstance> create(sDspDeviceManager device);
         
         //! Receive the notification that a patcher has been created.
         /** The function is called by the instance when a patcher has been created.
