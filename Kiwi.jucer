@@ -7,22 +7,34 @@
     <GROUP id="{E67ADCB5-DB9C-84EC-7241-38760FEE2E8A}" name="KiwiCore">
       <FILE id="sgH0R1" name="Kiwi.h" compile="0" resource="0" file="KiwiCore/Kiwi.h"/>
       <GROUP id="{AEF63660-BDF8-934C-B622-D22FF06C9BAA}" name="KiwiDsp">
-        <FILE id="WECy3I" name="Dsp.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Dsp.h"/>
-        <FILE id="YbTADr" name="DspError.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/DspError.cpp"/>
-        <FILE id="Ev94eB" name="DspError.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/DspError.h"/>
-        <FILE id="NbKRBr" name="Signal.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Signal.h"/>
-        <FILE id="y57ErU" name="DspContext.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/DspContext.cpp"/>
-        <FILE id="p0y5r3" name="DspContext.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/DspContext.h"/>
-        <FILE id="RB0uWv" name="DspNode.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/DspNode.cpp"/>
-        <FILE id="etGZe0" name="DspNode.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/DspNode.h"/>
-        <GROUP id="{A8525BB6-406E-7309-438C-868B7AC5FB7F}" name="Modules">
-          <FILE id="qkXdz2" name="Modules.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Modules.h"/>
-          <FILE id="ptlOyX" name="Filter.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/Filter.cpp"/>
-          <FILE id="zXAbsn" name="Filter.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Filter.h"/>
-          <FILE id="HNjYRI" name="Generator.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/Generator.cpp"/>
-          <FILE id="YL7TXk" name="Generator.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Generator.h"/>
-          <FILE id="Tt39AI" name="Math.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/Math.cpp"/>
-          <FILE id="dLHtnX" name="Math.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/Math.h"/>
+        <FILE id="Er5z3h" name="Dsp.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Dsp.h"/>
+        <GROUP id="{078A9013-BC68-3416-E4CD-381CAB6FB3EB}" name="Context">
+          <FILE id="mIqc1Q" name="DspSignal.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context/DspSignal.h"/>
+          <FILE id="eOBA3R" name="DspError.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context/DspError.h"/>
+          <FILE id="wjlQ0J" name="DspIoput.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Context/DspIoput.cpp"/>
+          <FILE id="qFPUNT" name="DspIoput.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context/DspIoput.h"/>
+          <FILE id="jYML8W" name="DspNode.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context/DspNode.h"/>
+          <FILE id="qDD67y" name="DspNode.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Context/DspNode.cpp"/>
+          <FILE id="cax2Cw" name="DspChain.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context/DspChain.h"/>
+          <FILE id="su1UnV" name="DspChain.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Context/DspChain.cpp"/>
+          <FILE id="qZSt1w" name="DspContext.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context/DspContext.h"/>
+          <FILE id="MKLlh1" name="DspContext.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Context/DspContext.cpp"/>
+          <FILE id="TEMl7S" name="DspDevice.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Context/DspDevice.h"/>
+          <FILE id="zOgcE7" name="DspDevice.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Context/DspDevice.cpp"/>
+        </GROUP>
+        <GROUP id="{E0B90E13-866A-AE77-AD1E-689BE9D94389}" name="Modules">
+          <FILE id="Ym2tkJ" name="DspModules.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/DspModules.h"/>
+          <FILE id="pz99Bt" name="DspIo.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/DspIo.cpp"/>
+          <FILE id="WNNCKm" name="DspIo.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/DspIo.h"/>
+          <FILE id="K5a0it" name="DspGenerator.cpp" compile="1" resource="0"
+                file="KiwiCore/KiwiDsp/Modules/DspGenerator.cpp"/>
+          <FILE id="bjEa8L" name="DspGenerator.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/DspGenerator.h"/>
+          <FILE id="EOvPyI" name="DspMath.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Modules/DspMath.cpp"/>
+          <FILE id="X52prA" name="DspMath.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Modules/DspMath.h"/>
+        </GROUP>
+        <GROUP id="{0A748B73-FBFD-ECB9-CFE4-31D29413FF52}" name="Implementation">
+          <FILE id="NSH27A" name="DspJuce.cpp" compile="1" resource="0" file="KiwiCore/KiwiDsp/Implementation/DspJuce.cpp"/>
+          <FILE id="agbhCO" name="DspJuce.h" compile="0" resource="0" file="KiwiCore/KiwiDsp/Implementation/DspJuce.h"/>
         </GROUP>
       </GROUP>
       <GROUP id="{C30F7E14-EB63-78F8-11A9-3EE2036371EC}" name="KiwiGui">
