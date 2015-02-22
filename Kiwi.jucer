@@ -107,11 +107,28 @@
         <FILE id="ohjQyO" name="Instance.cpp" compile="1" resource="0" file="KiwiCore/KiwiBase/Instance.cpp"/>
         <FILE id="HzdEjf" name="Instance.h" compile="0" resource="0" file="KiwiCore/KiwiBase/Instance.h"/>
       </GROUP>
-      <GROUP id="{E12EE68D-6731-D470-5E0C-CB1FE762A784}" name="KiwiBoxes">
-        <FILE id="mPbCom" name="Gui.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/Gui.cpp"/>
-        <FILE id="Ox3yDr" name="Gui.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/Gui.h"/>
-        <FILE id="uh7Ye5" name="NewBox.cpp" compile="1" resource="0" file="KiwiCore/KiwiBoxes/NewBox.cpp"/>
-        <FILE id="HpmjPl" name="NewBox.h" compile="0" resource="0" file="KiwiCore/KiwiBoxes/NewBox.h"/>
+      <GROUP id="{44093BC5-B9F8-51C9-31A1-614660461761}" name="KiwiObjects">
+        <FILE id="gBlHOs" name="Objects.h" compile="0" resource="0" file="KiwiCore/KiwiObjects/Objects.h"/>
+        <GROUP id="{62A5926D-CF79-D965-3B20-4E3C87BD8D23}" name="ObjectsBasics">
+          <FILE id="rBWVui" name="ObjectsBasics.h" compile="0" resource="0" file="KiwiCore/KiwiObjects/ObjectsBasics/ObjectsBasics.h"/>
+          <FILE id="GhPbk0" name="NewBox.cpp" compile="1" resource="0" file="KiwiCore/KiwiObjects/ObjectsBasics/NewBox.cpp"/>
+          <FILE id="exv4ik" name="NewBox.h" compile="0" resource="0" file="KiwiCore/KiwiObjects/ObjectsBasics/NewBox.h"/>
+        </GROUP>
+        <GROUP id="{3C16FE2A-9D3E-31F0-A87D-79CE03C9CBC0}" name="ObjectsGui">
+          <FILE id="bfUYpe" name="ObjectsGui.h" compile="0" resource="0" file="KiwiCore/KiwiObjects/ObjectsGui/ObjectsGui.h"/>
+          <FILE id="DSQSa4" name="Gui.cpp" compile="1" resource="0" file="KiwiCore/KiwiObjects/ObjectsGui/Gui.cpp"/>
+          <FILE id="QrXOQt" name="Gui.h" compile="0" resource="0" file="KiwiCore/KiwiObjects/ObjectsGui/Gui.h"/>
+        </GROUP>
+        <GROUP id="{4A582B58-3228-1A14-7564-6276E4DC32D9}" name="ObjectsDsp">
+          <FILE id="ben4WG" name="ObjectsDsp.h" compile="0" resource="0" file="KiwiCore/KiwiObjects/ObjectsDsp/ObjectsDsp.h"/>
+          <FILE id="XRi8bl" name="ObjectsDspGenerator.cpp" compile="1" resource="0"
+                file="KiwiCore/KiwiObjects/ObjectsDsp/ObjectsDspGenerator.cpp"/>
+          <FILE id="bealhJ" name="ObjectsDspGenerator.h" compile="0" resource="0"
+                file="KiwiCore/KiwiObjects/ObjectsDsp/ObjectsDspGenerator.h"/>
+          <FILE id="hP77e9" name="ObjectsDspIo.cpp" compile="1" resource="0"
+                file="KiwiCore/KiwiObjects/ObjectsDsp/ObjectsDspIo.cpp"/>
+          <FILE id="bbHSqw" name="ObjectsDspIo.h" compile="0" resource="0" file="KiwiCore/KiwiObjects/ObjectsDsp/ObjectsDspIo.h"/>
+        </GROUP>
       </GROUP>
       <GROUP id="{FA240F6D-4B6D-94B1-7307-F40BB73F33F0}" name="KiwiView">
         <FILE id="rR4qV2" name="View.h" compile="0" resource="0" file="KiwiCore/KiwiView/View.h"/>
