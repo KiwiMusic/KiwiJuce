@@ -58,7 +58,7 @@ namespace Kiwi
         return Kiwi::Color(color.getFloatRed(), color.getFloatGreen(), color.getFloatBlue(), color.getFloatAlpha());
     }
     
-    class JDoodle : public Kiwi::Gui::Doodle
+    class JDoodle : public Kiwi::Doodle
     {
     private:
         Graphics &g;

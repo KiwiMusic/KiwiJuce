@@ -25,9 +25,9 @@
 
 namespace Kiwi
 {
-	jLabel::jLabel(Gui::Writer::sTextField textfield, const String& name, const String& labelText)
+	jLabel::jLabel(Kiwi::Writer::sTextField textfield, const String& name, const String& labelText)
 	: Component(name),
-	Gui::Writer::TextField::View(textfield),
+	Kiwi::Writer::TextField::View(textfield),
 	textValue(labelText),
 	lastTextValue(labelText),
 	font(15.0f),
@@ -95,7 +95,7 @@ namespace Kiwi
 	
 	void jLabel::textfieldTextChanged()
 	{
-		Gui::Writer::sTextField textfield = getTextField();
+		Kiwi::Writer::sTextField textfield = getTextField();
 		
 		if(textfield)
 		{
@@ -107,7 +107,7 @@ namespace Kiwi
 	{
 		if (!isBeingEdited())
 		{
-			Gui::Writer::sTextField textfield = getTextField();
+			Kiwi::Writer::sTextField textfield = getTextField();
 			
 			if(textfield)
 			{
@@ -206,7 +206,7 @@ namespace Kiwi
 			enterModalState(false);
 			m_editor->grabKeyboardFocus();
 			
-			Gui::Writer::sTextField textfield = getTextField();
+			Kiwi::Writer::sTextField textfield = getTextField();
 			if (textfield)
 			{
 				textfield->startEditing();
@@ -258,7 +258,7 @@ namespace Kiwi
 			if(changed && deletionChecker != nullptr)
 				callChangeListeners();
 			
-			Gui::Writer::sTextField textfield = getTextField();
+			Kiwi::Writer::sTextField textfield = getTextField();
 			if (textfield)
 			{
 				textfield->endEditing();
@@ -290,7 +290,7 @@ namespace Kiwi
 	
 	sjTextEditor jLabel::createEditorComponent()
 	{
-		Gui::sWriter writer = getWriter();
+		Kiwi::sWriter writer = getWriter();
 		
 		if (writer)
 		{
@@ -462,7 +462,7 @@ namespace Kiwi
 			}
 			else
 			{
-				Gui::Writer::sTextField textfield = getTextField();
+				Kiwi::Writer::sTextField textfield = getTextField();
 				if (textfield)
 				{
 					textfield->setEditedText(getText(true).toWideCharPointer());

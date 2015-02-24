@@ -35,7 +35,7 @@ namespace Kiwi
 	 editor when clicked.
 	 */
 	class jLabel :	public Component,
-					public Gui::Writer::TextField::View,
+					public Kiwi::Writer::TextField::View,
 					public jTextEditor::Listener,
 					private ValueListener,
 					public enable_shared_from_this<jLabel>
@@ -47,7 +47,7 @@ namespace Kiwi
 		 @param componentName   The name to give the component
 		 @param labelText       The text to show in the label
 		 */
-		jLabel(Gui::Writer::sTextField textfield, const String& componentName = String::empty, const String& labelText = String::empty);
+		jLabel(Kiwi::Writer::sTextField textfield, const String& componentName = String::empty, const String& labelText = String::empty);
 		
 		/** Destructor. */
 		~jLabel();

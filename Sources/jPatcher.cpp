@@ -499,10 +499,10 @@ namespace Kiwi
                         }
                         else if (e.mods.isCommandDown())
 						{
-							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(object->getObject());
+							Kiwi::sMouser mouser = dynamic_pointer_cast<Kiwi::Mouser>(object->getObject());
 							if(mouser)
 							{
-								mouser->receive(jEventMouse(Gui::Mouser::Event::Down, e));
+								mouser->receive(jEventMouse(Kiwi::Mouser::Event::Down, e));
 								m_object_received_downevent = true;
 							}
                         }
@@ -636,10 +636,10 @@ namespace Kiwi
 					{
 						if(m_object_received_downevent)
 						{
-							Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(object->getObject());
+							Kiwi::sMouser mouser = dynamic_pointer_cast<Kiwi::Mouser>(object->getObject());
 							if(mouser)
 							{
-								mouser->receive(jEventMouse(Gui::Mouser::Event::Drag, e));
+								mouser->receive(jEventMouse(Kiwi::Mouser::Event::Drag, e));
 							}
 						}
 					}
@@ -700,10 +700,10 @@ namespace Kiwi
 			sObjectView object = m_knock.getObject();
 			if(object)
 			{
-				Gui::sMouser mouser = dynamic_pointer_cast<Gui::Mouser>(object->getObject());
+				Kiwi::sMouser mouser = dynamic_pointer_cast<Kiwi::Mouser>(object->getObject());
 				if(mouser)
 				{
-					mouser->receive(jEventMouse(Gui::Mouser::Event::Up, e));
+					mouser->receive(jEventMouse(Kiwi::Mouser::Event::Up, e));
 					return;
 				}
 			}

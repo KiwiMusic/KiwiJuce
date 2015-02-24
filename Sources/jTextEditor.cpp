@@ -887,7 +887,7 @@ namespace Kiwi
 	}
 	
 	//==============================================================================
-	jTextEditor::jTextEditor(Gui::sWriter writer, const String& name)
+	jTextEditor::jTextEditor(Kiwi::sWriter writer, const String& name)
 	: Component(name),
 	m_writer(writer),
 	borderSize(1, 1, 1, 3),
@@ -1494,7 +1494,7 @@ namespace Kiwi
 	{
 		String newText = t;
 		
-		Gui::sWriter writer = m_writer.lock();
+		Kiwi::sWriter writer = m_writer.lock();
 		if (writer)
 		{
 			wstring wText = t.toWideCharPointer();
@@ -2001,7 +2001,7 @@ namespace Kiwi
 		if(isReadOnly() && key != KeyPress('c', ModifierKeys::commandModifier, 0))
 			return false;
 		
-		Gui::sWriter writer = m_writer.lock();
+		Kiwi::sWriter writer = m_writer.lock();
 		if (writer)
 		{
 			if(! writer->receive(jEventKeyboard(key)))

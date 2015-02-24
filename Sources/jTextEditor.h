@@ -43,14 +43,14 @@ namespace Kiwi
 	private:
 		typedef shared_ptr<jTextEditor> sjTextEditor;
 		
-		Gui::wWriter			m_writer;
+		Kiwi::wWriter			m_writer;
 		
 	public:
 		/** Creates a new, empty text editor.
 		 @param writer			The writer.
 		 @param componentName	The name to pass to the component for it to use as its name.
 		 */
-		explicit jTextEditor(Gui::sWriter writer, const String& componentName = String::empty);
+		explicit jTextEditor(Kiwi::sWriter writer, const String& componentName = String::empty);
 		
 		/** Destructor. */
 		~jTextEditor();
