@@ -28,21 +28,21 @@
 
 namespace Kiwi
 {
-	class jEventMouse : public Gui::Mouser::Event
+	class jEventMouse : public Kiwi::Mouser::Event
     {
     private:
         const MouseInputSource m_source;
     public:
         
         jEventMouse(Type const& type, MouseEvent const& event) noexcept :
-		Gui::Mouser::Event(type, event.x, event.y, event.mods.getRawFlags(), 0., 0., event.mouseWasClicked(), event.getMouseDownPosition().x, event.getMouseDownPosition().y, event.getNumberOfClicks()),
+		Kiwi::Mouser::Event(type, event.x, event.y, event.mods.getRawFlags(), 0., 0., event.mouseWasClicked(), event.getMouseDownPosition().x, event.getMouseDownPosition().y, event.getNumberOfClicks()),
         m_source(event.source)
         {
             ;
         }
         
         jEventMouse(MouseEvent const& event, MouseWheelDetails const& wheel) noexcept :
-        Gui::Mouser::Event(Gui::Mouser::Event::Type::Wheel, event.x, event.y, event.mods.getRawFlags(), wheel.deltaX, wheel.deltaY, event.mouseWasClicked(), event.getMouseDownPosition().x, event.getMouseDownPosition().y, event.getNumberOfClicks()),
+        Kiwi::Mouser::Event(Kiwi::Mouser::Event::Type::Wheel, event.x, event.y, event.mods.getRawFlags(), wheel.deltaX, wheel.deltaY, event.mouseWasClicked(), event.getMouseDownPosition().x, event.getMouseDownPosition().y, event.getNumberOfClicks()),
         m_source(event.source)
         {
             ;
@@ -56,12 +56,12 @@ namespace Kiwi
         void setMouseUnlimited(bool isLimited, bool visibleUntilLimits = false) const override;
     };
 
-	class jEventKeyboard : public Gui::Keyboarder::Event
+	class jEventKeyboard : public Kiwi::Keyboarder::Event
     {
     public:
         
         jEventKeyboard(KeyPress const& key) noexcept :
-		Gui::Keyboarder::Event(key.getTextCharacter(), (long)key.getModifiers().getRawFlags())
+		Kiwi::Keyboarder::Event(key.getTextCharacter(), (long)key.getModifiers().getRawFlags())
         {
             ;
         }

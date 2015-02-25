@@ -45,10 +45,10 @@ namespace Kiwi
 	
 	void jObject::init()
 	{
-		Gui::sWriter writer = dynamic_pointer_cast<Gui::Writer>(getObject());
+		Kiwi::sWriter writer = dynamic_pointer_cast<Kiwi::Writer>(getObject());
 		if (writer)
 		{
-			Gui::Writer::sTextField textfield = writer->getTextField();
+			Kiwi::Writer::sTextField textfield = writer->getTextField();
 			if (textfield)
 			{
 				m_label = make_shared<jLabel>(textfield);
@@ -146,7 +146,7 @@ namespace Kiwi
             const bool acceptClick = ObjectView::isVisible() && getPatcherLockStatus() && !object->getIgnoreClick();
 			setInterceptsMouseClicks(acceptClick, acceptClick);
 			
-            Gui::sKeyboarder keyboarder = dynamic_pointer_cast<Gui::Keyboarder>(object);
+            Kiwi::sKeyboarder keyboarder = dynamic_pointer_cast<Kiwi::Keyboarder>(object);
 			if(keyboarder)
 			{
 				setWantsKeyboardFocus(acceptClick);
@@ -325,70 +325,70 @@ namespace Kiwi
 
     void jObject::mouseDown(const MouseEvent& e)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
-			object->receive(jEventMouse(Gui::Mouser::Event::Type::Down, e));
+			object->receive(jEventMouse(Kiwi::Mouser::Event::Type::Down, e));
         }
     }
     
     void jObject::mouseDrag(const MouseEvent& e)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
-            object->receive(jEventMouse(Gui::Mouser::Event::Type::Drag, e));
+            object->receive(jEventMouse(Kiwi::Mouser::Event::Type::Drag, e));
         }
     }
     
     void jObject::mouseUp(const MouseEvent& e)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
-            object->receive(jEventMouse(Gui::Mouser::Event::Type::Up, e));
+            object->receive(jEventMouse(Kiwi::Mouser::Event::Type::Up, e));
         }
     }
     
     void jObject::mouseMove(const MouseEvent& e)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
-			object->receive(jEventMouse(Gui::Mouser::Event::Type::Move, e));
+			object->receive(jEventMouse(Kiwi::Mouser::Event::Type::Move, e));
         }
     }
     
     void jObject::mouseEnter(const MouseEvent& e)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
-            object->receive(jEventMouse(Gui::Mouser::Event::Type::Enter, e));
+            object->receive(jEventMouse(Kiwi::Mouser::Event::Type::Enter, e));
         }
     }
     
     void jObject::mouseExit(const MouseEvent& e)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
-            object->receive(jEventMouse(Gui::Mouser::Event::Type::Leave, e));
+            object->receive(jEventMouse(Kiwi::Mouser::Event::Type::Leave, e));
         }
     }
     
     void jObject::mouseDoubleClick(const MouseEvent& e)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
-            object->receive(jEventMouse(Gui::Mouser::Event::Type::Move, e));
+            object->receive(jEventMouse(Kiwi::Mouser::Event::Type::Move, e));
         }
     }
     
     void jObject::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel)
     {
-        Gui::sMouser object = dynamic_pointer_cast<Gui::Mouser>(getObject());
+        Kiwi::sMouser object = dynamic_pointer_cast<Kiwi::Mouser>(getObject());
         if(object)
         {
             object->receive(jEventMouse(event, wheel));
@@ -397,19 +397,19 @@ namespace Kiwi
     
     void jObject::focusGained(FocusChangeType cause)
     {
-        Gui::sKeyboarder object = dynamic_pointer_cast<Gui::Keyboarder>(getObject());
-		object->receive(Gui::Keyboarder::In);
+        Kiwi::sKeyboarder object = dynamic_pointer_cast<Kiwi::Keyboarder>(getObject());
+		object->receive(Kiwi::Keyboarder::In);
     }
     
     void jObject::focusLost(FocusChangeType cause)
     {
-        Gui::sKeyboarder object = dynamic_pointer_cast<Gui::Keyboarder>(getObject());
-        object->receive(Gui::Keyboarder::Out);
+        Kiwi::sKeyboarder object = dynamic_pointer_cast<Kiwi::Keyboarder>(getObject());
+        object->receive(Kiwi::Keyboarder::Out);
     }
     
     bool jObject::keyPressed(const KeyPress& key)
     {
-        Gui::sKeyboarder object = dynamic_pointer_cast<Gui::Keyboarder>(getObject());
+        Kiwi::sKeyboarder object = dynamic_pointer_cast<Kiwi::Keyboarder>(getObject());
         return object->receive(jEventKeyboard(key));
     }
 }
