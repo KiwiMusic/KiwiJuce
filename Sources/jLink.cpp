@@ -27,7 +27,7 @@
 namespace Kiwi
 {
     
-	jLink::jLink(sLink link) : LinkView(link)
+	jLink::jLink(sGuiLink link) : LinkView(link)
     {
         setInterceptsMouseClicks(false, false);
         boundsChanged();

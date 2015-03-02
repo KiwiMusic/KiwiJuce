@@ -25,8 +25,8 @@
 
 namespace Kiwi
 {
-    jInstance::jInstance(sDspDeviceManager device) :
-    m_instance(Instance::create(device)),
+    jInstance::jInstance(sGuiDeviceManager guiDevice, sDspDeviceManager dspDevice, string const& name) :
+    m_instance(Instance::create(guiDevice, dspDevice, name)),
     m_window(MainWindow::create()),
 	m_window2(MainWindow::create())
     {
@@ -38,9 +38,9 @@ namespace Kiwi
         m_patchers.clear();
     }
     
-    shared_ptr<jInstance> jInstance::create(sDspDeviceManager device)
+    shared_ptr<jInstance> jInstance::create(sGuiDeviceManager guiDevice, sDspDeviceManager dspDevice, string const& name)
     {
-        shared_ptr<jInstance> that = make_shared<jInstance>(device);
+        shared_ptr<jInstance> that = make_shared<jInstance>(guiDevice, dspDevice, name);
         if(that)
         {
             that->m_instance->addListener(that);
@@ -100,7 +100,7 @@ namespace Kiwi
     
     void jInstance::newPatcher()
     {
-        m_instance->createPatcher(Dico::create());
+        m_instance->createPatcher();
     }
     
     void jInstance::openPatcher(const File& file)
@@ -173,6 +173,7 @@ namespace Kiwi
 	
 	void jInstance::savePatcher(sPatcher patcher)
 	{
+        /*
 		if (patcher)
 		{
 			sDico dico = Dico::create();
@@ -183,6 +184,7 @@ namespace Kiwi
 			
 			dico->write(filename + extension, directory);
 		}
+        */
 	}
 	
 	void jInstance::askUserToOpenFile()
@@ -195,6 +197,7 @@ namespace Kiwi
 	
 	bool jInstance::openFile(File file)
 	{
+        /*
 		if (file.exists())
 		{
 			const string extension = file.getFileExtension().toStdString();
@@ -219,7 +222,8 @@ namespace Kiwi
 				Console::error("file failed to load : " + file.getFullPathName().toStdString());
 			}
 		}
-		
+		*/
+        
 		return false;
 	}
 }

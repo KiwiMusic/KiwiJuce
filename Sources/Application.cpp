@@ -79,8 +79,9 @@ namespace Kiwi
     {
 		juce::Process::setPriority(juce::Process::RealtimePriority);
 		initCommandManager();
-		m_dsp_device_manager = make_shared<JuceDeviceManager>();
-        m_instance = jInstance::create(m_dsp_device_manager);
+		m_dsp_device_manager = make_shared<KiwiJuceDspDeviceManager>();
+        m_gui_device_manager = make_shared<KiwiJuceGuiDeviceManager>();
+        m_instance = jInstance::create(m_gui_device_manager, m_dsp_device_manager, "main");
         m_menu_model = new MainMenuModel();
         
 #if JUCE_MAC
@@ -274,7 +275,7 @@ namespace Kiwi
 			for (int i = 0; i < objectNames.size(); ++i)
 			{
 				//names.addItem(objectPrototypeNamesBaseID + i, objectNames[i]);
-				names.addItem(1 + i, toString(objectNames[i]));
+				names.addItem(1 + i, objectNames[i]->getName());
 			}
 			
 			menu.addSubMenu ("object thesaurus", names);

@@ -51,7 +51,7 @@ namespace Kiwi
         //! The constructor.
         /** You should never have to use this function.
          */
-        jObject(sObject object, sPatcherView patcherview);
+        jObject(sGuiObject object, sPatcherView patcherview);
         
         //! Destructor.
         /** You should never have to use this function.
@@ -62,6 +62,11 @@ namespace Kiwi
 		{
 			return dynamic_pointer_cast<jObject>(shared_from_this());
 		}
+        
+        sObject getObject() const
+        {
+            return static_pointer_cast<Object>(ObjectView::getObject());
+        }
 		
 		/** This function is called just after the objectview has been created.
 		 */

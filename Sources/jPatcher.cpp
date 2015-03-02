@@ -26,9 +26,15 @@
 
 namespace Kiwi
 {
-    sDico createObjectDicoAtPosition(string const& name, juce::Point<int> const& pt)
+    Dico createObjectDicoAtPosition(string const& name, juce::Point<int> const& pt)
     {
-        sDico dico = Dico::evaluateForObject(name);
+        Console::post("name : " + name);
+        Atom atom = Atom::evaluate(name);
+        //cout << "atom parse : " << endl;
+        //cout << atom << endl << endl << endl;
+        
+        /*
+        Dico dico = Dico::evaluateForObject(name);
         if(dico)
         {
             sDico sub = dico->get(Tag::List::objects);
@@ -37,7 +43,10 @@ namespace Kiwi
                 sub->set(Tag::create("position"), {pt.x, pt.y});
             }
         }
+         
         return dico;
+        */
+        return Dico();
     }
 	// ================================================================================ //
 	//                                 JPAGE CONTROLER                                  //
@@ -182,6 +191,7 @@ namespace Kiwi
 	
 	void jPatcher::copySelectionToClipboard()
 	{
+        /*
 		scDico dico = getSelectedObjectsDico();
 		String text = toString(dico);
 		
@@ -190,6 +200,7 @@ namespace Kiwi
 			SystemClipboard::copyTextToClipboard(text);
 			Application::commandStatusChanged();
 		}
+        */
 	}
 	
 	void jPatcher::pasteFromClipboard(Kiwi::Point const& offset)
@@ -197,7 +208,7 @@ namespace Kiwi
 		const string text = SystemClipboard::getTextFromClipboard().toStdString();
 		if(!text.empty())
 		{
-            sDico dico = Dico::evaluateForJson(text);
+            Dico dico = Atom::evaluate(text);
 			unselectAll();
 			addObjectsFromDico(dico, offset);
 		}
@@ -237,8 +248,9 @@ namespace Kiwi
 		return true;
 	}
 	
-	sObjectView jPatcher::createObjectView(sObject object)
+	sObjectView jPatcher::createObjectView(sGuiObject guiObject)
 	{
+        sObject object = static_pointer_cast<Object>(guiObject);
 		return ObjectView::create<jObject>(object, static_pointer_cast<PatcherView>(shared_from_this()));
 	}
 	
@@ -291,7 +303,7 @@ namespace Kiwi
 		}
     }
 	
-	sLinkView jPatcher::createLinkView(sLink link)
+	sLinkView jPatcher::createLinkView(sGuiLink link)
 	{
 		return LinkView::create<jLink>(link);
 	}
@@ -354,8 +366,12 @@ namespace Kiwi
 		// update inspector
 		if(selobjects.size() == 1)
 		{
-			Application::getKiwiInstance()->setInspectorContent(selobjects[0]->getObject());
-		}
+            sObject object = static_pointer_cast<Object>(selobjects[0]->getObject());
+            if (object)
+            {
+                Application::getKiwiInstance()->setInspectorContent(object);
+            }
+        }
 		else if(selobjects.empty())
 		{
 			Application::getKiwiInstance()->setInspectorContent(sObject());
@@ -515,7 +531,7 @@ namespace Kiwi
 									m_object_downstatus = selectOnMouseDown(object, true);
 								}
 
-								showObjectPopupMenu(object->getObject());
+								showObjectPopupMenu(object);
 							}
 							else
 							{
@@ -621,7 +637,7 @@ namespace Kiwi
 			}
 			else if (m_copy_on_drag && e.mods.isAltDown())
 			{
-				sDico dico = getSelectedObjectsDico();
+				Dico dico = getSelectedObjectsDico();
 				unselectAll();
 				addObjectsFromDico(dico);
 				unselectAllLinks();
@@ -941,7 +957,7 @@ namespace Kiwi
     
     void jPatcher::textEditorReturnKeyPressed(juce::TextEditor& e)
     {
-        sDico dico = createObjectDicoAtPosition(e.getText().toStdString(), e.getPosition());
+        Dico dico = createObjectDicoAtPosition(e.getText().toStdString(), e.getPosition());
         e.clear();
         e.setVisible(false);
         getPatcher()->add(dico);
@@ -968,7 +984,7 @@ namespace Kiwi
     //                              APPLICATION COMMAND TARGET                          //
     // ================================================================================ //
 	
-	void jPatcher::showObjectPopupMenu(sObject object)
+	void jPatcher::showObjectPopupMenu(sObjectView object)
 	{
 		ApplicationCommandManager* commandManager = &Application::getCommandManager();
 		
@@ -1215,7 +1231,8 @@ namespace Kiwi
 				getSelection(objects);
 				if(objects.size() == 1)
 				{
-					Application::getKiwiInstance()->showInspector(objects[0]->getObject());
+                    sObject object = static_pointer_cast<Object>(objects[0]->getObject());
+					Application::getKiwiInstance()->showInspector(object);
 				}
 				break;
 			}
@@ -1296,7 +1313,7 @@ namespace Kiwi
 				sPatcher patcher = getPatcher();
 				if (patcher)
 				{
-					scDico dico = createObjectDicoAtPosition("newbox", getMouseXYRelative());
+					Dico dico = createObjectDicoAtPosition("newbox", getMouseXYRelative());
 					patcher->add(dico);
 				}
 				
@@ -1311,7 +1328,7 @@ namespace Kiwi
 				sPatcher patcher = getPatcher();
 				if (patcher)
 				{
-					scDico dico = createObjectDicoAtPosition("bang", getMouseXYRelative());
+					Dico dico = createObjectDicoAtPosition("bang", getMouseXYRelative());
 					patcher->add(dico);
 				}
                 break;
@@ -1409,37 +1426,45 @@ namespace Kiwi
         g.fillEllipse(size);
     }
     
-    void jPatcher::jIolighter::setInlet(sObjectView object, ulong index)
+    void jPatcher::jIolighter::setInlet(sObjectView objview, ulong index)
     {
-        if(object)
+        if (objview)
         {
-            Object::sInlet inlet = object->getObject()->getInlet(index);
-            if(inlet)
+            sObject object = static_pointer_cast<Object>(objview->getObject());
+            if(object)
             {
-                if(inlet->getPolarity() == Object::Io::Cold)
+                Object::sInlet inlet = object->getInlet(index);
+                if(inlet)
                 {
-                    m_colour = juce::Colour::fromFloatRGBA(0.28, 0.28, 0.88, 1);
+                    if(inlet->getPolarity() == Object::Io::Cold)
+                    {
+                        m_colour = juce::Colour::fromFloatRGBA(0.28, 0.28, 0.88, 1);
+                    }
+                    else
+                    {
+                        m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
+                    }
+                    const Kiwi::Point pos = objview->getInletPosition(index);
+                    setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
                 }
-                else
-                {
-                    m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
-                }
-                const Kiwi::Point pos = object->getInletPosition(index);
-                setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
             }
         }
     }
     
-    void jPatcher::jIolighter::setOutlet(sObjectView object, ulong index)
+    void jPatcher::jIolighter::setOutlet(sObjectView objview, ulong index)
     {
-        if(object)
+        if (objview)
         {
-            Object::sOutlet outlet = object->getObject()->getOutlet(index);
-            if(outlet)
+            sObject object = static_pointer_cast<Object>(objview->getObject());
+            if(object)
             {
-                m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
-                const Kiwi::Point pos = object->getOutletPosition(index);
-                setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
+                Object::sOutlet outlet = object->getOutlet(index);
+                if(outlet)
+                {
+                    m_colour = juce::Colour::fromFloatRGBA(0.88, 0.28, 0.88, 1);
+                    const Kiwi::Point pos = objview->getOutletPosition(index);
+                    setBounds(pos.x() - 8., pos.x() - 8., 16., 16.);
+                }
             }
         }
     }

@@ -87,6 +87,7 @@ namespace Kiwi
     {
         if(!path.empty())
         {
+			/*
             juce::Path jpath;
             Kiwi::Path::Node node = path.getNode(0);
             jpath.startNewSubPath(node.point.x(), node.point.y());
@@ -128,6 +129,7 @@ namespace Kiwi
                 }
             }
             g.fillPath(jpath);
+			*/
         }
     }
     
@@ -135,6 +137,7 @@ namespace Kiwi
     {
         if(!path.empty())
         {
+			/*
             juce::Path jpath;
             Kiwi::Path::Node node = path.getNode(0);
             jpath.startNewSubPath(node.point.x(), node.point.y());
@@ -176,6 +179,7 @@ namespace Kiwi
                 }
             }
             g.strokePath(jpath, juce::PathStrokeType(thickness));
+			*/
         }
     }
 }

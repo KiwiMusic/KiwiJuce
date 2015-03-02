@@ -43,7 +43,7 @@ namespace Kiwi
         //! The constructor.
         /** You should never have to use this function.
          */
-        jLink(sLink link);
+        jLink(sGuiLink link);
         
         //! Destructor.
         /** You should never have to use this function.
@@ -171,6 +171,7 @@ namespace Kiwi
 		 */
 		void dragLink(const MouseEvent& e)
 		{
+            /*
 			juce::Point<int> pos = e.getPosition();
 			m_dragpos = Kiwi::Point(pos.x, pos.y);
 			
@@ -188,6 +189,7 @@ namespace Kiwi
 			const Kiwi::Rectangle b = m_path.getBounds().expanded(20);
 			setBounds(juce::Rectangle<int>(b.x(), b.y(), b.width(), b.height()));
 			setVisible(true);
+            */
 		}
 		
 		/** Call this in your mouseUp event, after the link has been dragged.
@@ -200,13 +202,17 @@ namespace Kiwi
 		
 		Kiwi::Point getLocalPoint(Kiwi::Point const& point)
 		{
+            /*
 			const Kiwi::Rectangle bounds = m_path.getBounds();
 			Kiwi::Point pt = point - bounds.expanded(20).position();
 			return pt;
+            */
+            return Kiwi::Point();
 		}
 		
 		void paint(Graphics& g) override
 		{
+            /*
 			juce::Path p;
 			const Kiwi::Point pos = getLocalPoint(m_path.getPoint(0));
 			Kiwi::Point pt = pos;
@@ -242,6 +248,7 @@ namespace Kiwi
 			const juce::Rectangle<float> dragger(dragpos.x(), dragpos.y(), 0, 0);
 			g.setColour(color.contrasting(0.4));
 			g.fillEllipse(dragger.expanded(4));
+            */
 		}
 		
 		/** @internal */

@@ -42,7 +42,7 @@ namespace Kiwi
         class jLasso;
         class jIolighter;
         
-        wjObject								m_object_edited;
+        wjObject							m_object_edited;
 		ScopedPointer<juce::TextEditor>		m_editor;
         vector<sTempLink>					m_templinks;
         
@@ -63,7 +63,7 @@ namespace Kiwi
 		sjObject getjObject(int x, int y) noexcept;
 		void newObject(int x, int y, bool dblClick = 0);
 		
-		
+        
 		//! Retrieves if there are one or more temporary links.
 		inline bool hasTempLinks()
 		{
@@ -136,6 +136,11 @@ namespace Kiwi
         /** You should never have to use this function.
          */
         ~jPatcher();
+        
+        sPatcher getPatcher() const
+        {
+            return static_pointer_cast<Patcher>(PatcherView::getPatcher());
+        }
 		
         // ================================================================================ //
         //                                      COMPONENT                                   //
@@ -174,7 +179,7 @@ namespace Kiwi
 		/** The function shows the object contextual popup menu.
 		 @param object The object.
 		 */
-		void showObjectPopupMenu(sObject object);
+		void showObjectPopupMenu(sObjectView object);
         
         // ================================================================================ //
         //                                  PAGE CONTROLLER                                 //
@@ -192,7 +197,7 @@ namespace Kiwi
 		 @param object     The object.
 		 @return The newly created object controller.
 		 */
-		virtual sObjectView createObjectView(sObject object) override;
+		virtual sObjectView createObjectView(sGuiObject object) override;
 		
 		//! Receive the notification that an object controller has been created.
 		/** The function is called by the patcher when an object controller has been created.
@@ -211,7 +216,7 @@ namespace Kiwi
 		 @param link     The link.
 		 @return The newly created link controller.
 		 */
-		virtual sLinkView createLinkView(sLink link) override;
+		virtual sLinkView createLinkView(sGuiLink link) override;
 		
 		//! Receive the notification that a link controller has been created.
 		/** The function is called by the patcher when a link controller has been created.
