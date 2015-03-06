@@ -108,10 +108,10 @@
                 file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiPatcher.cpp"/>
           <FILE id="IhkELg" name="KiwiGuiPatcher.h" compile="0" resource="0"
                 file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiPatcher.h"/>
-          <FILE id="JKGzdC" name="KiwiGuiPatcherManager.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiPatcherManager.cpp"/>
-          <FILE id="pF1xjC" name="KiwiGuiPatcherManager.h" compile="0" resource="0"
-                file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiPatcherManager.h"/>
+          <FILE id="JKGzdC" name="KiwiGuiPatchManager.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiPatchManager.cpp"/>
+          <FILE id="pF1xjC" name="KiwiGuiPatchManager.h" compile="0" resource="0"
+                file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiPatchManager.h"/>
           <FILE id="ba1Fnr" name="KiwiGuiDevice.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiDevice.cpp"/>
           <FILE id="FAF18S" name="KiwiGuiDevice.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiModels/KiwiGuiDevice.h"/>

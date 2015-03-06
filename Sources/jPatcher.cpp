@@ -29,9 +29,23 @@ namespace Kiwi
     Dico createObjectDicoAtPosition(string const& name, juce::Point<int> const& pt)
     {
         Console::post("name : " + name);
+        /*
         Atom atom = Atom::evaluate(name);
-        //cout << "atom parse : " << endl;
-        //cout << atom << endl << endl << endl;
+        cout << "atom parse : " << endl;
+        cout << atom << endl << endl << endl;
+        */
+        
+        Dico object;
+        object[Tag::List::name] = name;
+        object[Tag::List::text] = name;
+        object[Tag::List::id] = 0;
+        object[Tag::List::arguments] = "";
+        
+        Dico dico;
+        dico[Tag::List::objects] = object;
+        
+        cout << dico << endl << endl << endl;
+        return dico;
         
         /*
         Dico dico = Dico::evaluateForObject(name);
@@ -208,9 +222,11 @@ namespace Kiwi
 		const string text = SystemClipboard::getTextFromClipboard().toStdString();
 		if(!text.empty())
 		{
-            Dico dico = Atom::evaluate(text);
+            Vector atoms = Atom::parse(text);
+            /*
 			unselectAll();
 			addObjectsFromDico(dico, offset);
+            */
 		}
 	}
 	
