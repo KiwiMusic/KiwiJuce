@@ -29,38 +29,22 @@ namespace Kiwi
     Dico createObjectDicoAtPosition(string const& name, juce::Point<int> const& pt)
     {
         Console::post("name : " + name);
-        /*
-        Atom atom = Atom::evaluate(name);
-        cout << "atom parse : " << endl;
-        cout << atom << endl << endl << endl;
-        */
+        
+        Dico subobject;
+        subobject[Tag::List::name] = name;
+        subobject[Tag::List::text] = name;
+        subobject[Tag::List::id] = 0;
+        subobject[Tag::List::arguments] = {2, 4};
+        //sub->set(Tag::create("position"), {pt.x, pt.y});
         
         Dico object;
-        object[Tag::List::name] = name;
-        object[Tag::List::text] = name;
-        object[Tag::List::id] = 0;
-        object[Tag::List::arguments] = "";
+        object[Tag::List::object] = subobject;
         
         Dico dico;
-        dico[Tag::List::objects] = object;
+        dico[Tag::List::objects] = {subobject, subobject};
         
         cout << dico << endl << endl << endl;
         return dico;
-        
-        /*
-        Dico dico = Dico::evaluateForObject(name);
-        if(dico)
-        {
-            sDico sub = dico->get(Tag::List::objects);
-            if(sub)
-            {
-                sub->set(Tag::create("position"), {pt.x, pt.y});
-            }
-        }
-         
-        return dico;
-        */
-        return Dico();
     }
 	// ================================================================================ //
 	//                                 JPAGE CONTROLER                                  //
