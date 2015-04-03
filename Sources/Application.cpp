@@ -30,7 +30,7 @@ namespace Kiwi
     public:
         MainMenuModel()
         {
-            setApplicationCommandManagerToWatch (&getCommandManager());
+            //setApplicationCommandManagerToWatch (&getCommandManager());
         }
         
         StringArray getMenuBarNames()
@@ -84,6 +84,7 @@ namespace Kiwi
         m_instance = jInstance::create(m_gui_device_manager, m_dsp_device_manager, "main");
         m_menu_model = new MainMenuModel();
         
+        /*
 #if JUCE_MAC
         PopupMenu macMainMenuPopup;
         macMainMenuPopup.addCommandItem (&getCommandManager(), CommandIDs::showAboutAppWindow);
@@ -91,6 +92,7 @@ namespace Kiwi
         macMainMenuPopup.addCommandItem (&getCommandManager(), CommandIDs::showAppSettingsWindow);
         MenuBarModel::setMacMainMenu (m_menu_model, &macMainMenuPopup, TRANS("Open Recent"));
 #endif
+        */
         
         m_instance->newPatcher();
     }
@@ -148,31 +150,6 @@ namespace Kiwi
         jassert (app != nullptr);
         return *app;
     }
-    
-    void Application::bindToCommandManager(ApplicationCommandTarget* target)
-    {
-        Application& app = getApp();
-        if(app.m_command_manager)
-        {
-            app.m_command_manager->registerAllCommandsForTarget(target);
-        }
-    }
-    
-    void Application::bindToKeyMapping(Component* target)
-    {
-        Application& app = getApp();
-        if(app.m_command_manager)
-        {
-            target->addKeyListener(app.m_command_manager->getKeyMappings());
-        }
-    }
-	
-    ApplicationCommandManager& Application::getCommandManager()
-    {
-        ApplicationCommandManager* cm = getApp().m_command_manager;
-        jassert (cm != nullptr);
-        return *cm;
-    }
 	
 	sjInstance Application::getKiwiInstance()
 	{
@@ -211,6 +188,7 @@ namespace Kiwi
     
     void Application::createFileMenu (PopupMenu& menu)
     {
+        /*
         menu.addCommandItem (m_command_manager, CommandIDs::newPatcher);
         menu.addCommandItem (m_command_manager, CommandIDs::newTabPatcher);
         menu.addSeparator();
@@ -228,10 +206,12 @@ namespace Kiwi
         menu.addSeparator();
         menu.addCommandItem (m_command_manager, StandardApplicationCommandIDs::quit);
 #endif
+         */
     }
     
     void Application::createEditMenu (PopupMenu& menu)
     {
+        /*
         menu.addCommandItem (m_command_manager, StandardApplicationCommandIDs::undo);
         menu.addCommandItem (m_command_manager, StandardApplicationCommandIDs::redo);
         menu.addSeparator();
@@ -245,10 +225,12 @@ namespace Kiwi
         menu.addCommandItem (m_command_manager, StandardApplicationCommandIDs::selectAll);
         menu.addCommandItem (m_command_manager, StandardApplicationCommandIDs::deselectAll);
         menu.addSeparator();
+         */
     }
     
     void Application::createViewMenu (PopupMenu& menu)
     {
+        /*
         menu.addCommandItem (m_command_manager, CommandIDs::editModeSwitch);
         menu.addCommandItem (m_command_manager, CommandIDs::presentationModeSwitch);
 		menu.addSeparator();
@@ -260,10 +242,12 @@ namespace Kiwi
         menu.addCommandItem (m_command_manager, CommandIDs::zoomOut);
         menu.addCommandItem (m_command_manager, CommandIDs::zoomNormal);
         menu.addSeparator();
+         */
     }
     
     void Application::createObjectMenu (PopupMenu& menu)
     {
+        /*
 		vector<sTag> objectNames = Factory::names();
 		
 		if (objectNames.size() > 0)
@@ -285,23 +269,27 @@ namespace Kiwi
         menu.addSeparator();
         menu.addCommandItem (m_command_manager, CommandIDs::addToPresentation);
         menu.addCommandItem (m_command_manager, CommandIDs::removeFromPresentation);
+         */
     }
     
     void Application::createArrangeMenu (PopupMenu& menu)
     {
+        /*
         menu.addCommandItem (m_command_manager, CommandIDs::enableSnapToGrid);
         menu.addSeparator();
         menu.addCommandItem (m_command_manager, CommandIDs::toFront);
         menu.addCommandItem (m_command_manager, CommandIDs::toBack);
+         */
     }
     
     void Application::createOptionsMenu (PopupMenu& menu)
     {
-        menu.addCommandItem (m_command_manager, CommandIDs::showAudioStatusWindow);
+        //menu.addCommandItem (m_command_manager, CommandIDs::showAudioStatusWindow);
     }
     
     void Application::createWindowMenu (PopupMenu& menu)
     {
+        /*
         menu.addCommandItem (m_command_manager, CommandIDs::minimizeWindow);
         menu.addCommandItem (m_command_manager, CommandIDs::maximizeWindow);
         menu.addSeparator();
@@ -310,6 +298,7 @@ namespace Kiwi
         
         menu.addSeparator();
         menu.addCommandItem (m_command_manager, CommandIDs::closeAllPatchers);
+         */
     }
     
     void Application::createExtraMenu (PopupMenu& menu)
@@ -319,7 +308,7 @@ namespace Kiwi
     
     void Application::createHelpMenu (PopupMenu& menu)
     {
-        menu.addCommandItem (m_command_manager, CommandIDs::openObjectHelp);
+        //menu.addCommandItem (m_command_manager, CommandIDs::openObjectHelp);
     }
     
     void Application::handleMainMenuCommand (int menuItemID)
@@ -416,6 +405,7 @@ namespace Kiwi
     
     void Application::initCommandManager()
     {
+        /*
 		m_command_manager = new ApplicationCommandManager();
         m_command_manager->registerAllCommandsForTarget (this);
 		
@@ -423,6 +413,7 @@ namespace Kiwi
             BaseWindow window;
             m_command_manager->registerAllCommandsForTarget(&window);
         }
+         */
     }
 }
 

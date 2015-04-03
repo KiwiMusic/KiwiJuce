@@ -72,7 +72,6 @@ namespace Kiwi
         shared_ptr<KiwiJuceGuiDeviceManager>        m_gui_device_manager;
         sjInstance									m_instance;
         ScopedPointer<MainMenuModel>				m_menu_model;
-        ScopedPointer<ApplicationCommandManager>	m_command_manager;
         bool										m_is_running_command_line;
     public:
         
@@ -137,28 +136,6 @@ namespace Kiwi
          @param target The component.
          */
         static void bindToKeyMapping(Component* target);
-
-        
-        /** Get the global ApplicationCommandManager */
-        static ApplicationCommandManager& getCommandManager();
-        
-        static void commandStatusChanged()
-        {
-            Application* const app = dynamic_cast<Application*>(JUCEApplication::getInstance());
-            if(app && app->m_command_manager)
-            {
-                app->m_command_manager->commandStatusChanged();
-            }
-        }
-        
-        static KeyPressMappingSet* getKeyMappings()
-        {
-            Application* const app = dynamic_cast<Application*>(JUCEApplication::getInstance());
-            if(app && app->m_command_manager)
-                return app->m_command_manager->getKeyMappings();
-			
-			return nullptr;
-        }
         
         // ================================================================================ //
         //                              APPLICATION COMMAND TARGET                          //

@@ -38,13 +38,14 @@ namespace Kiwi
         setMenuBar(Application::getApp().m_menu_model);
 #endif
         setUsingNativeTitleBar(true);
-        Application::bindToCommandManager(this);
-        Application::bindToKeyMapping(this);
+        //Application::bindToCommandManager(this);
+        //Application::bindToKeyMapping(this);
     }
     
     BaseWindow::~BaseWindow()
     {
-        removeKeyListener(Application::getKeyMappings());
+        int keymapping;
+        //removeKeyListener(Application::getKeyMappings());
     }
     
     void BaseWindow::closeButtonPressed()

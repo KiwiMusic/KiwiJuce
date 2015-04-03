@@ -190,16 +190,8 @@
       <GROUP id="{A81007C5-69DE-C8DB-A227-EA9C1A209CAB}" name="KiwiWrapper">
         <FILE id="gVRlHT" name="KiwiWrapper.h" compile="0" resource="0" file="KiwiModules/KiwiWrapper/KiwiWrapper.h"/>
         <GROUP id="{38E3176C-16B0-4AC1-6F98-AFE30F11BB1C}" name="KiwiJuce">
-          <FILE id="iPAmr5" name="KiwiDspJuceDevice.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiDspJuceDevice.cpp"/>
-          <FILE id="kGuXpN" name="KiwiDspJuceDevice.h" compile="0" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiDspJuceDevice.h"/>
           <FILE id="uHZwHi" name="KiwiGuiJuceDefine.h" compile="0" resource="0"
                 file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceDefine.h"/>
-          <FILE id="elqrfW" name="KiwiGuiJuceDevice.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceDevice.cpp"/>
-          <FILE id="tSRciw" name="KiwiGuiJuceDevice.h" compile="0" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceDevice.h"/>
           <FILE id="gwgHug" name="KiwiGuiJuceDoodle.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceDoodle.cpp"/>
           <FILE id="FlgHO3" name="KiwiGuiJuceDoodle.h" compile="0" resource="0"
@@ -212,22 +204,30 @@
                 file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceLabel.cpp"/>
           <FILE id="m15ubX" name="KiwiGuiJuceLabel.h" compile="0" resource="0"
                 file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceLabel.h"/>
-          <FILE id="Ku0hIU" name="KiwiGuiJuceLink.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceLink.cpp"/>
-          <FILE id="uoPCf5" name="KiwiGuiJuceLink.h" compile="0" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceLink.h"/>
-          <FILE id="z4FAqg" name="KiwiGuiJuceObject.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceObject.cpp"/>
-          <FILE id="srPUHt" name="KiwiGuiJuceObject.h" compile="0" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceObject.h"/>
-          <FILE id="kZLF9w" name="KiwiGuiJucePatcher.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJucePatcher.cpp"/>
-          <FILE id="e9nUvv" name="KiwiGuiJucePatcher.h" compile="0" resource="0"
-                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJucePatcher.h"/>
           <FILE id="a2eAeQ" name="KiwiGuiJuceTextEditor.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceTextEditor.cpp"/>
           <FILE id="kFSW06" name="KiwiGuiJuceTextEditor.h" compile="0" resource="0"
                 file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceTextEditor.h"/>
+          <FILE id="z4FAqg" name="KiwiGuiJuceObject.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceObject.cpp"/>
+          <FILE id="srPUHt" name="KiwiGuiJuceObject.h" compile="0" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceObject.h"/>
+          <FILE id="Ku0hIU" name="KiwiGuiJuceLink.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceLink.cpp"/>
+          <FILE id="uoPCf5" name="KiwiGuiJuceLink.h" compile="0" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceLink.h"/>
+          <FILE id="kZLF9w" name="KiwiGuiJucePatcher.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJucePatcher.cpp"/>
+          <FILE id="e9nUvv" name="KiwiGuiJucePatcher.h" compile="0" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJucePatcher.h"/>
+          <FILE id="elqrfW" name="KiwiGuiJuceDevice.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceDevice.cpp"/>
+          <FILE id="tSRciw" name="KiwiGuiJuceDevice.h" compile="0" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiGuiJuceDevice.h"/>
+          <FILE id="iPAmr5" name="KiwiDspJuceDevice.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiDspJuceDevice.cpp"/>
+          <FILE id="kGuXpN" name="KiwiDspJuceDevice.h" compile="0" resource="0"
+                file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiDspJuceDevice.h"/>
           <FILE id="NrwPdB" name="KiwiJuce.h" compile="0" resource="0" file="KiwiModules/KiwiWrapper/KiwiJuce/KiwiJuce.h"/>
         </GROUP>
         <FILE id="s40ZhI" name="KiwiDspPortAudio.cpp" compile="1" resource="0"
