@@ -26,9 +26,7 @@
 
 #include "jLookAndFeel.h"
 #include "MainWindow.h"
-//#include "jConsole.h"
-#include "jPatcher.h"
-//#include "AttributeView.h"
+#include "jDefs.h"
 
 namespace Kiwi
 {
@@ -54,7 +52,6 @@ namespace Kiwi
         sInstance                               m_instance;
         shared_ptr<MenuBarModel>                m_menu;
         shared_ptr<MainWindow>                  m_window;
-		shared_ptr<MainWindow>                  m_window2;
 		/*
 		shared_ptr<InspectorWindow>             m_app_settings_window;
 		shared_ptr<InspectorWindow>             m_patcher_inspector_window;

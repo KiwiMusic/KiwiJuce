@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_MAIN_WINDOW__
 #define __DEF_KIWI_MAIN_WINDOW__
 
-#include "jPatcher.h"
+#include "jDefs.h"
 
 namespace Kiwi
 {

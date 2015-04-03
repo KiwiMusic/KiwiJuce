@@ -27,8 +27,7 @@ namespace Kiwi
 {
     jInstance::jInstance(sGuiDeviceManager guiDevice, sDspDeviceManager dspDevice, string const& name) :
     m_instance(Instance::create(guiDevice, dspDevice, name)),
-    m_window(MainWindow::create()),
-	m_window2(MainWindow::create())
+    m_window(MainWindow::create())
     {
 		LookAndFeel::setDefaultLookAndFeel(&m_lookandfeel);
     }
@@ -50,42 +49,36 @@ namespace Kiwi
     
     void jInstance::patcherCreated(sInstance instance, sPatcher patcher)
     {
-        if(instance == m_instance)
+        if(patcher && instance == m_instance)
         {
-            if(patcher)
+            Console::post("Patcher created.");
+            GuiPatcher::sView view = patcher->createView();
+            if(view)
             {
-				sjPatcher jpc = PatcherView::create<jPatcher>(patcher);
+                sjPatcher jpc = dynamic_pointer_cast<jPatcher>(view);
                 if(jpc)
                 {
                     m_patchers.push_back(jpc);
                     m_window->setContentNonOwned(jpc.get(), false);
-					//m_window->setName(jpc->getN)
-                    Console::post("Patcher has been added to the application");
+                    Console::post("Patcher view valid.");
                 }
                 else
                 {
                     m_instance->removePatcher(patcher);
+                    Console::post("Patcher view invalid.");
                 }
-				
-				sjPatcher jpc2 = PatcherView::create<jPatcher>(patcher);
-				if(jpc2)
-				{
-					m_patchers.push_back(jpc2);
-					m_window2->setContentNonOwned(jpc2.get(), false);
-					//m_window->setName(jpc->getN)
-					Console::post("Patcher has been added to the application");
-				}
-				else
-				{
-					m_instance->removePatcher(patcher);
-				}
+            }
+            else
+            {
+                m_instance->removePatcher(patcher);
+                Console::post("Device manager was not able to create a view for the patcher.");
             }
         }
     }
 	
     void jInstance::patcherRemoved(sInstance instance, sPatcher patcher)
     {
-        Console::post("Patcher has been removed from the application");
+        Console::post("Patcher removed.");
     }
     
     void jInstance::dspStarted(shared_ptr<Instance> instance)
