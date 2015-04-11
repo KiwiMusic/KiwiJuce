@@ -26,15 +26,14 @@
 namespace Kiwi
 {
     jInstance::jInstance(sGuiDeviceManager guiDevice, sDspDeviceManager dspDevice, string const& name) :
-    m_instance(Instance::create(guiDevice, dspDevice, name)),
-    m_window(MainWindow::create())
+    m_instance(Instance::create(guiDevice, dspDevice, name))
     {
 		LookAndFeel::setDefaultLookAndFeel(&m_lookandfeel);
     }
 	
     jInstance::~jInstance()
     {
-        m_patchers.clear();
+        ;
     }
     
     shared_ptr<jInstance> jInstance::create(sGuiDeviceManager guiDevice, sDspDeviceManager dspDevice, string const& name)
@@ -43,6 +42,7 @@ namespace Kiwi
         if(that)
         {
             that->m_instance->addListener(that);
+            that->m_instance->createPatcher();
         }
         return that;
     }
@@ -51,27 +51,17 @@ namespace Kiwi
     {
         if(patcher && instance == m_instance)
         {
-            Console::post("Patcher created.");
-            GuiPatcher::sView view = patcher->createView();
-            if(view)
+            cout << "Instance created" << endl;
+            
+            sGuiWindow window = patcher->createWindow();
+            if(window)
             {
-                sjPatcher jpc = dynamic_pointer_cast<jPatcher>(view);
-                if(jpc)
-                {
-                    m_patchers.push_back(jpc);
-                    m_window->setContentNonOwned(jpc.get(), false);
-                    Console::post("Patcher view valid.");
-                }
-                else
-                {
-                    m_instance->removePatcher(patcher);
-                    Console::post("Patcher view invalid.");
-                }
+                cout << "Window created" << endl;
             }
-            else
+            window = patcher->createWindow();
+            if(window)
             {
-                m_instance->removePatcher(patcher);
-                Console::post("Device manager was not able to create a view for the patcher.");
+                cout << "Window created" << endl;
             }
         }
     }

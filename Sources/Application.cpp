@@ -94,7 +94,6 @@ namespace Kiwi
 #endif
         */
         
-        m_instance->newPatcher();
     }
     
     void Application::shutdown()
@@ -102,6 +101,7 @@ namespace Kiwi
 #if JUCE_MAC
         MenuBarModel::setMacMainMenu(nullptr);
 #endif
+        m_instance.reset();
     }
     
     void Application::suspended()
@@ -117,6 +117,7 @@ namespace Kiwi
     //==============================================================================
     void Application::systemRequestedQuit()
     {
+        m_instance.reset();
         if(ModalComponentManager::getInstance()->cancelAllModalComponents())
         {
             new AsyncQuitRetrier();

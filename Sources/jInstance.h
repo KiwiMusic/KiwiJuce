@@ -25,18 +25,11 @@
 #define __DEF_KIWI_JINSTANCECONTROLLER__
 
 #include "jLookAndFeel.h"
-#include "MainWindow.h"
-#include "jDefs.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "KiwiModules.h"
 
 namespace Kiwi
 {
-    namespace CommandCategories
-    {
-        static const char* const general       = "General";
-        static const char* const editing       = "Editing";
-        static const char* const view          = "View";
-        static const char* const windows       = "Windows";
-    }
     
     // ================================================================================ //
     //                                  EDITOR APPLICATION                              //
@@ -51,14 +44,6 @@ namespace Kiwi
     private:
         sInstance                               m_instance;
         shared_ptr<MenuBarModel>                m_menu;
-        shared_ptr<MainWindow>                  m_window;
-		/*
-		shared_ptr<InspectorWindow>             m_app_settings_window;
-		shared_ptr<InspectorWindow>             m_patcher_inspector_window;
-		shared_ptr<InspectorWindow>             m_object_inspector_window;
-		*/
-        vector<sjPatcher>						m_patchers;
-		vector<shared_ptr<MainWindow>>          m_patcher_windows;
 		KiwiLookAndFeel							m_lookandfeel;
     public:
         
@@ -149,17 +134,6 @@ namespace Kiwi
 		/** The function attempts to load a patcher.
 		 */
 		bool openFile(File file);
-        
-        /*
-        closePatcher
-        save
-        saveAs
-        
-        minimizeWindow
-        maximizeWindow
-        closeWindow	
-        closeAllPatchers
-         */
     };
 	
 	typedef shared_ptr<jInstance>	sjInstance;
