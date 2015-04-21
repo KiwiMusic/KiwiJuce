@@ -124,18 +124,6 @@ namespace Kiwi
 		/** The function retrieves the current running kiwi instance.
 		 */
 		static sjInstance getKiwiInstance();
-		
-        //! Bind a command target to the command manager.
-        /** The function binds a command target to the command manager and add the command manager as a listener.
-         @param target The command target.
-         */
-        static void bindToCommandManager(ApplicationCommandTarget* target);
-        
-        //! Bind a component to the key mapping.
-        /** The function binds a component to the key mapping.
-         @param target The component.
-         */
-        static void bindToKeyMapping(Component* target);
         
         // ================================================================================ //
         //                              APPLICATION COMMAND TARGET                          //

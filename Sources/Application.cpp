@@ -81,6 +81,7 @@ namespace Kiwi
 		initCommandManager();
 		m_dsp_device_manager = make_shared<KiwiJuceDspDeviceManager>();
         m_gui_device_manager = make_shared<KiwiJuceGuiDeviceManager>();
+        m_gui_device_manager->initialize();
         m_instance = jInstance::create(m_gui_device_manager, m_dsp_device_manager, "main");
         m_menu_model = new MainMenuModel();
         
@@ -321,7 +322,7 @@ namespace Kiwi
     void Application::getAllCommands (Array <CommandID>& commands)
     {
         JUCEApplication::getAllCommands (commands); // get the standard quit command
-        
+        /*
         // this returns the set of all commands that this target can perform..
         const CommandID ids[] =
         {
@@ -335,10 +336,12 @@ namespace Kiwi
         };
         
         commands.addArray (ids, numElementsInArray (ids));
+         */
     }
     
     void Application::getCommandInfo (CommandID commandID, ApplicationCommandInfo& result)
     {
+        /*
         switch (commandID)
         {
             case CommandIDs::newPatcher:
@@ -383,11 +386,12 @@ namespace Kiwi
             default:
                 JUCEApplication::getCommandInfo (commandID, result);
                 break;
-        }
+        }*/
     }
     
     bool Application::perform (const InvocationInfo& info)
     {
+        /*
         switch (info.commandID)
         {
             //case CommandIDs::newPatcher:						m_instance->createNewMainWindow();	break;
@@ -400,7 +404,7 @@ namespace Kiwi
 
             default:										return JUCEApplication::perform (info);
         }
-        
+        */
         return true;
     }
     
