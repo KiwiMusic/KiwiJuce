@@ -49,6 +49,10 @@
           <FILE id="mcv8l8" name="KiwiGraphics.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiGraphics.h"/>
           <FILE id="E4GENk" name="KiwiPoint.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiPoint.cpp"/>
           <FILE id="wbyhSF" name="KiwiPoint.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiPoint.h"/>
+          <FILE id="Qh0O2Q" name="KiwiSize.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiSize.cpp"/>
+          <FILE id="GjoNTW" name="KiwiSize.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiSize.h"/>
+          <FILE id="TYp2rn" name="KiwiSegment.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiSegment.cpp"/>
+          <FILE id="XFnmEI" name="KiwiSegment.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiSegment.h"/>
           <FILE id="dzCQVM" name="KiwiRectangle.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiGui/KiwiGraphics/KiwiRectangle.cpp"/>
           <FILE id="PY30Uf" name="KiwiRectangle.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiRectangle.h"/>
