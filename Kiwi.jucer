@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="MyIZ1x" name="Kiwi" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.cicm.Kiwi" includeBinaryInAppConfig="1"
-              jucerVersion="3.1.1" companyName="cicm">
+              jucerVersion="3.1.0" companyName="cicm">
   <MAINGROUP id="gZ4R04" name="Kiwi">
     <GROUP id="{4DC4B010-A46B-EE94-6CC7-F815B3ACD1BF}" name="KiwiModules">
       <FILE id="NtWq2u" name="KiwiModules.h" compile="0" resource="0" file="KiwiModules/KiwiModules.h"/>
@@ -47,6 +47,10 @@
         <FILE id="b5Rugu" name="KiwiGui.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGui.h"/>
         <GROUP id="{E6B89024-9F56-606E-5149-5E03404C3862}" name="KiwiGraphics">
           <FILE id="mcv8l8" name="KiwiGraphics.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiGraphics.h"/>
+          <FILE id="RbLxNN" name="KiwiAffineMatrix.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiGraphics/KiwiAffineMatrix.cpp"/>
+          <FILE id="foOlyx" name="KiwiAffineMatrix.h" compile="0" resource="0"
+                file="KiwiModules/KiwiGui/KiwiGraphics/KiwiAffineMatrix.h"/>
           <FILE id="E4GENk" name="KiwiPoint.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiPoint.cpp"/>
           <FILE id="wbyhSF" name="KiwiPoint.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiPoint.h"/>
           <FILE id="Qh0O2Q" name="KiwiSize.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiSize.cpp"/>
