@@ -79,20 +79,10 @@
               file="KiwiModules/KiwiGui/KiwiGuiController.h"/>
         <FILE id="tq1krO" name="KiwiGuiView.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGuiView.cpp"/>
         <FILE id="B7J5jl" name="KiwiGuiView.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiView.h"/>
-        <FILE id="bEyx1s" name="KiwiGuiContainer.cpp" compile="1" resource="0"
-              file="KiwiModules/KiwiGui/KiwiGuiContainer.cpp"/>
-        <FILE id="joNaPR" name="KiwiGuiContainer.h" compile="0" resource="0"
-              file="KiwiModules/KiwiGui/KiwiGuiContainer.h"/>
-        <FILE id="XHIPzf" name="KiwiGuiButton.cpp" compile="1" resource="0"
-              file="KiwiModules/KiwiGui/KiwiGuiButton.cpp"/>
-        <FILE id="o4cLLS" name="KiwiGuiButton.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiButton.h"/>
         <FILE id="fboQbQ" name="KiwiGuiTextEditor.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiGui/KiwiGuiTextEditor.cpp"/>
         <FILE id="zFJY6y" name="KiwiGuiTextEditor.h" compile="0" resource="0"
               file="KiwiModules/KiwiGui/KiwiGuiTextEditor.h"/>
-        <FILE id="VIHXs8" name="KiwiGuiWindow.cpp" compile="1" resource="0"
-              file="KiwiModules/KiwiGui/KiwiGuiWindow.cpp"/>
-        <FILE id="ii55XD" name="KiwiGuiWindow.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiWindow.h"/>
         <FILE id="CNJDl5" name="KiwiGuiContext.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiGui/KiwiGuiContext.cpp"/>
         <FILE id="W4xy0h" name="KiwiGuiContext.h" compile="0" resource="0"
@@ -100,6 +90,19 @@
         <FILE id="IA0rhs" name="KiwiGuiDevice.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiGui/KiwiGuiDevice.cpp"/>
         <FILE id="A8Z0jT" name="KiwiGuiDevice.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiDevice.h"/>
+        <GROUP id="{764E975D-A795-56AB-76F7-B4530315845C}" name="KiwiWidgets">
+          <FILE id="Y1pLiX" name="KiwiWidgets.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiWidgets.h"/>
+          <FILE id="TFQf7J" name="KiwiGuiButton.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiButton.cpp"/>
+          <FILE id="L5SWJ7" name="KiwiGuiButton.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiButton.h"/>
+          <FILE id="SVprEe" name="KiwiGuiContainer.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiContainer.cpp"/>
+          <FILE id="bvd87V" name="KiwiGuiContainer.h" compile="0" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiContainer.h"/>
+          <FILE id="ncMG1m" name="KiwiGuiWindow.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.cpp"/>
+          <FILE id="NmOu32" name="KiwiGuiWindow.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.h"/>
+        </GROUP>
       </GROUP>
       <GROUP id="{F973091F-7994-0B69-8564-227CD3E2E281}" name="KiwiPatcher">
         <FILE id="nkbbrq" name="KiwiPatcher.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiPatcher.h"/>
