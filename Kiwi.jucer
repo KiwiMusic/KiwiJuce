@@ -95,6 +95,10 @@
           <FILE id="TFQf7J" name="KiwiGuiButton.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiButton.cpp"/>
           <FILE id="L5SWJ7" name="KiwiGuiButton.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiButton.h"/>
+          <FILE id="M2sAuY" name="KiwiGuiScrollBar.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiScrollBar.cpp"/>
+          <FILE id="Jjk0w4" name="KiwiGuiScrollBar.h" compile="0" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiScrollBar.h"/>
           <FILE id="SVprEe" name="KiwiGuiContainer.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiContainer.cpp"/>
           <FILE id="bvd87V" name="KiwiGuiContainer.h" compile="0" resource="0"
