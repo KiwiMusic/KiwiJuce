@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="MyIZ1x" name="Kiwi" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.cicm.Kiwi" includeBinaryInAppConfig="1"
-              jucerVersion="3.1.0" companyName="cicm">
+              jucerVersion="3.1.1" companyName="cicm">
   <MAINGROUP id="gZ4R04" name="Kiwi">
     <GROUP id="{4DC4B010-A46B-EE94-6CC7-F815B3ACD1BF}" name="KiwiModules">
       <FILE id="NtWq2u" name="KiwiModules.h" compile="0" resource="0" file="KiwiModules/KiwiModules.h"/>
@@ -132,6 +132,10 @@
       </GROUP>
       <GROUP id="{5B0EE8D5-F533-229A-7F29-FAF33A7F3C39}" name="KiwiObjects">
         <FILE id="vMxjYA" name="KiwiObjects.h" compile="0" resource="0" file="KiwiModules/KiwiObjects/KiwiObjects.h"/>
+        <FILE id="rIsyMR" name="KiwiObjectsMath.cpp" compile="1" resource="0"
+              file="KiwiModules/KiwiObjects/KiwiObjectsMath.cpp"/>
+        <FILE id="DAehjf" name="KiwiObjectsMath.h" compile="0" resource="0"
+              file="KiwiModules/KiwiObjects/KiwiObjectsMath.h"/>
         <GROUP id="{07B34B95-4E0A-AEE8-963F-C85E59EB2432}" name="KiwiObjectsBasic">
           <FILE id="aJTagt" name="KiwiObjectsBasic.h" compile="0" resource="0"
                 file="KiwiModules/KiwiObjects/KiwiObjectsBasic/KiwiObjectsBasic.h"/>
