@@ -79,10 +79,6 @@
               file="KiwiModules/KiwiGui/KiwiGuiController.h"/>
         <FILE id="tq1krO" name="KiwiGuiView.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGuiView.cpp"/>
         <FILE id="B7J5jl" name="KiwiGuiView.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiView.h"/>
-        <FILE id="fboQbQ" name="KiwiGuiTextEditor.cpp" compile="1" resource="0"
-              file="KiwiModules/KiwiGui/KiwiGuiTextEditor.cpp"/>
-        <FILE id="zFJY6y" name="KiwiGuiTextEditor.h" compile="0" resource="0"
-              file="KiwiModules/KiwiGui/KiwiGuiTextEditor.h"/>
         <FILE id="CNJDl5" name="KiwiGuiContext.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiGui/KiwiGuiContext.cpp"/>
         <FILE id="W4xy0h" name="KiwiGuiContext.h" compile="0" resource="0"
@@ -107,6 +103,10 @@
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiViewPort.cpp"/>
           <FILE id="vyVhsD" name="KiwiGuiViewPort.h" compile="0" resource="0"
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiViewPort.h"/>
+          <FILE id="GCCp3y" name="KiwiGuiTextEditor.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiTextEditor.cpp"/>
+          <FILE id="pu758s" name="KiwiGuiTextEditor.h" compile="0" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiTextEditor.h"/>
           <FILE id="ncMG1m" name="KiwiGuiWindow.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.cpp"/>
           <FILE id="NmOu32" name="KiwiGuiWindow.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.h"/>
