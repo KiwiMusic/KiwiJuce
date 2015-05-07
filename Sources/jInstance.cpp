@@ -58,13 +58,11 @@ namespace Kiwi
             {
                 cout << "Window created" << endl;
             }
-            /*
             window = patcher->createWindow();
             if(window)
             {
                 cout << "Window created" << endl;
             }
-             */
         }
     }
 	
