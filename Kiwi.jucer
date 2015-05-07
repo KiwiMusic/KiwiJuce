@@ -103,6 +103,10 @@
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiContainer.cpp"/>
           <FILE id="bvd87V" name="KiwiGuiContainer.h" compile="0" resource="0"
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiContainer.h"/>
+          <FILE id="ZSadjT" name="KiwiGuiViewPort.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiViewPort.cpp"/>
+          <FILE id="vyVhsD" name="KiwiGuiViewPort.h" compile="0" resource="0"
+                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiViewPort.h"/>
           <FILE id="ncMG1m" name="KiwiGuiWindow.cpp" compile="1" resource="0"
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.cpp"/>
           <FILE id="NmOu32" name="KiwiGuiWindow.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.h"/>
