@@ -9,16 +9,20 @@
       <GROUP id="{49EF6547-A867-3760-AC74-68707B985AC8}" name="KiwiCore">
         <FILE id="uAQEjQ" name="KiwiCore.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiCore.h"/>
         <FILE id="K7EfsD" name="KiwiTools.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiTools.h"/>
+        <FILE id="EU86v2" name="KiwiBeacon.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiBeacon.cpp"/>
+        <FILE id="Lcxuh7" name="KiwiBeacon.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiBeacon.h"/>
         <FILE id="zPED9M" name="KiwiTag.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiTag.cpp"/>
         <FILE id="VCkhNr" name="KiwiTag.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiTag.h"/>
         <FILE id="ZkExwu" name="KiwiAtom.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiAtom.cpp"/>
         <FILE id="swkyTl" name="KiwiAtom.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiAtom.h"/>
-        <FILE id="EU86v2" name="KiwiBeacon.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiBeacon.cpp"/>
-        <FILE id="Lcxuh7" name="KiwiBeacon.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiBeacon.h"/>
         <FILE id="ID7qub" name="KiwiClock.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiClock.cpp"/>
         <FILE id="nfJrxA" name="KiwiClock.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiClock.h"/>
         <FILE id="vxVu94" name="KiwiAttr.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiAttr.cpp"/>
         <FILE id="UaM5YY" name="KiwiAttr.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiAttr.h"/>
+        <FILE id="hBsrOB" name="KiwiBroadcaster.h" compile="0" resource="0"
+              file="KiwiModules/KiwiCore/KiwiBroadcaster.h"/>
+        <FILE id="YIswc4" name="KiwiListenerSet.h" compile="0" resource="0"
+              file="KiwiModules/KiwiCore/KiwiListenerSet.h"/>
       </GROUP>
       <GROUP id="{561F2362-ED19-FC49-2785-6DA718764DE3}" name="KiwiDsp">
         <FILE id="fOAKj3" name="KiwiDsp.h" compile="0" resource="0" file="KiwiModules/KiwiDsp/KiwiDsp.h"/>
