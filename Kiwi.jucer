@@ -19,6 +19,10 @@
         <FILE id="nfJrxA" name="KiwiClock.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiClock.h"/>
         <FILE id="vxVu94" name="KiwiAttr.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiAttr.cpp"/>
         <FILE id="UaM5YY" name="KiwiAttr.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiAttr.h"/>
+        <FILE id="t5y36L" name="KiwiBroadcaster.cpp" compile="1" resource="0"
+              file="KiwiModules/KiwiCore/KiwiBroadcaster.cpp"/>
+        <FILE id="ZSg1uU" name="KiwiBroadcaster.h" compile="0" resource="0"
+              file="KiwiModules/KiwiCore/KiwiBroadcaster.h"/>
       </GROUP>
       <GROUP id="{561F2362-ED19-FC49-2785-6DA718764DE3}" name="KiwiDsp">
         <FILE id="fOAKj3" name="KiwiDsp.h" compile="0" resource="0" file="KiwiModules/KiwiDsp/KiwiDsp.h"/>
