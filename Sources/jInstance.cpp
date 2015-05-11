@@ -43,6 +43,7 @@ namespace Kiwi
         {
             that->m_instance->addListener(that);
             that->m_instance->createPatcher();
+            that->m_instance->createWindow();
         }
         return that;
     }
@@ -51,14 +52,14 @@ namespace Kiwi
     {
         if(patcher && instance == m_instance)
         {
-            cout << "Instance created" << endl;
-            
+            cout << "Patcher created" << endl;
+            /*
             sGuiWindow window = patcher->createWindow();
             if(window)
             {
                 cout << "Window created" << endl;
             }
-            /*
+            
             window = patcher->createWindow();
             if(window)
             {
