@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="MyIZ1x" name="Kiwi" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.cicm.Kiwi" includeBinaryInAppConfig="1"
-              jucerVersion="3.1.1" companyName="cicm">
+              jucerVersion="3.1.0" companyName="cicm">
   <MAINGROUP id="gZ4R04" name="Kiwi">
     <GROUP id="{4DC4B010-A46B-EE94-6CC7-F815B3ACD1BF}" name="KiwiModules">
       <FILE id="NtWq2u" name="KiwiModules.h" compile="0" resource="0" file="KiwiModules/KiwiModules.h"/>
@@ -70,6 +70,10 @@
           <FILE id="q9TCc2" name="KiwiColor.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiColor.h"/>
           <FILE id="uG0ypA" name="KiwiFont.cpp" compile="1" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiFont.cpp"/>
           <FILE id="x9QW3x" name="KiwiFont.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiFont.h"/>
+          <FILE id="MJKTwC" name="KiwiMouseCursor.cpp" compile="1" resource="0"
+                file="KiwiModules/KiwiGui/KiwiGraphics/KiwiMouseCursor.cpp"/>
+          <FILE id="piXHG2" name="KiwiMouseCursor.h" compile="0" resource="0"
+                file="KiwiModules/KiwiGui/KiwiGraphics/KiwiMouseCursor.h"/>
         </GROUP>
         <FILE id="DieeFm" name="KiwiGuiEvent.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiGui/KiwiGuiEvent.cpp"/>
