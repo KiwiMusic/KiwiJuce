@@ -126,6 +126,8 @@
       </GROUP>
       <GROUP id="{F973091F-7994-0B69-8564-227CD3E2E281}" name="KiwiPatcher">
         <FILE id="nkbbrq" name="KiwiPatcher.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiPatcher.h"/>
+        <FILE id="KQVDKc" name="KiwiConsole.cpp" compile="1" resource="0" file="KiwiModules/KiwiPatcher/KiwiConsole.cpp"/>
+        <FILE id="QDviSx" name="KiwiConsole.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiConsole.h"/>
         <FILE id="qR9mZI" name="KiwiObject.cpp" compile="1" resource="0" file="KiwiModules/KiwiPatcher/KiwiObject.cpp"/>
         <FILE id="gPjEij" name="KiwiObject.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiObject.h"/>
         <FILE id="BvRvnD" name="KiwiObjectController.cpp" compile="1" resource="0"
@@ -149,8 +151,6 @@
         <FILE id="CG5JQE" name="KiwiInstance.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiInstance.h"/>
         <FILE id="Lf4Tuk" name="KiwiFactory.cpp" compile="1" resource="0" file="KiwiModules/KiwiPatcher/KiwiFactory.cpp"/>
         <FILE id="RlrsQc" name="KiwiFactory.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiFactory.h"/>
-        <FILE id="KQVDKc" name="KiwiConsole.cpp" compile="1" resource="0" file="KiwiModules/KiwiPatcher/KiwiConsole.cpp"/>
-        <FILE id="QDviSx" name="KiwiConsole.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiConsole.h"/>
       </GROUP>
       <GROUP id="{5B0EE8D5-F533-229A-7F29-FAF33A7F3C39}" name="KiwiObjects">
         <FILE id="vMxjYA" name="KiwiObjects.h" compile="0" resource="0" file="KiwiModules/KiwiObjects/KiwiObjects.h"/>
