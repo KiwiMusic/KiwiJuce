@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="MyIZ1x" name="Kiwi" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.cicm.Kiwi" includeBinaryInAppConfig="1"
-              jucerVersion="3.1.0" companyName="cicm">
+              jucerVersion="3.1.1" companyName="cicm">
   <MAINGROUP id="gZ4R04" name="Kiwi">
     <GROUP id="{4DC4B010-A46B-EE94-6CC7-F815B3ACD1BF}" name="KiwiModules">
       <FILE id="NtWq2u" name="KiwiModules.h" compile="0" resource="0" file="KiwiModules/KiwiModules.h"/>
@@ -147,6 +147,8 @@
         <FILE id="t7Pj8S" name="KiwiInstance.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiPatcher/KiwiInstance.cpp"/>
         <FILE id="CG5JQE" name="KiwiInstance.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiInstance.h"/>
+        <FILE id="Lf4Tuk" name="KiwiFactory.cpp" compile="1" resource="0" file="KiwiModules/KiwiPatcher/KiwiFactory.cpp"/>
+        <FILE id="RlrsQc" name="KiwiFactory.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiFactory.h"/>
         <FILE id="KQVDKc" name="KiwiConsole.cpp" compile="1" resource="0" file="KiwiModules/KiwiPatcher/KiwiConsole.cpp"/>
         <FILE id="QDviSx" name="KiwiConsole.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiConsole.h"/>
       </GROUP>
