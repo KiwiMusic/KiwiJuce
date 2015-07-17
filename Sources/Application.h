@@ -50,36 +50,36 @@ namespace Kiwi
         StringArray getMenuNames();
         
         //! Called by MainMenuModel to create menus
-        void createMenu (PopupMenu& menu, const String& menuName);
+        void createMenu(PopupMenu& menu, const String& menuName);
         
         //! Called by createMenu to create each menu
-        void createOpenRecentPatcherMenu	(PopupMenu& menu);
-        void createFileMenu				(PopupMenu& menu);
-        void createEditMenu				(PopupMenu& menu);
-        void createViewMenu				(PopupMenu& menu);
-        void createObjectMenu			(PopupMenu& menu);
-        void createArrangeMenu			(PopupMenu& menu);
-        void createOptionsMenu			(PopupMenu& menu);
-        void createWindowMenu			(PopupMenu& menu);
-        void createExtraMenu			(PopupMenu& menu);
-        void createHelpMenu				(PopupMenu& menu);
+        void createOpenRecentPatcherMenu    (PopupMenu& menu);
+        void createFileMenu                 (PopupMenu& menu);
+        void createEditMenu                 (PopupMenu& menu);
+        void createViewMenu                 (PopupMenu& menu);
+        void createObjectMenu               (PopupMenu& menu);
+        void createArrangeMenu              (PopupMenu& menu);
+        void createOptionsMenu              (PopupMenu& menu);
+        void createWindowMenu               (PopupMenu& menu);
+        void createExtraMenu                (PopupMenu& menu);
+        void createHelpMenu                 (PopupMenu& menu);
         
         //! Called by MainMenuModel to handle the main menu command
-        void handleMainMenuCommand (int menuItemID);
+        void handleMainMenuCommand          (int menuItemID);
         
         //==============================================================================
-		shared_ptr<KiwiJuceDspDeviceManager>		m_dsp_device_manager;
-        shared_ptr<KiwiJuceGuiDeviceManager>        m_gui_device_manager;
-        sjInstance									m_instance;
-        ScopedPointer<MainMenuModel>				m_menu_model;
-        bool										m_is_running_command_line;
+		sjDspDeviceManager                  m_dsp_device_manager;
+        sjGuiDeviceManager                  m_gui_device_manager;
+        sjInstance                          m_instance;
+        //ScopedPointer<MainMenuModel>        m_menu_model;
+        
     public:
         
         //! Kiwi Application Constructor
         Application();
         
         /** Called when the application starts. */
-        void initialise (const String& commandLine) override;
+        void initialise(const String& commandLine) override;
         
         /** Called to allow the application to clear up before exiting. */
         void shutdown() override;

@@ -70,7 +70,7 @@ namespace Kiwi
     };
     
     //==============================================================================
-    Application::Application() : m_is_running_command_line (false)
+    Application::Application()
     {
         ;
     }
@@ -83,7 +83,9 @@ namespace Kiwi
         m_gui_device_manager = make_shared<KiwiJuceGuiDeviceManager>();
         m_gui_device_manager->initialize();
         m_instance = jInstance::create(m_gui_device_manager, m_dsp_device_manager, "main");
-        m_menu_model = new MainMenuModel();
+        
+        
+        //m_menu_model = new MainMenuModel();
         
         /*
 #if JUCE_MAC

@@ -43,7 +43,6 @@ namespace Kiwi
         {
             that->m_instance->addListener(that);
             that->m_instance->createPatcher();
-            that->m_instance->createWindow();
         }
         return that;
     }

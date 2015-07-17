@@ -96,32 +96,8 @@
         <FILE id="A8Z0jT" name="KiwiGuiDevice.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiDevice.h"/>
         <GROUP id="{764E975D-A795-56AB-76F7-B4530315845C}" name="KiwiWidgets">
           <FILE id="Y1pLiX" name="KiwiWidgets.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiWidgets.h"/>
-          <FILE id="TFQf7J" name="KiwiGuiButton.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiButton.cpp"/>
-          <FILE id="L5SWJ7" name="KiwiGuiButton.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiButton.h"/>
-          <FILE id="M2sAuY" name="KiwiGuiScrollBar.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiScrollBar.cpp"/>
-          <FILE id="Jjk0w4" name="KiwiGuiScrollBar.h" compile="0" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiScrollBar.h"/>
-          <FILE id="cwkkVu" name="KiwiGuiResizer.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiResizer.cpp"/>
-          <FILE id="sDxqlH" name="KiwiGuiResizer.h" compile="0" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiResizer.h"/>
-          <FILE id="SVprEe" name="KiwiGuiContainer.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiContainer.cpp"/>
-          <FILE id="bvd87V" name="KiwiGuiContainer.h" compile="0" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiContainer.h"/>
-          <FILE id="ZSadjT" name="KiwiGuiViewport.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiViewport.cpp"/>
-          <FILE id="vyVhsD" name="KiwiGuiViewport.h" compile="0" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiViewport.h"/>
-          <FILE id="GCCp3y" name="KiwiGuiTextEditor.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiTextEditor.cpp"/>
           <FILE id="pu758s" name="KiwiGuiTextEditor.h" compile="0" resource="0"
                 file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiTextEditor.h"/>
-          <FILE id="ncMG1m" name="KiwiGuiWindow.cpp" compile="1" resource="0"
-                file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.cpp"/>
-          <FILE id="NmOu32" name="KiwiGuiWindow.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiWidgets/KiwiGuiWindow.h"/>
         </GROUP>
       </GROUP>
       <GROUP id="{F973091F-7994-0B69-8564-227CD3E2E281}" name="KiwiPatcher">
@@ -142,10 +118,6 @@
               file="KiwiModules/KiwiPatcher/KiwiPatcherController.cpp"/>
         <FILE id="ot7U90" name="KiwiPatcherController.h" compile="0" resource="0"
               file="KiwiModules/KiwiPatcher/KiwiPatcherController.h"/>
-        <FILE id="UrdWs1" name="KiwiPatcherWindow.cpp" compile="1" resource="0"
-              file="KiwiModules/KiwiPatcher/KiwiPatcherWindow.cpp"/>
-        <FILE id="xTUgTW" name="KiwiPatcherWindow.h" compile="0" resource="0"
-              file="KiwiModules/KiwiPatcher/KiwiPatcherWindow.h"/>
         <FILE id="t7Pj8S" name="KiwiInstance.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiPatcher/KiwiInstance.cpp"/>
         <FILE id="CG5JQE" name="KiwiInstance.h" compile="0" resource="0" file="KiwiModules/KiwiPatcher/KiwiInstance.h"/>
@@ -250,8 +222,6 @@
         <MODULEPATH id="juce_gui_basics" path="Juce/modules"/>
         <MODULEPATH id="juce_gui_extra" path="Juce/modules"/>
         <MODULEPATH id="juce_cryptography" path="Juce/modules"/>
-        <MODULEPATH id="juce_video" path="Juce/modules"/>
-        <MODULEPATH id="juce_opengl" path="Juce/modules"/>
         <MODULEPATH id="juce_audio_basics" path="Juce/modules"/>
         <MODULEPATH id="juce_audio_devices" path="Juce/modules"/>
         <MODULEPATH id="juce_audio_formats" path="Juce/modules"/>
@@ -273,10 +243,11 @@
     <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
-    <MODULES id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_WASAPI="enabled" JUCE_DIRECTSOUND="enabled" JUCE_ALSA="enabled"
                JUCE_USE_CDREADER="disabled" JUCE_USE_CDBURNER="disabled" JUCE_CHECK_MEMORY_LEAKS="enabled"
-               JUCE_ENABLE_REPAINT_DEBUGGING="disabled"/>
+               JUCE_ENABLE_REPAINT_DEBUGGING="disabled" JUCE_USE_FLAC="disabled"
+               JUCE_USE_OGGVORBIS="disabled" JUCE_USE_MP3AUDIOFORMAT="disabled"
+               JUCE_USE_LAME_AUDIO_FORMAT="disabled" JUCE_WEB_BROWSER="disabled"
+               JUCE_ENABLE_LIVE_CONSTANT_EDITOR="disabled"/>
 </JUCERPROJECT>
