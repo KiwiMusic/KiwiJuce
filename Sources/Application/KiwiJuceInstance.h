@@ -21,12 +21,11 @@
  ==============================================================================
  */
 
-#ifndef __DEF_KIWI_JINSTANCECONTROLLER__
-#define __DEF_KIWI_JINSTANCECONTROLLER__
+#ifndef __DEF_KIWI_JUCE_INSTANCE__
+#define __DEF_KIWI_JUCE_INSTANCE__
 
-#include "jLookAndFeel.h"
-#include "../JuceLibraryCode/JuceHeader.h"
-#include "KiwiModules.h"
+#include "../Wrapper/KiwiGuiJuceDefine.h"
+#include "KiwiLookAndFeel.h"
 
 namespace Kiwi
 {
@@ -45,6 +44,7 @@ namespace Kiwi
         sInstance                               m_instance;
         shared_ptr<MenuBarModel>                m_menu;
 		KiwiLookAndFeel							m_lookandfeel;
+        
     public:
         
         //! The constructor.
@@ -141,11 +141,4 @@ namespace Kiwi
 
 
 #endif
-
-
-
-
-
-
-
 

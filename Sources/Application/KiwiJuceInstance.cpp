@@ -21,7 +21,7 @@
  ==============================================================================
  */
 
-#include "jInstance.h"
+#include "KiwiJuceInstance.h"
 
 namespace Kiwi
 {

@@ -24,8 +24,8 @@
 #ifndef __DEF_KIWI_APPLICATION__
 #define __DEF_KIWI_APPLICATION__
 
-#include "jInstance.h"
-//#include "DspJuce.h"
+#include "KiwiJuceInstance.h"
+#include "KiwiMainMenu.h"
 
 //! The Kiwi Application, where all the magic starts !
 
@@ -35,43 +35,17 @@ namespace Kiwi
     {
     private:
         
-        //==============================================================================
         //! A simple class to send a systemRequestedQuit message to the app after a certain amount of time (500ms)
         class AsyncQuitRetrier;
         
-        //! The Kiwi Application menu model class
-        class MainMenuModel;
-        
-        //==============================================================================
         //! Initialise the command manager
         void initCommandManager();
         
-        //! Called by MainMenuModel to get the menu names
-        StringArray getMenuNames();
-        
-        //! Called by MainMenuModel to create menus
-        void createMenu(PopupMenu& menu, const String& menuName);
-        
-        //! Called by createMenu to create each menu
-        void createOpenRecentPatcherMenu    (PopupMenu& menu);
-        void createFileMenu                 (PopupMenu& menu);
-        void createEditMenu                 (PopupMenu& menu);
-        void createViewMenu                 (PopupMenu& menu);
-        void createObjectMenu               (PopupMenu& menu);
-        void createArrangeMenu              (PopupMenu& menu);
-        void createOptionsMenu              (PopupMenu& menu);
-        void createWindowMenu               (PopupMenu& menu);
-        void createExtraMenu                (PopupMenu& menu);
-        void createHelpMenu                 (PopupMenu& menu);
-        
-        //! Called by MainMenuModel to handle the main menu command
-        void handleMainMenuCommand          (int menuItemID);
-        
-        //==============================================================================
-		sjDspDeviceManager                  m_dsp_device_manager;
+        sjDspDeviceManager                  m_dsp_device_manager;
         sjGuiDeviceManager                  m_gui_device_manager;
         sjInstance                          m_instance;
-        //ScopedPointer<MainMenuModel>        m_menu_model;
+        shared_ptr<ApplicationCommandManager> m_command_manager;
+        sjMenuBar                           m_menubar;
         
     public:
         
