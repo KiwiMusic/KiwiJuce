@@ -122,92 +122,88 @@ namespace Kiwi
 	}
     
     //==============================================================================
-    void Application::getAllCommands (Array <CommandID>& commands)
+    void Application::getAllCommands(Array <CommandID>& commands)
     {
-        JUCEApplication::getAllCommands (commands); // get the standard quit command
-        /*
+        JUCEApplication::getAllCommands(commands); // get the standard quit command
+        
         // this returns the set of all commands that this target can perform..
         const CommandID ids[] =
         {
-            CommandIDs::newPatcher,
-            CommandIDs::newTabPatcher,
-            CommandIDs::openFile,
-            CommandIDs::showConsoleWindow,
-            CommandIDs::showAudioStatusWindow,
-            CommandIDs::showAppSettingsWindow,
-            CommandIDs::showAboutAppWindow
+            ActionCodes::newPatcher,
+            ActionCodes::newTabPatcher,
+            ActionCodes::openFile,
+            ActionCodes::showConsoleWindow,
+            ActionCodes::showAudioStatusWindow,
+            ActionCodes::showAppSettingsWindow,
+            ActionCodes::showAboutAppWindow
         };
         
-        commands.addArray (ids, numElementsInArray (ids));
-         */
+        commands.addArray(ids, numElementsInArray (ids));
     }
     
-    void Application::getCommandInfo (CommandID commandID, ApplicationCommandInfo& result)
+    void Application::getCommandInfo(CommandID commandID, ApplicationCommandInfo& result)
     {
-        /*
         switch (commandID)
         {
-            case CommandIDs::newPatcher:
-                result.setInfo (TRANS("New Patcher Window..."), TRANS("Creates a new Patcher Window"), CommandCategories::general, 0);
+            case ActionCodes::newPatcher:
+                result.setInfo (TRANS("New Patcher Window..."), TRANS("Creates a new Patcher Window"), ActionCategories::general, 0);
                 result.defaultKeypresses.add (KeyPress ('n', ModifierKeys::commandModifier, 0));
                 break;
                 
-            case CommandIDs::newTabPatcher:
-                result.setInfo (TRANS("New Tab Patcher"), TRANS("Create a New Tab Patcher"), CommandCategories::general, 0);
+            case ActionCodes::newTabPatcher:
+                result.setInfo (TRANS("New Tab Patcher"), TRANS("Create a New Tab Patcher"), ActionCategories::general, 0);
                 result.defaultKeypresses.add (KeyPress ('t', ModifierKeys::commandModifier, 0));
                 result.setActive(false);
                 break;
                 
-            case CommandIDs::openFile:
-                result.setInfo (TRANS("Open..."), TRANS("Opens a File"), CommandCategories::general, 0);
+            case ActionCodes::openFile:
+                result.setInfo (TRANS("Open..."), TRANS("Opens a File"), ActionCategories::general, 0);
                 result.defaultKeypresses.add (KeyPress ('o', ModifierKeys::commandModifier, 0));
                 break;
                 
-            case CommandIDs::closeAllPatchers:
-                result.setInfo (TRANS("Close All Patchers"), TRANS("Close All Patchers"), CommandCategories::windows, 0);
+            case ActionCodes::closeAllPatchers:
+                result.setInfo (TRANS("Close All Patchers"), TRANS("Close All Patchers"), ActionCategories::windows, 0);
                 //result.setActive (m_instance->getNumOpenMainWindows() > 0);
                 break;
                 
-            case CommandIDs::showConsoleWindow:
-                result.setInfo (TRANS("Console"), TRANS("Show Kiwi Console"), CommandCategories::windows, 0);
+            case ActionCodes::showConsoleWindow:
+                result.setInfo (TRANS("Console"), TRANS("Show Kiwi Console"), ActionCategories::windows, 0);
                 result.addDefaultKeypress ('k', ModifierKeys::commandModifier);
                 break;
                 
-            case CommandIDs::showAudioStatusWindow:
-                result.setInfo (TRANS("Audio settings"), TRANS("Show Audio Settings"), CommandCategories::windows, 0);
+            case ActionCodes::showAudioStatusWindow:
+                result.setInfo (TRANS("Audio settings"), TRANS("Show Audio Settings"), ActionCategories::windows, 0);
                 break;
                 
-            case CommandIDs::showAboutAppWindow:
-                result.setInfo (TRANS("About Kiwi..."), TRANS("Show App informations"), CommandCategories::windows, 0);
+            case ActionCodes::showAboutAppWindow:
+                result.setInfo (TRANS("About Kiwi..."), TRANS("Show App informations"), ActionCategories::windows, 0);
                 break;
                 
-            case CommandIDs::showAppSettingsWindow:
-                result.setInfo (TRANS("Preferences..."), TRANS("Show App Preferences"), CommandCategories::windows, 0);
+            case ActionCodes::showAppSettingsWindow:
+                result.setInfo (TRANS("Preferences..."), TRANS("Show App Preferences"), ActionCategories::windows, 0);
                 result.addDefaultKeypress (',', ModifierKeys::commandModifier);
                 break;
                 
             default:
-                JUCEApplication::getCommandInfo (commandID, result);
+                JUCEApplication::getCommandInfo(commandID, result);
                 break;
-        }*/
+        }
     }
     
-    bool Application::perform (const InvocationInfo& info)
+    bool Application::perform(const InvocationInfo& info)
     {
-        /*
         switch (info.commandID)
         {
-            //case CommandIDs::newPatcher:						m_instance->createNewMainWindow();	break;
-            case CommandIDs::openFile:						m_instance->askUserToOpenFile();		break;
+            case ActionCodes::newPatcher:						m_instance->newPatcher();	break;
+            //case CommandIDs::openFile:						m_instance->askUserToOpenFile();		break;
             //case CommandIDs::closeAllPatchers:					m_instance->closeAllMainWindows(); 	break;
             //case CommandIDs::showConsoleWindow:				m_instance->showConsoleWindow();		break;
             //case CommandIDs::showAudioStatusWindow:			m_instance->showAudioStatusWindow();	break;
 				
-			case CommandIDs::showAppSettingsWindow:			m_instance->showAppSettingsWindow();	break;
+			//case CommandIDs::showAppSettingsWindow:			m_instance->showAppSettingsWindow();	break;
 
             default:										return JUCEApplication::perform (info);
         }
-        */
         return true;
     }
     
