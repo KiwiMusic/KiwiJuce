@@ -41,7 +41,7 @@ namespace Kiwi
     public:
         
         //! constructor
-        jWindowsManager() noexcept {}
+        jWindowsManager() noexcept;
         
         //! destructor
         ~jWindowsManager() noexcept;

@@ -53,12 +53,13 @@ namespace Kiwi
     void Application::initialise(const String& commandLine)
     {
 		juce::Process::setPriority(juce::Process::RealtimePriority);
-		initCommandManager();
-        m_menubar = make_shared<KiwiMainMenuModel>(m_command_manager);
         
 		m_dsp_device_manager = make_shared<KiwiJuceDspDeviceManager>();
         m_gui_device_manager = make_shared<KiwiJuceGuiDeviceManager>();
+        m_menubar = make_shared<KiwiMainMenuModel>(m_gui_device_manager);
         m_gui_device_manager->initialize();
+        m_gui_device_manager->registerAllCommandsForTarget(this);
+        
         m_instance = jInstance::create(m_gui_device_manager, m_dsp_device_manager, "main");
     }
     
@@ -127,6 +128,24 @@ namespace Kiwi
         sjMenuBar menubar = getApp().m_menubar;
         jassert(menubar);
         return menubar.get();
+    }
+    
+    void Application::bindToCommandManager(ApplicationCommandTarget* target)
+    {
+        Application& app = getApp();
+        if(app.m_gui_device_manager)
+        {
+            app.m_gui_device_manager->registerAllCommandsForTarget(target);
+        }
+    }
+    
+    void Application::bindToKeyMapping(Component* target)
+    {
+        Application& app = getApp();
+        if(app.m_gui_device_manager)
+        {
+            target->addKeyListener(app.m_gui_device_manager->getKeyMappings());
+        }
     }
     
     //==============================================================================
@@ -213,17 +232,6 @@ namespace Kiwi
             default:										return JUCEApplication::perform (info);
         }
         return true;
-    }
-    
-    void Application::initCommandManager()
-    {
-        m_command_manager = make_shared<ApplicationCommandManager>();
-        m_command_manager->registerAllCommandsForTarget(this);
-        
-        {
-            //BaseWindow window;
-            //m_command_manager->registerAllCommandsForTarget(&window);
-        }
     }
 }
 

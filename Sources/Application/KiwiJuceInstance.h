@@ -39,11 +39,12 @@ namespace Kiwi
     /**
      Patati patata.
      */
-    class jInstance : public Instance::Listener, public enable_shared_from_this<jInstance>
+    class jInstance :   public Instance::Listener,
+                        public jWindowsManager,
+                        public enable_shared_from_this<jInstance>
     {
     private:
         sInstance                               m_instance;
-        sjWindowsManager                        m_windows_manager;
         shared_ptr<MenuBarModel>                m_menu;
 		KiwiLookAndFeel							m_lookandfeel;
         

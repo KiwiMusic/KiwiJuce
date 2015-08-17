@@ -25,6 +25,11 @@
 
 namespace Kiwi
 {
+    jWindowsManager::jWindowsManager() noexcept
+    {
+        ;
+    }
+    
     jWindowsManager::~jWindowsManager() noexcept
     {
         m_windows.clear();

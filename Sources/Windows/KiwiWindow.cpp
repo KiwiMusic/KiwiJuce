@@ -48,11 +48,82 @@ namespace Kiwi
             addToDesktop();
             setVisible(true);
         }
+        
+        Application::bindToCommandManager(this);
+        Application::bindToKeyMapping(this);
     }
     
     jWindow::~jWindow()
     {
         
+    }
+    
+    void jWindow::closeButtonPressed()
+    {
+        jassertfalse;
+    }
+    
+    void jWindow::minimiseButtonPressed()
+    {
+        DocumentWindow::minimiseButtonPressed();
+    }
+    
+    void jWindow::maximiseButtonPressed()
+    {
+        DocumentWindow::maximiseButtonPressed();
+    }
+    
+    // ================================================================================ //
+    //                              APPLICATION COMMAND TARGET                          //
+    // ================================================================================ //
+    
+    ApplicationCommandTarget* jWindow::getNextCommandTarget()
+    {
+        return findFirstTargetParentComponent();
+    }
+    
+    void jWindow::getAllCommands(Array <CommandID>& commands)
+    {
+        commands.add(ActionCodes::closeWindow);
+        commands.add(ActionCodes::minimizeWindow);
+        commands.add(ActionCodes::maximizeWindow);
+    }
+    
+    void jWindow::getCommandInfo(const CommandID commandID, ApplicationCommandInfo& result)
+    {
+        switch (commandID)
+        {
+            case ActionCodes::closeWindow:
+                result.setInfo (TRANS("Close"), TRANS("Close Window"), ActionCategories::windows, 0);
+                result.addDefaultKeypress ('w', ModifierKeys::commandModifier);
+                result.setActive(getDesktopWindowStyleFlags() & allButtons || getDesktopWindowStyleFlags() & closeButton);
+                break;
+                
+            case ActionCodes::minimizeWindow:
+                result.setInfo (TRANS("Minimize"), TRANS("Minimize Window"), ActionCategories::windows, 0);
+                result.setActive(getDesktopWindowStyleFlags() & allButtons || getDesktopWindowStyleFlags() & minimiseButton);
+                break;
+                
+            case ActionCodes::maximizeWindow:
+                result.setInfo (TRANS("Maximize"), TRANS("Maximize Window"), ActionCategories::windows, 0);
+                result.setActive(getDesktopWindowStyleFlags() & allButtons || getDesktopWindowStyleFlags() & maximiseButton);
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    bool jWindow::perform (const InvocationInfo& info)
+    {
+        switch (info.commandID)
+        {
+            case ActionCodes::minimizeWindow: minimiseButtonPressed(); break;
+            case ActionCodes::maximizeWindow: maximiseButtonPressed(); break;
+            case ActionCodes::closeWindow:    closeButtonPressed();    break;
+            default: return false;
+        }
+        return true;
     }
 }
 

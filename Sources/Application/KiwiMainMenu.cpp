@@ -189,16 +189,16 @@ namespace Kiwi
     
     void KiwiMainMenuModel::createWindowMenu(PopupMenu& menu)
     {
-        /*
-        menu.addCommandItem(m_command_manager, ActionCodes::minimizeWindow);
-        menu.addCommandItem(m_command_manager, ActionCodes::maximizeWindow);
+        ApplicationCommandManager* manager = getCommandManager();
+
+        menu.addCommandItem(manager, ActionCodes::minimizeWindow);
+        menu.addCommandItem(manager, ActionCodes::maximizeWindow);
         menu.addSeparator();
         
-        menu.addCommandItem(m_command_manager, ActionCodes::showConsoleWindow);
+        menu.addCommandItem(manager, ActionCodes::showConsoleWindow);
         
         menu.addSeparator();
-        menu.addCommandItem(m_command_manager, ActionCodes::closeAllPatchers);
-         */
+        menu.addCommandItem(manager, ActionCodes::closeAllPatchers);
     }
     
     void KiwiMainMenuModel::createExtraMenu(PopupMenu& menu)

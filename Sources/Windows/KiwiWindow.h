@@ -34,20 +34,40 @@ namespace Kiwi
     //                                      WINDOW                                      //
     // ================================================================================ //
     
-    class jWindow : public DocumentWindow
+    class jWindow : public DocumentWindow, public ApplicationCommandTarget
     {
     private:
-        
-    protected:
-        //int getDesktopWindowStyleFlags() const override;
-        
+        shared_ptr<Component> m_content;
     public:
+        
+        //! constructor
         jWindow(string const& name,
                 Kiwi::Color bgcolor = Kiwi::Colors::grey,
                 int buttons = DocumentWindow::allButtons,
                 const bool visible = true);
         
+        //! destructor
         ~jWindow();
+        
+        // ================================================================================ //
+        //                              APPLICATION COMMAND TARGET                          //
+        // ================================================================================ //
+        
+        virtual ApplicationCommandTarget* getNextCommandTarget() override;
+        virtual void getAllCommands (Array <CommandID>& commands) override;
+        virtual void getCommandInfo (const CommandID commandID, ApplicationCommandInfo& result) override;
+        virtual bool perform (const InvocationInfo& info) override;
+        
+    protected:
+        
+        //! This method is called when the user tries to close the window.
+        virtual void closeButtonPressed() override;
+        
+        //! Callback that is triggered when the minimise button is pressed.
+        virtual void minimiseButtonPressed() override;
+        
+        //! Callback that is triggered when the maximise button is pressed, or when the title-bar is double-clicked.
+        virtual void maximiseButtonPressed() override;
     };
     
     typedef shared_ptr<jWindow>	sjWindow;

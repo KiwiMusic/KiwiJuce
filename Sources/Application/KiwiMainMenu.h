@@ -26,10 +26,9 @@
 
 #include "KiwiJuceInstance.h"
 
-//! The Kiwi Application menubar model
-
 namespace Kiwi
 {
+    //! The Kiwi Application menubar model
     class KiwiMainMenuModel : public MenuBarModel
     {
     private:
@@ -59,22 +58,31 @@ namespace Kiwi
             return manager ? manager.get() : nullptr;
         }
         
-        //! Called by MainMenuModel to create menus
+        //! @internal
         void createMenu(PopupMenu& menu, const String& menuName);
         
-        //! Called by createMenu to create each menu
+        //! @internal
         void createOpenRecentPatcherMenu    (PopupMenu& menu);
+        //! @internal
         void createFileMenu                 (PopupMenu& menu);
+        //! @internal
         void createEditMenu                 (PopupMenu& menu);
+        //! @internal
         void createViewMenu                 (PopupMenu& menu);
+        //! @internal
         void createObjectMenu               (PopupMenu& menu);
+        //! @internal
         void createArrangeMenu              (PopupMenu& menu);
+        //! @internal
         void createOptionsMenu              (PopupMenu& menu);
+        //! @internal
         void createWindowMenu               (PopupMenu& menu);
+        //! @internal
         void createExtraMenu                (PopupMenu& menu);
+        //! @internal
         void createHelpMenu                 (PopupMenu& menu);
         
-        //! Called by MainMenuModel to handle the main menu command
+        //! @internal
         void handleMainMenuCommand          (int menuItemID);
     };
     

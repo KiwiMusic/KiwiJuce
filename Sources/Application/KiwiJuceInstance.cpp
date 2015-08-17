@@ -26,8 +26,7 @@
 namespace Kiwi
 {
     jInstance::jInstance(sGuiDeviceManager guiDevice, sDspDeviceManager dspDevice, string const& name) :
-    m_instance(Instance::create(guiDevice, dspDevice, name)),
-    m_windows_manager(make_shared<jWindowsManager>())
+    m_instance(Instance::create(guiDevice, dspDevice, name))
     {
 		LookAndFeel::setDefaultLookAndFeel(&m_lookandfeel);
     }
@@ -53,7 +52,7 @@ namespace Kiwi
         if(patcher && instance == m_instance)
         {
             cout << "Patcher created" << endl;
-            sjWindow window = m_windows_manager->createWindow();
+            sjWindow window = createWindow();
         }
     }
 	
