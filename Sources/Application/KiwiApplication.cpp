@@ -22,6 +22,7 @@
  */
 
 #include "KiwiApplication.h"
+#include "../Wrapper/KiwiGuiJuceDefine.h"
 
 namespace Kiwi
 {
@@ -53,12 +54,12 @@ namespace Kiwi
     {
 		juce::Process::setPriority(juce::Process::RealtimePriority);
 		initCommandManager();
+        m_menubar = make_shared<KiwiMainMenuModel>(m_command_manager);
+        
 		m_dsp_device_manager = make_shared<KiwiJuceDspDeviceManager>();
         m_gui_device_manager = make_shared<KiwiJuceGuiDeviceManager>();
         m_gui_device_manager->initialize();
         m_instance = jInstance::create(m_gui_device_manager, m_dsp_device_manager, "main");
-        
-        m_menubar = make_shared<KiwiMainMenuModel>(m_command_manager);
     }
     
     void Application::shutdown()
@@ -110,16 +111,23 @@ namespace Kiwi
     Application& Application::getApp()
     {
         Application* const app = dynamic_cast<Application*>(JUCEApplication::getInstance());
-        jassert (app != nullptr);
+        jassert(app != nullptr);
         return *app;
     }
 	
 	sjInstance Application::getKiwiInstance()
 	{
 		sjInstance instance = getApp().m_instance;
-		jassert (instance);
+		jassert(instance);
 		return instance;
 	}
+    
+    MenuBarModel* Application::getMenuBar()
+    {
+        sjMenuBar menubar = getApp().m_menubar;
+        jassert(menubar);
+        return menubar.get();
+    }
     
     //==============================================================================
     void Application::getAllCommands(Array <CommandID>& commands)
@@ -141,51 +149,51 @@ namespace Kiwi
         commands.addArray(ids, numElementsInArray (ids));
     }
     
-    void Application::getCommandInfo(CommandID commandID, ApplicationCommandInfo& result)
+    void Application::getCommandInfo(CommandID commandID, ApplicationCommandInfo& cmd)
     {
         switch (commandID)
         {
             case ActionCodes::newPatcher:
-                result.setInfo (TRANS("New Patcher Window..."), TRANS("Creates a new Patcher Window"), ActionCategories::general, 0);
-                result.defaultKeypresses.add (KeyPress ('n', ModifierKeys::commandModifier, 0));
+                cmd.setInfo (TRANS("New Patcher Window..."), TRANS("Creates a new Patcher Window"), ActionCategories::general, 0);
+                cmd.defaultKeypresses.add (KeyPress ('n', ModifierKeys::commandModifier, 0));
                 break;
                 
             case ActionCodes::newTabPatcher:
-                result.setInfo (TRANS("New Tab Patcher"), TRANS("Create a New Tab Patcher"), ActionCategories::general, 0);
-                result.defaultKeypresses.add (KeyPress ('t', ModifierKeys::commandModifier, 0));
-                result.setActive(false);
+                cmd.setInfo (TRANS("New Tab Patcher"), TRANS("Create a New Tab Patcher"), ActionCategories::general, 0);
+                cmd.defaultKeypresses.add (KeyPress ('t', ModifierKeys::commandModifier, 0));
+                cmd.setActive(false);
                 break;
                 
             case ActionCodes::openFile:
-                result.setInfo (TRANS("Open..."), TRANS("Opens a File"), ActionCategories::general, 0);
-                result.defaultKeypresses.add (KeyPress ('o', ModifierKeys::commandModifier, 0));
+                cmd.setInfo (TRANS("Open..."), TRANS("Open a File"), ActionCategories::general, 0);
+                cmd.defaultKeypresses.add (KeyPress ('o', ModifierKeys::commandModifier, 0));
                 break;
                 
             case ActionCodes::closeAllPatchers:
-                result.setInfo (TRANS("Close All Patchers"), TRANS("Close All Patchers"), ActionCategories::windows, 0);
-                //result.setActive (m_instance->getNumOpenMainWindows() > 0);
+                cmd.setInfo (TRANS("Close All Patchers"), TRANS("Close All Patchers"), ActionCategories::windows, 0);
+                //cmd.setActive (m_instance->getNumOpenMainWindows() > 0);
                 break;
                 
             case ActionCodes::showConsoleWindow:
-                result.setInfo (TRANS("Console"), TRANS("Show Kiwi Console"), ActionCategories::windows, 0);
-                result.addDefaultKeypress ('k', ModifierKeys::commandModifier);
+                cmd.setInfo (TRANS("Console"), TRANS("Show Kiwi Console"), ActionCategories::windows, 0);
+                cmd.addDefaultKeypress ('k', ModifierKeys::commandModifier);
                 break;
                 
             case ActionCodes::showAudioStatusWindow:
-                result.setInfo (TRANS("Audio settings"), TRANS("Show Audio Settings"), ActionCategories::windows, 0);
+                cmd.setInfo (TRANS("Audio settings"), TRANS("Show Audio Settings"), ActionCategories::windows, 0);
                 break;
                 
             case ActionCodes::showAboutAppWindow:
-                result.setInfo (TRANS("About Kiwi..."), TRANS("Show App informations"), ActionCategories::windows, 0);
+                cmd.setInfo (TRANS("About Kiwi..."), TRANS("Show App informations"), ActionCategories::windows, 0);
                 break;
                 
             case ActionCodes::showAppSettingsWindow:
-                result.setInfo (TRANS("Preferences..."), TRANS("Show App Preferences"), ActionCategories::windows, 0);
-                result.addDefaultKeypress (',', ModifierKeys::commandModifier);
+                cmd.setInfo (TRANS("Preferences..."), TRANS("Show App Preferences"), ActionCategories::windows, 0);
+                cmd.addDefaultKeypress (',', ModifierKeys::commandModifier);
                 break;
                 
             default:
-                JUCEApplication::getCommandInfo(commandID, result);
+                JUCEApplication::getCommandInfo(commandID, cmd);
                 break;
         }
     }

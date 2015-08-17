@@ -31,6 +31,9 @@
 
 namespace Kiwi
 {
+    class KiwiJuceGuiDeviceManager;
+    typedef shared_ptr<KiwiJuceGuiDeviceManager> sjGuiDeviceManager;
+    
     class Application : public JUCEApplication
     {
     private:
@@ -98,6 +101,11 @@ namespace Kiwi
 		/** The function retrieves the current running kiwi instance.
 		 */
 		static sjInstance getKiwiInstance();
+        
+        //! Retrieve the current menu bar.
+        /** The function retrieves the current menu bar.
+         */
+        static MenuBarModel* getMenuBar();
         
         // ================================================================================ //
         //                              APPLICATION COMMAND TARGET                          //

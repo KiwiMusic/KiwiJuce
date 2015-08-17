@@ -24,8 +24,9 @@
 #ifndef __DEF_KIWI_JUCE_INSTANCE__
 #define __DEF_KIWI_JUCE_INSTANCE__
 
-#include "../Wrapper/KiwiGuiJuceDefine.h"
+#include "../KiwiModules/KiwiModules.h"
 #include "KiwiLookAndFeel.h"
+#include "../Windows/KiwiWindowsManager.h"
 
 namespace Kiwi
 {
@@ -42,6 +43,7 @@ namespace Kiwi
     {
     private:
         sInstance                               m_instance;
+        sjWindowsManager                        m_windows_manager;
         shared_ptr<MenuBarModel>                m_menu;
 		KiwiLookAndFeel							m_lookandfeel;
         
@@ -52,7 +54,7 @@ namespace Kiwi
          */
         jInstance(sGuiDeviceManager guiDevice, sDspDeviceManager dspDevice, string const& name);
         
-        //! The destrcutor.
+        //! The destructor.
         /** You should never have to use this function.
          */
         ~jInstance();

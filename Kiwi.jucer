@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="MyIZ1x" name="Kiwi" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.cicm.Kiwi" includeBinaryInAppConfig="1"
-              jucerVersion="3.1.0" companyName="cicm">
+              jucerVersion="3.2.0" companyName="cicm">
   <MAINGROUP id="gZ4R04" name="Kiwi">
     <GROUP id="{4DC4B010-A46B-EE94-6CC7-F815B3ACD1BF}" name="KiwiModules">
       <FILE id="NtWq2u" name="KiwiModules.h" compile="0" resource="0" file="KiwiModules/KiwiModules.h"/>
@@ -171,14 +171,9 @@
       </GROUP>
     </GROUP>
     <GROUP id="{F6406C11-CFDE-6D77-B9E8-E3C9758A8862}" name="Sources">
-      <GROUP id="{B2793971-482D-5E2B-5EC5-5FFCF079C4FD}" name="Patcher"/>
       <GROUP id="{60A48779-8FB5-37FC-2B27-1B19C0B67A95}" name="Wrapper">
         <FILE id="iOAQCA" name="KiwiGuiJuceDefine.h" compile="0" resource="0"
               file="Sources/Wrapper/KiwiGuiJuceDefine.h"/>
-        <FILE id="x8HZTK" name="KiwiGuiJuceDevice.cpp" compile="1" resource="0"
-              file="Sources/Wrapper/KiwiGuiJuceDevice.cpp"/>
-        <FILE id="fiQpO2" name="KiwiGuiJuceDevice.h" compile="0" resource="0"
-              file="Sources/Wrapper/KiwiGuiJuceDevice.h"/>
         <FILE id="BKuH15" name="KiwiGuiJuceEvent.cpp" compile="1" resource="0"
               file="Sources/Wrapper/KiwiGuiJuceEvent.cpp"/>
         <FILE id="pLqJ2J" name="KiwiGuiJuceEvent.h" compile="0" resource="0"
@@ -187,6 +182,19 @@
               file="Sources/Wrapper/KiwiGuiJuceView.cpp"/>
         <FILE id="MRi35N" name="KiwiGuiJuceView.h" compile="0" resource="0"
               file="Sources/Wrapper/KiwiGuiJuceView.h"/>
+        <FILE id="x8HZTK" name="KiwiGuiJuceDevice.cpp" compile="1" resource="0"
+              file="Sources/Wrapper/KiwiGuiJuceDevice.cpp"/>
+        <FILE id="fiQpO2" name="KiwiGuiJuceDevice.h" compile="0" resource="0"
+              file="Sources/Wrapper/KiwiGuiJuceDevice.h"/>
+      </GROUP>
+      <GROUP id="{B2793971-482D-5E2B-5EC5-5FFCF079C4FD}" name="Patcher"/>
+      <GROUP id="{7D837161-D024-D8C0-5596-C87A0D7C3A84}" name="Windows">
+        <FILE id="MVQUNd" name="KiwiWindow.cpp" compile="1" resource="0" file="Sources/Windows/KiwiWindow.cpp"/>
+        <FILE id="AkQXpb" name="KiwiWindow.h" compile="0" resource="0" file="Sources/Windows/KiwiWindow.h"/>
+        <FILE id="YyPEO9" name="KiwiWindowsManager.cpp" compile="1" resource="0"
+              file="Sources/Windows/KiwiWindowsManager.cpp"/>
+        <FILE id="dCaLQA" name="KiwiWindowsManager.h" compile="0" resource="0"
+              file="Sources/Windows/KiwiWindowsManager.h"/>
       </GROUP>
       <GROUP id="{0664BEC9-1292-4FD4-A812-47633925DD52}" name="Application">
         <FILE id="yHFFWZ" name="KiwiLookAndFeel.cpp" compile="1" resource="0"

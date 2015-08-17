@@ -28,6 +28,7 @@
 
 #include <JuceHeader.h>
 #include "../KiwiModules/KiwiModules.h"
+//#include "../Application/KiwiApplication.h"
 
 namespace Kiwi
 {
