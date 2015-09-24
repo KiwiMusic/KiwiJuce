@@ -24,7 +24,7 @@
 #ifndef __DEF_KIWI_JUCE_LOOKANDFEEL__
 #define __DEF_KIWI_JUCE_LOOKANDFEEL__
 
-#include <JuceHeader.h>
+#include "../KiwiJuce.h"
 
 class KiwiLookAndFeel : public LookAndFeel_V3
 {

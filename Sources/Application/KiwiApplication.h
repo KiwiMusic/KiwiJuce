@@ -31,9 +31,6 @@
 
 namespace Kiwi
 {
-    class KiwiJuceGuiDeviceManager;
-    typedef shared_ptr<KiwiJuceGuiDeviceManager> sjGuiDeviceManager;
-    
     class Application : public JUCEApplication
     {
     private:

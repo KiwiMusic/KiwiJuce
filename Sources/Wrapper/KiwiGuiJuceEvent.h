@@ -26,18 +26,10 @@
 #ifndef __DEF_KIWI_GUI_JUCE_EVENT__
 #define __DEF_KIWI_GUI_JUCE_EVENT__
 
-#include <JuceHeader.h>
-#include "../KiwiModules/KiwiModules.h"
-//#include "../Application/KiwiApplication.h"
+#include "../KiwiJuce.h"
 
 namespace Kiwi
 {
-    class KiwiJuceGuiDeviceManager;
-    typedef shared_ptr<KiwiJuceGuiDeviceManager>        sjGuiDeviceManager;
-    typedef shared_ptr<const KiwiJuceGuiDeviceManager>  scjGuiDeviceManager;
-    typedef weak_ptr<KiwiJuceGuiDeviceManager>          wjGuiDeviceManager;
-    typedef weak_ptr<const KiwiJuceGuiDeviceManager>    wcjGuiDeviceManager;
-    
     template<typename type> static inline juce::Point<type> toJuce(Kiwi::Point const& pt) noexcept {
         return juce::Point<type>((type)pt.x(), (type)pt.y());
     }

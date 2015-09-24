@@ -19,8 +19,6 @@
         <FILE id="nfJrxA" name="KiwiClock.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiClock.h"/>
         <FILE id="vxVu94" name="KiwiAttr.cpp" compile="1" resource="0" file="KiwiModules/KiwiCore/KiwiAttr.cpp"/>
         <FILE id="UaM5YY" name="KiwiAttr.h" compile="0" resource="0" file="KiwiModules/KiwiCore/KiwiAttr.h"/>
-        <FILE id="ZSg1uU" name="KiwiBroadcaster.h" compile="0" resource="0"
-              file="KiwiModules/KiwiCore/KiwiBroadcaster.h"/>
         <FILE id="jBFHZu" name="KiwiListenerSet.h" compile="0" resource="0"
               file="KiwiModules/KiwiCore/KiwiListenerSet.h"/>
       </GROUP>
@@ -187,7 +185,12 @@
         <FILE id="fiQpO2" name="KiwiGuiJuceDevice.h" compile="0" resource="0"
               file="Sources/Wrapper/KiwiGuiJuceDevice.h"/>
       </GROUP>
-      <GROUP id="{B2793971-482D-5E2B-5EC5-5FFCF079C4FD}" name="Patcher"/>
+      <GROUP id="{B2793971-482D-5E2B-5EC5-5FFCF079C4FD}" name="Patcher">
+        <FILE id="YWXZnv" name="KiwiJucePatcherView.cpp" compile="1" resource="0"
+              file="Sources/Patcher/KiwiJucePatcherView.cpp"/>
+        <FILE id="Tgz82A" name="KiwiJucePatcherView.h" compile="0" resource="0"
+              file="Sources/Patcher/KiwiJucePatcherView.h"/>
+      </GROUP>
       <GROUP id="{7D837161-D024-D8C0-5596-C87A0D7C3A84}" name="Windows">
         <FILE id="MVQUNd" name="KiwiWindow.cpp" compile="1" resource="0" file="Sources/Windows/KiwiWindow.cpp"/>
         <FILE id="AkQXpb" name="KiwiWindow.h" compile="0" resource="0" file="Sources/Windows/KiwiWindow.h"/>
@@ -213,6 +216,7 @@
         <FILE id="twlpmk" name="KiwiApplication.h" compile="0" resource="0"
               file="Sources/Application/KiwiApplication.h"/>
       </GROUP>
+      <FILE id="LiTJGm" name="KiwiJuce.h" compile="0" resource="0" file="Sources/KiwiJuce.h"/>
       <FILE id="T9Nkeo" name="Main.cpp" compile="1" resource="0" file="Sources/Main.cpp"/>
     </GROUP>
     <GROUP id="{EDC6BA37-2F9F-0418-458A-4B86A7078C57}" name="Ressources">

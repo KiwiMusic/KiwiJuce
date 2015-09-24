@@ -24,9 +24,10 @@
 #ifndef __DEF_KIWI_JUCE_INSTANCE__
 #define __DEF_KIWI_JUCE_INSTANCE__
 
-#include "../KiwiModules/KiwiModules.h"
+#include "../KiwiJuce.h"
 #include "KiwiLookAndFeel.h"
 #include "../Windows/KiwiWindowsManager.h"
+#include "../Patcher/KiwiJucePatcherView.h"
 
 namespace Kiwi
 {

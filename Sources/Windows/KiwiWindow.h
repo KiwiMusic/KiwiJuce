@@ -24,7 +24,6 @@
 #ifndef __DEF_KIWI_WINDOW__
 #define __DEF_KIWI_WINDOW__
 
-#include "../KiwiModules/KiwiModules.h"
 #include "../Wrapper/KiwiGuiJuceDefine.h"
 
 namespace Kiwi
@@ -37,7 +36,8 @@ namespace Kiwi
     class jWindow : public DocumentWindow, public ApplicationCommandTarget
     {
     private:
-        shared_ptr<Component> m_content;
+        weak_ptr<Component> m_content;
+        
     public:
         
         //! constructor

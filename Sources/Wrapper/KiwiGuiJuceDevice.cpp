@@ -58,7 +58,7 @@ namespace Kiwi
     
     vector<Font> KiwiJuceGuiDeviceManager::getSystemFonts() const noexcept
     {
-        vector<Font>        fonts;
+        vector<Font> fonts;
         StringArray names = juce::Font::findAllTypefaceNames();
         for(int i = 0; i < names.size(); i++)
         {
