@@ -47,6 +47,8 @@
       </GROUP>
       <GROUP id="{031D494A-18DF-2DA5-A21D-02F81CD2C24B}" name="KiwiGui">
         <FILE id="b5Rugu" name="KiwiGui.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGui.h"/>
+        <FILE id="YHumWb" name="KiwiGuiDefines.h" compile="0" resource="0"
+              file="KiwiModules/KiwiGui/KiwiGuiDefines.h"/>
         <GROUP id="{E6B89024-9F56-606E-5149-5E03404C3862}" name="KiwiGraphics">
           <FILE id="mcv8l8" name="KiwiGraphics.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGraphics/KiwiGraphics.h"/>
           <FILE id="RbLxNN" name="KiwiAffineMatrix.cpp" compile="1" resource="0"
@@ -73,9 +75,20 @@
           <FILE id="piXHG2" name="KiwiMouseCursor.h" compile="0" resource="0"
                 file="KiwiModules/KiwiGui/KiwiGraphics/KiwiMouseCursor.h"/>
         </GROUP>
-        <FILE id="DieeFm" name="KiwiGuiEvent.cpp" compile="1" resource="0"
-              file="KiwiModules/KiwiGui/KiwiGuiEvent.cpp"/>
-        <FILE id="BQdawL" name="KiwiGuiEvent.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiEvent.h"/>
+        <FILE id="aXNsus" name="KiwiGuiSketch.cpp" compile="1" resource="0"
+              file="KiwiModules/KiwiGui/KiwiGuiSketch.cpp"/>
+        <FILE id="ZlwP4s" name="KiwiGuiSketch.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiSketch.h"/>
+        <FILE id="KCt4dz" name="KiwiGuiMouseEvent.cpp" compile="1" resource="0"
+              file="KiwiModules/KiwiGui/KiwiGuiMouseEvent.cpp"/>
+        <FILE id="NnmLmj" name="KiwiGuiMouseEvent.h" compile="0" resource="0"
+              file="KiwiModules/KiwiGui/KiwiGuiMouseEvent.h"/>
+        <FILE id="Jgxs8u" name="KiwiGuiKeyboardEvent.cpp" compile="1" resource="0"
+              file="KiwiModules/KiwiGui/KiwiGuiKeyboardEvent.cpp"/>
+        <FILE id="JCtmGj" name="KiwiGuiKeyboardEvent.h" compile="0" resource="0"
+              file="KiwiModules/KiwiGui/KiwiGuiKeyboardEvent.h"/>
+        <FILE id="KlLJ63" name="KiwiGuiAction.cpp" compile="1" resource="0"
+              file="KiwiModules/KiwiGui/KiwiGuiAction.cpp"/>
+        <FILE id="Wjt7rT" name="KiwiGuiAction.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiAction.h"/>
         <FILE id="IqIfWu" name="KiwiGuiModel.cpp" compile="1" resource="0"
               file="KiwiModules/KiwiGui/KiwiGuiModel.cpp"/>
         <FILE id="uy45qH" name="KiwiGuiModel.h" compile="0" resource="0" file="KiwiModules/KiwiGui/KiwiGuiModel.h"/>
