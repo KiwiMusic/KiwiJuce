@@ -26,8 +26,9 @@
 #ifndef __DEF_KIWI_GUI_JUCE_DEFINE__
 #define __DEF_KIWI_GUI_JUCE_DEFINE__
 
-#include <JuceHeader.h>
+
 #include "KiwiGuiJuceDevice.h"
+#include <JuceHeader.h>
 
 #endif
 

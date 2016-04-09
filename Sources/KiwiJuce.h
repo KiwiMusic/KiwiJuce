@@ -22,7 +22,7 @@
  */
 
 #include "../KiwiModules/KiwiModules.h"
-#include <JuceHeader.h>
+//#include <JuceHeader.h>
 
 namespace Kiwi
 {
